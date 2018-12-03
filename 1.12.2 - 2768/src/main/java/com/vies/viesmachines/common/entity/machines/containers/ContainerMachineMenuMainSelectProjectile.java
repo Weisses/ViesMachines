@@ -14,16 +14,16 @@ public class ContainerMachineMenuMainSelectProjectile extends ContainerVC {
 	{
 		this.machine = machineIn;
         
-		//Slot 1 - Ammo
+		// Slot 1 - Ammo:
 		this.addSlotToContainer(new AmmoSlot(this.machine.inventory, 1, 37, 89));
 		
-		// Player Hotbar, Slot 0-8, Slot IDs 36-44
+		// Player Hotbar, Slot 0-8, Slot IDs 36-44:
 		for (int x = 0; x < 9; ++x) 
 		{
 			this.addSlotToContainer(new Slot(playerInv, x, 8 + x * 18, 198));
 		}
 		
-		// Player Inventory, Slot 9-35, Slot IDs 9-35
+		// Player Inventory, Slot 9-35, Slot IDs 9-35:
 		for (int y = 0; y < 3; ++y) 
 		{
 			for (int x = 0; x < 9; ++x) 

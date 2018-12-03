@@ -1,6 +1,5 @@
 package com.vies.viesmachines.client.sound;
 
-import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 
 import net.minecraft.client.Minecraft;
@@ -15,44 +14,36 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class JukeboxMovingSoundVC extends MovingSound {
 	
-	private final EntityMachineBase airship;
+	private final EntityMachineBase machine;
     private float distance = 0.0F;
     private SoundEvent sound;
     
-    public JukeboxMovingSoundVC(EntityMachineBase airshipIn, SoundEvent soundIn)
+    public JukeboxMovingSoundVC(EntityMachineBase machineIn, SoundEvent soundIn)
     {
         super(soundIn, SoundCategory.RECORDS);
-        this.airship = airshipIn;
+        this.machine = machineIn;
         this.repeat = false;
         this.repeatDelay = 0;
         this.sound = soundIn;
     }
     
-    /**
-     * Like the old updateEntity(), except more generic.
-     */
+    @Override
     public void update()
     {
     	SoundHandler soundHandler = Minecraft.getMinecraft().getSoundHandler();
     	
-    	if (this.airship.isDead
-    	|| this.airship.getBroken())
+    	if (this.machine.isDead
+    	|| this.machine.getBroken())
         {
         	this.donePlaying = true;
     		Minecraft.getMinecraft().gameSettings.setSoundLevel(SoundCategory.MUSIC, 1.0F);
         }
-    	//else if(this.airship.getModuleActiveSlot1() != EnumsVC.ModuleType.MUSIC_LESSER.getMetadata()
-		//	 && this.airship.getModuleActiveSlot1() != EnumsVC.ModuleType.MUSIC_NORMAL.getMetadata()
-		//	 && this.airship.getModuleActiveSlot1() != EnumsVC.ModuleType.MUSIC_GREATER.getMetadata())
-		//	this.donePlaying = true;
-    	//	Minecraft.getMinecraft().gameSettings.setSoundLevel(SoundCategory.MUSIC, 1.0F);
-		//}
-        //else
+        else
         {
-        	this.xPosF = (float)this.airship.posX;
-            this.yPosF = (float)this.airship.posY;
-            this.zPosF = (float)this.airship.posZ;
-            float f = MathHelper.sqrt(this.airship.motionX * this.airship.motionX + this.airship.motionZ * this.airship.motionZ);
+        	this.xPosF = (float)this.machine.posX;
+            this.yPosF = (float)this.machine.posY;
+            this.zPosF = (float)this.machine.posZ;
+            float f = MathHelper.sqrt(this.machine.motionX * this.machine.motionX + this.machine.motionZ * this.machine.motionZ);
             
             if ((double)f >= 0.01D)
             {

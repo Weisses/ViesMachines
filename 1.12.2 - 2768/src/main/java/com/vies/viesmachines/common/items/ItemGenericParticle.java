@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.vies.viesmachines.ViesMachines;
 import com.vies.viesmachines.api.References;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -27,7 +26,6 @@ public class ItemGenericParticle extends Item {
 		this.rarity = rarityIn;
 		
 		this.setMaxStackSize(64);
-		//this.setCreativeTab(ViesMachines.tabItems);
 	}
 	
 	@SideOnly(Side.CLIENT)

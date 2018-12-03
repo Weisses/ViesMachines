@@ -1,21 +1,10 @@
 package com.vies.viesmachines.common.items.machines;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.References;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemMachineBase extends Item {
     
@@ -34,15 +23,10 @@ public class ItemMachineBase extends Item {
     protected int fuel;
     protected int fuelTotal;
     
-    protected int itemstackFuelItem;
-    protected int itemstackFuelSize;
-    
     protected int ammoAmount;
     protected int ammoType;
 	
     protected int machineEnhancement1;
-    
-    
     
     protected int visualModelFrame;
     protected int visualModelEngine;

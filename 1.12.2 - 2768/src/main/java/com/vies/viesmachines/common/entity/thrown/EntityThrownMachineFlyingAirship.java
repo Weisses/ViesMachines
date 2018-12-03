@@ -21,11 +21,8 @@ public class EntityThrownMachineFlyingAirship extends EntityThrownMachineBase {
 			int frameTierIn, int engineTierIn, int componentTierIn, int typeIn, 
 			float healthIn, int energyIn, int durabilityIn,
 			boolean brokenIn, int currentFuelIn, int totalFuelIn, 
-			//int itemstackFuelItemIn, int itemstackFuelSizeIn, 
 			int ammoAmountIn, int ammoTypeIn, 
 			int machineEnhancement1In, 
-			
-			
 			
 			int visualModelFrameIn, int visualModelEngineIn, int visualModelComponentIn, 
 			
@@ -66,15 +63,10 @@ public class EntityThrownMachineFlyingAirship extends EntityThrownMachineBase {
 		this.fuel = currentFuelIn;
 		this.fuelTotal = totalFuelIn;
 		
-		//this.itemstackFuelItem = itemstackFuelItemIn;
-		//this.itemstackFuelSize = itemstackFuelSizeIn;
-
 		this.ammoAmount = ammoAmountIn;
 		this.ammoType = ammoTypeIn;
 		
 		this.machineEnhancement1 = machineEnhancement1In;
-		
-		
 		
 		this.visualModelFrame = visualModelFrameIn;
 		this.visualModelEngine = visualModelEngineIn;
@@ -123,11 +115,8 @@ public class EntityThrownMachineFlyingAirship extends EntityThrownMachineBase {
 					this.frameTier, this.engineTier, this.componentTier, this.type, 
 					this.health, this.energy, this.durability,
     				this.broken, this.fuel, this.fuelTotal, 
-    				//this.itemstackFuelItem, this.itemstackFuelSize, 
     				this.ammoAmount, this.ammoType, 
     				this.machineEnhancement1, 
-    				
-    				
     				
     				this.visualModelFrame, this.visualModelEngine, this.visualModelComponent,
     				

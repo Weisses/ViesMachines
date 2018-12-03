@@ -3,7 +3,6 @@ package com.vies.viesmachines.common.entity.machines.types.flying;
 import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.ItemsVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.api.util.LogHelper;
 import com.vies.viesmachines.common.entity.machines.EntityMachineFlying;
 
 import net.minecraft.item.ItemStack;
@@ -27,6 +26,7 @@ public class EntityMachineFlyingAirship extends EntityMachineFlying {
 		this.width = this.setWidth;
 		this.height = this.setHeight;
 		
+		// Sets the hitbox size:
 		this.setSize(this.width, this.height);
 		
 		// Sets a base name if there isn't one:
@@ -41,11 +41,8 @@ public class EntityMachineFlyingAirship extends EntityMachineFlying {
 			int frameTierIn, int engineTierIn, int componentTierIn, int typeIn, 
 			float healthIn, int energyIn, int durabilityIn, 
 			boolean brokenIn, int currentFuelIn, int totalFuelIn, 
-			//int itemstackFuelItemIn, int itemstackFuelSizeIn, 
 			int ammoAmountIn, int ammoTypeIn, 
 			int machineEnhancement1In, 
-			
-			
 			
 			int visualModelFrameIn, int visualModelEngineIn, int visualModelComponentIn, 
 			
@@ -94,14 +91,9 @@ public class EntityMachineFlyingAirship extends EntityMachineFlying {
 		this.setFuel(currentFuelIn);
 		this.setFuelTotal(totalFuelIn);
 		
-		//this.itemstackFuelItem = itemstackFuelItemIn;
-		//this.itemstackFuelSize = itemstackFuelSizeIn;
-		
 		this.setAmmoAmount(ammoAmountIn);
 		this.setAmmoType(ammoTypeIn);
 		this.setMachineEnhancement1(machineEnhancement1In);
-		
-		
 		
 		this.setVisualModelFrame(visualModelFrameIn);
 		this.setVisualModelEngine(visualModelEngineIn);
@@ -241,14 +233,9 @@ public class EntityMachineFlyingAirship extends EntityMachineFlying {
 		stack.getTagCompound().setInteger(rf.FUEL_TAG, this.getFuel());
 		stack.getTagCompound().setInteger(rf.FUEL_TOTAL_TAG, this.getFuelTotal());
 		
-		//stack.getTagCompound().setInteger(rf.ITEMSTACK_FUEL_ITEM_TAG, this.itemstackFuelItem);
-		//stack.getTagCompound().setInteger(rf.ITEMSTACK_FUEL_SIZE_TAG, this.itemstackFuelSize);
-		
 		stack.getTagCompound().setInteger(rf.AMMO_AMOUNT_TAG, this.getAmmoAmount());
 		stack.getTagCompound().setInteger(rf.AMMO_TYPE_TAG, this.getAmmoType());
 		stack.getTagCompound().setInteger(rf.MACHINE_ENHANCEMENT_1_TAG, this.getMachineEnhancement1());
-		
-		
 		
 		stack.getTagCompound().setInteger(rf.VISUAL_MODEL_FRAME_TAG, this.getVisualModelFrame());
 		stack.getTagCompound().setInteger(rf.VISUAL_MODEL_ENGINE_TAG, this.getVisualModelEngine());

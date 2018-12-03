@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.vies.viesmachines.ViesMachines;
-import com.vies.viesmachines.api.References;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.EnumRarity;

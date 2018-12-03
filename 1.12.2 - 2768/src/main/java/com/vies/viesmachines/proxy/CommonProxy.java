@@ -5,8 +5,8 @@ import java.util.Collections;
 
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.client.InitSoundEventsVC;
-import com.vies.viesmachines.common.utils.events.EventHandlerAirship;
 import com.vies.viesmachines.common.utils.events.EventHandlerConfig;
+import com.vies.viesmachines.common.utils.events.EventHandlerMachine;
 import com.vies.viesmachines.init.InitEntityVC;
 import com.vies.viesmachines.network.GuiHandler;
 import com.vies.viesmachines.network.NetworkHandler;
@@ -55,7 +55,7 @@ public class CommonProxy {
 		//MinecraftForge.EVENT_BUS.register(new AchievementTriggersVC());
 		//MinecraftForge.EVENT_BUS.register(new EventHandlerAchievement());
 		MinecraftForge.EVENT_BUS.register(new EventHandlerConfig());
-		MinecraftForge.EVENT_BUS.register(new EventHandlerAirship());
+		MinecraftForge.EVENT_BUS.register(new EventHandlerMachine());
 		
 		NetworkRegistry.INSTANCE.registerGuiHandler(References.MOD_ID, new GuiHandler());
 	}
@@ -81,7 +81,7 @@ public class CommonProxy {
 	
 	/**
 	 * Creates the initial music record array upon spawning.
-	 * NOTE: Moved to ClientProxy.postInit for efficiency and syncing.
+	 * NOTE: Moved to CommonProxy.postInit for efficiency and syncing.
 	 */
 	private void setupMusic() 
 	{

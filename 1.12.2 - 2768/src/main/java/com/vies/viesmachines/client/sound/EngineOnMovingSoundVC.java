@@ -11,34 +11,32 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class EngineOnMovingSoundVC extends MovingSound {
 	
-    private final Entity airship;
+    private final Entity machine;
     private float distance = 0.0F;
     private SoundEvent sound;
     
-    public EngineOnMovingSoundVC(Entity airshipIn, SoundEvent soundIn)
+    public EngineOnMovingSoundVC(Entity machineIn, SoundEvent soundIn)
     {
         super(soundIn, SoundCategory.AMBIENT);
-        this.airship = airshipIn;
+        this.machine = machineIn;
         this.repeat = true;
         this.repeatDelay = 0;
         this.sound = soundIn;
     }
     
-    /**
-     * Like the old updateEntity(), except more generic.
-     */
+    @Override
     public void update()
     {
-    	if (this.airship.isDead)
+    	if (this.machine.isDead)
         {
         	this.donePlaying = true;
         }
         else
         {
-        	this.xPosF = (float)this.airship.posX;
-            this.yPosF = (float)this.airship.posY;
-            this.zPosF = (float)this.airship.posZ;
-            float f = MathHelper.sqrt(this.airship.motionX * this.airship.motionX + this.airship.motionZ * this.airship.motionZ);
+        	this.xPosF = (float)this.machine.posX;
+            this.yPosF = (float)this.machine.posY;
+            this.zPosF = (float)this.machine.posZ;
+            float f = MathHelper.sqrt(this.machine.motionX * this.machine.motionX + this.machine.motionZ * this.machine.motionZ);
             
             if ((double)f >= 0.01D)
             {

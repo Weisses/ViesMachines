@@ -36,22 +36,21 @@ public class EntityExtractorFX extends Particle
         int d2 = References.random.nextInt(150) + 1;
         int d3 = References.random.nextInt(150) + 1;
         
-        setRBGColorF(d1, d2, d3);
+        this.setRBGColorF(d1, d2, d3);
         
         //this.setParticleTextureIndex(48);
         
         this.setParticleTextureIndex((int)(Math.random() * 26.0D + 1.0D + 224.0D));
     }
-
+    
+    @Override
     public void move(double x, double y, double z)
     {
         this.setBoundingBox(this.getBoundingBox().offset(x, y, z));
         this.resetPositionToBB();
     }
 
-    /**
-     * Renders the particle
-     */
+    @Override
     public void renderParticle(BufferBuilder buffer, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
     {
         float f = ((float)this.particleAge + partialTicks) / (float)this.particleMaxAge;
@@ -59,6 +58,7 @@ public class EntityExtractorFX extends Particle
         super.renderParticle(buffer, entityIn, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
     }
 
+    @Override
     public int getBrightnessForRender(float p_189214_1_)
     {
         float f = ((float)this.particleAge + p_189214_1_) / (float)this.particleMaxAge;
@@ -76,6 +76,7 @@ public class EntityExtractorFX extends Particle
         return j | k << 16;
     }
 
+    @Override
     public void onUpdate()
     {
         this.prevPosX = this.posX;
@@ -101,32 +102,10 @@ public class EntityExtractorFX extends Particle
 
     @SideOnly(Side.CLIENT)
     public static class Factory implements IParticleFactory
-        {
-            public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
-            {
-                return new EntityExtractorFX(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
-            }
-        }
-}
-
-
-/**extends ParticleFlame {
-    
-    public EntityGemstoneRunesFX(World parWorld,
-            double parX, double parY, double parZ,
-            double parMotionX, double parMotionY, double parMotionZ) 
     {
-        super(parWorld, parX, parY, parZ, parMotionX, parMotionY, parMotionZ);
-        
-
-        int d1 = References.random.nextInt(150) + 1;
-        int d2 = References.random.nextInt(150) + 1;
-        int d3 = References.random.nextInt(150) + 1;
-        
-        this.particleScale = 0.05F;
-        setRBGColorF(d1, d2, d3);
-        
-        this.setParticleTextureIndex((int)(Math.random() * 26.0D + 1.0D + 224.0D));
+        public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
+        {
+            return new EntityExtractorFX(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
+        }
     }
-    
-}*/
+}

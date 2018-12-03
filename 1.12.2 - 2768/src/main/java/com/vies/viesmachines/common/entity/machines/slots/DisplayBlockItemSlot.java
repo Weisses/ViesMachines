@@ -14,10 +14,6 @@ public class DisplayBlockItemSlot extends SlotItemHandler {
 	@Override
 	public boolean isItemValid(ItemStack stack)
     {
-		//Item item = stack.getItem();
-        
-		//if (item == ItemsVM.MACHINE_PELLETS) return true;
-        
-		return true;//EntityMachineFuel.isItemFuel(stack) || isBucket(stack);
+		return true;
     }
 }

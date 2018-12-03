@@ -5,18 +5,14 @@ import java.util.Set;
 
 import com.vies.viesmachines.api.BlocksVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.common.tileentity.TileEntityExtractor;
 import com.vies.viesmachines.init.InitBlocksVC;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
@@ -39,30 +35,18 @@ public final class InitBlocksVCRender extends BlocksVM {
 	{
 		INSTANCE.registerBlockModels();
 		INSTANCE.registerItemModels();
-		
-		//net.minecraft.item.Item.getTileEntityItemStackRenderer();
-		
-		//Item.getTileEntityItemStackRenderer()
-		
 	}
 	
-	/**
-	 * The {@link Item}s that have had models registered so far.
-	 */
+	/** The {@link Item}s that have had models registered so far. */
 	private final Set<Item> itemsRegistered = new HashSet<>();
 	
-	/**
-	 * Register this mod's {@link Block} models.
-	 */
+	/** Register this mod's {@link Block} models. */
 	private void registerBlockModels() 
 	{
 		InitBlocksVC.RegistrationHandler.ITEM_BLOCKS.stream().filter(item -> !itemsRegistered.contains(item)).forEach(this::registerItemModel);
 	}
 	
-	
-	/**
-	 * Register this mod's {@link Item} models.
-	 */
+	/** Register this mod's {@link Item} models. */
 	private void registerItemModels() 
 	{
 		InitBlocksVC.RegistrationHandler.ITEM_BLOCKS.stream().filter(item -> !itemsRegistered.contains(item)).forEach(this::registerItemModel);
@@ -118,7 +102,7 @@ public final class InitBlocksVCRender extends BlocksVM {
 	{
 		ModelResourceLocation getLocation(final ItemStack stack);
 
-		// Helper method to easily create lambda instances of this class
+		// Helper method to easily create lambda instances of this class:
 		static ItemMeshDefinition create(final MeshDefinitionFix lambda) 
 		{
 			return lambda;

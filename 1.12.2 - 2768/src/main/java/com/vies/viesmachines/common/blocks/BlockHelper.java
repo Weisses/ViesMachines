@@ -17,12 +17,15 @@ public class BlockHelper extends Block {
 		this(materialIn, materialIn.getMaterialMapColor(), blockName);
 	}
 	
-	//Set the registry name of {@code block} to {@code blockName} 
-	//and the unlocalised name to the full registry name.
+	/** Set the registry name of {@code block} to {@code blockName} 
+	and the unlocalized name to the full registry name.
+	 * 
+	 * @param block
+	 * @param blockName
+	 */
 	public static void setBlockName(Block block, String blockName) 
 	{
 		block.setRegistryName(blockName);
 		block.setUnlocalizedName(block.getRegistryName().toString());
-		//block.setCreativeTab(ViesCraft.tabViesCraftBlocks);
 	}
 }

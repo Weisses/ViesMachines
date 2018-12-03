@@ -62,15 +62,10 @@ public class ItemMachineFlyingAirship extends ItemMachineBase {
 		this.fuel = 0;
 		this.fuelTotal = 0;
 		
-		//this.itemstackFuelItem = 0;
-		//this.itemstackFuelSize = 0;
-		
 		this.ammoAmount = 0;
 		this.ammoType = 0;
 		
 		this.machineEnhancement1 = 0;
-		
-		
 		
 		this.visualModelFrame = 0;
 		this.visualModelEngine = 0;
@@ -119,15 +114,10 @@ public class ItemMachineFlyingAirship extends ItemMachineBase {
         		this.fuel = itemstack.getTagCompound().getInteger(rf.FUEL_TAG);
         		this.fuelTotal = itemstack.getTagCompound().getInteger(rf.FUEL_TOTAL_TAG);
         		
-        		//this.itemstackFuelItem = itemstack.getTagCompound().getInteger(rf.ITEMSTACK_FUEL_ITEM_TAG);
-        		//this.itemstackFuelSize = itemstack.getTagCompound().getInteger(rf.ITEMSTACK_FUEL_SIZE_TAG);
-        		
         		this.ammoAmount = itemstack.getTagCompound().getInteger(rf.AMMO_AMOUNT_TAG);
         		this.ammoType = itemstack.getTagCompound().getInteger(rf.AMMO_TYPE_TAG);
         		
         		this.machineEnhancement1 = itemstack.getTagCompound().getInteger(rf.MACHINE_ENHANCEMENT_1_TAG);
-        		
-        		
         		
         		this.visualModelFrame = itemstack.getTagCompound().getInteger(rf.VISUAL_MODEL_FRAME_TAG);
         		this.visualModelEngine = itemstack.getTagCompound().getInteger(rf.VISUAL_MODEL_ENGINE_TAG);
@@ -155,8 +145,6 @@ public class ItemMachineFlyingAirship extends ItemMachineBase {
         		this.visualComponentColorGreen = itemstack.getTagCompound().getInteger(rf.VISUAL_COMPONENT_COLOR_GREEN_TAG);
         		this.visualComponentColorBlue = itemstack.getTagCompound().getInteger(rf.VISUAL_COMPONENT_COLOR_BLUE_TAG);
         		
-        		
-        		
         		this.storedInventory = itemstack.getTagCompound().getCompoundTag(rf.MACHINE_SLOTS_TAG);
         		
         		this.customName = itemstack.getTagCompound().getString(rf.CUSTOM_NAME_TAG);
@@ -177,11 +165,8 @@ public class ItemMachineFlyingAirship extends ItemMachineBase {
 						this.frameTier, this.engineTier, this.componentTier, this.type, 
 						this.health, this.energy, this.durability,
 	    				this.broken, this.fuel, this.fuelTotal, 
-	    				//this.itemstackFuelItem, this.itemstackFuelSize, 
 	    				this.ammoAmount, this.ammoType, 
 	    				this.machineEnhancement1, 
-	    				
-	    				
 	    				
 	    				this.visualModelFrame, this.visualModelEngine, this.visualModelComponent,
 	    				

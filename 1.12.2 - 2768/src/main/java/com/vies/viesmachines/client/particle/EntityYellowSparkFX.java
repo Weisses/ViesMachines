@@ -15,8 +15,7 @@ public class EntityYellowSparkFX extends ParticleFlame {
         super(parWorld, parX, parY, parZ, parMotionX, parMotionY, parMotionZ);
         
         //this.particleScale = 10.25F;//.particleScale.particleMaxAge = 2;
-        setParticleTextureIndex(65);
-        setRBGColorF(25, 25, 0);
+        this.setParticleTextureIndex(65);
+        this.setRBGColorF(25, 25, 0);
     }
-    
 }

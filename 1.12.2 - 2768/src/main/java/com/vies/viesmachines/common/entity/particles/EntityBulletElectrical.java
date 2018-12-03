@@ -2,7 +2,6 @@ package com.vies.viesmachines.common.entity.particles;
 
 import com.vies.viesmachines.api.ItemsVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.client.InitParticlesVCRender;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

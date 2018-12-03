@@ -17,13 +17,12 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(
-		modid = References.MOD_ID, 
-		name = References.MOD_NAME, 
-		version = References.VERSION, 
-		guiFactory = References.CONFIG_GUI,
-		acceptedMinecraftVersions = References.ACCEPTED_MINECRAFT_VERSIONS
-		)
+@Mod(modid = References.MOD_ID, 
+	 name = References.MOD_NAME, 
+	 version = References.VERSION, 
+	 guiFactory = References.CONFIG_GUI,
+	 acceptedMinecraftVersions = References.ACCEPTED_MINECRAFT_VERSIONS
+	 )
 
 public class ViesMachines {
     

@@ -2,23 +2,19 @@ package com.vies.viesmachines.common.utils.events;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 
 import com.google.common.collect.Lists;
 import com.vies.viesmachines.api.BlocksVM;
 import com.vies.viesmachines.api.ItemsVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.api.util.LogHelper;
 import com.vies.viesmachines.network.NetworkHandler;
 import com.vies.viesmachines.network.client.MessageConfig;
 
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.stats.RecipeBook;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

@@ -7,22 +7,6 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerVC extends Container {
 	
-	/**
-	 * SLOTS: <br> <br>
-	 *
-	 * Slot  0 = Fuel <br>
-	 * Slot  1 = Upgrade Core <br>
-	 * Slot  2 = Upgrade Frame <br>
-	 * Slot  3 = Upgrade Engine <br>
-	 * Slot  4 = Upgrade Balloon <br>
-	 * Slot 11 = Module Slot1 <br>
-	 * Slot 12 = Module Slot2 <br>
-	 * Slot 16 = Redstone Slot <br>
-	 * Slot 18 = Block/Item to Display <br>
-	 * Slot 20-28 = Inventory Small <br>
-	 * Slot 20-37 = Inventory Large <br>
-	 * Slot 51 = Bomb Slot1 <br>
-	 */
 	public ContainerVC() 
 	{
 		
@@ -34,10 +18,7 @@ public class ContainerVC extends Container {
     	return true;
     }
 	
-    /**
-     * Take a stack from the specified inventory slot.
-     */
-	@Override
+    @Override
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
     {
         ItemStack itemstack = ItemStack.EMPTY;

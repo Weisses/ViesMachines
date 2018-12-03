@@ -21,7 +21,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -62,11 +61,8 @@ public class EntityMachineFuel extends EntityMachineBase {
 			int frameTierIn, int engineTierIn, int componentTierIn, int typeIn, 
 			float healthIn, int energyIn, int durabilityIn, 
 			boolean brokenIn, int currentFuelIn, int totalFuelIn, 
-			//int itemstackFuelItemIn, int itemstackFuelSizeIn, 
 			int ammoAmountIn, int ammoTypeIn, 
 			int machineEnhancement1In, 
-			
-			
 			
 			int visualModelFrameIn, int visualModelEngineIn, int visualModelComponentIn, 
 			
@@ -233,8 +229,7 @@ public class EntityMachineFuel extends EntityMachineBase {
 	/** Gets the sound to be triggered when a machine is on/powered. */
 	public SoundEvent getOnSound()
     {
-        return //SoundEvents.ENTITY_GENERIC_EXPLODE; 
-        SoundsVM.ENGINEON;
+        return SoundsVM.ENGINEON;
     }
     
     

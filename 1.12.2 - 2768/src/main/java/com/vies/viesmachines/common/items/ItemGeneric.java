@@ -63,8 +63,7 @@ public class ItemGeneric extends Item {
     {
 		return this.rarity;
     }
-
-
+	
     /** Return the name for this gem proc. */
 	public String getGemProcName()
     {

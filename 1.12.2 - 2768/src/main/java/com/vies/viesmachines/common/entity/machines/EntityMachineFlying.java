@@ -2,18 +2,14 @@ package com.vies.viesmachines.common.entity.machines;
 
 import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.api.util.LogHelper;
-import com.vies.viesmachines.client.InitParticlesVCRender;
 import com.vies.viesmachines.init.LootTableHandler;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.MoverType;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.items.ItemStackHandler;
 
 public class EntityMachineFlying extends EntityMachineFuel {
 	
@@ -33,11 +29,8 @@ public class EntityMachineFlying extends EntityMachineFuel {
 			int frameTierIn, int engineTierIn, int componentTierIn, int typeIn, 
 			float healthIn, int energyIn, int durabilityIn, 
 			boolean brokenIn, int currentFuelIn, int totalFuelIn, 
-			//int itemstackFuelItemIn, int itemstackFuelSizeIn, 
 			int ammoAmountIn, int ammoTypeIn, 
 			int machineEnhancement1In, 
-			
-			
 			
 			int visualModelFrameIn, int visualModelEngineIn, int visualModelComponentIn, 
 			
@@ -72,61 +65,6 @@ public class EntityMachineFlying extends EntityMachineFuel {
         this.prevPosX = x;
         this.prevPosY = y;
         this.prevPosZ = z;
-        
-        /**
-        this.setTierFrame(frameTierIn);
-		this.setTierEngine(engineTierIn);
-		this.setTierComponent(componentTierIn);
-		//LogHelper.info("---"+ this.getTierFrame());
-		this.setType(typeIn);
-		this.setHealth(healthIn);
-		this.setEnergy(energyIn);
-		
-		this.setBroken(brokenIn);
-		this.setFuel(currentFuelIn);
-		this.setFuelTotal(totalFuelIn);
-		
-		//this.itemstackFuelItem = itemstackFuelItemIn;
-		//this.itemstackFuelSize = itemstackFuelSizeIn;
-		
-		this.setAmmoAmount(ammoAmountIn);
-		this.setAmmoType(ammoTypeIn);
-		this.setMachineEnhancement1(machineEnhancement1In);
-		
-		
-		
-		this.setVisualModelFrame(visualModelFrameIn);
-		this.setVisualModelEngine(visualModelEngineIn);
-		this.setVisualModelComponent(visualModelComponentIn);
-		
-		this.setVisualFrameTexture(visualFrameTextureIn);
-		this.setVisualFrameTransparent(visualFrameTransparentIn);
-		this.setVisualFrameColor(visualFrameColorIn);
-		this.setVisualFrameColorRed(visualFrameColorRedIn);
-		this.setVisualFrameColorGreen(visualFrameColorGreenIn);
-		this.setVisualFrameColorBlue(visualFrameColorBlueIn);
-		
-		this.setVisualEngineParticle(visualEngineParticleIn);
-		this.setVisualEngineDisplayType(visualEngineDisplayTypeIn);
-		this.setVisualEngineDisplayItemstack(visualEngineDisplayItemstackIn);
-		this.setVisualEngineDisplayItemstackMeta(visualEngineDisplayItemstackMetaIn);
-		this.setVisualEngineDisplayHead(visualEngineDisplayHeadIn);
-		this.setVisualEngineDisplaySupporterHead(visualEngineDisplaySupporterHeadIn);
-		this.setVisualEngineDisplayHoliday(visualEngineDisplayHolidayIn);
-		
-		this.setVisualComponentTexture(visualComponentTextureIn);
-		this.setVisualComponentTransparent(visualComponentTransparentIn);
-		this.setVisualComponentColor(visualComponentColorIn);
-		this.setVisualComponentColorRed(visualComponentColorRedIn);
-		this.setVisualComponentColorGreen(visualComponentColorGreenIn);
-		this.setVisualComponentColorBlue(visualComponentColorBlueIn);
-		
-        this.inventory = new ItemStackHandler(size);
-        this.inventory.deserializeNBT(compoundIn);
-        
-        this.setCustomNameTag(customNameIn);
-		this.setVisualNameColor(customNameColorIn);
-		*/
 	}
 	
 	
@@ -436,8 +374,6 @@ public class EntityMachineFlying extends EntityMachineFuel {
     }
     
     //--------------------------------------------------
-    
-
     
     @Override
 	public String getCategoryName()

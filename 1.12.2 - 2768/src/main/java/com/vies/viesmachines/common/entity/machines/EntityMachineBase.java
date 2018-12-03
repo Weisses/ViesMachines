@@ -341,11 +341,8 @@ public class EntityMachineBase extends EntityLiving {
 			int frameTierIn, int engineTierIn, int componentTierIn, int typeIn, 
 			float healthIn, int energyIn, int durabilityIn, 
 			boolean brokenIn, int currentFuelIn, int totalFuelIn, 
-			//int itemstackFuelItemIn, int itemstackFuelSizeIn, 
 			int ammoAmountIn, int ammoTypeIn, 
 			int machineEnhancement1In, 
-			
-			
 			
 			int visualModelFrameIn, int visualModelEngineIn, int visualModelComponentIn, 
 			
@@ -3543,11 +3540,6 @@ public class EntityMachineBase extends EntityLiving {
 				this.playSound(this.getUpgradeSound(), 1.0F, 1.0F);
     		}
     	}
-    	//if (this.getEventTrigger() > 0)
-    	//{
-    	//	LogHelper.info(this.getEventTrigger());
-    	//}
-    	//this.setPrimedForLightningStrike(19);
     	
     	// Resets the event trigger:
     	this.setEventTrigger(0);

@@ -1,9 +1,6 @@
 package com.vies.viesmachines.client.entity.machines.ground.renderers.hovercraft;
 
-import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.client.InitParticlesVCRender;
-import com.vies.viesmachines.client.entity.model.frame.ModelFrame0;
 import com.vies.viesmachines.common.entity.machines.EntityMachineGround;
 
 import net.minecraft.client.Minecraft;
@@ -26,7 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderEntityMachineGround extends RenderLiving<EntityMachineGround> {
 	
-	protected ModelBase modelAirship = new ModelFrame0();
+	//protected ModelBase modelAirship = new ModelFrame0();
 	
     public RenderEntityMachineGround(RenderManager rendermanagerIn, ModelBase modelbaseIn, float shadowsizeIn)
     {

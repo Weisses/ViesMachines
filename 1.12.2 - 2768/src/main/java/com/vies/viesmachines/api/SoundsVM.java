@@ -1,24 +1,18 @@
 package com.vies.viesmachines.api;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class SoundsVM {
-	//public static final List<SoundEvent> sounds = new ArrayList<>();
-	//public static final String RESOURCE = References.MOD_ID.toLowerCase(Locale.US);
 	
-	public static SoundEvent BRAMBLE;// = registerSound("record.bramble");
-	public static SoundEvent CASTLE;// = registerSound("record.castle");
-	public static SoundEvent JUNGLE;// = registerSound("record.jungle");
-	public static SoundEvent DIRE;// = registerSound("record.dire");
-	public static SoundEvent STORMS;// = registerSound("record.storms");
-	public static SoundEvent TIMESCAR;// = registerSound("record.timescar");
-	public static SoundEvent ENGINEON;// = registerSound("sound.engineon");
+	public static SoundEvent BRAMBLE;
+	public static SoundEvent CASTLE;
+	public static SoundEvent JUNGLE;
+	public static SoundEvent DIRE;
+	public static SoundEvent STORMS;
+	public static SoundEvent TIMESCAR;
+	public static SoundEvent ENGINEON;
 	
 	public static void registerSounds()
 	{
@@ -31,15 +25,14 @@ public class SoundsVM {
 		ENGINEON = registerSound("sound.engineon");
 	}
 	
+	/** Registers all custom sounds. */
 	private static SoundEvent registerSound(String name) 
 	{
 	    ResourceLocation location = new ResourceLocation(References.MOD_ID, name);
 	    SoundEvent event = new SoundEvent(location);
 	    event.setRegistryName(name);
 	    ForgeRegistries.SOUND_EVENTS.register(event);
-	    //sounds.add(event);
+	    
 	    return event;
 	}
-	
-	//================================
 }

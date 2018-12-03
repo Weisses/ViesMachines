@@ -6,6 +6,7 @@ import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.client.entity.machines.base.ModelMachineControlPanel;
 import com.vies.viesmachines.client.entity.machines.flying.models.airship.ModelAirshipFrameDisplayBannerStand;
 import com.vies.viesmachines.client.entity.machines.flying.models.airship.ModelAirshipFrameSkids;
+import com.vies.viesmachines.client.entity.machines.flying.models.airship.ModelAirshipPropeller;
 import com.vies.viesmachines.client.entity.machines.flying.models.airship.component.ModelAirshipComponent0Primary;
 import com.vies.viesmachines.client.entity.machines.flying.models.airship.component.ModelAirshipComponent0Secondary;
 import com.vies.viesmachines.client.entity.machines.flying.models.airship.component.ModelAirshipComponent1Primary;
@@ -28,7 +29,6 @@ import com.vies.viesmachines.client.entity.machines.flying.models.airship.frame.
 import com.vies.viesmachines.client.entity.machines.flying.models.airship.frame.ModelAirshipFrame1Secondary;
 import com.vies.viesmachines.client.entity.machines.flying.models.airship.frame.ModelAirshipFrame2Primary;
 import com.vies.viesmachines.client.entity.machines.flying.models.airship.frame.ModelAirshipFrame2Secondary;
-import com.vies.viesmachines.client.entity.model.ModelAirshipPropeller;
 import com.vies.viesmachines.client.entity.model.head.ModelChickenHead;
 import com.vies.viesmachines.client.entity.model.head.ModelCowHead;
 import com.vies.viesmachines.client.entity.model.head.ModelPigHead;
@@ -99,8 +99,6 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
 	protected ModelBase modelAirshipComponent4Primary = new ModelAirshipComponent4Primary();
 	protected ModelBase modelAirshipComponent4Secondary = new ModelAirshipComponent4Secondary();
 	
-	
-  	
   	protected ModelBase currentModelFramePrimary;
   	protected ModelBase currentModelFrameSecondary;
   	protected ModelBase currentModelEnginePrimary;
@@ -108,8 +106,6 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
   	protected ModelBase currentModelComponentPrimary;
   	protected ModelBase currentModelComponentSecondary;
 	
-  	
-    
     private final ModelDragonHead dragonHead = new ModelDragonHead(0.0F);
     private final ModelSkeletonHead skeletonHead = new ModelSkeletonHead(0, 0, 64, 32);
     private final ModelSkeletonHead humanoidHead = new ModelHumanoidHead();
@@ -294,160 +290,25 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
         
         GlStateManager.pushMatrix();
         {
-        	/**
-	        //Viesdenburg
-	        if(locationIn == 1)
-	        {
-	        	//Left
-	        	GlStateManager.pushMatrix();
-	        	
-	        	//GlStateManager.translate(0.375F, 0F, -0.8125F);
-		    	GlStateManager.scale(1F, 1F, 1F);
-		    	//Flips the model right side up.
-	            GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-	            
-	        	GlStateManager.translate(1.025F, 2.125F, 0F);
-	            GlStateManager.rotate(90, 0F, 1F, 0F);
-	            
-	            Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
-	            
-	            GlStateManager.popMatrix();
-	            
-	            //Right
-	        	GlStateManager.pushMatrix();
-	        	
-	        	//GlStateManager.translate(0.375F, 0F, -0.8125F);
-		    	GlStateManager.scale(1F, 1F, 1F);
-		    	//Flips the model right side up.
-	            GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-	        	
-	        	GlStateManager.translate(-1.025F, 2.125F, 0F);
-	            GlStateManager.rotate(270, 0F, 1F, 0F);
-	            
-	            Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
-	            
-	            GlStateManager.popMatrix();
-	        }
-	        
-	        //Viesigible
-	        if(locationIn == 2)
-	        {
-	        	//Left
-	        	GlStateManager.pushMatrix();
-	        	
-	        	//GlStateManager.translate(0.375F, 0F, -0.8125F);
-		    	GlStateManager.scale(1F, 1F, 1F);
-		    	//Flips the model right side up.
-	            GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-	            
-	        	GlStateManager.translate(1.435F, 0.0F, 0F);
-	            GlStateManager.rotate(90, 0F, 1F, 0F);
-	            
-	            Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
-	            
-	            GlStateManager.popMatrix();
-	            
-	            //Right
-	        	GlStateManager.pushMatrix();
-	        	
-	        	//GlStateManager.translate(0.375F, 0F, -0.8125F);
-		    	GlStateManager.scale(1F, 1F, 1F);
-		    	//Flips the model right side up.
-	            GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-	        	
-	        	GlStateManager.translate(-1.435F, 0.0F, 0F);
-	            GlStateManager.rotate(270, 0F, 1F, 0F);
-	            
-	            Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
-	            
-	            GlStateManager.popMatrix();
-	        }
-	        
-	        //Vieseplin
-	        if(locationIn == 3)
-	        {
-	        	//Left
-	        	GlStateManager.pushMatrix();
-	        	
-	        	//GlStateManager.translate(0.375F, 0F, -0.8125F);
-    	    	GlStateManager.scale(1F, 1F, 1F);
-    	    	//Flips the model right side up.
-                GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-                
-	        	GlStateManager.translate(1.365F, 0.5F, 0.18F);
-	            GlStateManager.rotate(90, 0F, 1F, 0F);
-	            
-	            Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
-	            
-	            GlStateManager.popMatrix();
-	            
-	            //Right
-	        	GlStateManager.pushMatrix();
-	        	
-	        	//GlStateManager.translate(0.375F, 0F, -0.8125F);
-    	    	GlStateManager.scale(1F, 1F, 1F);
-    	    	//Flips the model right side up.
-                GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-	        	
-	        	GlStateManager.translate(-1.365F, 0.5F, 0.18F);
-	            GlStateManager.rotate(270, 0F, 1F, 0F);
-	            
-	            Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
-	            
-	            GlStateManager.popMatrix();
-	        }
-	        
-	        //Viesakron
-	        if(locationIn == 4)
-	        {
-	        	//Left
-	        	GlStateManager.pushMatrix();
-	        	
-	        	//GlStateManager.translate(0.375F, 0F, -0.8125F);
-    	    	GlStateManager.scale(1F, 1F, 1F);
-    	    	//Flips the model right side up.
-                GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-                
-	        	GlStateManager.translate(0.97F, 1.438F, -0.595F);
-	            GlStateManager.rotate(90, 0F, 1F, 0F);
-	            
-	            Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
-	            
-	            GlStateManager.popMatrix();
-	            
-	            //Right
-	        	GlStateManager.pushMatrix();
-	        	
-	        	//GlStateManager.translate(0.375F, 0F, -0.8125F);
-    	    	GlStateManager.scale(1F, 1F, 1F);
-    	    	//Flips the model right side up.
-                GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-	        	
-	        	GlStateManager.translate(-0.97F, 1.438F, -0.595F);
-	            GlStateManager.rotate(270, 0F, 1F, 0F);
-	            
-	            Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
-	            
-	            GlStateManager.popMatrix();
-	        }
-	        
-	        */
-	        
-	        //Spinning
+        	// Other logic to go here:
+        	
+        	// Display Banner frame positioning:
 	    	GlStateManager.pushMatrix();
 	    	{
-		    	GlStateManager.translate(-0.375F, -0.0675F, -0.8125F);
-	        	GlStateManager.scale(0.3F, 0.3F, 0.3F);
+		    	// Positioning:
+	    		GlStateManager.translate(-0.375F, -0.0675F, -0.8125F);
+		    	// Scaling:
+		    	GlStateManager.scale(0.3F, 0.3F, 0.3F);
+		    	
 	            //Flips the model right side up.
 	            GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
 	            //Flips on the Y axis
 	            GlStateManager.rotate(270, 0.0F, 1.0F, 0.0F);
 		    	
-		    	//float itemSpin = (((float)Minecraft.getMinecraft().player.getEntityWorld().getTotalWorldTime() + 1) / 20.0F) * (180F / (float)Math.PI);
-		        
-		        //Spins Item
+	            // Spins Block/Item:
 		        GlStateManager.rotate(this.baseitemSpin * 5, 0F, 1F, 0F);
 		        
+		        // Renders the Block/Item:
 		        Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
 	    	}
 	        GlStateManager.popMatrix();
@@ -464,259 +325,37 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
 		}
         
         GlStateManager.pushMatrix();
-        	/**
-	        //Viesdenburg
-	        if(locationIn == 1)
-	        {
-	        	//Left
-	        	GlStateManager.pushMatrix();
-	        	
-	        	if(itemstackIn.getItem() instanceof ItemBlock)
-				{
-					GlStateManager.translate(0F, 0.05F, 0F);
-					GlStateManager.scale(1F, 1F, 1F);
-				}
-	        	else
-	        	{
-	        		GlStateManager.translate(-0.277F, -0.56F, 0F);
-					GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	        	}
-	        	
-		    	//Flips the model right side up.
-	            GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-	            
-	        	GlStateManager.translate(1.025F, 2.125F, 0F);
-	            GlStateManager.rotate(90, 0F, 1F, 0F);
-	            
-	            Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
-	            
-	            GlStateManager.popMatrix();
-	            
-	            //Right
-	        	GlStateManager.pushMatrix();
-	        	
-	        	if(itemstackIn.getItem() instanceof ItemBlock)
-				{
-					GlStateManager.translate(0F, 0.05F, 0F);
-					GlStateManager.scale(1F, 1F, 1F);
-				}
-	        	else
-	        	{
-	        		GlStateManager.translate(0.277F, -0.56F, 0F);
-					GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	        	}
-	        	
-	        	//GlStateManager.translate(0.375F, 0F, -0.8125F);
-		    	GlStateManager.scale(1F, 1F, 1F);
-		    	//Flips the model right side up.
-	            GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-	        	
-	        	GlStateManager.translate(-1.025F, 2.125F, 0F);
-	            GlStateManager.rotate(270, 0F, 1F, 0F);
-	            
-	            Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
-	            
-	            GlStateManager.popMatrix();
-	        }
+        {	
+	        // Other logic to go here:
 	        
-	        //Viesigible
-	        if(locationIn == 2)
-	        {
-	        	//Left
-	        	GlStateManager.pushMatrix();
-	        	
-	        	if(itemstackIn.getItem() instanceof ItemBlock)
-				{
-					GlStateManager.translate(0F, 0.05F, 0F);
-					GlStateManager.scale(1F, 1F, 1F);
-				}
-	        	else
-	        	{
-	        		GlStateManager.translate(-0.37F, -0.03F, 0F);
-					GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	        	}
-	        	
-	        	//GlStateManager.translate(0.375F, 0F, -0.8125F);
-		    	GlStateManager.scale(1F, 1F, 1F);
-		    	//Flips the model right side up.
-	            GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-	            
-	        	GlStateManager.translate(1.435F, 0.0F, 0F);
-	            GlStateManager.rotate(90, 0F, 1F, 0F);
-	            
-	            Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
-	            
-	            GlStateManager.popMatrix();
-	            
-	            //Right
-	        	GlStateManager.pushMatrix();
-	        	
-	        	if(itemstackIn.getItem() instanceof ItemBlock)
-				{
-					GlStateManager.translate(0F, 0.05F, 0F);
-					GlStateManager.scale(1F, 1F, 1F);
-				}
-	        	else
-	        	{
-	        		GlStateManager.translate(0.37F, -0.03F, 0F);
-					GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	        	}
-	        	
-	        	//GlStateManager.translate(0.375F, 0F, -0.8125F);
-		    	GlStateManager.scale(1F, 1F, 1F);
-		    	//Flips the model right side up.
-	            GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-	        	
-	        	GlStateManager.translate(-1.435F, 0.0F, 0F);
-	            GlStateManager.rotate(270, 0F, 1F, 0F);
-	            
-	            Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
-	            
-	            GlStateManager.popMatrix();
-	        }
-	        
-	        //Vieseplin
-	        if(locationIn == 3)
-	        {
-	        	//Left
-	        	GlStateManager.pushMatrix();
-	        	
-	        	if(itemstackIn.getItem() instanceof ItemBlock)
-				{
-					GlStateManager.translate(0F, 0.05F, 0F);
-					GlStateManager.scale(1F, 1F, 1F);
-				}
-	        	else
-	        	{
-	        		GlStateManager.translate(-0.365F, -0.157F, 0.05F);
-					GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	        	}
-	        	
-	        	//GlStateManager.translate(0.375F, 0F, -0.8125F);
-    	    	GlStateManager.scale(1F, 1F, 1F);
-    	    	//Flips the model right side up.
-                GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-                
-	        	GlStateManager.translate(1.36F, 0.5F, 0.18F);
-	            GlStateManager.rotate(90, 0F, 1F, 0F);
-	            
-	            Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
-	            
-	            GlStateManager.popMatrix();
-	            
-	            //Right
-	        	GlStateManager.pushMatrix();
-	        	
-	        	if(itemstackIn.getItem() instanceof ItemBlock)
-				{
-					GlStateManager.translate(0F, 0.05F, 0F);
-					GlStateManager.scale(1F, 1F, 1F);
-				}
-	        	else
-	        	{
-	        		GlStateManager.translate(0.36F, -0.157F, 0.05F);
-					GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	        	}
-	        	
-	        	//GlStateManager.translate(0.375F, 0F, -0.8125F);
-    	    	GlStateManager.scale(1F, 1F, 1F);
-    	    	//Flips the model right side up.
-                GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-	        	
-	        	GlStateManager.translate(-1.365F, 0.5F, 0.18F);
-	            GlStateManager.rotate(270, 0F, 1F, 0F);
-	            
-	            Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
-	            
-	            GlStateManager.popMatrix();
-	        }
-	        
-	        //Viesakron
-	        if(locationIn == 4)
-	        {
-	        	//Left
-	        	GlStateManager.pushMatrix();
-	        	
-	        	if(itemstackIn.getItem() instanceof ItemBlock)
-				{
-					GlStateManager.translate(0F, 0.05F, 0F);
-					GlStateManager.scale(1F, 1F, 1F);
-				}
-	        	else
-	        	{
-	        		GlStateManager.translate(-0.25F, -0.39F, -0.15F);
-					GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	        	}
-	        	
-	        	//GlStateManager.translate(0.375F, 0F, -0.8125F);
-    	    	GlStateManager.scale(1F, 1F, 1F);
-    	    	//Flips the model right side up.
-                GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-                
-	        	GlStateManager.translate(0.97F, 1.438F, -0.595F);
-	            GlStateManager.rotate(90, 0F, 1F, 0F);
-	            
-	            Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
-	            
-	            GlStateManager.popMatrix();
-	            
-	            //Right
-	        	GlStateManager.pushMatrix();
-	        	
-	        	if(itemstackIn.getItem() instanceof ItemBlock)
-				{
-					GlStateManager.translate(0F, 0.05F, 0F);
-					GlStateManager.scale(1F, 1F, 1F);
-				}
-	        	else
-	        	{
-	        		GlStateManager.translate(0.25F, -0.39F, -0.15F);
-					GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	        	}
-	        	
-	        	//GlStateManager.translate(0.375F, 0F, -0.8125F);
-    	    	GlStateManager.scale(1F, 1F, 1F);
-    	    	//Flips the model right side up.
-                GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-	        	
-	        	GlStateManager.translate(-0.97F, 1.438F, -0.595F);
-	            GlStateManager.rotate(270, 0F, 1F, 0F);
-	            
-	            Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
-	            
-	            GlStateManager.popMatrix();
-	        }
-	        */
-	        
-	        
-	        //Spinning
+	        // Display Banner frame positioning:
 	    	GlStateManager.pushMatrix();
-	    	
-	    	if(itemstackIn.getItem() instanceof ItemBlock)
-			{
-	    		GlStateManager.translate(-0.375F, 0F, -0.8125F);
-	        	GlStateManager.scale(0.5F, 0.5F, 0.5F);
-			}
-        	else
-        	{
-    	    	GlStateManager.translate(-0.375F, -0.062F, -0.8125F);
-            	GlStateManager.scale(0.25F, 0.25F, 0.25F);
-        	}
-	    	
-            //Flips the model right side up.
-            GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-            //Flips on the Y axis
-            GlStateManager.rotate(270, 0.0F, 1.0F, 0.0F);
-	    	
-	    	//float itemSpin = (((float)Minecraft.getMinecraft().player.getEntityWorld().getTotalWorldTime() + 1) / 20.0F) * (180F / (float)Math.PI);
-	    	
-	        //Spins Item
-	        GlStateManager.rotate(this.baseitemSpin * 5, 0F, 1F, 0F);
-	        
-	        Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
-	        
+	    	{
+	    		// Is this a block?
+		    	if(itemstackIn.getItem() instanceof ItemBlock)
+				{
+		    		GlStateManager.translate(-0.375F, 0F, -0.8125F);
+		        	GlStateManager.scale(0.5F, 0.5F, 0.5F);
+				}
+	        	else
+	        	{
+	    	    	GlStateManager.translate(-0.375F, -0.062F, -0.8125F);
+	            	GlStateManager.scale(0.25F, 0.25F, 0.25F);
+	        	}
+		    	
+	            // Flips the model right side up:
+	            GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
+	            // Flips on the Y axis:
+	            GlStateManager.rotate(270, 0.0F, 1.0F, 0.0F);
+		    	
+		        // Spins Block/Item:
+		        GlStateManager.rotate(this.baseitemSpin * 5, 0F, 1F, 0F);
+		        
+		        // Renders the Block/Item:
+		        Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
+	    	}
 	        GlStateManager.popMatrix();
-        
+        }
         GlStateManager.popMatrix();
     }
     
@@ -778,191 +417,46 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
 		        modelbase = this.humanoidHead;
 		        break;
 		}
-
+        
         GlStateManager.pushMatrix();
         {
-	        GlStateManager.disableCull();
+        	// Needed to fix the texture overlap clipping:
+        	GlStateManager.disableCull();
 	        
+        	// May not be needed?!?
 	        GlStateManager.enableRescaleNormal();
 	        GlStateManager.enableAlpha();
-	        /**
-	        //Default
-	        if(locationIn == 0)
+	        
+	        // Other logic to go here:
+	        
+	        // Display Banner frame positioning :
+	    	GlStateManager.pushMatrix();
 	        {
-	        	GlStateManager.pushMatrix();
-	        	
-	            GlStateManager.popMatrix();
+		    	// Dragon Entity Head special positioning:
+		    	if(skullType == 11)
+		    	{
+		    		GlStateManager.scale(0.55, 0.55, 0.55);
+		    		GlStateManager.translate(-0.3F, -0.03F, -0.65F);
+		    	}
+		    	
+		    	// Positioning:
+		    	GlStateManager.translate(-0.375F, -0.03F, -0.8125F);
+		    	// Scaling:
+		    	GlStateManager.scale(0.25F, 0.25F, 0.25F);
+		        
+		        // Spins Entity Head:
+		        GlStateManager.rotate(-this.baseitemSpin * 5, 0F, 1F, 0F);
+		        
+		        // Renders the Entity Head:
+		        modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
 	        }
-	        //Viesdenburg
-	        if(locationIn == 1)
-	        {
-	        	//Left
-	        	GlStateManager.pushMatrix();
-	        	
-	        	//Dragon
-	        	if(skullType == 11)
-	        	{
-	        		GlStateManager.translate(0.79F, -1.76F, 0.0F);
-	        	}
-	        	
-	        	GlStateManager.translate(1.038F, -2.0625F, 0F);
-	            GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	            GlStateManager.rotate(270, 0F, 1F, 0F);
-	            
-	        	modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
-	        	
-	            GlStateManager.popMatrix();
-	            
-	            //Right
-	            GlStateManager.pushMatrix();
-	            
-	        	//Dragon
-	        	if(skullType == 11)
-	        	{
-	        		GlStateManager.translate(-0.79F, -1.76F, 0.0F);
-	        	}
-	        	
-	            GlStateManager.translate(-1.038F, -2.0625F, 0F);
-	            GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	            GlStateManager.rotate(90, 0F, 1F, 0F);
-	            
-	            modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
-	            
-	            GlStateManager.popMatrix();
-	        }
-	        //Viesigible
-	        if(locationIn == 2)
-	        {
-	        	//Left
-	        	GlStateManager.pushMatrix();
-	        	
-	        	//Dragon
-	        	if(skullType == 11)
-	        	{
-	        		GlStateManager.translate(1.125F, -0.02F, 0F);
-	        	}
-	        	
-	        	GlStateManager.translate(1.438F, 0.0625F, 0F);
-	            GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	            GlStateManager.rotate(270, 0F, 1F, 0F);
-	            
-	        	modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
-	            GlStateManager.popMatrix();
-	            
-	            //Right
-	            GlStateManager.pushMatrix();
-	            
-	        	//Dragon
-	        	if(skullType == 11)
-	        	{
-	        		GlStateManager.translate(-1.125F, -0.02F, 0F);
-	        	}
-	        	
-	            GlStateManager.translate(-1.438F, 0.0625F, 0F);
-	            GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	            GlStateManager.rotate(90, 0F, 1F, 0F);
-	            
-	            modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
-	            GlStateManager.popMatrix();
-	        }
-	        //Vieseplin
-	        if(locationIn == 3)
-	        {
-	        	//Left
-	        	GlStateManager.pushMatrix();
-	        	
-	        	//Dragon
-	        	if(skullType == 11)
-	        	{
-	        		GlStateManager.translate(1.08F, -0.43F, 0.15F);
-	        	}
-	        	
-	        	GlStateManager.translate(1.37F, -0.44F, 0.185F);
-	            GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	            GlStateManager.rotate(270, 0F, 1F, 0F);
-	            
-	        	modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
-	            GlStateManager.popMatrix();
-	            
-	            //Right
-	            GlStateManager.pushMatrix();
-	            
-	        	//Dragon
-	        	if(skullType == 11)
-	        	{
-	        		GlStateManager.translate(-1.08F, -0.43F, 0.15F);
-	        	}
-	        	
-	            GlStateManager.translate(-1.37F, -0.44F, 0.185F);
-	            GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	            GlStateManager.rotate(90, 0F, 1F, 0F);
-	            
-	            modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
-	            GlStateManager.popMatrix();
-	        }
-	        //Viesakron
-	        if(locationIn == 4)
-	        {
-	        	//Left
-	        	GlStateManager.pushMatrix();
-	        	
-	        	//Dragon
-	        	if(skullType == 11)
-	        	{
-	        		GlStateManager.translate(0.74F, -1.2F, -0.5F);
-	        	}
-	        	
-	        	GlStateManager.translate(0.97F, -1.375F, -0.595F);
-	            GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	            GlStateManager.rotate(270, 0F, 1F, 0F);
-	            
-	        	modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
-	            GlStateManager.popMatrix();
-	            
-	            //Right
-	            GlStateManager.pushMatrix();
-	            
-	        	//Dragon
-	        	if(skullType == 11)
-	        	{
-	        		GlStateManager.translate(-0.74F, -1.2F, -0.5F);
-	        	}
-	        	
-	            GlStateManager.translate(-0.97F, -1.375F, -0.595F);
-	            GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	            GlStateManager.rotate(90, 0F, 1F, 0F);
-	            
-	            modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
-	            GlStateManager.popMatrix();
-	        }
-	        
-	        */
-	        
-	        //Spinning
-	        GlStateManager.pushMatrix();
-	    	
-	    	//float itemSpin = (((float)Minecraft.getMinecraft().player.getEntityWorld().getTotalWorldTime() + 1) / 20.0F) * (180F / (float)Math.PI);
-	        
-	    	//Dragon
-	    	if(skullType == 11)
-	    	{
-	    		GlStateManager.scale(0.55, 0.55, 0.55);
-	    		GlStateManager.translate(-0.3F, -0.03F, -0.65F);
-	    	}
-	    	
-	    	GlStateManager.translate(-0.375F, -0.03F, -0.8125F);
-	    	GlStateManager.scale(0.25F, 0.25F, 0.25F);
-	        
-	        //Spins Item
-	        GlStateManager.rotate(-this.baseitemSpin * 5, 0F, 1F, 0F);
-	        
-	        modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
-	        
 	        GlStateManager.popMatrix();
 	        
-	        GlStateManager.enableCull();
+	        // Need to remove the texture overlap clipping fix at the end.
+	    	GlStateManager.enableCull();
 	        
-	        GlStateManager.disableRescaleNormal();
+	    	// Need to remove the texture overlap clipping fix at the end. Maybe!?!?
+	    	GlStateManager.disableRescaleNormal();
 	        GlStateManager.disableAlpha();
         } 
         GlStateManager.popMatrix();
@@ -1000,129 +494,30 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
 	        
 	        GlStateManager.enableRescaleNormal();
 	        GlStateManager.enableAlpha();
-	        /**
-	        //Default
-	        if(locationIn == 0)
+	        
+	        // Other logic to go here:
+	        
+	        // Display Banner frame positioning :
+	    	GlStateManager.pushMatrix();
 	        {
-	        	GlStateManager.pushMatrix();
-	        	
-	            GlStateManager.popMatrix();
+		    	// Positioning:
+	        	GlStateManager.translate(-0.375F, -0.03F, -0.8125F);
+	        	// Scaling:
+		    	GlStateManager.scale(0.25F, 0.25F, 0.25F);
+		        
+		    	// Spins Supporter Head:
+		    	GlStateManager.rotate(-this.baseitemSpin * 5, 0F, 1F, 0F);
+		        
+		    	// Renders the Supporter Head:
+		        modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
 	        }
-	        //Viesdenburg
-	        if(locationIn == 1)
-	        {
-	        	//Left
-	        	GlStateManager.pushMatrix();
-	        	
-	        	GlStateManager.translate(1.038F, -2.0625F, 0F);
-	            GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	            GlStateManager.rotate(270, 0F, 1F, 0F);
-	            
-	        	modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
-	        	
-	            GlStateManager.popMatrix();
-	            
-	            //Right
-	            GlStateManager.pushMatrix();
-	            
-	            GlStateManager.translate(-1.038F, -2.0625F, 0F);
-	            GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	            GlStateManager.rotate(90, 0F, 1F, 0F);
-	            
-	            modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
-	            
-	            GlStateManager.popMatrix();
-	        }
-	        //Viesigible
-	        if(locationIn == 2)
-	        {
-	        	//Left
-	        	GlStateManager.pushMatrix();
-	        	
-	        	GlStateManager.translate(1.438F, 0.0625F, 0F);
-	            GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	            GlStateManager.rotate(270, 0F, 1F, 0F);
-	            
-	        	modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
-	            GlStateManager.popMatrix();
-	            
-	            //Right
-	            GlStateManager.pushMatrix();
-	            
-	            GlStateManager.translate(-1.438F, 0.0625F, 0F);
-	            GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	            GlStateManager.rotate(90, 0F, 1F, 0F);
-	            
-	            modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
-	            GlStateManager.popMatrix();
-	        }
-	        //Vieseplin
-	        if(locationIn == 3)
-	        {
-	        	//Left
-	        	GlStateManager.pushMatrix();
-	        	
-	        	GlStateManager.translate(1.37F, -0.44F, 0.185F);
-	            GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	            GlStateManager.rotate(270, 0F, 1F, 0F);
-	            
-	        	modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
-	            GlStateManager.popMatrix();
-	            
-	            //Right
-	            GlStateManager.pushMatrix();
-	            
-	            GlStateManager.translate(-1.37F, -0.44F, 0.185F);
-	            GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	            GlStateManager.rotate(90, 0F, 1F, 0F);
-	            
-	            modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
-	            GlStateManager.popMatrix();
-	        }
-	        //Viesakron
-	        if(locationIn == 4)
-	        {
-	        	//Left
-	        	GlStateManager.pushMatrix();
-	        	
-	        	GlStateManager.translate(0.97F, -1.375F, -0.595F);
-	            GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	            GlStateManager.rotate(270, 0F, 1F, 0F);
-	            
-	        	modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
-	            GlStateManager.popMatrix();
-	            
-	            //Right
-	            GlStateManager.pushMatrix();
-	            
-	            GlStateManager.translate(-0.97F, -1.375F, -0.595F);
-	            GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	            GlStateManager.rotate(90, 0F, 1F, 0F);
-	            
-	            modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
-	            GlStateManager.popMatrix();
-	        }
-	        
-	        */
-	        
-	        //Spinning
-	        GlStateManager.pushMatrix();
-	    	
-	    	//float itemSpin = (((float)Minecraft.getMinecraft().player.getEntityWorld().getTotalWorldTime() + 1) / 20.0F) * (180F / (float)Math.PI);
-	        
-	    	GlStateManager.translate(-0.375F, -0.03F, -0.8125F);
-	    	GlStateManager.scale(0.25F, 0.25F, 0.25F);
-	        
-	        //Spins Item
-	        GlStateManager.rotate(-this.baseitemSpin * 5, 0F, 1F, 0F);
-	        
-	        modelbase.render((Entity)null, 0, 0.0F, 0.0F, 0, 0.0F, 0.0625F);
-	        
 	        GlStateManager.popMatrix();
 	        
-	        GlStateManager.enableCull();
+	        // Need to remove the texture overlap clipping fix at the end.
+	    	GlStateManager.enableCull();
 	        
-	        GlStateManager.disableRescaleNormal();
+	    	// Need to remove the texture overlap clipping fix at the end. Maybe!?!?
+	    	GlStateManager.disableRescaleNormal();
 	        GlStateManager.disableAlpha();
         }
         GlStateManager.popMatrix();
@@ -1156,55 +551,38 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
         GlStateManager.popMatrix();*/
     }
     
-    
-    
     /** Main wrapper for the Engine Display system. */
     protected void renderEngineDisplaySymbol(EntityMachineFlying airshipIn, float partialTicks)
     {
+    	// Displays the Block/Item:
     	if(airshipIn.getVisualEngineDisplayType() == 1)
     	{
-    		this.renderBlockItem(airshipIn, new ItemStack(Item.getItemById(airshipIn.getVisualEngineDisplayItemstack()
-    				//.visualEngineDisplayItemstack
-    				), 1, airshipIn.getVisualEngineDisplayItemstackMeta()
-    				//.visualEngineDisplayItemstackMeta
-    				), airshipIn.getVisualModelComponent()
-    				//.visualComponentTexture
-    				);
+    		this.renderBlockItem(airshipIn, new ItemStack(Item.getItemById(airshipIn.getVisualEngineDisplayItemstack()), 1, airshipIn.getVisualEngineDisplayItemstackMeta()), airshipIn.getVisualModelComponent());
     	}
+    	// Displays the Entity Head:
     	else if(airshipIn.getVisualEngineDisplayType() == 2)
     	{
-    		this.renderEntityHead(airshipIn.getVisualEngineDisplayHead()//.engineDisplayHead
-    				, 0, 0, 0, airshipIn.getVisualModelComponent()//.coreModelVisualBalloon
-    				);
+    		this.renderEntityHead(airshipIn.getVisualEngineDisplayHead(), 0, 0, 0, airshipIn.getVisualModelComponent());
     	}
+    	// Displays the Supporter Head:
     	else if(airshipIn.getVisualEngineDisplayType() == 3)
     	{
-    		this.renderSupporterHead(airshipIn.getVisualEngineDisplaySupporterHead()//.engineDisplaySupporterHead
-    				, 0, 0, 0, airshipIn.getVisualModelComponent()//.coreModelVisualBalloon
-    				);
+    		this.renderSupporterHead(airshipIn.getVisualEngineDisplaySupporterHead(), 0, 0, 0, airshipIn.getVisualModelComponent());
     	}
+    	// Displays the Holiday:
     	else if(airshipIn.getVisualEngineDisplayType() == 4)
     	{
     		//this.renderItemOnDisplaySpin((float)0, (float)1, (float)1, 2);//.engineDisplayHeadVisual);
     	}
+    	// Displays the Symbols:
     	else if (airshipIn.getVisualEngineDisplayType() >= 10
-    	     && airshipIn.getVisualEngineDisplayType() <=  
-    	     EnumsVM.VisualDisplaySymbol//.byId(airshipIn.getVisualEngineDisplayType() - 10)
-    	     .values().length
-    	     //References.ITEM_DISPLAY_SYMBOL.length 
-    	     + 10
-    	     )
+    	&& airshipIn.getVisualEngineDisplayType() <= EnumsVM.VisualDisplaySymbol.values().length + 10)
     	{
-    		this.renderSymbol(airshipIn, 
-    				EnumsVM.VisualDisplaySymbol.byId(airshipIn.getVisualEngineDisplayType() - 10).getItemStack()
-    				//References.ITEM_DISPLAY_SYMBOL[airshipIn.getVisualEngineDisplayType() - 10]
-    				//new ItemStack(ItemsVM.SYMBOL_LOGOFORGE, 1)
-    				//ItemsVC.ITEM_DISPLAY_SYMBOL, 1, EnumsVC.MainDisplaySymbol.byId(airshipIn.engineDisplayTypeVisual).getMetadata())
-    		, airshipIn.getVisualModelComponent());//.getCoreModelVisualBalloon());
+    		this.renderSymbol(airshipIn, EnumsVM.VisualDisplaySymbol.byId(airshipIn.getVisualEngineDisplayType() - 10).getItemStack(), airshipIn.getVisualModelComponent());
     	}
     }
     
-    /** Renders a supporter head. */
+    /** Renders the particles. Currently unused. */
     protected void renderEngineParticles(EntityMachineFlying entity, int particleActive)
     {
     	GlStateManager.pushMatrix();
@@ -1288,9 +666,7 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
     	    		    		GlStateManager.scale(0.75F, 0.75F, 0.75F);
     	    		    		GlStateManager.rotate(180, 1, 0, 0);
     	    		    		
-    	    		    		EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.RED + 
-    	    		    				
-    	    		    				this.stringToFlashGolden("* WARNING - Vulnerable to Explosions! *", 0, false, TextFormatting.DARK_RED, 1), 0F, 1.40F, 0F, 0, nameplateYaw, 0F, false, false);
+    	    		    		EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.RED + this.stringToFlashGolden("* WARNING - Vulnerable to Explosions! *", 0, false, TextFormatting.DARK_RED, 1), 0F, 1.40F, 0F, 0, nameplateYaw, 0F, false, false);
     	    		        }
     	    		    	GlStateManager.popMatrix();
         				}
@@ -1343,14 +719,11 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
 	    		    			durabilityColor = TextFormatting.DARK_RED;
 	    		    		}
 	    		    		
-	    		    		EntityRenderer.drawNameplate(this.getFontRenderer(), healthColor + "Health : " + TextFormatting.WHITE + (int)entity.getHealth() + " (" + this.getColorTextHealth(entity) + entity.getHealthPercent() + "%" + TextFormatting.WHITE + ")" //+ " / " + (int)EnumsVM.FlyingMachineFrameTier.byId(entity.getTierFrame()).getMaxHealthModifier()
-	    		    				, 0F, 1.00F, 0F, 0, nameplateYaw, 0F, false, false);
+	    		    		EntityRenderer.drawNameplate(this.getFontRenderer(), healthColor + "Health : " + TextFormatting.WHITE + (int)entity.getHealth() + " (" + this.getColorTextHealth(entity) + entity.getHealthPercent() + "%" + TextFormatting.WHITE + ")", 0F, 1.00F, 0F, 0, nameplateYaw, 0F, false, false);
 	    		    		
-	    		    		EntityRenderer.drawNameplate(this.getFontRenderer(), energyColor + "Energy : " + TextFormatting.WHITE + entity.getEnergy() + " (" + this.getColorTextEnergy(entity) + entity.getEnergyPercent() + "%" + TextFormatting.WHITE + ")" //+ " / " + EnumsVM.FlyingMachineFrameTier.byId(entity.getTierFrame()).getMaxEnergyModifier()
-	    		    				, 0F, 0.75F, 0F, 0, nameplateYaw, 0F, false, false);
+	    		    		EntityRenderer.drawNameplate(this.getFontRenderer(), energyColor + "Energy : " + TextFormatting.WHITE + entity.getEnergy() + " (" + this.getColorTextEnergy(entity) + entity.getEnergyPercent() + "%" + TextFormatting.WHITE + ")", 0F, 0.75F, 0F, 0, nameplateYaw, 0F, false, false);
 	    		    		
-	    		    		EntityRenderer.drawNameplate(this.getFontRenderer(), durabilityColor + "Durability : " + TextFormatting.WHITE + entity.getDurability() + " (" + this.getColorTextDurability(entity) + entity.getDurabilityPercent() + "%" + TextFormatting.WHITE + ")"
-	    		    				, 0F, 0.50F, 0F, 0, nameplateYaw, 0F, false, false);
+	    		    		EntityRenderer.drawNameplate(this.getFontRenderer(), durabilityColor + "Durability : " + TextFormatting.WHITE + entity.getDurability() + " (" + this.getColorTextDurability(entity) + entity.getDurabilityPercent() + "%" + TextFormatting.WHITE + ")", 0F, 0.50F, 0F, 0, nameplateYaw, 0F, false, false);
 	    		        }
 	    		    	GlStateManager.popMatrix();
 		    		}
@@ -1514,8 +887,6 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
 		}
 		GlStateManager.popMatrix();
     }
-    
-    
     
     /** Returns the correct Primary Frame to render based on getVisualModelFrame(). */
     protected ModelBase getCurrentModelAirshipFramePrimary(EntityMachineFlyingAirship airshipIn)
@@ -1774,7 +1145,7 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
     	this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/model_airship_panel.png"));
     	this.modelMachineControlPanel.render(entityIn, partialTicks, 0.0F, 0F, 0.0F, 0.0F, 0.0625F);
     	
-        // Control panel item renderer (Frame):
+        // Control panel item renderer: (Frame)
         if(entityIn.getTierFrame() == 0)
         {
 	        this.renderItemOnPanel(entityIn, 0.98, -0.6025, -6.3225, new ItemStack(ItemsVM.MACHINE_FRAME, 1));
@@ -1792,7 +1163,7 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
 	        this.renderItemOnPanel(entityIn, 0.98, -0.6025, -6.3225, new ItemStack(ItemsVM.UPGRADE_FRAME_TIER3, 1));
         }
         
-        // Control panel item renderer (Engine):
+        // Control panel item renderer: (Engine)
         if(entityIn.getTierEngine() == 0)
         {
 	        this.renderItemOnPanel(entityIn, 0.98, -0.6025 + 0.38, -6.3225 + 0.38, new ItemStack(ItemsVM.MACHINE_ENGINE, 1));
@@ -1810,7 +1181,7 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
 	        this.renderItemOnPanel(entityIn, 0.98, -0.6025 + 0.38, -6.3225 + 0.38, new ItemStack(ItemsVM.UPGRADE_ENGINE_TIER3, 1));
         }
         
-        // Control panel item renderer (Component):
+        // Control panel item renderer: (Component)
         if(entityIn.getTierComponent() == 0)
         {
 	        this.renderItemOnPanel(entityIn, 0.98, -0.6025 + 0.38 + 0.38, -6.3225 + 0.38 + 0.38, new ItemStack(ItemsVM.MACHINE_COMPONENT_FLYING, 1));
@@ -1828,7 +1199,7 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
 	        this.renderItemOnPanel(entityIn, 0.98, -0.6025 + 0.38 + 0.38, -6.3225 + 0.38 + 0.38, new ItemStack(ItemsVM.UPGRADE_COMPONENT_TIER3, 1));
         }
         
-        // Control panel item renderer (Fuel Slot):
+        // Control panel item renderer: (Fuel Slot)
         if(!entityIn.inventory.getStackInSlot(0).isEmpty())
         {
 	        this.renderItemOnPanel(entityIn, 0.98-0.625, -0.6025 + 0.38 + 0.38, -6.3225 + 0.38 + 0.38, entityIn.inventory.getStackInSlot(0));
@@ -1847,8 +1218,10 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
 	        
 	        if (itemstackIn.getItem() instanceof ItemBlock)
 	        {
+	        	// Scaling:
 	        	GlStateManager.scale(0.14, 0.14, 0.14);
-	            GlStateManager.translate(posXIn, posYIn + 0.05, posZIn + 0.05);
+	            // Positioning:
+	        	GlStateManager.translate(posXIn, posYIn + 0.05, posZIn + 0.05);
 	            
 	            // Flips the model right side up:
 	            GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
@@ -1859,7 +1232,9 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
 	        }
 	        else
 	        {
+	        	// Scaling:
 	        	GlStateManager.scale(0.14, 0.14, 0.14);
+	        	// Positioning:
 	            GlStateManager.translate(posXIn, posYIn, posZIn);
 	            
 	            // Flips the model right side up:
@@ -1867,7 +1242,8 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
 	            // Flips on the X axis:
 	            GlStateManager.rotate(-45, 1.0F, 0.0F, 0.0F);
 	            
-	    		Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
+	            // Renders the Supporter Head:
+		        Minecraft.getMinecraft().getRenderItem().renderItem(itemstackIn, TransformType.GROUND);
 	        }
     	}
 		GlStateManager.popMatrix();

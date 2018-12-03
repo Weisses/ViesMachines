@@ -1,18 +1,13 @@
 package com.vies.viesmachines.client;
 
 import com.vies.viesmachines.api.ItemsVM;
+import com.vies.viesmachines.client.entity.machines.flying.models.airship.ModelAirshipFrameDisplayBannerStand;
 import com.vies.viesmachines.client.entity.machines.flying.renderers.airship.RenderEntityMachineFlyingAirship;
-import com.vies.viesmachines.client.entity.machines.ground.renderers.hovercraft.RenderEntityMachineGround;
-import com.vies.viesmachines.client.entity.machines.water.renderers.submarine.RenderEntityMachineWater;
-import com.vies.viesmachines.client.entity.model.frame.ModelFrame0;
-import com.vies.viesmachines.client.entity.model.frame.ModelFrame1;
 import com.vies.viesmachines.client.entity.particles.renderers.RenderBulletElectrical;
 import com.vies.viesmachines.client.entity.particles.renderers.RenderBulletExplosive;
 import com.vies.viesmachines.client.entity.particles.renderers.RenderBulletNormal;
 import com.vies.viesmachines.client.entity.particles.renderers.RenderStaticCharge;
 import com.vies.viesmachines.client.entity.thrown.RenderThrownMachineFlying;
-import com.vies.viesmachines.common.entity.machines.EntityMachineGround;
-import com.vies.viesmachines.common.entity.machines.EntityMachineWater;
 import com.vies.viesmachines.common.entity.machines.types.flying.EntityMachineFlyingAirship;
 import com.vies.viesmachines.common.entity.particles.EntityBulletElectrical;
 import com.vies.viesmachines.common.entity.particles.EntityBulletExplosive;
@@ -42,13 +37,13 @@ public final class InitEntityVCRender extends ItemsVM {
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityThrownMachineFlyingAirship.class, renderManager -> new RenderThrownMachineFlying(renderManager));
 		
-		RenderingRegistry.registerEntityRenderingHandler(EntityMachineGround.class, renderManager -> new RenderEntityMachineGround(renderManager, new ModelFrame0(), 1));
-		RenderingRegistry.registerEntityRenderingHandler(EntityMachineWater.class, renderManager -> new RenderEntityMachineWater(renderManager, new ModelFrame1(), 1));
+		//////RenderingRegistry.registerEntityRenderingHandler(EntityMachineGround.class, renderManager -> new RenderEntityMachineGround(renderManager, new ModelFrame0(), 1));
+		//////RenderingRegistry.registerEntityRenderingHandler(EntityMachineWater.class, renderManager -> new RenderEntityMachineWater(renderManager, new ModelFrame1(), 1));
 		//RenderingRegistry.registerEntityRenderingHandler(EntityMachineFlying.class, renderManager -> new RenderEntityMachineFlyingAirship(renderManager, new ModelFrame0(), 1));
 		
 		//===========================================
 		
-		RenderingRegistry.registerEntityRenderingHandler(EntityMachineFlyingAirship.class, renderManager -> new RenderEntityMachineFlyingAirship(renderManager, new ModelFrame0(), 1));
+		RenderingRegistry.registerEntityRenderingHandler(EntityMachineFlyingAirship.class, renderManager -> new RenderEntityMachineFlyingAirship(renderManager, new ModelAirshipFrameDisplayBannerStand(), 1));
 		
 		
 		

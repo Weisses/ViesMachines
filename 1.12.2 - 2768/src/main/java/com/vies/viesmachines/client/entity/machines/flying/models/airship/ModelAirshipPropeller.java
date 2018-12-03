@@ -1,4 +1,4 @@
-package com.vies.viesmachines.client.entity.model;
+package com.vies.viesmachines.client.entity.machines.flying.models.airship;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

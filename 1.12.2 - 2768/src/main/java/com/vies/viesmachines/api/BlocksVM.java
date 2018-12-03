@@ -8,8 +8,6 @@ import com.vies.viesmachines.common.blocks.basic.BlockPillarVM;
 import com.vies.viesmachines.common.blocks.basic.BlockStairsVM;
 import com.vies.viesmachines.common.blocks.basic.BlockTorchVM;
 import com.vies.viesmachines.common.blocks.basic.BlockWallVM;
-import com.vies.viesmachines.common.blocks.slab.BlockDoubleSlabVM;
-import com.vies.viesmachines.common.blocks.slab.BlockHalfSlabVM;
 import com.vies.viesmachines.common.blocks.tileentity.BlockExtractor;
 import com.vies.viesmachines.common.blocks.tileentity.BlockKitFabricator;
 import com.vies.viesmachines.common.blocks.tileentity.BlockMachineBeacon;

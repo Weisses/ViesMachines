@@ -99,12 +99,11 @@ public class ItemsVM {
 	
 	
 	//==================================================
-    // TODO              Particles
+    // TODO           Display Symbols
 	//==================================================
     
-	//public static final Item SYMBOL_LOGOVIESMACHINES = new ItemGenericSymbol("symbols/item_symbol_logoviesmachines");
+	// General:
 	public static final Item SYMBOL_LOGOFORGE = new ItemGenericSymbol("symbols/item_symbol_logoforge");
-	//public static final Item SYMBOL_LOGOMINECRAFT = new ItemGenericSymbol("symbols/item_symbol_logominecraft");
 	public static final Item SYMBOL_COINSTACK = new ItemGenericSymbol("symbols/item_symbol_coinstack");
 	public static final Item SYMBOL_SCROLL = new ItemGenericSymbol("symbols/item_symbol_scroll");
 	public static final Item SYMBOL_WRENCH = new ItemGenericSymbol("symbols/item_symbol_wrench");
@@ -127,6 +126,10 @@ public class ItemsVM {
 	
 	public static final Item PARTICLE_STATIC_CHARGE = new ItemGenericParticle("particles/item_particle_static_charge", EnumRarity.COMMON);
 	
+	
+	
+	//===============================================================
+	
 	//Unused
 	//public static final Item GUIDEBOOK = new ItemGuidebook();
 	//public static final Item CHARGED_SHARDS = new ItemGeneric("item_charged_shards", EnumRarity.COMMON);
@@ -138,41 +141,152 @@ public class ItemsVM {
 	//public static final Item TOOL_COMPRESSING = new ItemToolCompressing();
 	//public static final Item TOOL_UNIVERSAL = new ItemToolRepairing();
 	
-		
-	/**
+	/*                              Display banner ideas:
 	
-	//=================================================================
+	//public static final Item SYMBOL_LOGOVIESMACHINES = new ItemGenericSymbol("symbols/item_symbol_logoviesmachines");
+	//public static final Item SYMBOL_LOGOMINECRAFT = new ItemGenericSymbol("symbols/item_symbol_logominecraft");
 	
-	public static final ItemDismounterNormal DISMOUNTER_NORMAL = new ItemDismounterNormal();
-	public static final ItemDismounterPlayer DISMOUNTER_PLAYER = new ItemDismounterPlayer();
-	public static final ItemIgnition AIRSHIP_IGNITION = new ItemIgnition();
-	public static final ItemFrame AIRSHIP_FRAME = new ItemFrame();
-	public static final ItemEngine AIRSHIP_ENGINE = new ItemEngine();
-	public static final ItemBalloon AIRSHIP_BALLOON = new ItemBalloon();
-	
-	public static final ItemUpgradeCore UPGRADE_CORE = new ItemUpgradeCore();
-	public static final ItemUpgradeFrame UPGRADE_FRAME = new ItemUpgradeFrame();
-	public static final ItemUpgradeEngine UPGRADE_ENGINE = new ItemUpgradeEngine();
-	public static final ItemUpgradeBalloon UPGRADE_BALLOON = new ItemUpgradeBalloon();
-	
-	public static final ItemBomb BOMB = new ItemBomb();
-	
-	public static final ItemModuleType MODULE_TYPE = new ItemModuleType();
-	public static final ItemModuleCreative MODULE_CREATIVE = new ItemModuleCreative();
+	DOG(9, "animal_dog", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.9")),
+	CAT(10, "animal_cat", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.10")),
+	FOX(11, "animal_squirrel", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.11")),
+	BEAR(12, "animal_bear", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.12")),
+	LION(13, "animal_lion", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.13")),
+    WOLF(14, "animal_fox", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.14")),
+    SHARK(15, "animal_wolf", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.15")),
+	FISH(9, "animal_dog", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.9")),
+	OCTOPUS(9, "animal_dog", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.9")),
+	PHOENIX(16, "animal_phoenix", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.16")),
+    DRAGON(17, "animal_dragon", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.17"));
 	
 	
-	//================================
+	EARTH(18, "element_earth", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.18")),
+    WIND(19, "element_wind", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.19")),
+    WATER(20, "element_water", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.20")),
+    FIRE(21, "element_fire", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.21")),
+    NATURE(22, "element_nature", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.22")),
+    LIGHTNING(23, "element_lightning", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.23")),
+    ICE(24, "element_ice", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.24")),
+    POISON(25, "element_poison", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.25")),
+    ARCANE(26, "element_arcane", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.26")),
+    VOID(27, "element_void", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.27")),
+    HOLY(28, "element_holy", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.28")),
+    UNHOLY(29, "element_unholy", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.29")),
+    
+    
+    
+    SHIELD(7, "lava", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.0")),
+    HAMMER(7, "lava", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.0")),
+    FIST(7, "lava", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.0")),
+    SUN(7, "lava", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.0")),
+    MOON(7, "lava", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.0")),
+    
+    
+    
+    CELTIC(7, "lava", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.0")),
+    YGGDRASIL(7, "lava", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.0")),
+    MJOLLNIR(7, "lava", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.0"));
+    
+    -----------holiday display items---------------------
+    //New Years
+        YEAR2018(1, "1", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.1")),
+        YEAR2019(2, "2", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.2")),
+        H3(3, "3", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.3")),
+        H4(4, "4", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.4")),
+    	H5(5, "5", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.5")),
+    	H6(6, "6", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.6")),
+    	H7(7, "7", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.7")),
+    	H8(8, "8", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.8")),
+    	H9(9, "9", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.9")),
+    	H10(10, "10", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.10")),
+    	H11(11, "11", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.11")),
+    	H12(12, "12", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.12")),
+    	
+    	//Valentine's Day
+    	ROSE(13, "13", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.13")),
+        TEDDYBEAR(14, "14", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.14")),
+    	CUPID(15, "15", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.15")),
+    	RING(16, "16", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.16")),
+    	CARD(17, "17", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.17")),
+    	PRESENTHEART(18, "18", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.18")),
+    	HEARTMUSIC(19, "19", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.19")),
+    	HEARTLOCK(20, "20", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.20")),
+    	HEARTBROKEN(21, "21", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.21")),
+    	HEART1(22, "22", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.22")),
+    	HEART2(23, "23", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.23")),
+        HEART3(24, "24", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.24")),
+        
+        //Easter
+    	EGG1(25, "25", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.25")),
+    	EGG2(26, "26", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.26")),
+    	EGG3(27, "27", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.27")),
+    	EGG4(28, "28", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.28")),
+    	BASKETEGG(29, "29", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.29")),
+    	FLOWER(30, "30", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.30")),
+    	BUTTERFLY(31, "31", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.31")),
+    	CHICK1(32, "32", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.32")),
+    	CHICK2(33, "33", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.33")),
+        BUNNY1(34, "34", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.34")),
+    	BUNNY2(35, "35", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.35")),
+    	BUNNY3(36, "36", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.36")),
+    	
+    	//4th of July
+    	CRACKEDBELL(37, "37", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.37")),
+    	TOPHATUSA(38, "38", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.38")),
+    	MEDAL(39, "39", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.39")),
+    	FLAGUSA(40, "40", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.40")),
+    	REPUBLICAN(41, "41", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.41")),
+    	DEMOCRAT(42, "42", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.42")),
+    	ROCKET1(43, "43", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.43")),
+        ROCKET2(44, "44", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.44")),
+        FIREWORK1(45, "45", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.45")),
+    	FIREWORK2(46, "46", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.46")),
+    	FIREWORK3(47, "47", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.47")),
+    	LIBERTYTORCH(48, "48", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.48")),
+    	
+    	//Halloween
+    	JACKOLANTERN(49, "49", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.49")),
+    	BLACKCAT(50, "50", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.50")),
+    	BAT(51, "51", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.51")),
+    	SPIDER(52, "52", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.52")),
+    	CAULDRON(53, "53", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.53")),
+        NIGHTSKYMOON(54, "54", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.54")),
+    	TOMBSTONE(55, "55", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.55")),
+    	SCYTHE(56, "56", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.56")),
+    	JACK(57, "57", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.57")),
+    	SALLY(58, "58", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.58")),
+    	ZERO(59, "59", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.59")),
+    	BOOGEYMAN(60, "60", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.60")),
+    	
+    	//Thanksgiving
+    	PILGRIMHAT(61, "61", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.61")),
+    	INDIANHAT(62, "62", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.62")),
+    	BOAT(63, "63", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.63")),
+    	MAPLELEAF(64, "64", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.64")),
+    	MAPLELEAVES(65, "65", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.65")),
+    	SUNFLOWER(66, "66", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.66")),
+    	CORNSTALK(67, "67", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.67")),
+    	WHEAT(68, "68", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.68")),
+    	PIESLICE(69, "69", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.69")),
+    	PIEWHOLE(70, "70", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.70")),
+    	TURKEY(71, "71", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.71")),
+    	BASKET(72, "72", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.72")),
+    	
+    	//Christmas
+    	PRESENTSMALL(73, "73", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.73")),
+        PRESENTLARGE(74, "74", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.74")),
+    	CANDYCANE(75, "75", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.75")),
+    	SNOWFLAKE(76, "76", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.76")),
+    	ORNAMENT(77, "77", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.77")),
+    	MISTLETOE(78, "78", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.78")),
+    	WREATH(79, "79", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.79")),
+    	STOCKING(80, "80", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.80")),
+    	CHRISTMASTREE(81, "81", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.81")),
+    	REINDEER(82, "82", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.82")),
+    	SLEIGH(83, "83", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.83")),
+        SANTA(84, "84", References.Old_I18n.translateToLocalFormatted("vc.enum.holidaysymbol.84"));
+    	
+    */
 	
-	public static final ItemAirship ITEM_AIRSHIP = new ItemAirship("airships/item_airship");
-	public static final ItemCreativeAirship ITEM_AIRSHIP_CREATIVE = new ItemCreativeAirship("airships/item_airship_creative");
 	
-	//================================
-	//Hidden Items
-	public static final ItemEntityAirship ITEM_ENTITY_AIRSHIP = new ItemEntityAirship();
 	
-	public static final ItemAchievement ACHIEVEMENT_AIRSHIP = new ItemAchievement();
-	
-	public static final ItemDisplaySymbol ITEM_DISPLAY_SYMBOL = new ItemDisplaySymbol();
-	*/
-	//================================
 }

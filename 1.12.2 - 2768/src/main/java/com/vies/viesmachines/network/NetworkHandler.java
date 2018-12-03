@@ -168,6 +168,8 @@ public class NetworkHandler {
 		register(MessageHelperGuiMachineMusicStopArea.class, MessageHelperGuiMachineMusicStopArea.class, Side.CLIENT);
 		register(MessageHelperGuiMachineMusicRandom.class, MessageHelperGuiMachineMusicRandom.class, Side.SERVER);
 		
+		
+		
 		register(MessageHelperGuiMachineMenuChangeName.class, MessageHelperGuiMachineMenuChangeName.class, Side.SERVER);
 		register(MessageHelperGuiMachineMenuChangeNameUndo.class, MessageHelperGuiMachineMenuChangeNameUndo.class, Side.SERVER);
 		register(MessageHelperGuiMachineMenuChangeNameColor.class, MessageHelperGuiMachineMenuChangeNameColor.class, Side.SERVER);

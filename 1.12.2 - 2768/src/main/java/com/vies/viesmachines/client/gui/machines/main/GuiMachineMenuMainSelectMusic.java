@@ -124,7 +124,12 @@ public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
 			
 			this.centeredString(fontRenderer, 
 			this.stringToFlashGolden(
-			References.localNameVC("item." + SoundEvent.REGISTRY.getObject(new ResourceLocation(ClientProxy.musicListRecord.get(this.machine.selectedSong).toString())).getSoundName().getResourcePath()+ ".desc")
+			References.localNameVC(
+					"item."
+					
+						+ ClientProxy.musicListRecord.get(this.machine.selectedSong).getResourcePath().toString()//)).getSoundName().getResourcePath()
+						+ ".desc")
+			//References.localNameVC("item." + SoundEvent.REGISTRY.getObject(new ResourceLocation(ClientProxy.musicListRecord.get(this.machine.selectedSong).toString())).getSoundName().getResourcePath()+ ".desc")
 			, 1, false, TextFormatting.DARK_AQUA, 0)	
 			, 0, 0, Color.BLUE.getRGB());
 			
@@ -178,6 +183,7 @@ public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
 			if(ClientProxy.musicListRecord.get(i).toString().toLowerCase().contains(selectedSong.toString().toLowerCase()))
 		    {
 				this.setSong = i;
+				this.machine.selectedSong = i;
 				NetworkHandler.sendToServer(new MessageHelperGuiMachineMusicSet());
 		    }
 		}

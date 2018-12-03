@@ -1866,8 +1866,11 @@ public class EntityMachineBase extends EntityLiving {
     		//this.turn(this.rotationYaw, this.rotationPitch);
     		
     		
-    		
-    		this.applyOrientationToEntity(this);
+    		// This crashed the server...
+    		if (this.world.isRemote)
+    		{
+    			this.applyOrientationToEntity(this);
+    		}
     		
     		this.momentum = 0.8999999761581421D;
     		this.setAIMoveSpeed((float)this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue());
@@ -3164,7 +3167,9 @@ public class EntityMachineBase extends EntityLiving {
     		{
     			this.setPrimedForLightningStrike(0);
     		}
-    		
+    	}
+    	else
+    	{
     		if (this.getPrimedForLightningStrike() > 0)
     		{
     			if (References.random.nextInt(20) <= 1)

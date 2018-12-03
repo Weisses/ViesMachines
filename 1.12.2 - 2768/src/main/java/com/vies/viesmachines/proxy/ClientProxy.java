@@ -21,9 +21,9 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class ClientProxy extends CommonProxy {
 	
 	/** The initial array that collects all registered music. Used to move records only to the musicListRecord array. Cleared after musicListRecord is created. */
-    public static ArrayList<ResourceLocation> musicListFull = new ArrayList<ResourceLocation>();
+    //public static ArrayList<ResourceLocation> musicListFull2 = new ArrayList<ResourceLocation>();
 	/** MAIN ARRAY - A collection of all records from all mods. Only pulls anything with 'record.' in the name. */
-    public static ArrayList<ResourceLocation> musicListRecord = new ArrayList<ResourceLocation>();
+    //public static ArrayList<ResourceLocation> musicListRecord2 = new ArrayList<ResourceLocation>();
 	
 	@Override
 	public void preInit(FMLPreInitializationEvent event) 
@@ -60,7 +60,7 @@ public class ClientProxy extends CommonProxy {
 	{
 		super.postInit(event);
 		
-		this.setupMusic();
+		//this.setupMusic();
 	}
 	
 
@@ -69,7 +69,7 @@ public class ClientProxy extends CommonProxy {
 	 * Creates the initial music record array upon spawning.
 	 * NOTE: Moved to ClientProxy.postInit for efficiency and syncing.
 	 */
-	private void setupMusic() 
+/*	private void setupMusic() 
 	{
 		musicListFull.clear();
         musicListRecord.clear();
@@ -87,5 +87,5 @@ public class ClientProxy extends CommonProxy {
 		musicListFull.clear();
         
 		Collections.sort(musicListRecord);
-	}
+	}*/
 }

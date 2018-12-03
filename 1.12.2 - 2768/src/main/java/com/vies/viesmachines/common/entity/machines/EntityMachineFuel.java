@@ -1,12 +1,9 @@
 package com.vies.viesmachines.common.entity.machines;
 
-import javax.annotation.Nullable;
-
 import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.FuelVM;
 import com.vies.viesmachines.api.ItemsVM;
 import com.vies.viesmachines.api.SoundsVM;
-import com.vies.viesmachines.api.util.LogHelper;
 import com.vies.viesmachines.configs.VMConfiguration;
 
 import net.minecraft.block.Block;
@@ -24,8 +21,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityMachineFuel extends EntityMachineBase {
 	
@@ -232,10 +227,10 @@ public class EntityMachineFuel extends EntityMachineBase {
 	//==================================================
 	
 	/** Gets the sound to be triggered when a machine is on/powered. */
-	@SideOnly(Side.CLIENT)
-	protected SoundEvent getOnSound()
+	public SoundEvent getOnSound()
     {
-        return SoundsVM.ENGINEON;
+        return //SoundEvents.ENTITY_GENERIC_EXPLODE; 
+        SoundsVM.ENGINEON;
     }
     
     
@@ -430,7 +425,16 @@ public class EntityMachineFuel extends EntityMachineBase {
         && this.ticksExisted % 5 == 0)
         {
         	//TODO Keeps Crashing!!!
-        	//this.playSound(this.getOnSound(), 0.25F, 1.0F);
+        	//this.playSound(
+        			//this.getHealEnergySound()
+        	//		this.getOnSound()
+        	//		, 0.25F, 1.0F);
+        	
+        	//NetworkHandler.sendToServer(new MessageGuiMachineEngineOnSound());
+        	//this.playSound(
+        	//		//this.getHealEnergySound()
+        	//		this.getOnSound()
+        	//		, 0.25F, 1.0F);
         }
         
         

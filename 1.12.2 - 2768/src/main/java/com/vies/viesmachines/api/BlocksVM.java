@@ -62,26 +62,6 @@ public class BlocksVM {
 	
 	
 	
-	
-	
-	
-	
-	//--------------------------------------------------
-	//public static final BlockDoubleSlabVM XEGONITE_SLAB_DOUBLE = new BlockDoubleSlabVM("block_xegonite_slab_double", Material.ROCK, SoundType.STONE);
-	//public static final BlockHalfSlabVM XEGONITE_SLAB_HALF = new BlockHalfSlabVM("block_xegonite_slab_half", Material.ROCK, SoundType.STONE);
-	
-	//public static final BlockGeneric XEGONITE_BRICK = new BlockGeneric("block_xegonite_brick", Material.ROCK, SoundType.STONE);
-	//public static final BlockGeneric XEGONITE_CHISELED = new BlockGeneric("block_xegonite_chiseled", Material.ROCK, SoundType.STONE);
-	//public static final BlockGeneric XEGONITE_BARS = new BlockGeneric("block_xegonite_bars", Material.ROCK, SoundType.STONE);
-	
-	//public static final BlockGeneric XEGONITE_ROAD = new BlockGeneric("block_xegonite_road", Material.ROCK, SoundType.STONE);
-	//public static final BlockGeneric XEGONITE_TRAPDOOR = new BlockGeneric("block_xegonite_trapdoor", Material.ROCK, SoundType.STONE);
-	//public static final BlockGeneric XEGONITE_DOOR = new BlockGeneric("block_xegonite_door", Material.ROCK, SoundType.STONE);
-	
-	//public static final BlockGeneric XEGONITE_GLASS = new BlockGeneric("block_xegonite_glass", Material.ROCK, SoundType.STONE);
-	//public static final BlockGeneric XEGONITE_GLASS_PANE = new BlockGeneric("block_xegonite_glass_pane", Material.ROCK, SoundType.STONE);
-	//public static final BlockGeneric XEGONITE_CRAFTING_TABLE = new BlockGeneric("block_xegonite_crafting_table", Material.ROCK, SoundType.STONE);
-	
 	//==================================================
     // TODO             Appliances
 	//==================================================
@@ -101,13 +81,7 @@ public class BlocksVM {
 	
 	
 	
-	
-	
-	
-	//public static final BlockMachineTransmogrifier MACHINE_CHARGE_STATION = new BlockMachineTransmogrifier("block_fabricator");
-	//public static final BlockAirshipWorkbench AIRSHIP_WORKBENCH = new BlockAirshipWorkbench("airship_workbench");
-	
-	
+	//--------------------------------------------------
 	
 	//Unused
 	//public static Block onyxius_ore;
@@ -123,4 +97,15 @@ public class BlocksVM {
 	/////public static Block airship_workbench;
 	/////public static Block battery_charger;
 	
+	//public static final BlockDoubleSlabVM XEGONITE_SLAB_DOUBLE = new BlockDoubleSlabVM("block_xegonite_slab_double", Material.ROCK, SoundType.STONE);
+	//public static final BlockHalfSlabVM XEGONITE_SLAB_HALF = new BlockHalfSlabVM("block_xegonite_slab_half", Material.ROCK, SoundType.STONE);
+	//public static final BlockGeneric XEGONITE_BRICK = new BlockGeneric("block_xegonite_brick", Material.ROCK, SoundType.STONE);
+	//public static final BlockGeneric XEGONITE_CHISELED = new BlockGeneric("block_xegonite_chiseled", Material.ROCK, SoundType.STONE);
+	//public static final BlockGeneric XEGONITE_BARS = new BlockGeneric("block_xegonite_bars", Material.ROCK, SoundType.STONE);
+	//public static final BlockGeneric XEGONITE_ROAD = new BlockGeneric("block_xegonite_road", Material.ROCK, SoundType.STONE);
+	//public static final BlockGeneric XEGONITE_TRAPDOOR = new BlockGeneric("block_xegonite_trapdoor", Material.ROCK, SoundType.STONE);
+	//public static final BlockGeneric XEGONITE_DOOR = new BlockGeneric("block_xegonite_door", Material.ROCK, SoundType.STONE);
+	//public static final BlockGeneric XEGONITE_GLASS = new BlockGeneric("block_xegonite_glass", Material.ROCK, SoundType.STONE);
+	//public static final BlockGeneric XEGONITE_GLASS_PANE = new BlockGeneric("block_xegonite_glass_pane", Material.ROCK, SoundType.STONE);
+	//public static final BlockGeneric XEGONITE_CRAFTING_TABLE = new BlockGeneric("block_xegonite_crafting_table", Material.ROCK, SoundType.STONE);
 }

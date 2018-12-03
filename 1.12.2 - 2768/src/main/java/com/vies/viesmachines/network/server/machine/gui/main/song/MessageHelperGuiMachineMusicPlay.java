@@ -14,6 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class MessageHelperGuiMachineMusicPlay extends MessageBase<MessageHelperGuiMachineMusicPlay> implements IMessage {
 	
@@ -43,6 +44,9 @@ public class MessageHelperGuiMachineMusicPlay extends MessageBase<MessageHelperG
 	{
 		EntityMachineBase machine = (EntityMachineBase) player.getRidingEntity();
 		
+		//ForgeRegistries.SOUND_EVENTS.getValue(CommonProxy.musicListRecord.get(machine.selectedSong));
+		
+		/*
 		ResourceLocation playerselected = CommonProxy.musicListRecord.get(machine.selectedSong);
 		
 		//this.songId = SoundsVM.sounds.indexOf(SoundsVM.STORMS);
@@ -78,7 +82,7 @@ public class MessageHelperGuiMachineMusicPlay extends MessageBase<MessageHelperG
 						
 		);
 		LogHelper.info(SoundsVM.sounds.get(0));
-		
+		*/
 		
 		NetworkHandler.sendToAllAround(new MessageHelperGuiMachineMusicPlayArea(), 
     	new TargetPoint(machine.dimension, machine.posX, machine.posY, machine.posZ, 32));

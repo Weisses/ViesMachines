@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.registries.IForgeRegistry;
 
-@Mod.EventBusSubscriber(value = Side.CLIENT, modid = References.MOD_ID)
+//@Mod.EventBusSubscriber(value = Side.CLIENT, modid = References.MOD_ID)
 public class InitSoundEventsVC extends SoundsVM {
 	
 	@SubscribeEvent
@@ -18,8 +18,8 @@ public class InitSoundEventsVC extends SoundsVM {
 	{
 		IForgeRegistry<SoundEvent> registry = event.getRegistry();
 		
-		sounds.forEach(registry::register);
-		/*
+		//sounds.forEach(registry::register);
+		
 		event.getRegistry().registerAll(
 				BRAMBLE,
 				CASTLE,
@@ -28,6 +28,6 @@ public class InitSoundEventsVC extends SoundsVM {
 				STORMS,
 				TIMESCAR,
 				ENGINEON
-		);*/
+		);
 	}
 }

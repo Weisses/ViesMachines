@@ -14,6 +14,7 @@ import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -82,7 +83,10 @@ public class MessageHelperGuiMachineMusicPlayArea extends MessageBase<MessageHel
 		//IForgeRegistry<SoundEvent> registry;
 		//registry.getValue(new ResourceLocation(ClientProxy.musicListRecord.get(this.machine.selectedSong).getResourcePath()));
 		
-		//soundHandler.playSound(new JukeboxMovingSoundVC(this.machine, 
+		soundHandler.playSound(new JukeboxMovingSoundVC(this.machine, 
+				
+				ForgeRegistries.SOUND_EVENTS.getValue(CommonProxy.musicListRecord.get(machine.selectedSong))
+				
 		//		SoundEvent.REGISTRY.getObject(playerselected)
 		//		SoundEvent.REGISTRY.getObject(
 		//				SoundsVM.sounds.get(message.songID)
@@ -90,7 +94,7 @@ public class MessageHelperGuiMachineMusicPlayArea extends MessageBase<MessageHel
 		//						SoundsVM.TIMESCAR.getRegistryName()
 								
 		//						)
-		//));
+		));
 				
 				//SoundEvent.REGISTRY.getObjectById(
 						

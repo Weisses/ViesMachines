@@ -4,10 +4,13 @@ import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.FuelVM;
 import com.vies.viesmachines.api.ItemsVM;
 import com.vies.viesmachines.api.SoundsVM;
+import com.vies.viesmachines.api.util.LogHelper;
+import com.vies.viesmachines.common.entity.particles.EntityBulletNormal;
 import com.vies.viesmachines.configs.VMConfiguration;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -18,6 +21,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -418,12 +422,48 @@ public class EntityMachineFuel extends EntityMachineBase {
             flag1 = true;
         }
         
-        if (!this.world.isRemote
-        && this.isFuelBurning()
+        if (//!this.world.isRemote
+        //&& 
+        this.isFuelBurning()
         && !this.getBroken()
         //&& this.engineOnSoundSpeed > 0 
-        && this.ticksExisted % 5 == 0)
+        && this.ticksExisted % 20 == 0)
         {
+        	if (this.getControllingPassenger() instanceof EntityPlayer)
+			{
+				Entity playertest = this.getControllingPassenger();
+				
+	        	//Normal
+				if (this.getAmmoType() == 0)
+				{
+					
+						
+					EntityBulletNormal entitybulletnormal = new EntityBulletNormal(playertest.world, 
+							playertest.posX + (double)(MathHelper.sin(-playertest.rotationYaw * 0.017453292F) * 02.50F), 
+							playertest.posY + 0.95D, 
+							playertest.posZ + (double)(MathHelper.cos(playertest.rotationYaw * 0.017453292F) * 02.50F));
+					//LogHelper.info(machineIn + " " + machineIn.rotationPitch);
+					
+					entitybulletnormal.shoot(playertest, 
+							playertest.rotationPitch, playertest.rotationYaw, 
+							//machineIn.rotationPitch//.getPitchYaw()//.cameraPitch//.rotationPitch
+							//, machineIn.rotationYaw//.rotationYaw
+							//, 0.0F
+							0.0F, 2.5F, 0.0F);
+			        
+					playertest.world.spawnEntity(entitybulletnormal);
+				}
+				LogHelper.info(playertest.rotationPitch);
+			}
+        	
+			
+        	
+        	this.playSound(this.getOnSound(), 0.25F, 1.0F);
+        	//this.world.playSound(null, this.posX, this.posY, this.posZ, this.getHealHealthSound()
+        			//.getOnSound()
+        	//		, SoundCategory.PLAYERS, 0.25F, 1.0F);
+        	
+        	//event.getWorld().playSound(event.getPlayer(), event.getPlayer().getPosition(), SoundHandler.SOULSHOT_ACTIVATED, SoundCategory.PLAYERS, 1.0F, 1.0F);
         	//TODO Keeps Crashing!!!
         	//this.playSound(
         			//this.getHealEnergySound()

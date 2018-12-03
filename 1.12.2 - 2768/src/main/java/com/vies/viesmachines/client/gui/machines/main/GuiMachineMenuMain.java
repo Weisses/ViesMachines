@@ -93,7 +93,7 @@ public class GuiMachineMenuMain extends GuiContainerVC {
     	
     	this.buttonList.add(GuiVM.buttonMusicSelect);
     	this.buttonList.add(GuiVM.buttonMusicStop);
-    	//this.buttonList.add(GuiVM.buttonMusicPlay);
+    	this.buttonList.add(GuiVM.buttonMusicPlay);
     	this.buttonList.add(GuiVM.buttonMusicRandom);
     	
     	this.buttonList.add(GuiVM.buttonMachineCompress);

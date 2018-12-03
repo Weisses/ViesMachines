@@ -1,6 +1,7 @@
 package com.vies.viesmachines.network.server.machine;
 
 import com.vies.viesmachines.api.CostsVM;
+import com.vies.viesmachines.api.util.LogHelper;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.entity.particles.EntityBulletElectrical;
 import com.vies.viesmachines.common.entity.particles.EntityBulletExplosive;
@@ -45,10 +46,16 @@ public class MessageMachineProjectileShoot extends MessageBase<MessageMachinePro
 						player.posX + (double)(MathHelper.sin(-player.rotationYaw * 0.017453292F) * 02.50F), 
 						player.posY + 0.95D, 
 						player.posZ + (double)(MathHelper.cos(player.rotationYaw * 0.017453292F) * 02.50F));
+				//LogHelper.info(machineIn + " " + machineIn.rotationPitch);
 				
-				entitybulletnormal.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 2.5F, 0.0F);
+				entitybulletnormal.shoot(player, 
+						player.rotationPitch, player.rotationYaw, 
+						//machineIn.rotationPitch//.getPitchYaw()//.cameraPitch//.rotationPitch
+						//, machineIn.rotationYaw//.rotationYaw
+						//, 0.0F
+						0.0F, 2.5F, 0.0F);
 		        
-				machineIn.world.spawnEntity(entitybulletnormal);
+				player.world.spawnEntity(entitybulletnormal);
 			}
 			
 			//Electrical

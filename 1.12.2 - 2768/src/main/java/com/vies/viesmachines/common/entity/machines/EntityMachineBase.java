@@ -1853,8 +1853,15 @@ public class EntityMachineBase extends EntityLiving {
     	// Main movement logic:
     	if (this.canPassengerSteer()) 
         {
-    		/**
+    		//this.rotationYaw = this.getControllingPassenger().rotationYaw;
+            
+            //this.rotationPitch = this.getControllingPassenger().rotationPitch;
+    		
+            
+            
+            /**
     		EntityLivingBase entitylivingbase = (EntityLivingBase)this.getControllingPassenger();
+            
             this.rotationYaw = entitylivingbase.rotationYaw;
             this.prevRotationYaw = this.rotationYaw;
             this.rotationPitch = entitylivingbase.rotationPitch * 0.5F;*/

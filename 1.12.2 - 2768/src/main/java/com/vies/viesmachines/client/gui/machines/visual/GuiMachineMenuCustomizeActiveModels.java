@@ -11,7 +11,6 @@ import com.vies.viesmachines.api.CostsVM;
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.api.util.Keybinds;
-import com.vies.viesmachines.api.util.LogHelper;
 import com.vies.viesmachines.client.gui.GuiContainerVC;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VC;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VC;
@@ -21,7 +20,6 @@ import com.vies.viesmachines.network.NetworkHandler;
 import com.vies.viesmachines.network.server.machine.gui.customize.activemodels.MessageHelperGuiMachineMenuCustomizeActiveModelApply;
 import com.vies.viesmachines.network.server.machine.gui.navigation.MessageGuiMachineMenuCustomize;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
@@ -53,10 +51,7 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 		this.modelComponent = this.machine.getVisualModelComponent();
 	}
 	
-	/**
-     * Adds the buttons (and other controls) to the screen in question.
-     */
-    @Override
+	@Override
     public void initGui() 
     {
     	super.initGui();
@@ -66,12 +61,7 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
     	
     	GuiVM.buttonRotateLeft = new GuiButtonGeneral2VC(10, this.guiLeft + 110, this.guiTop + 68, 6, 6, "", 3);
     	GuiVM.buttonRotateRight = new GuiButtonGeneral2VC(10, this.guiLeft + 122, this.guiTop + 68, 6, 6, "", 3);
-    	//GuiVM.buttonRidingPlayerTrue = new GuiButtonGeneral1VC(12, this.guiLeft + 130, this.guiTop + 66, 10, 10, "", 1);
-    	//GuiVM.buttonRidingPlayerFalse = new GuiButtonGeneral1VC(13, this.guiLeft + 140, this.guiTop + 66, 10, 10, "", 2);
-    	//GuiVM.buttonUndo = new GuiButtonGeneral2VC(11, this.guiLeft + 158, this.guiTop + 66, 10, 10, "", 1);
-		
-    	// Undo:
-    	//GuiVM.button00 = new GuiButtonGeneral2VC(20, this.guiLeft + 89, this.guiTop + 45, 14, 14, "", 1);
+    	
     	GuiVM.buttonApply = new GuiButtonGeneral1VC(21, this.guiLeft + 7, this.guiTop + 63, 42, 14, References.localNameVC("viesmachines.button.apply"), 1);
 		GuiVM.buttonBack = new GuiButtonGeneral1VC(22, this.guiLeft + 61, this.guiTop + 63, 42, 14, References.localNameVC("viesmachines.button.back"), 2);
 		
@@ -94,6 +84,8 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
     	GuiVM.buttonEngine = new GuiButtonGeneral2VC(2, this.guiLeft + 13+51, this.guiTop + 94, 48, 14, "Engine", 1);
     	GuiVM.buttonComponent = new GuiButtonGeneral2VC(3, this.guiLeft + 13+51+51, this.guiTop + 94, 48, 14, "Component", 1);
     	
+    	//--------------------------------------------------
+    	
     	this.buttonList.add(GuiVM.buttonFrame);
     	this.buttonList.add(GuiVM.buttonEngine);
     	this.buttonList.add(GuiVM.buttonComponent);
@@ -111,29 +103,20 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 		//this.buttonList.add(GuiVM.button65);
 		//this.buttonList.add(GuiVM.button66);
 		
-		//this.buttonList.add(GuiVM.button00);
 		this.buttonList.add(GuiVM.buttonApply);
 		this.buttonList.add(GuiVM.buttonBack);
 		
 		this.buttonList.add(GuiVM.buttonRotateLeft);
     	this.buttonList.add(GuiVM.buttonRotateRight);
-    	//this.buttonList.add(GuiVM.buttonRidingPlayerTrue);
-    	//this.buttonList.add(GuiVM.buttonRidingPlayerFalse);
-    	//this.buttonList.add(GuiVM.buttonUndo);
     	
     	this.buttonList.add(GuiVM.buttonMM1);
 		this.buttonList.add(GuiVM.buttonMM2);
 		this.buttonList.add(GuiVM.buttonMM3);
-		//this.buttonList.add(GuiVM.buttonMM4);
-		//this.buttonList.add(GuiVM.buttonMM5);
 		
 		GuiVM.buttonMM3.enabled = false;
     }
     
-    /**
-     * Called by the controls from the buttonList when activated. (Mouse pressed for buttons)
-     */
-	@Override
+    @Override
     protected void actionPerformed(GuiButton parButton) 
     {
 		super.actionPerformed(parButton);
@@ -162,12 +145,6 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 			this.modelEngine = this.machine.getVisualModelEngine();
 		}
 		
-		// Undo:
-		if (parButton.id == 20)
-		{
-			//NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomize());
-		}
-		
 		// Apply:
 		if (parButton.id == 21)
 		{
@@ -186,7 +163,6 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 			this.modelFrame = 0;
 			this.modelEngine = this.machine.getVisualModelEngine();
 			this.modelComponent = this.machine.getVisualModelComponent();
-			//NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomize());
 		}
 		
 		// Frame-Reinforced:
@@ -195,7 +171,6 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 			this.modelFrame = 1;
 			this.modelEngine = this.machine.getVisualModelEngine();
 			this.modelComponent = this.machine.getVisualModelComponent();
-			//NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomize());
 		}
 		
 		// Frame-Spiked:
@@ -204,7 +179,6 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 			this.modelFrame = 2;
 			this.modelEngine = this.machine.getVisualModelEngine();
 			this.modelComponent = this.machine.getVisualModelComponent();
-			//NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomize());
 		}
 		
 		// Engine-Standard:
@@ -213,7 +187,6 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 			this.modelEngine = 0;
 			this.modelFrame = this.machine.getVisualModelFrame();
 			this.modelComponent = this.machine.getVisualModelComponent();
-			//NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomize());
 		}
 		
 		// Engine-Big:
@@ -222,7 +195,6 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 			this.modelEngine = 1;
 			this.modelFrame = this.machine.getVisualModelFrame();
 			this.modelComponent = this.machine.getVisualModelComponent();
-			//NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomize());
 		}
 		
 		// Engine-Dual:
@@ -231,7 +203,6 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 			this.modelEngine = 2;
 			this.modelFrame = this.machine.getVisualModelFrame();
 			this.modelComponent = this.machine.getVisualModelComponent();
-			//NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomize());
 		}
 		
 
@@ -241,7 +212,6 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 			this.modelComponent = 0;
 			this.modelFrame = this.machine.getVisualModelFrame();
 			this.modelEngine = this.machine.getVisualModelEngine();
-			//NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomize());
 		}
 		
 		// Component-Hindenburg:
@@ -250,7 +220,6 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 			this.modelComponent = 1;
 			this.modelFrame = this.machine.getVisualModelFrame();
 			this.modelEngine = this.machine.getVisualModelEngine();
-			//NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomize());
 		}
 		
 		// Component-Dirigible:
@@ -259,7 +228,6 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 			this.modelComponent = 2;
 			this.modelFrame = this.machine.getVisualModelFrame();
 			this.modelEngine = this.machine.getVisualModelEngine();
-			//NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomize());
 		}
 
 		// Component-Zeppelin:
@@ -268,7 +236,6 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 			this.modelComponent = 3;
 			this.modelFrame = this.machine.getVisualModelFrame();
 			this.modelEngine = this.machine.getVisualModelEngine();
-			//NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomize());
 		}
 		
 		// Component-Akronus:
@@ -277,7 +244,6 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 			this.modelComponent = 4;
 			this.modelFrame = this.machine.getVisualModelFrame();
 			this.modelEngine = this.machine.getVisualModelEngine();
-			//NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomize());
 		}
 		
 		// Component-XXX:
@@ -286,7 +252,6 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 			this.modelComponent = 5;
 			this.modelFrame = this.machine.getVisualModelFrame();
 			this.modelEngine = this.machine.getVisualModelEngine();
-			//NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomize());
 		}
 		
         this.buttonList.clear();
@@ -302,7 +267,7 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 		// Draws a black line under the machine preview options buttons:
 		this.drawRect(this.guiLeft +108, this.guiTop + 6, this.guiLeft +168, this.guiTop + 64, Color.GRAY.getRGB());
 		
-		
+		// Binds and draws the texture to use:
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		this.mc.getTextureManager().bindTexture(TEXTURE);
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
@@ -316,23 +281,13 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 	{
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		
-		// 'Symbol Options':
+		// 'Active Models':
 		GlStateManager.pushMatrix();
 		{
 			GlStateManager.translate(55.5, 11, 0);
 	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 	        
 	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.activemodels.activemodels.0"), 0, 0, Color.BLACK.getRGB());
-		}
-		GlStateManager.popMatrix();
-		
-		// 'Current Banner':
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(55.25, 53, 0);
-	        GlStateManager.scale(0.5F, 0.5F, 0.5F);
-	        
-	        //this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.displaybanner.currentbanner.0"), 0, 0, Color.BLUE.getRGB());
 		}
 		GlStateManager.popMatrix();
 		
@@ -349,8 +304,7 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 		// Draws a black line under the machine preview options buttons:
 		this.drawRect(130, 75, 168, 76, Color.BLACK.getRGB());
 		
-		
-		
+		// Choose a ____:
 		GlStateManager.pushMatrix();
 		{
 			GlStateManager.translate(88.5, 127, 0);
@@ -368,25 +322,13 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 	        {
 	        	this.centeredString(getFontRenderer(), TextFormatting.BOLD + "Choose a component.", 0, 0, 11111111);
 	        }
-	        
 		}
 		GlStateManager.popMatrix();
 		
-		
-		
+		// Binds the texture to use:
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		this.mc.getTextureManager().bindTexture(TEXTURE);
 		
-		// Undo symbol:
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(89.0+3, 45.0+3, 0);
-			GlStateManager.scale(0.5F, 0.5F, 0.5F);
-			
-			//this.drawTexturedModalRect(0, 0, 176, 0, 16, 16);
-		}
-		GlStateManager.popMatrix();
-
 		// Preview Left Arrow symbol:
 		GlStateManager.pushMatrix();
 		{
@@ -405,35 +347,8 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 			this.drawTexturedModalRect(0, 0, 176, 28, 12, 12);
 		}
 		GlStateManager.popMatrix();
-		// Preview Steve head symbol:
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(132, 67.5, 0);
-			GlStateManager.scale(0.5F, 0.5F, 0.5F);
-			
-			//this.drawTexturedModalRect(0, 0, 176, 40, 12, 12);
-		}
-		GlStateManager.popMatrix();
-		// Preview Steve head 'X' symbol:
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(142, 67.5, 0);
-			GlStateManager.scale(0.5F, 0.5F, 0.5F);
-			
-			//this.drawTexturedModalRect(0, 0, 176, 52, 12, 12);
-		}
-		GlStateManager.popMatrix();
-		// Preview Undo symbol:
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(161, 69, 0);
-			GlStateManager.scale(0.25F, 0.25F, 0.25F);
-			
-			//this.drawTexturedModalRect(0, 0, 176, 0, 16, 16);
-		}
-		GlStateManager.popMatrix();
 		
-		
+		//--------------------------------------------------
 		
 		// Logic for mouse-over tooltip - Turn Left:
 		if(mouseX >= this.guiLeft + 110 && mouseX <= this.guiLeft + 115
@@ -512,14 +427,11 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 			}
 		}
 		
-		
-		
 		// Logic for mouse-over tooltip - Apply:
 		if (mouseX >= this.guiLeft + 7 && mouseX <= this.guiLeft + 7+41
 		&& mouseY >= this.guiTop +63 && mouseY <= this.guiTop +63+13)
 		{
 			List<String> text = new ArrayList<String>();
-			
 			
 			if (this.machine.getControllingPassenger() instanceof EntityPlayer)
         	{
@@ -539,26 +451,12 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 				{
 					text.add(TextFormatting.GREEN + References.localNameVC("viesmachines.gui.tt.customize.color.cost.5"));
 				}
-        		//else if (this.machineTexture == 0
-        		//&& this.machineTexture != this.machine.getVisualComponentTexture())
-				//{
-        		//	text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.color.cost.3"));
-				//}
-				else
+        		else
 				{
 					text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.color.cost.1") + " " + CostsVM.COST_CHANGE_MODEL_FRAME + " " + References.localNameVC("viesmachines.gui.tt.customize.color.cost.2"));
 				}
         	}
-			/*
-			if (!GuiVM.buttonApply.enabled)
-			{
-				
-			}
-			else
-			{
-				text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.color.cost.1") + " " + CostsVM.COST_CHANGE_MODEL_FRAME + " " + References.localNameVC("viesmachines.gui.tt.customize.color.cost.2"));
-			}
-			*/
+			
 			GlStateManager.pushMatrix();
 			{
 				int textNumber = text.toString().length();
@@ -613,9 +511,7 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
  			this.modelRotationHorizontal = this.modelRotationHorizontal + 2;
  		}
  		
- 		
- 		
- 		
+ 		// Handles the buttons for Previewing the Frame:
  		if(this.previewPart == 1)
 		{
 			GuiVM.buttonFrame.enabled = false;
@@ -635,7 +531,8 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 			GuiVM.button65.visible = false;
 			GuiVM.button66.visible = false;
 		}
-		if(this.previewPart == 2)
+ 		// Handles the buttons for Previewing the Engine:
+ 		if(this.previewPart == 2)
 		{
 			GuiVM.buttonFrame.enabled = true;
 			GuiVM.buttonEngine.enabled = false;
@@ -654,7 +551,8 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 			GuiVM.button65.visible = false;
 			GuiVM.button66.visible = false;
 		}
-		if(this.previewPart == 3)
+ 		// Handles the buttons for Previewing the Component:
+ 		if(this.previewPart == 3)
 		{
 			GuiVM.buttonFrame.enabled = true;
 			GuiVM.buttonEngine.enabled = true;
@@ -676,6 +574,7 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 		
 		this.selectedButtonDisable();
 		
+		// Handles the Apply button:
 		if (this.machine.getControllingPassenger() instanceof EntityPlayer)
     	{
     		EntityPlayer player = (EntityPlayer) this.machine.getControllingPassenger();

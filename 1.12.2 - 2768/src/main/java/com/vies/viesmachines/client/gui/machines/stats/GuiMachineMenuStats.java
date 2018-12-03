@@ -15,11 +15,8 @@ import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VC;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.entity.machines.containers.ContainerMachineNoSlots;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
@@ -50,6 +47,8 @@ public class GuiMachineMenuStats extends GuiContainerVC {
     	GuiVM.buttonRidingPlayerFalse = new GuiButtonGeneral1VC(13, this.guiLeft + 140, this.guiTop + 66, 10, 10, "", 2);
     	GuiVM.buttonUndo = new GuiButtonGeneral2VC(11, this.guiLeft + 158, this.guiTop + 66, 10, 10, "", 1);
 		
+    	//--------------------------------------------------
+    	
     	this.buttonList.add(GuiVM.buttonRotateLeft);
     	this.buttonList.add(GuiVM.buttonRotateRight);
     	this.buttonList.add(GuiVM.buttonRidingPlayerTrue);
@@ -57,11 +56,8 @@ public class GuiMachineMenuStats extends GuiContainerVC {
     	this.buttonList.add(GuiVM.buttonUndo);
     	
     	this.buttonList.add(GuiVM.buttonMM1);
-    	this.buttonList.add(GuiVM.buttonMM1);
 		this.buttonList.add(GuiVM.buttonMM2);
 		this.buttonList.add(GuiVM.buttonMM3);
-		//this.buttonList.add(GuiVM.buttonMM4);
-		//this.buttonList.add(GuiVM.buttonMM5);
 		
 		GuiVM.buttonMM2.enabled = false;
     }
@@ -84,15 +80,15 @@ public class GuiMachineMenuStats extends GuiContainerVC {
 		// Draws a black line under the machine preview options buttons:
 		this.drawRect(this.guiLeft +108, this.guiTop + 6, this.guiLeft +168, this.guiTop + 64, Color.GRAY.getRGB());
 		
-		// Binds the texture to use:
+		// Binds and draws the background texture to use:
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(TEXTURE);
 		
 		// Draws the background texture:
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 		
+		// Renders the 'Preview Entity' for the current machine:
 		this.drawEntityOnScreen(this.guiLeft + 139, this.guiTop + 58, this.modelRotationHorizontal, 13, this.machine, this.modelRidingEntity);
- 		
     }
 	
 	@Override
@@ -102,22 +98,7 @@ public class GuiMachineMenuStats extends GuiContainerVC {
 		
 		// Draws a black line under the machine preview options buttons:
 		this.drawRect(130, 75, 168, 76, Color.BLACK.getRGB());
-
 		
-
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(138.5, 10, 0);
-	        GlStateManager.scale(0.5F, 0.5F, 0.5F);
-	        
-	        this.centeredString(fontRenderer, 
-	        		//"===================="
-	        		"Preview"
-	        		, 0, 0, Color.WHITE.getRGB());
-	        
-	        //.drawCenteredString(fontRenderer, "Symbol Display", 0, 0, 1111111);
-		}
-		GlStateManager.popMatrix();
 		// Main labels:
 		GlStateManager.pushMatrix();
 		{
@@ -125,6 +106,16 @@ public class GuiMachineMenuStats extends GuiContainerVC {
 			
 			this.centeredString(fontRenderer, References.Old_I18n.translateToLocalFormatted("viesmachines.gui.tt.stats.statsinfo.0"), 74, 10, Color.BLACK.getRGB());
 			this.centeredString(fontRenderer, References.Old_I18n.translateToLocalFormatted("viesmachines.gui.tt.stats.upgrades.0"),118, 110, Color.BLACK.getRGB());
+		}
+		GlStateManager.popMatrix();
+		
+		// 'Preview':
+		GlStateManager.pushMatrix();
+		{
+			GlStateManager.translate(138.5, 10, 0);
+	        GlStateManager.scale(0.5F, 0.5F, 0.5F);
+	        
+	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.main.preview"), 0, 0, Color.WHITE.getRGB());
 		}
 		GlStateManager.popMatrix();
 		
@@ -157,7 +148,7 @@ public class GuiMachineMenuStats extends GuiContainerVC {
 			
 			//"================================" - 32 digits
 			
-			
+			//--------------------------------------------------
 			
 			// Upgrades:
 			
@@ -192,8 +183,7 @@ public class GuiMachineMenuStats extends GuiContainerVC {
 			this.centeredString(fontRenderer, TextFormatting.BOLD + References.Old_I18n.translateToLocalFormatted("viesmachines.gui.tt.stats.durability.0"), 68, 310+12, 11111111);
 			this.centeredString(fontRenderer, Integer.toString((int)this.machine.getDurability()) + " / " + Integer.toString((int)this.machine.getMaxDurability()), 68, 330+12, Color.WHITE.getRGB());
 			
-			
-			
+			//--------------------------------------------------
 			
 			// Engine Tier:
 			this.centeredString(fontRenderer, TextFormatting.BOLD + References.Old_I18n.translateToLocalFormatted("viesmachines.gui.tt.stats.engine.0"), 176, 190, 11111111);
@@ -216,16 +206,8 @@ public class GuiMachineMenuStats extends GuiContainerVC {
 			
 			// Forward Speed:
 			this.centeredString(fontRenderer, TextFormatting.BOLD + References.Old_I18n.translateToLocalFormatted("viesmachines.gui.tt.stats.speed.0"), 176, 230+13, 11111111);
-			this.centeredString(fontRenderer, 
-					//Integer.toString(
-					Float.toString(EnumsVM.FlyingMachineEngineTier.byId(this.machine.getTierEngine()).getFowardSpeedModifier() * 1000)
-					//)
-					, 176, 250+13, Color.WHITE.getRGB());
-			//LogHelper.info(
-					//Integer.toString((int) 
-			//				EnumsVC.FlyingMachineEngineTier.byId(this.machine.getTierEngine()).getFowardSpeedModifier()
-			//				* 1000//)
-			//);
+			this.centeredString(fontRenderer, Float.toString(EnumsVM.FlyingMachineEngineTier.byId(this.machine.getTierEngine()).getFowardSpeedModifier() * 1000), 176, 250+13, Color.WHITE.getRGB());
+			
 			// Fuel Efficiency:
 			this.centeredString(fontRenderer, TextFormatting.BOLD + References.Old_I18n.translateToLocalFormatted("viesmachines.gui.tt.stats.energygain.0"), 176, 270+12, 11111111);
 			this.centeredString(fontRenderer, "+1" + " " + References.Old_I18n.translateToLocalFormatted("viesmachines.main.per") + " " + Integer.toString(EnumsVM.FlyingMachineEngineTier.byId(this.machine.getTierEngine()).getEnergyIncreaseModifier() / 20) + " " + References.Old_I18n.translateToLocalFormatted("viesmachines.main.sec"), 176, 290+12, Color.WHITE.getRGB());
@@ -234,8 +216,7 @@ public class GuiMachineMenuStats extends GuiContainerVC {
 			this.centeredString(fontRenderer, TextFormatting.BOLD + References.Old_I18n.translateToLocalFormatted("viesmachines.gui.tt.stats.durabilityloss.0"), 176, 310+12, 11111111);
 			this.centeredString(fontRenderer, "+1" + " " + References.Old_I18n.translateToLocalFormatted("viesmachines.main.per") + " " + Integer.toString(EnumsVM.FlyingMachineEngineTier.byId(this.machine.getTierEngine()).getDurabilityDecreaseModifier() / 20) + " " + References.Old_I18n.translateToLocalFormatted("viesmachines.main.sec"), 176, 330+12, Color.WHITE.getRGB());
 			
-			
-			
+			//--------------------------------------------------
 			
 			// Component Tier:
 			this.centeredString(fontRenderer, TextFormatting.BOLD + References.Old_I18n.translateToLocalFormatted("viesmachines.gui.tt.stats.component.0"), 284, 190, 11111111);
@@ -259,21 +240,15 @@ public class GuiMachineMenuStats extends GuiContainerVC {
 			// Max Ammo:
 			this.centeredString(fontRenderer, TextFormatting.BOLD + References.Old_I18n.translateToLocalFormatted("viesmachines.gui.tt.stats.ammo.0"), 284, 230+13, 11111111);
 			this.centeredString(fontRenderer, Integer.toString(this.machine.getAmmoAmount()) + " / "+ Integer.toString(this.machine.getMaxAmmoAmount()), 284, 250+13, Color.WHITE.getRGB());
+			
 			// Special Stat:
-			this.centeredString(fontRenderer, 
-					"----------"
-					//TextFormatting.BOLD + this.machine.getComponentName()
-			, 284, 270+12, 11111111);
-			this.centeredString(fontRenderer, 
-					"----------"
-					//"+1" + " " + References.Old_I18n.translateToLocalFormatted("viesmachines.main.per") + " " + Integer.toString(EnumsVM.FlyingMachineEngineTier.byId(this.machine.getTierEngine()).getEnergyIncreaseModifier()) + " " + References.Old_I18n.translateToLocalFormatted("viesmachines.main.sec")
-					
-					, 284, 290+12, Color.WHITE.getRGB());
+			this.centeredString(fontRenderer, "----------", 284, 270+12, 11111111);
+			this.centeredString(fontRenderer, "----------", 284, 290+12, Color.WHITE.getRGB());
 			
 			// Special Stat:
 			this.centeredString(fontRenderer, TextFormatting.BOLD + this.machine.getComponentName(), 284, 310+12, 11111111);
 			
-			
+			// Changes the block number to 'unlimited' if at max tier:
 			if (this.machine.getTierComponent() < 3)
 			{
 				this.centeredString(fontRenderer, Integer.toString(EnumsVM.FlyingMachineComponentTier.byId(this.machine.getTierComponent()).getMaxElevationModifier()) + " " + References.Old_I18n.translateToLocalFormatted("viesmachines.enum.machinename.componentvaluenameflying.0"), 284, 330+12, Color.WHITE.getRGB());
@@ -285,7 +260,7 @@ public class GuiMachineMenuStats extends GuiContainerVC {
 		}
 		GlStateManager.popMatrix();
 		
-		
+		//--------------------------------------------------
 		
 		// Binds the texture to use:
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -341,7 +316,7 @@ public class GuiMachineMenuStats extends GuiContainerVC {
 		}
 		GlStateManager.popMatrix();
 		
-		
+		//--------------------------------------------------
 		
 		// Logic for mouse-over tooltip - Turn Left:
 		if(mouseX >= this.guiLeft + 110 && mouseX <= this.guiLeft + 115
@@ -419,20 +394,6 @@ public class GuiMachineMenuStats extends GuiContainerVC {
 				GlStateManager.popMatrix();
 			}
 		}
-		
-		//TODO
-		//GlStateManager.pushMatrix();
-				//{
-				//	this.drawEntityOnScreen(//this.guiLeft + 
-				//			139
-				//			, //this.guiTop + 
-				//			58
-				//			, this.modelRotationHorizontal, 11, 
-				//			this.machine, this.modelRidingEntity);
-				//	
-					
-				//}
-				//GlStateManager.popMatrix();
 	}
 	
 	@Override
@@ -465,7 +426,5 @@ public class GuiMachineMenuStats extends GuiContainerVC {
  	    {
  			this.modelRotationHorizontal = this.modelRotationHorizontal + 2;
  		}
- 		
-		
     }
 }

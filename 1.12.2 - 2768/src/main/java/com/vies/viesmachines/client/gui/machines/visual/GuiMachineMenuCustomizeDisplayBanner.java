@@ -270,7 +270,7 @@ public class GuiMachineMenuCustomizeDisplayBanner extends GuiContainerVC {
 			}
 			GlStateManager.popMatrix();
 		}
-		// Head:
+		// Entity Head:
 		else if(this.machine.getVisualEngineDisplayType() == 2)
 		{
 			GlStateManager.pushMatrix();
@@ -401,7 +401,7 @@ public class GuiMachineMenuCustomizeDisplayBanner extends GuiContainerVC {
 		}
 		GlStateManager.popMatrix();
 		
-		
+		//--------------------------------------------------
 		
 		// Logic for mouse-over tooltip - Turn Left:
 		if(mouseX >= this.guiLeft + 110 && mouseX <= this.guiLeft + 115
@@ -524,7 +524,7 @@ public class GuiMachineMenuCustomizeDisplayBanner extends GuiContainerVC {
     {
         super.updateScreen();
         
-     // Checks to see if the 'Remove' button is enabled:
+        // Checks to see if the 'Remove' button is enabled:
         if(this.machine.getVisualEngineDisplayType() == 0)
         {
         	GuiVM.buttonApply.enabled = false;

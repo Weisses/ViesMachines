@@ -5,12 +5,9 @@ import java.util.ArrayList;
 
 import com.vies.viesmachines.api.ItemsVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.api.util.LogHelper;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
-import com.vies.viesmachines.common.entity.machines.EntityMachineFlying;
 import com.vies.viesmachines.common.entity.machines.EntityMachineFuel;
-import com.vies.viesmachines.common.entity.machines.EntityMachineGround;
-import com.vies.viesmachines.common.entity.machines.EntityMachineWater;
+import com.vies.viesmachines.common.entity.machines.types.flying.EntityMachineFlyingAirship;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -36,7 +33,7 @@ public class GuiMachineHUD extends Gui {
 	private final int hudHeight;
 	private float speedMod;
 	
-	private EntityMachineFuel machine;
+	private EntityMachineFlyingAirship machine;
 	private ArrayList activeBuffIcons = new ArrayList();
 	private ArrayList activeDebuffIcons = new ArrayList();
 	
@@ -76,7 +73,7 @@ public class GuiMachineHUD extends Gui {
 		{
 			if (mc.player.getRidingEntity() instanceof EntityMachineFuel)
 		    {
-				this.machine = (EntityMachineFuel) Minecraft.getMinecraft().player.getRidingEntity();
+				this.machine = (EntityMachineFlyingAirship) Minecraft.getMinecraft().player.getRidingEntity();
 				
 				GlStateManager.enableRescaleNormal();
 	            GlStateManager.enableBlend();
@@ -149,9 +146,6 @@ public class GuiMachineHUD extends Gui {
 				this.renderBuffIcons(hudXDefault, hudYDefault);
 				this.renderDebuffIcons(hudXDefault, hudYDefault);
 				
-				
-				//this.getSpecialStat(this.machine, hudXDefault, hudYDefault);
-				
 				// Handles Fuel Display logic:
 				if (this.mc.player.isCreative())
 				{
@@ -217,6 +211,7 @@ public class GuiMachineHUD extends Gui {
 					GlStateManager.popMatrix();
 				}
 				
+				this.getSpecialStat(this.machine, hudXDefault, hudYDefault);
 				
 				
 				GlStateManager.popAttrib();
@@ -524,34 +519,16 @@ public class GuiMachineHUD extends Gui {
 		}
 	}
 	
-	private void getSpecialStat(EntityMachineBase machineIn, int hudXDefault, int hudYDefault)
+	private void getSpecialStat(EntityMachineFlyingAirship machineIn, int hudXDefault, int hudYDefault)
 	{
-		if (machineIn instanceof EntityMachineGround)
+		GlStateManager.pushMatrix();
 		{
-			LogHelper.info("This is a Ground Mount");
+			GlStateManager.translate(hudXDefault + 1.75, hudYDefault + 17.5, 0);
+			GlStateManager.scale(0.5, 0.5, 0.5);
+			
+			this.centeredString(fontRenderer, Integer.toString((int)machineIn.posY), 0, 0, Color.WHITE.getRGB());
+			this.centeredString(fontRenderer, Integer.toString(machineIn.getMaxElevation()), 0, 0, Color.WHITE.getRGB());
 		}
-		
-		if (machineIn instanceof EntityMachineWater)
-		{
-			LogHelper.info("This is a Water Mount");
-		}
-		
-		if (machineIn instanceof EntityMachineFlying)
-		{
-			EntityMachineFlying machineFlying = (EntityMachineFlying) machineIn;
-			
-			GlStateManager.pushMatrix();
-			{
-				GlStateManager.translate(hudXDefault + 1.75, hudYDefault + 17.5, 0);
-				GlStateManager.scale(0.5, 0.5, 0.5);
-				
-				this.centeredString(fontRenderer, Integer.toString((int)machineFlying.posY), 0, 0, Color.WHITE.getRGB());
-				this.centeredString(fontRenderer, Integer.toString(machineFlying.getMaxElevation()), 0, 0, Color.WHITE.getRGB());
-			}
-			GlStateManager.popMatrix();
-			
-			
-			
-		}
+		GlStateManager.popMatrix();
 	}
 }

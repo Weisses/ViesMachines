@@ -210,8 +210,6 @@ public class GuiMachineMenuCustomizePrimarySkinTexture extends GuiContainerVC {
 		this.buttonList.add(GuiVM.buttonTexture03);
 		this.buttonList.add(GuiVM.buttonTexture04);
 		
-		
-		
 		this.buttonList.add(GuiVM.buttonTexture05);
 		this.buttonList.add(GuiVM.buttonTexture06);
 		this.buttonList.add(GuiVM.buttonTexture07);
@@ -227,8 +225,6 @@ public class GuiMachineMenuCustomizePrimarySkinTexture extends GuiContainerVC {
 		this.buttonList.add(GuiVM.buttonTexture16);
 		this.buttonList.add(GuiVM.buttonTexture17);
 		this.buttonList.add(GuiVM.buttonTexture18);
-		
-		
 		
 		this.buttonList.add(GuiVM.buttonTexture19);
 		this.buttonList.add(GuiVM.buttonTexture20);
@@ -246,8 +242,6 @@ public class GuiMachineMenuCustomizePrimarySkinTexture extends GuiContainerVC {
 		this.buttonList.add(GuiVM.buttonTexture31);
 		this.buttonList.add(GuiVM.buttonTexture32);
 		
-		
-		
 		this.buttonList.add(GuiVM.buttonTexture33);
 		this.buttonList.add(GuiVM.buttonTexture34);
 		this.buttonList.add(GuiVM.buttonTexture35);
@@ -263,8 +257,6 @@ public class GuiMachineMenuCustomizePrimarySkinTexture extends GuiContainerVC {
 		this.buttonList.add(GuiVM.buttonTexture44);
 		this.buttonList.add(GuiVM.buttonTexture45);
 		this.buttonList.add(GuiVM.buttonTexture46);
-		
-		
 		
 		this.buttonList.add(GuiVM.buttonApply);
 		this.buttonList.add(GuiVM.buttonBack);
@@ -292,6 +284,7 @@ public class GuiMachineMenuCustomizePrimarySkinTexture extends GuiContainerVC {
 		{
 			NetworkHandler.sendToServer(new MessageHelperGuiMachineMenuCustomizePrimarySkinTexture());
 		}
+		
 		// Back:
 		if (parButton.id == 22)
 		{
@@ -622,11 +615,9 @@ public class GuiMachineMenuCustomizePrimarySkinTexture extends GuiContainerVC {
 		}
 		GlStateManager.popMatrix();
 		
-		
-		
 		this.mouseOverTooltipHandler(mouseX, mouseY);
 		
-		
+		//--------------------------------------------------
 		
 		// Logic for mouse-over tooltip - Turn Left:
 		if(mouseX >= this.guiLeft + 110 && mouseX <= this.guiLeft + 115

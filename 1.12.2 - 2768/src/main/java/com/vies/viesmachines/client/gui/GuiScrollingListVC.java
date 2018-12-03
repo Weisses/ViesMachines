@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import net.minecraftforge.fml.client.GuiScrollingList;
 
-public class GuiScrollingListVC extends GuiScrollingList{
+public class GuiScrollingListVC extends GuiScrollingList {
     
     private GuiMachineMenuMainSelectMusic parent;
     private ArrayList<ResourceLocation> songs;

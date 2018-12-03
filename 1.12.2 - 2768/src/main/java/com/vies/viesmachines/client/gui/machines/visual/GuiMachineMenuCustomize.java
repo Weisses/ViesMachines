@@ -1,7 +1,6 @@
 package com.vies.viesmachines.client.gui.machines.visual;
 
 import java.awt.Color;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,9 +62,6 @@ public class GuiMachineMenuCustomize extends GuiContainerVC {
     	GuiVM.buttonRidingPlayerFalse = new GuiButtonGeneral1VC(13, this.guiLeft + 90, this.guiTop + 66, 10, 10, "", 2);
     	GuiVM.buttonUndo = new GuiButtonGeneral2VC(11, this.guiLeft + 108, this.guiTop + 66, 10, 10, "", 1);
 		
-    	GuiVM.button00 = new GuiButtonGeneral2VC(40, this.guiLeft + 56, this.guiTop + 179, 14, 14, "", 1);
-    	GuiVM.button01 = new GuiButtonGeneral2VC(41, this.guiLeft + 134, this.guiTop + 179, 14, 14, "", 1);
-		
     	GuiVM.buttonCustomizeActiveModels = new GuiButtonGeneral1VC(30, this.guiLeft + 28, this.guiTop + 102, 42, 14, References.Old_I18n.translateToLocal("Model"), 0);
     	GuiVM.buttonCustomizeDisplayBanner = new GuiButtonGeneral1VC(31, this.guiLeft + 106, this.guiTop + 102, 42, 14, References.Old_I18n.translateToLocal("Display"), 0);
     	GuiVM.buttonCustomizePrimaryTexture = new GuiButtonGeneral1VC(32, this.guiLeft + 28, this.guiTop + 143, 42, 14, References.Old_I18n.translateToLocal("Texture"), 0);
@@ -77,7 +73,7 @@ public class GuiMachineMenuCustomize extends GuiContainerVC {
     	GuiVM.buttonCustomizeSecondaryTransparentTrue = new GuiButtonGeneral1VC(38, this.guiLeft + 106, this.guiTop + 179, 14, 14, References.Old_I18n.translateToLocal(""), 1);
 		GuiVM.buttonCustomizeSecondaryTransparentFalse = new GuiButtonGeneral1VC(39, this.guiLeft + 106, this.guiTop + 179, 14, 14, References.Old_I18n.translateToLocal(""), 2);
 		
-    	
+		//--------------------------------------------------
     	
 		this.buttonList.add(GuiVM.buttonCustomizeActiveModels);
 		this.buttonList.add(GuiVM.buttonCustomizeDisplayBanner);
@@ -90,9 +86,6 @@ public class GuiMachineMenuCustomize extends GuiContainerVC {
 		this.buttonList.add(GuiVM.buttonCustomizeSecondaryTransparentTrue);
 		this.buttonList.add(GuiVM.buttonCustomizeSecondaryTransparentFalse);
 		
-		//this.buttonList.add(GuiVM.button00);
-		//this.buttonList.add(GuiVM.button01);
-		
 		this.buttonList.add(GuiVM.buttonRotateLeft);
     	this.buttonList.add(GuiVM.buttonRotateRight);
     	this.buttonList.add(GuiVM.buttonRidingPlayerTrue);
@@ -102,8 +95,6 @@ public class GuiMachineMenuCustomize extends GuiContainerVC {
     	this.buttonList.add(GuiVM.buttonMM1);
 		this.buttonList.add(GuiVM.buttonMM2);
 		this.buttonList.add(GuiVM.buttonMM3);
-		//this.buttonList.add(GuiVM.buttonMM4);
-		//this.buttonList.add(GuiVM.buttonMM5);
 		
 		GuiVM.buttonMM3.enabled = false;
     }
@@ -206,13 +197,12 @@ public class GuiMachineMenuCustomize extends GuiContainerVC {
 		// Draws a gray:
 		this.drawRect(this.guiLeft +58, this.guiTop + 6, this.guiLeft +168, this.guiTop + 64, Color.GRAY.getRGB());
 		
-		// Binds the texture to use:
+		// Binds and draws the texture to use:
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(TEXTURE);
-		
-		// Draws the background texture:
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 		
+		// Renders the 'Preview Entity' for the current machine:
 		this.drawEntityOnScreen(this.guiLeft + 89, this.guiTop + 58, this.modelRotationHorizontal, 13, this.machine, this.modelRidingEntity);
 	}
 	
@@ -221,68 +211,16 @@ public class GuiMachineMenuCustomize extends GuiContainerVC {
 	{
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		
-		// Draws a black line under the machine preview options buttons:
-		this.drawRect(80, 75, 118, 76, Color.BLACK.getRGB());
-		
-		// Binds the texture to use:
-		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.getTextureManager().bindTexture(TEXTURE);
-		
-		// Primary Semi-Transparent symbol:
+		// 'Preview':
 		GlStateManager.pushMatrix();
 		{
-			GlStateManager.translate(28, 179, 0);
-			GlStateManager.scale(0.5F, 0.5F, 0.5F);
-			
-			this.drawTexturedModalRect(0, 0, 228, 0, 28, 28);
-		}
-		GlStateManager.popMatrix();
-		
-		// Secondary Semi-Transparent symbol:
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(106, 179, 0);
-			GlStateManager.scale(0.5F, 0.5F, 0.5F);
-			
-			this.drawTexturedModalRect(0, 0, 228, 0, 28, 28);
-		}
-		GlStateManager.popMatrix();
-		
-
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(88.25, 10, 0);
+			GlStateManager.translate(87.5, 10, 0);
 	        GlStateManager.scale(0.5F, 0.5F, 0.5F);
 	        
-	        this.centeredString(fontRenderer, 
-	        		//"===================="
-	        		"Preview"
-	        		, 0, 0, Color.WHITE.getRGB());
-	        
-	        //.drawCenteredString(fontRenderer, "Symbol Display", 0, 0, 1111111);
-		}
-		GlStateManager.popMatrix();
-		/*
-		// Primary undo symbol:
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(59, 182, 0);
-			GlStateManager.scale(0.5F, 0.5F, 0.5F);
-			
-			this.drawTexturedModalRect(0, 0, 176, 0, 16, 16);
+	        this.centeredString(fontRenderer, References.Old_I18n.translateToLocal("viesmachines.main.preview"), 0, 0, Color.WHITE.getRGB());
 		}
 		GlStateManager.popMatrix();
 		
-		// Secondary undo symbol:
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(137, 182, 0);
-			GlStateManager.scale(0.5F, 0.5F, 0.5F);
-			
-			this.drawTexturedModalRect(0, 0, 176, 0, 16, 16);
-		}
-		GlStateManager.popMatrix();
-		*/
 		// Active Models label:
 		GlStateManager.pushMatrix();
 		{
@@ -327,9 +265,32 @@ public class GuiMachineMenuCustomize extends GuiContainerVC {
 		}
 		GlStateManager.popMatrix();
 		
+		// Draws a black line under the machine preview options buttons:
+		this.drawRect(80, 75, 118, 76, Color.BLACK.getRGB());
+		
 		// Binds the texture to use:
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(TEXTURE);
+		
+		// Primary Semi-Transparent symbol:
+		GlStateManager.pushMatrix();
+		{
+			GlStateManager.translate(28, 179, 0);
+			GlStateManager.scale(0.5F, 0.5F, 0.5F);
+			
+			this.drawTexturedModalRect(0, 0, 228, 0, 28, 28);
+		}
+		GlStateManager.popMatrix();
+		
+		// Secondary Semi-Transparent symbol:
+		GlStateManager.pushMatrix();
+		{
+			GlStateManager.translate(106, 179, 0);
+			GlStateManager.scale(0.5F, 0.5F, 0.5F);
+			
+			this.drawTexturedModalRect(0, 0, 228, 0, 28, 28);
+		}
+		GlStateManager.popMatrix();
 		
 		// Preview Left Arrow symbol:
 		GlStateManager.pushMatrix();
@@ -381,7 +342,7 @@ public class GuiMachineMenuCustomize extends GuiContainerVC {
 		}
 		GlStateManager.popMatrix();
 		
-		
+		//--------------------------------------------------
 		
 		// Logic for mouse-over tooltip - Turn Left:
 		if(mouseX >= this.guiLeft + 60 && mouseX <= this.guiLeft + 65
@@ -460,25 +421,12 @@ public class GuiMachineMenuCustomize extends GuiContainerVC {
 			}
 		}
 		
-		
-		
 		// Logic for mouse-over tooltip - Primary Transparency:
 		if(mouseX >= this.guiLeft + 28 && mouseX <= this.guiLeft + 28+13
 		&& mouseY >= this.guiTop + 179 && mouseY <= this.guiTop + 179+13)
 		{
 			List<String> text = new ArrayList<String>();
-			
-			//String var1 = References.localNameVC("viesmachines.gui.tt.customize.primarytransparency.0");
-			//String var2 = References.localNameVC("viesmachines.gui.tt.customize.color.cost.1") + " " + CostsVM.COST_FRAME_TRANSPARENCY + " " + References.localNameVC("viesmachines.gui.tt.customize.color.cost.2");
-			//String var3 = "";
-			
-			//int varI1 = var1.length() / 2;
-			
-			//var3 = varI1 + var2;
-			
-			
 			text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.primarytransparency.0"));
-			//text.add(var3);
 			text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.color.cost.1") + " " + CostsVM.COST_FRAME_TRANSPARENCY + " " + References.localNameVC("viesmachines.gui.tt.customize.transparency.0"));//References.localNameVC("viesmachines.gui.tt.customize.color.cost.2"));
 			
 			GlStateManager.pushMatrix();
@@ -491,28 +439,14 @@ public class GuiMachineMenuCustomize extends GuiContainerVC {
 				this.drawHoveringText(text, 0, 0);
 			}
 			GlStateManager.popMatrix();
-			
 		}
 		
-		
-		int startsdf = 78;
 		// Logic for mouse-over tooltip - Secondary Transparency:
-		if(mouseX >= this.guiLeft + 28 +startsdf && mouseX <= this.guiLeft + 28+13+startsdf
+		if(mouseX >= this.guiLeft + 28 + 78 && mouseX <= this.guiLeft + 28+13+78
 		&& mouseY >= this.guiTop + 179 && mouseY <= this.guiTop + 179+13)
 		{
 			List<String> text = new ArrayList<String>();
-			
-			//String var1 = References.localNameVC("viesmachines.gui.tt.customize.primarytransparency.0");
-			//String var2 = References.localNameVC("viesmachines.gui.tt.customize.color.cost.1") + " " + CostsVM.COST_FRAME_TRANSPARENCY + " " + References.localNameVC("viesmachines.gui.tt.customize.color.cost.2");
-			//String var3 = "";
-			
-			//int varI1 = var1.length() / 2;
-			
-			//var3 = varI1 + var2;
-			
-			
 			text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.secondarytransparency.0"));
-			//text.add(var3);
 			text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.color.cost.1") + " " + CostsVM.COST_COMPONENT_TRANSPARENCY + " " + References.localNameVC("viesmachines.gui.tt.customize.transparency.0"));//References.localNameVC("viesmachines.gui.tt.customize.color.cost.2"));
 			
 			GlStateManager.pushMatrix();
@@ -525,9 +459,7 @@ public class GuiMachineMenuCustomize extends GuiContainerVC {
 				this.drawHoveringText(text, 0, 0);
 			}
 			GlStateManager.popMatrix();
-			
 		}
-		
     }
 	
 	@Override
@@ -601,19 +533,5 @@ public class GuiMachineMenuCustomize extends GuiContainerVC {
  	    {
  			this.modelRotationHorizontal = this.modelRotationHorizontal + 2;
  		}
- 		
- 		
- 		
- 		/*
- 		if (this.machine.getEnergy() >= CostsVM.COST_FRAME_TRANSPARENCY)
- 		{
- 			GuiVM.buttonCustomizePrimaryTransparentTrue.enabled = true;
- 			GuiVM.buttonCustomizePrimaryTransparentTrue.enabled = true;
- 		}
- 		else
- 		{
- 			GuiVM.buttonCustomizePrimaryTransparentTrue.enabled = false;
- 		}
- 		*/
     }
 }

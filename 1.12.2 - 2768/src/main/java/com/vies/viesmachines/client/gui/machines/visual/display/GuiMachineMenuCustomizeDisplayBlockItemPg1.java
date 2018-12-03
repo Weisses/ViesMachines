@@ -117,7 +117,7 @@ public class GuiMachineMenuCustomizeDisplayBlockItemPg1 extends GuiContainerVC {
 			}
 			GlStateManager.popMatrix();
 		}
-		// Head:
+		// Entity Head:
 		else if(this.machine.getVisualEngineDisplayType() == 2)
 		{
 			GlStateManager.pushMatrix();
@@ -228,7 +228,7 @@ public class GuiMachineMenuCustomizeDisplayBlockItemPg1 extends GuiContainerVC {
 		// Draws a black box over the preview buttons:
 		this.drawRect(108, 66, 130, 76, Color.BLACK.getRGB());
 		
-		
+		//--------------------------------------------------
 		
 		// Logic for mouse-over tooltip - Apply:
 		if (mouseX >= this.guiLeft + 7 && mouseX <= this.guiLeft + 7+41
@@ -271,7 +271,6 @@ public class GuiMachineMenuCustomizeDisplayBlockItemPg1 extends GuiContainerVC {
 			}
 			GlStateManager.popMatrix();
 		}
-		
     }
 	
 	@Override

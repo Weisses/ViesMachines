@@ -78,7 +78,7 @@ public class GuiMachineMenuCustomizePrimarySkinColor extends GuiContainerVC {
     	this.textBlue.setFocused(false);
     	this.textBlue.setTextColor(Color.BLUE.getRGB());
     	
-        //=============================================
+        //--------------------------------------------------
         
     	GuiVM.buttonRotateLeft = new GuiButtonGeneral2VC(10, this.guiLeft + 110, this.guiTop + 68, 6, 6, "", 3);
     	GuiVM.buttonRotateRight = new GuiButtonGeneral2VC(10, this.guiLeft + 122, this.guiTop + 68, 6, 6, "", 3);
@@ -167,11 +167,13 @@ public class GuiMachineMenuCustomizePrimarySkinColor extends GuiContainerVC {
 			
 			NetworkHandler.sendToServer(new MessageHelperGuiMachineMenuCustomizePrimarySkinColorDefault());
 		}
+		
 		// Apply:
 		if (parButton.id == 21)
 		{
 			NetworkHandler.sendToServer(new MessageHelperGuiMachineMenuCustomizePrimarySkinColorApply());
 		}
+		
 		// Back:
 		if (parButton.id == 22)
 		{
@@ -469,7 +471,7 @@ public class GuiMachineMenuCustomizePrimarySkinColor extends GuiContainerVC {
 		}
 		GlStateManager.popMatrix();
 		
-		
+		//--------------------------------------------------
 		
 		// Logic for mouse-over tooltip - Turn Left:
 		if (mouseX >= this.guiLeft + 110 && mouseX <= this.guiLeft + 115

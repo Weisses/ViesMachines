@@ -68,8 +68,6 @@ public class GuiMachineMenuCustomizeDisplaySupporterHeadPg1 extends GuiContainer
 		GuiVM.buttonTexture08 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7, 14, 14, "", 3);
 		GuiVM.buttonTexture09 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7, 14, 14, "", 3);
 		
-		
-
 		GuiVM.buttonTexture11 = new GuiButtonGeneral1VC(103, this.guiLeft + 32-14 + (14 * 0), this.guiTop + 102-7+33, 14, 14, "", 3);
 		GuiVM.buttonTexture12 = new GuiButtonGeneral1VC(104, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33, 14, 14, "", 3);
 		GuiVM.buttonTexture13 = new GuiButtonGeneral1VC(105, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7+33, 14, 14, "", 3);
@@ -81,7 +79,6 @@ public class GuiMachineMenuCustomizeDisplaySupporterHeadPg1 extends GuiContainer
 		GuiVM.buttonTexture19 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33, 14, 14, "", 3);
 		GuiVM.buttonTexture20 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33, 14, 14, "", 3);
 		
-
 		GuiVM.buttonTexture21 = new GuiButtonGeneral1VC(106, this.guiLeft + 32-14 + (14 * 0), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		GuiVM.buttonTexture22 = new GuiButtonGeneral1VC(107, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		GuiVM.buttonTexture23 = new GuiButtonGeneral1VC(108, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7+33+33, 14, 14, "", 3);
@@ -148,6 +145,7 @@ public class GuiMachineMenuCustomizeDisplaySupporterHeadPg1 extends GuiContainer
 		{
 			NetworkHandler.sendToServer(new MessageHelperGuiCustomizeMenuEngineDisplaySupporterHead());
 		}
+		
 		// Back:
 		if (parButton.id == 22)
 		{
@@ -192,7 +190,7 @@ public class GuiMachineMenuCustomizeDisplaySupporterHeadPg1 extends GuiContainer
 			}
 			GlStateManager.popMatrix();
 		}
-		// Head:
+		// Entity Head:
 		else if (this.machine.getVisualEngineDisplayType() == 2)
 		{
 			GlStateManager.pushMatrix();
@@ -307,10 +305,9 @@ public class GuiMachineMenuCustomizeDisplaySupporterHeadPg1 extends GuiContainer
 		}
 		GlStateManager.popMatrix();
 		
-		
 		this.mouseOverTooltipHandler(mouseX, mouseY);
 		
-		
+		//--------------------------------------------------
 		
 		// Logic for mouse-over tooltip - Apply:
 		if (mouseX >= this.guiLeft + 7 && mouseX <= this.guiLeft + 7+41

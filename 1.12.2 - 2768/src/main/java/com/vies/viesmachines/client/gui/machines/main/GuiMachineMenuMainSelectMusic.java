@@ -33,7 +33,6 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
@@ -124,12 +123,7 @@ public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
 			
 			this.centeredString(fontRenderer, 
 			this.stringToFlashGolden(
-			References.localNameVC(
-					"item."
-					
-						+ ClientProxy.musicListRecord.get(this.machine.selectedSong).getResourcePath().toString()//)).getSoundName().getResourcePath()
-						+ ".desc")
-			//References.localNameVC("item." + SoundEvent.REGISTRY.getObject(new ResourceLocation(ClientProxy.musicListRecord.get(this.machine.selectedSong).toString())).getSoundName().getResourcePath()+ ".desc")
+			References.localNameVC( "item." + ClientProxy.musicListRecord.get(this.machine.selectedSong).getResourcePath().toString() + ".desc")
 			, 1, false, TextFormatting.DARK_AQUA, 0)	
 			, 0, 0, Color.BLUE.getRGB());
 			
@@ -221,7 +215,7 @@ public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
         return index == selected;
     }
     
-    
+    //==================================================
     
     private class Info extends GuiScrollingList
     {

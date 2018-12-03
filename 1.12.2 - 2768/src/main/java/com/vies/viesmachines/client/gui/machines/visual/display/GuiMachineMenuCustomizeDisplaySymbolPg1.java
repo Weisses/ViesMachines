@@ -151,6 +151,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVC {
 		{
 			NetworkHandler.sendToServer(new MessageHelperGuiCustomizeMenuEngineDisplaySymbol());
 		}
+		
 		// Back:
 		if (parButton.id == 22)
 		{
@@ -194,7 +195,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVC {
 			}
 			GlStateManager.popMatrix();
 		}
-		// Head:
+		// Entity Head:
 		else if (this.machine.getVisualEngineDisplayType() == 2)
 		{
 			GlStateManager.pushMatrix();
@@ -335,11 +336,9 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVC {
 		}
 		GlStateManager.popMatrix();
 		
-		
-		
 		this.mouseOverTooltipHandler(mouseX, mouseY);
 		
-		
+		//--------------------------------------------------
 		
 		// Logic for mouse-over tooltip - Apply:
 		if (mouseX >= this.guiLeft + 7 && mouseX <= this.guiLeft + 7+41

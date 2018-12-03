@@ -11,8 +11,6 @@ import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.api.util.Keybinds;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonMenuCustomizeVC;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonMenuMainVC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonMenuModuleVC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonMenuRedstoneVC;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonMenuStatsVC;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.NetworkHandler;
@@ -49,9 +47,6 @@ public class GuiContainerVC extends GuiContainer {
 	public static int textGreenNumber;
 	public static int textBlueNumber;
 	
-	//public static boolean frameTransparentInfo;
-	//public static boolean balloonTransparentInfo;
-	
 	public static String textNameStorage;
 	
 	public static int ammoToApply;
@@ -62,9 +57,6 @@ public class GuiContainerVC extends GuiContainer {
 	public static int headInfo;
 	public static int supporterHeadInfo;
 	public static int holidayInfo;
-	
-	//public static int metaFrameInfo;
-	//public static int metaBalloonInfo;
 	
 	protected IInventory playerInv;
 	protected EntityMachineBase machine;
@@ -84,8 +76,7 @@ public class GuiContainerVC extends GuiContainer {
 		this.zLevel = 200.0F;
 	}
 	
-	/** Adds the buttons (and other controls) to the screen in question.*/
-    @Override
+	@Override
     public void initGui() 
     {
     	super.initGui();
@@ -96,12 +87,11 @@ public class GuiContainerVC extends GuiContainer {
     	GuiVM.buttonMM1 = new GuiButtonMenuMainVC(1001, this.guiLeft - 35, this.guiTop + 14 + (14 * 0)+50, 36, 14, "", 0);
     	GuiVM.buttonMM2 = new GuiButtonMenuStatsVC(1002, this.guiLeft - 35, this.guiTop + 14 + (14 * 1)+50, 36, 14, "", 0);
     	GuiVM.buttonMM3 = new GuiButtonMenuCustomizeVC(1003, this.guiLeft - 35, this.guiTop + 14 + (14 * 2)+50, 36, 14, "", 0);
-    	GuiVM.buttonMM4 = new GuiButtonMenuModuleVC(1004, this.guiLeft - 35, this.guiTop + 14 + (14 * 3)+50, 36, 14, "", 0);
-    	GuiVM.buttonMM5 = new GuiButtonMenuRedstoneVC(1005, this.guiLeft - 35, this.guiTop + 14 + (14 * 6)+50, 36, 14, "", 0);
+    	//GuiVM.buttonMM4 = new GuiButtonMenuModuleVC(1004, this.guiLeft - 35, this.guiTop + 14 + (14 * 3)+50, 36, 14, "", 0);
+    	//GuiVM.buttonMM5 = new GuiButtonMenuRedstoneVC(1005, this.guiLeft - 35, this.guiTop + 14 + (14 * 6)+50, 36, 14, "", 0);
     }
     
-    /** Called by the controls from the buttonList when activated. (Mouse pressed for buttons) */
-	@Override
+    @Override
     protected void actionPerformed(GuiButton parButton) 
     {
 		if (parButton.id == 1001)
@@ -177,6 +167,7 @@ public class GuiContainerVC extends GuiContainer {
 			this.drawCenteredString(fontRenderer, this.stringToFlashGolden(References.localNameVC("viesmachines.gui.tt.health.0"), 0, false, TextFormatting.RED, 0), 0, 0, Color.WHITE.getRGB());
 		}
 		GlStateManager.popMatrix();
+		
 		// Energy label:
 		GlStateManager.pushMatrix();
 		{
@@ -185,6 +176,7 @@ public class GuiContainerVC extends GuiContainer {
 			this.drawCenteredString(fontRenderer, this.stringToFlashGolden(References.localNameVC("viesmachines.gui.tt.energy.0"), 0, false, TextFormatting.YELLOW, 1), 0, 0, Color.WHITE.getRGB());
 		}
 		GlStateManager.popMatrix();
+		
 		// Durability label:
 		GlStateManager.pushMatrix();
 		{
@@ -203,6 +195,7 @@ public class GuiContainerVC extends GuiContainer {
 			this.drawCenteredString(fontRenderer, this.stringToFlashGolden(Integer.toString((int)this.machine.getHealth()), 0, false, TextFormatting.WHITE, 0), 0, 0, Color.WHITE.getRGB());
 		}
 		GlStateManager.popMatrix();
+		
 		// Energy amount:
 		GlStateManager.pushMatrix();
 		{
@@ -309,36 +302,37 @@ public class GuiContainerVC extends GuiContainer {
 	/** Makes the inserted string rainbow colored. */
 	protected static String stringToRainbow(String parString, boolean parReturnToBlack)
 	{
-	   int stringLength = parString.length();
-	   if (stringLength < 1)
-	   {
-	      return "";
-	   }
-	   String outputString = "";
-	   TextFormatting[] colorChar = 
-	      {
-	         TextFormatting.RED,
-	         TextFormatting.DARK_RED,
-	         TextFormatting.GOLD,
-	         TextFormatting.YELLOW,
-	         TextFormatting.GREEN,
-	         TextFormatting.DARK_GREEN,
-	         TextFormatting.AQUA,
-	         TextFormatting.BLUE,
-	         TextFormatting.LIGHT_PURPLE,
-	         TextFormatting.DARK_PURPLE
-	      };
-	   for (int i = 0; i < stringLength; i++)
-	   {
-	      outputString = outputString+colorChar[i%8]+parString.substring(i, i+1);
-	   }
-	   
-	   // Return color to a common one after (most chat is white, but for other GUI might want black):
-	   if (parReturnToBlack)
-	   {
-	      return outputString+TextFormatting.BLACK;
-	   }
-	   return outputString+TextFormatting.WHITE;
+		int stringLength = parString.length();
+	    if (stringLength < 1)
+	    {
+	    	return "";
+	    }
+	    String outputString = "";
+	    TextFormatting[] colorChar = 
+	    {
+	        TextFormatting.RED,
+	        TextFormatting.DARK_RED,
+	        TextFormatting.GOLD,
+	        TextFormatting.YELLOW,
+	        TextFormatting.GREEN,
+	        TextFormatting.DARK_GREEN,
+	        TextFormatting.AQUA,
+	        TextFormatting.BLUE,
+	        TextFormatting.LIGHT_PURPLE,
+	        TextFormatting.DARK_PURPLE
+        };
+	    
+	    for (int i = 0; i < stringLength; i++)
+	    {
+	       outputString = outputString+colorChar[i%8]+parString.substring(i, i+1);
+	    }
+	    
+	    // Return color to a common one after (most chat is white, but for other GUI might want black):
+	    if (parReturnToBlack)
+	    {
+	       return outputString+TextFormatting.BLACK;
+	    }
+	    return outputString+TextFormatting.WHITE;
 	}
     
 	/** Get the instance of the font renderer. */
@@ -353,9 +347,7 @@ public class GuiContainerVC extends GuiContainer {
     	GlStateManager.pushMatrix();
 		{
 			GL11.glEnable(GL11.GL_CULL_FACE);
-	        //GL11.glCullFace(GL11.GL_FRONT);
-			
-			
+	        
 			float itemSpin = (((float)Minecraft.getMinecraft().player.getEntityWorld().getTotalWorldTime() + 1) / 20.0F) * (180F / (float)Math.PI);
 	        
 	        if(stack.getItem() instanceof ItemBlock)
@@ -390,25 +382,9 @@ public class GuiContainerVC extends GuiContainer {
 			
 	        Minecraft.getMinecraft().getRenderItem().renderItem(stack, TransformType.GROUND);
 	        
-
-	        
-	        //GL11.glCullFace(GL11.GL_BACK);
 	        GL11.glDisable(GL11.GL_CULL_FACE);
 		}
 		GlStateManager.popMatrix();
-    	/**
-        GlStateManager.translate(0.0F, 0.0F, 32.0F);
-        this.zLevel = 200.0F;
-        this.itemRender.zLevel = 200.0F;
-        net.minecraft.client.gui.FontRenderer font = stack.getItem().getFontRenderer(stack);
-        if (font == null) font = fontRenderer;
-        GlStateManager.scale(50, 50, 50);
-    	
-        //this.itemRender.renderItemAndEffectIntoGUI(stack, x, y);
-        this.zLevel = 0.0F;
-        this.itemRender.zLevel = 0.0F;
-        */
-        //Minecraft.getMinecraft().getRenderItem().renderItem(stack, TransformType.GROUND);
     }
 	
 	/** Draws a Rotating ItemStack. */
@@ -493,7 +469,6 @@ public class GuiContainerVC extends GuiContainer {
 	/** Draws an Entity Head. */
     protected void drawEntityHead(int xIn, int yIn, int skullType)
     {
-    	
     	GlStateManager.pushMatrix();
 		{
 			GL11.glColor4f(1F, 1F, 1F, 1F);
@@ -550,9 +525,7 @@ public class GuiContainerVC extends GuiContainer {
 		GlStateManager.popMatrix();
     }
     
-    
-    
-    /** Draws an Entity Head. */
+    /** Draws an Entity Head Forground. */
     protected void drawEntityHeadForground(int xIn, int yIn, int skullType)
     {
     	
@@ -671,7 +644,7 @@ public class GuiContainerVC extends GuiContainer {
 		GlStateManager.popMatrix();
     }
     
-    /** Draws a Supporter Head. */
+    /** Draws a Supporter Head Forground. */
     protected void drawEntitySupporterHeadForground(int xIn, int yIn, int skullType)
     {
     	GlStateManager.pushMatrix();
@@ -733,15 +706,11 @@ public class GuiContainerVC extends GuiContainer {
     /** Draws an entity on the screen. */
     protected void drawEntityOnScreen(int posX, int posY, int horizontalIn, int scale, Entity entityIn, boolean ridingEntityIn)
     {
-    	
     	GlStateManager.pushMatrix();
 		{
 			GL11.glEnable(GL11.GL_CULL_FACE);
 	        GL11.glCullFace(GL11.GL_FRONT);
 	        
-	        
-	        //EntityMachineBase machineIn = (EntityMachineBase) entityIn;
-	        //this.zLevel = 200.0F;
 	        GlStateManager.translate(posX, posY, 100.0F);
 	        GlStateManager.scale((float)(scale), (float)scale, (float)scale);
 	        
@@ -760,12 +729,8 @@ public class GuiContainerVC extends GuiContainer {
 		        GlStateManager.rotate(itemSpin * 1, 0F, 1F, 0F);
      	    }
 	        
-	        
 	        GlStateManager.rotate(horizontalIn, 0.0F, 1.0F, 0.0F);
-	    	        
-	        //
-	        //GlStateManager.rotate(horizontalIn, 0.0F, 1.0F, 0.0F);
-	        
+	    	
 	        RenderHelper.disableStandardItemLighting();
 	        
 	        RenderManager rendermanager = Minecraft.getMinecraft().getRenderManager();
@@ -788,25 +753,16 @@ public class GuiContainerVC extends GuiContainer {
 	        
 	        rendermanager.setRenderShadow(true);
 	        
-
 	        GL11.glCullFace(GL11.GL_BACK);
 	        GL11.glDisable(GL11.GL_CULL_FACE);
-	        
 		}
 		GlStateManager.popMatrix();
-		
-
-		
 		
 		// Fixes the brightness for buttons in relation to the day/night cycle:
 		int i = 15728880;
 		int j = i % 65536;
         int k = i / 65536;
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)j, (float)k);
-        //GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        
-        
-
     }
     
     /** Draws a machine part on the screen. */
@@ -870,13 +826,8 @@ public class GuiContainerVC extends GuiContainer {
 	        
 	        GL11.glCullFace(GL11.GL_BACK);
 	        GL11.glDisable(GL11.GL_CULL_FACE);
-	        
-	        
 		}
 		GlStateManager.popMatrix();
-		
-
-		
 		
 		// Fixes the brightness for buttons in relation to the day/night cycle:
 		int i = 15728880;
@@ -884,7 +835,6 @@ public class GuiContainerVC extends GuiContainer {
         int k = i / 65536;
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)j, (float)k);
         //GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        
         
     }
 }

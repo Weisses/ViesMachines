@@ -6,10 +6,8 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
-import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.api.util.LogHelper;
 import com.vies.viesmachines.client.gui.GuiContainerVC;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VC;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VC;
@@ -20,7 +18,6 @@ import com.vies.viesmachines.network.NetworkHandler;
 import com.vies.viesmachines.network.server.machine.gui.main.MessageHelperGuiMachineMenuMainArmed;
 import com.vies.viesmachines.network.server.machine.gui.main.MessageHelperGuiMachineMenuMainAutorun;
 import com.vies.viesmachines.network.server.machine.gui.main.MessageHelperGuiMachineMenuMainCompress;
-import com.vies.viesmachines.network.server.machine.gui.main.MessageHelperGuiMachineMenuMainCompressClientAll;
 import com.vies.viesmachines.network.server.machine.gui.main.MessageHelperGuiMachineMenuMainPowered;
 import com.vies.viesmachines.network.server.machine.gui.main.name.MessageGuiMachineMenuChangeName;
 import com.vies.viesmachines.network.server.machine.gui.main.projectile.MessageGuiMachineMenuSelectProjectile;
@@ -41,7 +38,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.TextFormatting;
 
 public class GuiMachineMenuMain extends GuiContainerVC {
@@ -89,7 +85,7 @@ public class GuiMachineMenuMain extends GuiContainerVC {
     	GuiVM.buttonMachineAutorunTrue = new GuiButtonGeneral1VC(57, this.guiLeft + 93, this.guiTop + 57, 14, 14, References.localNameVC(""), 1);
     	GuiVM.buttonMachineAutorunFalse = new GuiButtonGeneral1VC(58, this.guiLeft + 93, this.guiTop + 57, 14, 14, References.localNameVC(""), 2);
     	
-    	
+    	//--------------------------------------------------
     	
     	this.buttonList.add(GuiVM.buttonMusicSelect);
     	this.buttonList.add(GuiVM.buttonMusicStop);
@@ -113,13 +109,9 @@ public class GuiMachineMenuMain extends GuiContainerVC {
     	this.buttonList.add(GuiVM.buttonMachineAutorunTrue);
     	this.buttonList.add(GuiVM.buttonMachineAutorunFalse);
     	
-    	
-    	
     	this.buttonList.add(GuiVM.buttonMM1);
 		this.buttonList.add(GuiVM.buttonMM2);
 		this.buttonList.add(GuiVM.buttonMM3);
-		//this.buttonList.add(GuiVM.buttonMM4);
-		//this.buttonList.add(GuiVM.buttonMM5);
 		
 		GuiVM.buttonMM1.enabled = false;
     }
@@ -160,13 +152,7 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 	    {
 			this.machineId = this.machine.getEntityId();
 			
-			//LogHelper.info("GUI - It's Dead!!!");
-			//NetworkHandler.sendToAll(new MessageHelperGuiMachineMenuMainCompressClientAll());
-			
 			NetworkHandler.sendToServer(new MessageHelperGuiMachineMenuMainCompress());
-			
-			//this.machine.setEventTrigger(EnumsVM.EventTrigger.DESTRUCTION.getMetadata());
-			//NetworkHandler.sendToAll(new MessageHelperGuiMachineMenuMainCompressClientAll());
 	    }
 		
 		// Rename menu:
@@ -191,6 +177,7 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 			}
 	    }
 		
+		// Unused:
 		if (parButton.id == 55
 		|| parButton.id == 56)
 	    {
@@ -235,7 +222,6 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 			NetworkHandler.sendToServer(new MessageGuiMachineMenuSelectProjectile());
 	    }
 		
-		
         this.buttonList.clear();
         this.initGui();
         this.updateScreen();
@@ -246,7 +232,7 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 	{
 		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
 		
-		// Binds the texture to use:
+		// Binds and renders the texture to use:
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(TEXTURE);
 		
@@ -339,21 +325,14 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 				
 				this.centeredString(fontRenderer, 
 				this.stringToFlashGolden(
-				References.localNameVC(
-						"item."
-						
-						+ ClientProxy.musicListRecord.get(this.machine.selectedSong).getResourcePath().toString()//)).getSoundName().getResourcePath()
-						+ ".desc"
-						//SoundEvent.REGISTRY.
-				//+ SoundEvent.REGISTRY.getObject(new ResourceLocation(ClientProxy.musicListRecord.get(this.machine.selectedSong).toString())).getSoundName().getResourcePath()+ ".desc"
-						)
+				References.localNameVC("item." + ClientProxy.musicListRecord.get(this.machine.selectedSong).getResourcePath().toString() + ".desc")
 				, 1, false, TextFormatting.DARK_AQUA, 0)	
 				, 0, 0, Color.BLUE.getRGB());
 			}
 			GlStateManager.popMatrix();
         }
 		
-		
+		//--------------------------------------------------
 		
 		// Binds the texture to use:
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -451,7 +430,7 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 		}
 		GlStateManager.popMatrix();
 		
-		
+		//--------------------------------------------------
 		
 		// Logic for mouse-over tooltip - Compress:
 		if(mouseX >= this.guiLeft + 13 && mouseX <= this.guiLeft + 26
@@ -473,6 +452,7 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 			GlStateManager.popMatrix();
 		}
 		
+		// Disables button overlays if broken and can't be used:
 		if (!this.machine.getBroken())
 		{
 			// Logic for mouse-over tooltip - Rename:
@@ -534,8 +514,6 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 				}
 				GlStateManager.popMatrix();
 			}
-			
-			
 			
 			// Logic for mouse-over tooltip - Power:
 			if(mouseX >= this.guiLeft + 93 && mouseX <= this.guiLeft + 106
@@ -723,8 +701,7 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 			GuiVM.buttonMachineArmedFalse.visible = true;
 		}
         
-        
-        //LogHelper.info(((EntityMachineFuel) this.machine).getFuel());
+        // Handles the toggle 'On' button:
         if (this.machine.inventory.getStackInSlot(0).isEmpty())
         {
         	if (((EntityMachineFuel) this.machine).getFuel() == 0)
@@ -755,10 +732,7 @@ public class GuiMachineMenuMain extends GuiContainerVC {
         	GuiVM.buttonMachineOnFalse.enabled = true;
         }
         
-        
-        
-        
-        
+        // Deals with button 'On' and durability:
         if (this.machine.getDurability() == 0
         && !this.machine.getBroken())
         {
@@ -771,7 +745,7 @@ public class GuiMachineMenuMain extends GuiContainerVC {
         	GuiVM.buttonMachineOnFalse.enabled = true;
 		}
         
-     // Deals with disabling all buttons if the machine is broken:
+        // Deals with disabling all buttons if the machine is broken:
         if (this.machine.getBroken())
         {
         	GuiVM.buttonMusicSelect.enabled = false;

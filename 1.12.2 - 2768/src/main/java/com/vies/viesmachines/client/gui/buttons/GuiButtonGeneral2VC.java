@@ -44,21 +44,11 @@ public class GuiButtonGeneral2VC extends GuiButton {
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
             
-            //First half of the button
+            // First half of the button:
             this.drawTexturedModalRect(this.x, this.y, 0, (this.texture * 54) + 0 + i * 20, this.width / 2, this.height);
-            //Second half of the button
+            // Second half of the button:
             this.drawTexturedModalRect(this.x + this.width / 2, this.y, 200 - this.width / 2, (this.texture * 54) + 0 + i * 20, this.width / 2, this.height);
-            //Test overlay
             
-            //GlStateManager.pushMatrix();
-			//{
-			//	GlStateManager.translate(this.x+1, this.y+1, 0);
-			//	GlStateManager.scale(.25, .25, .25);
-            
-			//	this.drawTexturedModalRect(0, 0, 0, 74, 136, 48);
-			//}
-			//GlStateManager.popMatrix();
-			
             this.mouseDragged(mc, mouseX, mouseY);
             int j = 14737632;
 			

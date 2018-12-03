@@ -29,7 +29,6 @@ import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
@@ -65,8 +64,6 @@ public class GuiMachineMenuMainSelectName extends GuiContainerVC {
 		GuiVM.buttonBack = new GuiButtonGeneral1VC(13, this.guiLeft + 126, this.guiTop + 59, 42, 14, References.localNameVC("viesmachines.button.back"), 2);
 		GuiVM.buttonUndo = new GuiButtonGeneral2VC(20, this.guiLeft + 148, this.guiTop + 37, 14, 14, "", 1);
 		
-		
-		
 		GuiVM.buttonColorWhite = new GuiButtonGeneral1VC((EnumsVM.SelectColor.WHITE.getMetadata() + 100), this.guiLeft + 11, this.guiTop + 96, 14, 14, "", 1);
 		GuiVM.buttonColorGray = new GuiButtonGeneral1VC((EnumsVM.SelectColor.GRAY.getMetadata() + 100), this.guiLeft + 31, this.guiTop + 96, 14, 14, "", 1);
 		GuiVM.buttonColorBlue = new GuiButtonGeneral1VC((EnumsVM.SelectColor.BLUE.getMetadata() + 100), this.guiLeft + 51, this.guiTop + 96, 14, 14, "", 1);
@@ -85,7 +82,7 @@ public class GuiMachineMenuMainSelectName extends GuiContainerVC {
 		GuiVM.buttonColorDarkPurple = new GuiButtonGeneral1VC((EnumsVM.SelectColor.DARK_PURPLE.getMetadata() + 100), this.guiLeft + 131, this.guiTop + 116, 14, 14, "", 1);
 		GuiVM.buttonColorGold = new GuiButtonGeneral1VC((EnumsVM.SelectColor.GOLD.getMetadata() + 100), this.guiLeft + 151, this.guiTop + 116, 14, 14, "", 1);
 		
-		
+		//--------------------------------------------------
 
 		this.buttonList.add(GuiVM.buttonColorWhite);
 		this.buttonList.add(GuiVM.buttonColorGray);
@@ -105,24 +102,19 @@ public class GuiMachineMenuMainSelectName extends GuiContainerVC {
 		this.buttonList.add(GuiVM.buttonColorDarkPurple);
 		this.buttonList.add(GuiVM.buttonColorGold);
 		
-    	this.buttonList.add(GuiVM.buttonMM1);
-		this.buttonList.add(GuiVM.buttonMM2);
-		this.buttonList.add(GuiVM.buttonMM3);
-		//this.buttonList.add(GuiVM.buttonMM4);
-		//this.buttonList.add(GuiVM.buttonMM5);
-		
 		this.buttonList.add(GuiVM.buttonUndo);
 		this.buttonList.add(GuiVM.buttonApply);
 		this.buttonList.add(GuiVM.buttonBack);
+		
+    	this.buttonList.add(GuiVM.buttonMM1);
+		this.buttonList.add(GuiVM.buttonMM2);
+		this.buttonList.add(GuiVM.buttonMM3);
 		
 		GuiVM.buttonUndo.enabled = false;
 		GuiVM.buttonMM1.enabled = false;
     }
     
-    /**
-     * Called by the controls from the buttonList when activated. (Mouse pressed for buttons)
-     */
-	@Override
+    @Override
     protected void actionPerformed(GuiButton parButton) 
     {
 		super.actionPerformed(parButton);
@@ -139,16 +131,19 @@ public class GuiMachineMenuMainSelectName extends GuiContainerVC {
 				}
 			}
 	    }
+		
 		// Apply:
 		if(parButton.id == 12)
 	    {
 			NetworkHandler.sendToServer(new MessageHelperGuiMachineMenuChangeName());
 	    }
+		
 		// Back:
 		if(parButton.id == 13)
 	    {
 			NetworkHandler.sendToServer(new MessageGuiMachineMenuMain());
 	    }
+		
 		// Undo:
 		if(parButton.id == 20)
 	    {
@@ -222,9 +217,7 @@ public class GuiMachineMenuMainSelectName extends GuiContainerVC {
 			GlStateManager.translate(this.guiLeft + 88, this.guiTop + 83.5, 0);
 	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 	        
-	        this.drawCenteredString(fontRenderer, 
-	        		this.stringToRainbow(References.localNameVC("viesmachines.gui.selectcolor.0"), false)
-	        		, 0, 0, 111111);
+	        this.drawCenteredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.gui.selectcolor.0"), false), 0, 0, 111111);
 		}
 		GlStateManager.popMatrix();
 	}
@@ -280,10 +273,7 @@ public class GuiMachineMenuMainSelectName extends GuiContainerVC {
 			GlStateManager.translate(88, 16, 0);
 	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 	        
-			this.drawCenteredString(fontRenderer, 
-					EnumsVM.SelectColor.byId(this.machine.getVisualNameColor()).getTextColor() +
-					this.machine.getCustomNameTag()
-					, 0, 0, 0);
+			this.drawCenteredString(fontRenderer, EnumsVM.SelectColor.byId(this.machine.getVisualNameColor()).getTextColor() + this.machine.getCustomNameTag(), 0, 0, 0);
 		}
 		GlStateManager.popMatrix();
 		
@@ -356,9 +346,7 @@ public class GuiMachineMenuMainSelectName extends GuiContainerVC {
 	public void updateScreen()
     {
 		super.updateScreen();
-
 		
-
 		// Handles when the 'Apply' button is enabled:
 		if (this.machine.getControllingPassenger() instanceof EntityPlayer)
     	{
@@ -387,7 +375,6 @@ public class GuiMachineMenuMainSelectName extends GuiContainerVC {
         
         this.enableAllButtons();
         this.colorButtonToDisable();
-        
     }
 	
 	@Override
@@ -403,11 +390,11 @@ public class GuiMachineMenuMainSelectName extends GuiContainerVC {
     {
 		this.textName.textboxKeyTyped(typedChar, keyCode);
 		
-		//super.keyTyped(typedChar, keyCode);
-		//if (keyCode == 1)
-        //{
-		//	NetworkHandler.sendToServer(new MessageHelperGuiMachineMenuChangeName());
-        //}
+		// If the escape key is pressed, exit:
+		if (keyCode == 1)
+        {
+			NetworkHandler.sendToServer(new MessageGuiMachineMenuMain());
+        }
     }
 	
 	/** Enables all color buttons. */

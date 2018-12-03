@@ -52,11 +52,11 @@ public class GuiMachineMenuMainSelectProjectile extends GuiContainerVC {
     	GuiVM.buttonConsume = new GuiButtonGeneral1VC(12, this.guiLeft + 24, this.guiTop + 110, 42, 14, References.localNameVC("viesmachines.button.consume"), 1);
 		GuiVM.buttonBack = new GuiButtonGeneral1VC(13, this.guiLeft + 127, this.guiTop + 121, 42, 14, References.localNameVC("viesmachines.button.back"), 2);
 		
+		//--------------------------------------------------
+		
     	this.buttonList.add(GuiVM.buttonMM1);
 		this.buttonList.add(GuiVM.buttonMM2);
 		this.buttonList.add(GuiVM.buttonMM3);
-		//this.buttonList.add(GuiVM.buttonMM4);
-		//this.buttonList.add(GuiVM.buttonMM5);
 		
 		this.buttonList.add(GuiVM.buttonBulletNormal);
 		this.buttonList.add(GuiVM.buttonBulletElectrical);
@@ -128,11 +128,9 @@ public class GuiMachineMenuMainSelectProjectile extends GuiContainerVC {
 	{
 		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
 		
-		// Binds the texture to use:
+		// Binds and draws the background texture:
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(TEXTURE);
-		
-		// Draws the background texture:
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 	}
 	
@@ -226,7 +224,7 @@ public class GuiMachineMenuMainSelectProjectile extends GuiContainerVC {
 		}
 		GlStateManager.popMatrix();
 		
-		
+		//--------------------------------------------------
 		
 		// Logic for mouse-over tooltip - Button Normal Bullet:
 		if (this.machine.getAmmoType() == 0)
@@ -246,6 +244,7 @@ public class GuiMachineMenuMainSelectProjectile extends GuiContainerVC {
 			}
 			GlStateManager.popMatrix();
 		}
+		
 		// Logic for mouse-over tooltip - Button Electrical Bullet:
 		if (this.machine.getAmmoType() == 1)
 		{
@@ -264,6 +263,7 @@ public class GuiMachineMenuMainSelectProjectile extends GuiContainerVC {
 			}
 			GlStateManager.popMatrix();
 		}
+		
 		// Logic for mouse-over tooltip - Explosive Normal Bullet:
 		if (this.machine.getAmmoType() == 2)
 		{

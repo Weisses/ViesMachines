@@ -44,12 +44,12 @@ public class GuiButtonMenuCustomizeVC extends GuiButton {
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
             
-            //First half of the button
+            // First half of the button:
             this.drawTexturedModalRect(this.x, this.y, 0, 0 + i * 20, this.width / 2, this.height);
-            //Second half of the button
+            // Second half of the button:
             this.drawTexturedModalRect(this.x + this.width / 2, this.y, 200 - this.width / 2, 0 + i * 20, this.width / 2, this.height);
-            //Test overlay
             
+            // Text image overlay:
             GlStateManager.pushMatrix();
 			{
 				GlStateManager.translate(this.x + 1, this.y + 1, 0);

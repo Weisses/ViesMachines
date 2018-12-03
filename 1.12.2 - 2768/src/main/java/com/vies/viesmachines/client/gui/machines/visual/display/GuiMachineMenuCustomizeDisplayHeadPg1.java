@@ -189,7 +189,7 @@ public class GuiMachineMenuCustomizeDisplayHeadPg1 extends GuiContainerVC {
 			}
 			GlStateManager.popMatrix();
 		}
-		// Head:
+		// Entity Head:
 		else if (this.machine.getVisualEngineDisplayType() == 2)
 		{
 			GlStateManager.pushMatrix();
@@ -317,16 +317,17 @@ public class GuiMachineMenuCustomizeDisplayHeadPg1 extends GuiContainerVC {
 	    	GlStateManager.translate(-0.5, 65.5, 0);
 			GlStateManager.scale(0.5F, 0.5F, 0.5F);
 			
+			// Characters:
 			this.drawEntityHeadForground((28 * 0), 0, EnumsVM.EntityHead.STEVE.getMetadata());
 			this.drawEntityHeadForground((28 * 1), 0, EnumsVM.EntityHead.ALEX.getMetadata());
 			this.drawEntityHeadForground((28 * 2), 0, EnumsVM.EntityHead.HEROBRINE.getMetadata());
 			
-
+			// Animals:
 			this.drawEntityHeadForground((28 * 0), 66, EnumsVM.EntityHead.CHICKEN.getMetadata());
 			this.drawEntityHeadForground((28 * 1), 66, EnumsVM.EntityHead.PIG.getMetadata());
 			this.drawEntityHeadForground((28 * 2), 66, EnumsVM.EntityHead.COW.getMetadata());
 			
-			
+			// Monsters:
 			this.drawEntityHeadForground((28 * 0), 132, EnumsVM.EntityHead.ZOMBIE.getMetadata());
 			this.drawEntityHeadForground((28 * 1), 132, EnumsVM.EntityHead.SKELETON.getMetadata());
 			this.drawEntityHeadForground((28 * 2), 132, EnumsVM.EntityHead.SPIDER.getMetadata());
@@ -336,11 +337,9 @@ public class GuiMachineMenuCustomizeDisplayHeadPg1 extends GuiContainerVC {
 		}
 		GlStateManager.popMatrix();
 		
-		
-		
 		this.mouseOverTooltipHandler(mouseX, mouseY);
 		
-		
+		//--------------------------------------------------
 		
 		// Logic for mouse-over tooltip - Apply:
 		if (mouseX >= this.guiLeft + 7 && mouseX <= this.guiLeft + 7+41

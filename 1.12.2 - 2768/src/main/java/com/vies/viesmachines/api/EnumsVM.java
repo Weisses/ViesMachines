@@ -555,6 +555,7 @@ public class EnumsVM {
             return values()[id];
         }
     }
+	
 	/** Visual Display Symbol enum. Dictates registry name. */
 	public static enum VisualDisplaySymbol
     {
@@ -609,6 +610,70 @@ public class EnumsVM {
         
         /** Get type by it's enum ordinal. */
         public static EnumsVM.VisualDisplaySymbol byId(int id)
+        {
+            if (id < 0 || id >= values().length)
+            {
+                id = 0;
+            }
+            
+            return values()[id];
+        }
+    }
+	
+	/** Visual Display Symbol Holiday enum. Dictates registry name. */
+	public static enum VisualDisplaySymbolHoliday
+    {
+		// STRING(meta, localized name, item):
+		// Christmas:
+		SYMBOL_CHRISTMAS_TREE(0, "christmas_tree", ItemsVM.SYMBOL_CHRISTMAS_TREE),
+		SYMBOL_CHRISTMAS_WREATH(1, "christmas_wreath", ItemsVM.SYMBOL_CHRISTMAS_WREATH),
+		SYMBOL_CHRISTMAS_ORNAMENT(2, "christmas_ornament", ItemsVM.SYMBOL_CHRISTMAS_ORNAMENT),
+		SYMBOL_CHRISTMAS_STOCKING(3, "christmas_stocking", ItemsVM.SYMBOL_CHRISTMAS_STOCKING),
+		SYMBOL_CHRISTMAS_NIGHTSKY(4, "christmas_nightsky", ItemsVM.SYMBOL_CHRISTMAS_NIGHTSKY),
+		SYMBOL_CHRISTMAS_GRINCH(5, "christmas_grinch", ItemsVM.SYMBOL_CHRISTMAS_GRINCH),
+		SYMBOL_CHRISTMAS_MAX(6, "christmas_max", ItemsVM.SYMBOL_CHRISTMAS_MAX),
+		SYMBOL_CHRISTMAS_FROSTY(7, "christmas_frosty", ItemsVM.SYMBOL_CHRISTMAS_FROSTY),
+		SYMBOL_CHRISTMAS_PEANUTS(8, "christmas_peanuts", ItemsVM.SYMBOL_CHRISTMAS_PEANUTS),
+		SYMBOL_CHRISTMAS_POKEMON(9, "christmas_pokemon", ItemsVM.SYMBOL_CHRISTMAS_POKEMON);
+		
+		private final int metadata;
+		private final String registryName;
+        private final Item item;
+        
+        private VisualDisplaySymbolHoliday(int metadataIn, String registryNameIn, Item itemIn)
+        {
+        	this.metadata = metadataIn;
+        	this.registryName = registryNameIn;
+            this.item = itemIn;
+        }
+        
+        public int getMetadata()
+        {
+        	return this.metadata;
+        }
+        
+        public String getLocalizedName()
+        {
+        	return References.Old_I18n.translateToLocal(new ItemStack(this.item, 1).getUnlocalizedName() + ".name");
+        }
+        
+        public String getRegistryName()
+        {
+            return this.registryName;
+        }
+        
+        public Item getItem()
+        {
+            return this.item;
+        }
+        
+        public ItemStack getItemStack()
+        {
+            return new ItemStack(this.item);
+        }
+        
+        /** Get type by it's enum ordinal. */
+        public static EnumsVM.VisualDisplaySymbolHoliday byId(int id)
         {
             if (id < 0 || id >= values().length)
             {

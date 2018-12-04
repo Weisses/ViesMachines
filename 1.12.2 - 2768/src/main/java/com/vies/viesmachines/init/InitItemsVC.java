@@ -118,9 +118,8 @@ public class InitItemsVC extends ItemsVM {
 					//--------------------------------------------------
 					//--------------------------------------------------
 					
-					//SYMBOL_LOGOVIESMACHINES,
+					// General:
 					SYMBOL_LOGOFORGE,
-					//SYMBOL_LOGOMINECRAFT,
 					SYMBOL_COINSTACK,
 					SYMBOL_SCROLL,
 					SYMBOL_WRENCH,
@@ -130,6 +129,19 @@ public class InitItemsVC extends ItemsVM {
 					SYMBOL_ANCHOR,
 					SYMBOL_BARREL,
 					SYMBOL_GEARS,
+					
+					// Holiday:
+					// Christmas:
+					SYMBOL_CHRISTMAS_TREE,
+					SYMBOL_CHRISTMAS_WREATH,
+					SYMBOL_CHRISTMAS_ORNAMENT,
+					SYMBOL_CHRISTMAS_STOCKING,
+					SYMBOL_CHRISTMAS_NIGHTSKY,
+					SYMBOL_CHRISTMAS_GRINCH,
+					SYMBOL_CHRISTMAS_MAX,
+					SYMBOL_CHRISTMAS_FROSTY,
+					SYMBOL_CHRISTMAS_PEANUTS,
+					SYMBOL_CHRISTMAS_POKEMON,
 					
 					//--------------------------------------------------
 					//--------------------------------------------------

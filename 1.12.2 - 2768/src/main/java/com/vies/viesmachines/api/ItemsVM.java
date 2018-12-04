@@ -116,6 +116,20 @@ public class ItemsVM {
 	
 	
 	
+	// Holidays:
+	// Christmas:
+	public static final Item SYMBOL_CHRISTMAS_TREE = new ItemGenericSymbol("symbols/holidays/item_symbol_christmas_tree");
+	public static final Item SYMBOL_CHRISTMAS_WREATH = new ItemGenericSymbol("symbols/holidays/item_symbol_christmas_wreath");
+	public static final Item SYMBOL_CHRISTMAS_ORNAMENT = new ItemGenericSymbol("symbols/holidays/item_symbol_christmas_ornament");
+	public static final Item SYMBOL_CHRISTMAS_STOCKING = new ItemGenericSymbol("symbols/holidays/item_symbol_christmas_stocking");
+	public static final Item SYMBOL_CHRISTMAS_NIGHTSKY = new ItemGenericSymbol("symbols/holidays/item_symbol_christmas_nightsky");
+	public static final Item SYMBOL_CHRISTMAS_GRINCH = new ItemGenericSymbol("symbols/holidays/item_symbol_christmas_grinch");
+	public static final Item SYMBOL_CHRISTMAS_MAX = new ItemGenericSymbol("symbols/holidays/item_symbol_christmas_max");
+	public static final Item SYMBOL_CHRISTMAS_FROSTY = new ItemGenericSymbol("symbols/holidays/item_symbol_christmas_frosty");
+	public static final Item SYMBOL_CHRISTMAS_PEANUTS = new ItemGenericSymbol("symbols/holidays/item_symbol_christmas_peanuts");
+	public static final Item SYMBOL_CHRISTMAS_POKEMON = new ItemGenericSymbol("symbols/holidays/item_symbol_christmas_pokemon");
+	
+	
 	//==================================================
     // TODO              Particles
 	//==================================================

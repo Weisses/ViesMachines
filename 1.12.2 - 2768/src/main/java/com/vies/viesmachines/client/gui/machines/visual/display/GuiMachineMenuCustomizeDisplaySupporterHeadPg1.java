@@ -213,9 +213,15 @@ public class GuiMachineMenuCustomizeDisplaySupporterHeadPg1 extends GuiContainer
 			GlStateManager.popMatrix();
 		}
 		// Holiday:
-		else if (this.machine.getVisualEngineDisplayType() == 4)
+		else if (this.machine.getVisualEngineDisplayType() >= 1000)
 		{
-			//this.drawRotatingItemStack(new ItemStack(Item.getItemById(this.machine.engineDisplayItemstackVisual), 1, this.machine.engineDisplayItemstackMetaVisual), this.guiLeft + 51, this.guiTop + 80);
+			GlStateManager.pushMatrix();
+			{
+				GlStateManager.translate(55, 43, 0);
+				
+				this.drawStillItemStack(EnumsVM.VisualDisplaySymbolHoliday.byId(this.machine.getVisualEngineDisplayType() - 1000).getItemStack(), this.guiLeft , this.guiTop);
+			}
+			GlStateManager.popMatrix();
 		}
 		// Display Symbol:
 		else if(this.machine.getVisualEngineDisplayType() >= 10)

@@ -1,4 +1,4 @@
-package com.vies.viesmachines.client.gui.machines.visual.display;
+package com.vies.viesmachines.client.gui.machines.visual.holiday;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -30,11 +30,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVC {
+public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiContainerVC {
 	
-	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize_display_symbol.png");
+	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize_holiday.png");
 	
-	public GuiMachineMenuCustomizeDisplaySymbolPg1(IInventory playerInv, EntityMachineBase airshipIn)
+	public GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative(IInventory playerInv, EntityMachineBase airshipIn)
 	{
 		super(new ContainerMachineNoSlots(playerInv, airshipIn), playerInv, airshipIn);
 		
@@ -151,7 +151,6 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVC {
 		{
 			NetworkHandler.sendToServer(new MessageHelperGuiCustomizeMenuEngineDisplaySymbol());
 		}
-		
 		// Back:
 		if (parButton.id == 22)
 		{
@@ -195,7 +194,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVC {
 			}
 			GlStateManager.popMatrix();
 		}
-		// Entity Head:
+		// Head:
 		else if (this.machine.getVisualEngineDisplayType() == 2)
 		{
 			GlStateManager.pushMatrix();
@@ -218,15 +217,9 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVC {
 			GlStateManager.popMatrix();
 		}
 		// Holiday:
-		else if (this.machine.getVisualEngineDisplayType() >= 1000)
+		else if (this.machine.getVisualEngineDisplayType() == 4)
 		{
-			GlStateManager.pushMatrix();
-			{
-				GlStateManager.translate(55, 43, 0);
-				
-				this.drawStillItemStack(EnumsVM.VisualDisplaySymbolHoliday.byId(this.machine.getVisualEngineDisplayType() - 1000).getItemStack(), this.guiLeft , this.guiTop);
-			}
-			GlStateManager.popMatrix();
+			//this.drawRotatingItemStack(new ItemStack(Item.getItemById(this.machine.engineDisplayItemstackVisual), 1, this.machine.engineDisplayItemstackMetaVisual), this.guiLeft + 51, this.guiTop + 80);
 		}
 		// Display Symbol:
 		else if(this.machine.getVisualEngineDisplayType() >= 10)
@@ -258,13 +251,13 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVC {
 	{
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		
-		// 'Symbol Options':
+		// '4th of July':
 		GlStateManager.pushMatrix();
 		{
 			GlStateManager.translate(55.5, 11, 0);
 	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 	        
-	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.displaybanner.symboloptions.0"), 0, 0, Color.BLACK.getRGB());
+	        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.4thofjuly"), false), 0, 0, Color.BLACK.getRGB());
 		}
 		GlStateManager.popMatrix();
 		
@@ -288,33 +281,13 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVC {
 		}
 		GlStateManager.popMatrix();
 		
-		// 'General':
+		// 'Holiday':
 		GlStateManager.pushMatrix();
 		{
 			GlStateManager.translate(39, 83, 0);
 	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 	        
-	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.displaybanner.general.0"), 0, 0, Color.CYAN.getRGB());
-		}
-		GlStateManager.popMatrix();
-		
-		// 'Elemental':
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(39, 83+33, 0);
-	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	        
-	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.displaybanner.elemental.0"), 0, 0, Color.CYAN.getRGB());
-		}
-		GlStateManager.popMatrix();
-		
-		// 'Animal':
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(39, 83+33+33, 0);
-	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	        
-	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.displaybanner.animal.0"), 0, 0, Color.CYAN.getRGB());
+	        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.holiday"), false), 0, 0, Color.CYAN.getRGB());
 		}
 		GlStateManager.popMatrix();
 		
@@ -342,9 +315,11 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVC {
 		}
 		GlStateManager.popMatrix();
 		
+		
+		
 		this.mouseOverTooltipHandler(mouseX, mouseY);
 		
-		//--------------------------------------------------
+		
 		
 		// Logic for mouse-over tooltip - Apply:
 		if (mouseX >= this.guiLeft + 7 && mouseX <= this.guiLeft + 7+41
@@ -352,33 +327,18 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVC {
 		{
 			List<String> text = new ArrayList<String>();
 			
-			if (this.machine.getControllingPassenger() instanceof EntityPlayer)
-        	{
-        		EntityPlayer player = (EntityPlayer) this.machine.getControllingPassenger();
-        		
-				if (!GuiVM.buttonApply.enabled
-				&& this.machine.getEnergy() < CostsVM.COST_ENGINE_DISPLAY_SYMBOL
-				&& !player.isCreative())
-				{
-					text.add(TextFormatting.DARK_RED + "" + CostsVM.COST_ENGINE_DISPLAY_SYMBOL + " " + References.localNameVC("viesmachines.gui.tt.customize.color.cost.4"));
-				}
-				else if (!GuiVM.buttonApply.enabled)
-				{
-					text.add(TextFormatting.RED + References.localNameVC("viesmachines.gui.tt.customize.color.cost.0"));
-				}
-				else if (player.isCreative())
-				{
-					text.add(TextFormatting.GREEN + References.localNameVC("viesmachines.gui.tt.customize.color.cost.5"));
-				}
-				else
-				{
-					text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.color.cost.1") + " " + CostsVM.COST_ENGINE_DISPLAY_SYMBOL + " " + References.localNameVC("viesmachines.gui.tt.customize.color.cost.2"));
-				}
-        	}
+			if (!GuiVM.buttonApply.enabled)
+			{
+				
+			}
+			else
+			{
+				text.add(this.stringToRainbow(References.localNameVC("viesmachines.button.holiday.cost"), false));
+			}
 			
 			GlStateManager.pushMatrix();
 			{
-				int textNumber = text.toString().length();
+				int textNumber = References.localNameVC("viesmachines.button.holiday.cost").length();
 				
 				GlStateManager.translate(mouseX - this.guiLeft + 3 - textNumber - (textNumber / 2), mouseY - this.guiTop - 13, 0);
 				GlStateManager.scale(0.5, 0.5, 0.5);

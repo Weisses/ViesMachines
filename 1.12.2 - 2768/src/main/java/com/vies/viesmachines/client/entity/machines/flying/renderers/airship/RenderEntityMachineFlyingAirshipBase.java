@@ -574,6 +574,11 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
     	{
     		//this.renderItemOnDisplaySpin((float)0, (float)1, (float)1, 2);//.engineDisplayHeadVisual);
     	}
+    	// Displays the Holiday Symbols:
+    	else if (airshipIn.getVisualEngineDisplayType() >= 1000)
+    	{
+    		this.renderSymbol(airshipIn, EnumsVM.VisualDisplaySymbolHoliday.byId(airshipIn.getVisualEngineDisplayType() - 1000).getItemStack(), airshipIn.getVisualModelComponent());
+    	}
     	// Displays the Symbols:
     	else if (airshipIn.getVisualEngineDisplayType() >= 10
     	&& airshipIn.getVisualEngineDisplayType() <= EnumsVM.VisualDisplaySymbol.values().length + 10)

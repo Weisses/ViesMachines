@@ -23,13 +23,8 @@ import com.vies.viesmachines.network.server.machine.gui.customize.displaybanner.
 import com.vies.viesmachines.network.server.machine.gui.customize.displaybanner.sub.MessageGuiMachineMenuCustomizeDisplaySupporterHeadPg1;
 import com.vies.viesmachines.network.server.machine.gui.customize.displaybanner.sub.MessageGuiMachineMenuCustomizeDisplaySymbolPg1;
 import com.vies.viesmachines.network.server.machine.gui.customize.displaybanner.sub.MessageHelperGuiCustomizeMenuEngineDisplayClear;
-import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeDisplaySymbolPg1Holiday4thofJuly;
-import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeDisplaySymbolPg1HolidayChristmas;
-import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeDisplaySymbolPg1HolidayEaster;
-import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeDisplaySymbolPg1HolidayHalloween;
-import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeDisplaySymbolPg1HolidayNewYears;
-import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeDisplaySymbolPg1HolidayThanksgiving;
-import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeDisplaySymbolPg1HolidayValentinesDay;
+import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeDisplaySymbolPg1Holiday;
+import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative;
 import com.vies.viesmachines.network.server.machine.gui.navigation.MessageGuiMachineMenuCustomize;
 
 import net.minecraft.client.Minecraft;
@@ -68,6 +63,44 @@ public class GuiMachineMenuCustomizeDisplayBanner extends GuiContainerVC {
     	buttonList.clear();
     	Keyboard.enableRepeatEvents(true);
     	
+    	String holidayName = "";
+    	
+    	// 'New Years':
+		if(References.isDateAroundNewYears(Calendar.getInstance()))
+		{
+			holidayName = References.localNameVC("viesmachines.button.newyears");
+		}
+		// 'Valentines Day':
+		if(References.isDateAroundValentinesDay(Calendar.getInstance()))
+		{
+			holidayName = References.localNameVC("viesmachines.button.valentinesday");
+		}
+		// 'Easter':
+		if(References.isDateAroundEaster(Calendar.getInstance()))
+		{
+			holidayName = References.localNameVC("viesmachines.button.easter");
+		}
+		// '4th of July':
+		if(References.isDateAroundIndependenceDay(Calendar.getInstance()))
+		{
+			holidayName = References.localNameVC("viesmachines.button.4thofJuly");
+		}
+		// 'Halloween':
+		if(References.isDateAroundHalloween(Calendar.getInstance()))
+		{
+			holidayName = References.localNameVC("viesmachines.button.halloween");
+		}
+		// 'Thanksgiving':
+		if(References.isDateAroundThanksgiving(Calendar.getInstance()))
+		{
+			holidayName = References.localNameVC("viesmachines.button.thanksgiving");
+		}
+		// 'Christmas':
+		if(References.isDateAroundChristmas(Calendar.getInstance()))
+		{
+			holidayName = References.localNameVC("viesmachines.button.christmas");
+		}
+    			
     	GuiVM.buttonRotateLeft = new GuiButtonGeneral2VC(10, this.guiLeft + 110, this.guiTop + 68, 6, 6, "", 3);
     	GuiVM.buttonRotateRight = new GuiButtonGeneral2VC(11, this.guiLeft + 122, this.guiTop + 68, 6, 6, "", 3);
     	GuiVM.buttonRidingPlayerTrue = new GuiButtonGeneral1VC(12, this.guiLeft + 130, this.guiTop + 66, 10, 10, "", 1);
@@ -80,32 +113,16 @@ public class GuiMachineMenuCustomizeDisplayBanner extends GuiContainerVC {
 		
 		//--------------------------------------------------
 		
-		int startPlace = 95;
-		
-		GuiVM.buttonT1 = new GuiButtonGeneral1VC(51, this.guiLeft + 17, this.guiTop + startPlace + 3 + (22 * 0), 75, 14, References.localNameVC("viesmachines.button.symbols"), 0);
-		GuiVM.buttonT2 = new GuiButtonGeneral1VC(52, this.guiLeft + 17, this.guiTop + startPlace + 3 + (22 * 1), 75, 14, References.localNameVC("viesmachines.button.blockitems"), 0);
-		GuiVM.buttonT3 = new GuiButtonGeneral1VC(53, this.guiLeft + 17, this.guiTop + startPlace + 3 + (22 * 2), 75, 14, References.localNameVC("viesmachines.button.entityheads"), 0);
-		GuiVM.buttonT4 = new GuiButtonGeneral1VC(54, this.guiLeft + 17, this.guiTop + startPlace + 3 + (22 * 3), 75, 14, References.localNameVC("viesmachines.button.supporterheads"), 0);
+		GuiVM.buttonT1 = new GuiButtonGeneral1VC(51, this.guiLeft + 17, this.guiTop + 95 + 3 + (22 * 0), 75, 14, References.localNameVC("viesmachines.button.symbols"), 0);
+		GuiVM.buttonT2 = new GuiButtonGeneral1VC(52, this.guiLeft + 17, this.guiTop + 95 + 3 + (22 * 1), 75, 14, References.localNameVC("viesmachines.button.blockitems"), 0);
+		GuiVM.buttonT3 = new GuiButtonGeneral1VC(53, this.guiLeft + 17, this.guiTop + 95 + 3 + (22 * 2), 75, 14, References.localNameVC("viesmachines.button.entityheads"), 0);
+		GuiVM.buttonT4 = new GuiButtonGeneral1VC(54, this.guiLeft + 17, this.guiTop + 95 + 3 + (22 * 3), 75, 14, References.localNameVC("viesmachines.button.supporterheads"), 0);
 		
 		// Holidays:
-		GuiVM.button11 = new GuiButtonGeneral2VC(1101, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.newyears"), false), 2);
-		GuiVM.button12 = new GuiButtonGeneral2VC(1102, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.valentinesday"), false), 2);
-		GuiVM.button13 = new GuiButtonGeneral2VC(1103, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.easter"), false), 2);
-		GuiVM.button14 = new GuiButtonGeneral2VC(1104, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.4thofjuly"), false), 2);
-		GuiVM.button15 = new GuiButtonGeneral2VC(1105, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.halloween"), false), 2);
-		GuiVM.button16 = new GuiButtonGeneral2VC(1106, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.thanksgiving"), false), 2);
-		GuiVM.button17 = new GuiButtonGeneral2VC(1107, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.christmas"), false), 2);
-		GuiVM.button18 = new GuiButtonGeneral2VC(1108, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.christmas"), false), 2);
+		GuiVM.button11 = new GuiButtonGeneral2VC(1111, this.guiLeft + 67+40, this.guiTop + 95 - 14 + (14 * 2), 62, 14, this.stringToRainbow(holidayName, false), 2);
 		
 		// Creative:
-		GuiVM.button01 = new GuiButtonGeneral2VC(1101, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 0), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.newyears"), false), 2);
-		GuiVM.button02 = new GuiButtonGeneral2VC(1102, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 1), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.valentinesday"), false), 2);
-		GuiVM.button03 = new GuiButtonGeneral2VC(1103, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.easter"), false), 2);
-		GuiVM.button04 = new GuiButtonGeneral2VC(1104, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 3), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.4thofjuly"), false), 2);
-		GuiVM.button05 = new GuiButtonGeneral2VC(1105, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 4), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.halloween"), false), 2);
-		GuiVM.button06 = new GuiButtonGeneral2VC(1106, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 5), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.thanksgiving"), false), 2);
-		GuiVM.button07 = new GuiButtonGeneral2VC(1107, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 6), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.christmas"), false), 2);
-		GuiVM.button08 = new GuiButtonGeneral2VC(1108, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 7), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.christmas"), false), 2);
+		GuiVM.button01 = new GuiButtonGeneral2VC(1101, this.guiLeft + 67+40, this.guiTop + 95 - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.holiday1"), false), 2);
 		
 		//--------------------------------------------------
 		
@@ -120,48 +137,19 @@ public class GuiMachineMenuCustomizeDisplayBanner extends GuiContainerVC {
 		if(Minecraft.getMinecraft().player.isCreative())
 		{
 			this.buttonList.add(GuiVM.button01);
-			this.buttonList.add(GuiVM.button02);
-			this.buttonList.add(GuiVM.button03);
-			this.buttonList.add(GuiVM.button04);
-			this.buttonList.add(GuiVM.button05);
-			this.buttonList.add(GuiVM.button06);
-			this.buttonList.add(GuiVM.button07);
-			//this.buttonList.add(GuiVM.button08);
 		}
 		else
 		{
-			if(References.isDateAroundNewYears(Calendar.getInstance()))
+			if(References.isDateAroundNewYears(Calendar.getInstance())
+			|| References.isDateAroundValentinesDay(Calendar.getInstance())
+			|| References.isDateAroundEaster(Calendar.getInstance())
+			|| References.isDateAroundIndependenceDay(Calendar.getInstance())
+			|| References.isDateAroundHalloween(Calendar.getInstance())
+			|| References.isDateAroundThanksgiving(Calendar.getInstance())
+			|| References.isDateAroundChristmas(Calendar.getInstance()))
 			{
 				this.buttonList.add(GuiVM.button11);
 			}
-			if(References.isDateAroundValentinesDay(Calendar.getInstance()))
-			{
-				this.buttonList.add(GuiVM.button12);
-			}
-			if(References.isDateAroundEaster(Calendar.getInstance()))
-			{
-				this.buttonList.add(GuiVM.button13);
-			}
-			if(References.isDateAroundIndependenceDay(Calendar.getInstance()))
-			{
-				this.buttonList.add(GuiVM.button14);
-			}
-			if(References.isDateAroundHalloween(Calendar.getInstance()))
-			{
-				this.buttonList.add(GuiVM.button15);
-			}
-			if(References.isDateAroundThanksgiving(Calendar.getInstance()))
-			{
-				this.buttonList.add(GuiVM.button16);
-			}
-			if(References.isDateAroundChristmas(Calendar.getInstance()))
-			{
-				this.buttonList.add(GuiVM.button17);
-			}
-			//if(References.isDateAroundChristmas(Calendar.getInstance()))
-			//{
-			//	this.buttonList.add(GuiVM.button18);
-			//}
 		}
 		
 		this.buttonList.add(GuiVM.buttonRotateLeft);
@@ -211,34 +199,15 @@ public class GuiMachineMenuCustomizeDisplayBanner extends GuiContainerVC {
 			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeDisplaySupporterHeadPg1());
 	    }
 		
-		// Holidays:
+		// Holiday Normal:
+		if (parButton.id == 1111)
+	    {
+			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeDisplaySymbolPg1Holiday());
+	    }
+		// Holiday Creative:
 		if (parButton.id == 1101)
 	    {
-			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeDisplaySymbolPg1HolidayNewYears());
-	    }
-		if (parButton.id == 1102)
-	    {
-			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeDisplaySymbolPg1HolidayValentinesDay());
-	    }
-		if (parButton.id == 1103)
-	    {
-			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeDisplaySymbolPg1HolidayEaster());
-	    }
-		if (parButton.id == 1104)
-	    {
-			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeDisplaySymbolPg1Holiday4thofJuly());
-	    }
-		if (parButton.id == 1105)
-	    {
-			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeDisplaySymbolPg1HolidayHalloween());
-	    }
-		if (parButton.id == 1106)
-	    {
-			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeDisplaySymbolPg1HolidayThanksgiving());
-	    }
-		if (parButton.id == 1107)
-	    {
-			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeDisplaySymbolPg1HolidayChristmas());
+			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative());
 	    }
 		
         this.buttonList.clear();
@@ -293,9 +262,15 @@ public class GuiMachineMenuCustomizeDisplayBanner extends GuiContainerVC {
 			GlStateManager.popMatrix();
 		}
 		// Holiday:
-		else if(this.machine.getVisualEngineDisplayType() == 4)
+		else if (this.machine.getVisualEngineDisplayType() >= 1000)
 		{
-			//this.drawRotatingItemStack(new ItemStack(Item.getItemById(this.machine.engineDisplayItemstackVisual), 1, this.machine.engineDisplayItemstackMetaVisual), this.guiLeft + 51, this.guiTop + 80);
+			GlStateManager.pushMatrix();
+			{
+				GlStateManager.translate(55, 43, 0);
+				
+				this.drawStillItemStack(EnumsVM.VisualDisplaySymbolHoliday.byId(this.machine.getVisualEngineDisplayType() - 1000).getItemStack(), this.guiLeft , this.guiTop);
+			}
+			GlStateManager.popMatrix();
 		}
 		// Display Symbol:
 		else if(this.machine.getVisualEngineDisplayType() >= 10)

@@ -32,7 +32,7 @@ import net.minecraft.util.text.TextFormatting;
 
 public class GuiMachineMenuCustomizeDisplaySymbolPg1Holiday extends GuiContainerVC {
 	
-	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize_holiday.png");
+	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize_display_holiday.png");
 	
 	public GuiMachineMenuCustomizeDisplaySymbolPg1Holiday(IInventory playerInv, EntityMachineBase airshipIn)
 	{
@@ -258,12 +258,22 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1Holiday extends GuiContainer
 	{
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		
+		// 'Holiday':
+		GlStateManager.pushMatrix();
+		{
+			GlStateManager.translate(55.5, 11, 0);
+	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
+	        
+	        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.holiday"), false), 0, 0, Color.BLACK.getRGB());
+		}
+		GlStateManager.popMatrix();
+		
 		// 'New Years':
 		if(References.isDateAroundNewYears(Calendar.getInstance()))
 		{
 			GlStateManager.pushMatrix();
 			{
-				GlStateManager.translate(55.5, 11, 0);
+				GlStateManager.translate(39, 83, 0);
 		        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 		        
 		        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.newyears"), false), 0, 0, Color.BLACK.getRGB());
@@ -275,7 +285,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1Holiday extends GuiContainer
 		{
 			GlStateManager.pushMatrix();
 			{
-				GlStateManager.translate(55.5, 11, 0);
+				GlStateManager.translate(39, 83, 0);
 		        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 		        
 		        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.valentinesday"), false), 0, 0, Color.BLACK.getRGB());
@@ -287,7 +297,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1Holiday extends GuiContainer
 		{
 			GlStateManager.pushMatrix();
 			{
-				GlStateManager.translate(55.5, 11, 0);
+				GlStateManager.translate(39, 83, 0);
 		        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 		        
 		        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.easter"), false), 0, 0, Color.BLACK.getRGB());
@@ -299,7 +309,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1Holiday extends GuiContainer
 		{
 			GlStateManager.pushMatrix();
 			{
-				GlStateManager.translate(55.5, 11, 0);
+				GlStateManager.translate(39, 83, 0);
 		        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 		        
 		        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.4thofJuly"), false), 0, 0, Color.BLACK.getRGB());
@@ -311,7 +321,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1Holiday extends GuiContainer
 		{
 			GlStateManager.pushMatrix();
 			{
-				GlStateManager.translate(55.5, 11, 0);
+				GlStateManager.translate(39, 83, 0);
 		        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 		        
 		        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.halloween"), false), 0, 0, Color.BLACK.getRGB());
@@ -323,7 +333,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1Holiday extends GuiContainer
 		{
 			GlStateManager.pushMatrix();
 			{
-				GlStateManager.translate(55.5, 11, 0);
+				GlStateManager.translate(39, 83, 0);
 		        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 		        
 		        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.thanksgiving"), false), 0, 0, Color.BLACK.getRGB());
@@ -335,7 +345,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1Holiday extends GuiContainer
 		{
 			GlStateManager.pushMatrix();
 			{
-				GlStateManager.translate(55.5, 11, 0);
+				GlStateManager.translate(39, 83, 0);
 		        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 		        
 		        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.christmas"), false), 0, 0, Color.BLACK.getRGB());
@@ -362,16 +372,6 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1Holiday extends GuiContainer
 	        GlStateManager.scale(0.5F, 0.5F, 0.5F);
 	        
 	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.main.preview"), 0, 0, Color.WHITE.getRGB());
-		}
-		GlStateManager.popMatrix();
-		
-		// 'Holiday':
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(39, 83, 0);
-	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	        
-	        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.holiday"), false), 0, 0, Color.CYAN.getRGB());
 		}
 		GlStateManager.popMatrix();
 		

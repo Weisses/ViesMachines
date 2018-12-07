@@ -3,6 +3,7 @@ package com.vies.viesmachines.client.gui.machines;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.ItemsVM;
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
@@ -187,14 +188,56 @@ public class GuiMachineHUD extends Gui {
 				this.renderHUDMachineEnergy(hudXDefault, hudYDefault);
 				this.renderHUDMachineDurability(hudXDefault, hudYDefault);
 				
+				/*
 				//Use for ammo
-				if (!this.machine.inventory.getStackInSlot(0).isEmpty())
+				if (this.machine.getAmmoType() == 0)
 				{
+					
 					GlStateManager.pushMatrix();
 					{
 						GlStateManager.translate(hudXDefault - 0.875, hudYDefault, 0);
 						
-						this.drawItemStack(ItemsVM.MACHINE_PELLETS.getDefaultInstance(), 0, 0);
+						this.drawItemStack(ItemsVM
+								//.MACHINE_PELLETS
+								.PARTICLE_BULLET_EXPLOSIVE
+								.getDefaultInstance(), 0, 0);
+					}
+					GlStateManager.popMatrix();
+					
+					
+				}
+				*/
+				
+				// Use for ammo:
+				if (this.machine.getAmmoType() == 0)
+				{
+					GlStateManager.pushMatrix();
+					{
+						GlStateManager.translate(hudXDefault - 1.0, hudYDefault, 0);
+						
+						this.drawItemStack(ItemsVM.PARTICLE_BULLET_NORMAL.getDefaultInstance(), 0, 0, false);
+					}
+					GlStateManager.popMatrix();
+				}
+				// Use for ammo:
+				if (this.machine.getAmmoType() == 1)
+				{
+					GlStateManager.pushMatrix();
+					{
+						GlStateManager.translate(hudXDefault - 1.0, hudYDefault, 0);
+						
+						this.drawItemStack(ItemsVM.PARTICLE_BULLET_ELECTRICAL.getDefaultInstance(), 0, 0, false);
+					}
+					GlStateManager.popMatrix();
+				}
+				// Use for ammo:
+				if (this.machine.getAmmoType() == 2)
+				{
+					GlStateManager.pushMatrix();
+					{
+						GlStateManager.translate(hudXDefault - 1.0, hudYDefault, 0);
+						
+						this.drawItemStack(ItemsVM.PARTICLE_BULLET_EXPLOSIVE.getDefaultInstance(), 0, 0, false);
 					}
 					GlStateManager.popMatrix();
 				}
@@ -206,7 +249,7 @@ public class GuiMachineHUD extends Gui {
 					{
 						GlStateManager.translate(hudXDefault + 16.125, hudYDefault, 0);
 						
-						this.drawItemStack(this.machine.inventory.getStackInSlot(0).getItem().getDefaultInstance(), 0, 0);
+						this.drawItemStack(this.machine.inventory.getStackInSlot(0).getItem().getDefaultInstance(), 0, 0, true);
 					}
 					GlStateManager.popMatrix();
 				}
@@ -360,7 +403,7 @@ public class GuiMachineHUD extends Gui {
 	}
 	
 	/** Draws an ItemStack with stack size. */
-    private void drawItemStack(ItemStack stack, int xIn, int yIn)
+    private void drawItemStack(ItemStack stack, int xIn, int yIn, boolean size)
     {
     	GlStateManager.pushMatrix();
 		{
@@ -368,7 +411,10 @@ public class GuiMachineHUD extends Gui {
 			GlStateManager.scale(0.41, 0.41, 0.41);
 			
 			Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(stack, 0, 0);
-			Minecraft.getMinecraft().getRenderItem().renderItemOverlayIntoGUI(this.fontRenderer, stack, 0, 0, Integer.toString(this.machine.inventory.getStackInSlot(0).getCount()));
+			if (size)
+			{
+				Minecraft.getMinecraft().getRenderItem().renderItemOverlayIntoGUI(this.fontRenderer, stack, 0, 0, Integer.toString(this.machine.inventory.getStackInSlot(0).getCount()));
+			}
 		}
 		GlStateManager.popMatrix();
     }
@@ -521,13 +567,47 @@ public class GuiMachineHUD extends Gui {
 	
 	private void getSpecialStat(EntityMachineFlyingAirship machineIn, int hudXDefault, int hudYDefault)
 	{
+		// Current Y:
 		GlStateManager.pushMatrix();
 		{
-			GlStateManager.translate(hudXDefault + 1.75, hudYDefault + 17.5, 0);
+			GlStateManager.translate(hudXDefault + 71.75, hudYDefault + 19, 0);
 			GlStateManager.scale(0.5, 0.5, 0.5);
 			
-			this.centeredString(fontRenderer, Integer.toString((int)machineIn.posY), 0, 0, Color.WHITE.getRGB());
-			this.centeredString(fontRenderer, Integer.toString(machineIn.getMaxElevation()), 0, 0, Color.WHITE.getRGB());
+			//Makes Current Altitude color Red
+			if(machineIn.getPosition().getY() >= (int)EnumsVM.FlyingMachineComponentTier.byId(machineIn.getTierComponent()).getMaxElevationModifier() - 5)
+			{
+				this.centeredString(fontRenderer, Integer.toString((int)machineIn.posY), 0, 0, Color.RED.getRGB());
+			}
+			//Makes Current Altitude color Yellow
+			else if(machineIn.getPosition().getY() >= (int)EnumsVM.FlyingMachineComponentTier.byId(machineIn.getTierComponent()).getMaxElevationModifier() - 15)
+			{
+				this.centeredString(fontRenderer, Integer.toString((int)machineIn.posY), 0, 0, Color.YELLOW.getRGB());
+			}
+			//Makes Current Altitude color Green
+			else
+			{
+				this.centeredString(fontRenderer, Integer.toString((int)machineIn.posY), 0, 0, Color.GREEN.getRGB());
+			}
+			
+			
+			
+		}
+		GlStateManager.popMatrix();
+		// Max Y:
+		GlStateManager.pushMatrix();
+		{
+			GlStateManager.translate(hudXDefault + 87.25, hudYDefault + 19, 0);
+			GlStateManager.scale(0.5, 0.5, 0.5);
+			
+			if (machineIn.getTierComponent() >= 3)
+			{
+				this.centeredString(fontRenderer, "\u221e", 0, 0, Color.CYAN.getRGB());
+			}
+			else
+			{
+				this.centeredString(fontRenderer, Integer.toString(machineIn.getMaxElevation()), 0, 0, Color.CYAN.getRGB());
+			}
+			
 		}
 		GlStateManager.popMatrix();
 	}

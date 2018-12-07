@@ -36,8 +36,8 @@ public class MessageMachineProjectileShoot extends MessageBase<MessageMachinePro
 	public void handleServerSide(MessageMachineProjectileShoot message, EntityPlayer player) 
 	{
 		EntityMachineBase machineIn = (EntityMachineBase) player.getRidingEntity();
-		
-		LogHelper.info(machineIn.getControllingPassengerPitch() +" --- "+ machineIn.getControllingPassengerYaw());
+		/*
+		//LogHelper.info(machineIn.getControllingPassengerPitch() +" --- "+ machineIn.getControllingPassengerYaw());
 		if (player.isCreative())
 		{
 			//Normal
@@ -141,6 +141,6 @@ public class MessageMachineProjectileShoot extends MessageBase<MessageMachinePro
 				machineIn.setAmmoAmount(machineIn.getAmmoAmount() - 1);
 				machineIn.setEnergy(machineIn.getEnergy() - CostsVM.COST_PROJECTILE_EXPLOSIVE);
 			}
-		}
+		}*/
 	}
 }

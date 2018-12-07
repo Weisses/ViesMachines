@@ -595,8 +595,8 @@ public class EnumsVM {
 		CHRISTMAS_LIGHTS_BLACK(63, "christmas_lights_black"),
 		CHRISTMAS_PRESENTS_WHITE(64, "christmas_presents_white"),
 		CHRISTMAS_PRESENTS_BLACK(65, "christmas_presents_black"),
-		CHRISTMAS_6(66, "christmas_snowflakes_white"),
-		CHRISTMAS_7(67, "christmas_snowflakes_black"),
+		CHRISTMAS_SNOWFLAKES_BLACK(66, "christmas_snowflakes_white"),
+		CHRISTMAS_SNOWFLAKES_WHITE(67, "christmas_snowflakes_black"),
 		CHRISTMAS_8(68, "christmas_8_white"),
 		CHRISTMAS_9(69, "christmas_9_black");
 		

@@ -1,4 +1,4 @@
-package com.vies.viesmachines.client.gui.machines.main;
+package com.vies.viesmachines.client.gui.misc;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,31 +8,36 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.client.gui.GuiContainerVC;
-import com.vies.viesmachines.client.gui.GuiScrollingListVC;
+import com.vies.viesmachines.client.gui.GuiScrollingListRadioExpansion;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VC;
-import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
-import com.vies.viesmachines.common.entity.machines.containers.ContainerMachineNoSlots;
+import com.vies.viesmachines.common.items.tools.ContainerToolNoSlots;
 import com.vies.viesmachines.network.NetworkHandler;
+import com.vies.viesmachines.network.server.item.MessageHelperItemToolRadioExpansion;
 import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperGuiMachineMusicSet;
-import com.vies.viesmachines.network.server.machine.gui.navigation.MessageGuiMachineMenuMain;
 import com.vies.viesmachines.proxy.ClientProxy;
 import com.vies.viesmachines.proxy.CommonProxy;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiUtilRenderComponents;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
@@ -40,12 +45,19 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.client.GuiScrollingList;
 
-public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
+public class GuiRadioExpansionSelectMusic extends GuiContainer {
 	
 	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_machine_music.png");
 	
+	private NBTTagList tagSong;
+	
+	protected int guiLeft;
+    protected int guiTop;
+    protected int xSize = 176;
+    protected int ySize = 222;
+    
 	private ArrayList<ResourceLocation> songs;
-	private GuiScrollingListVC songList;
+	private GuiScrollingListRadioExpansion songList;
 	
     private GuiScreen mainMenu;
     private GuiScrollingList songInfo;
@@ -56,29 +68,107 @@ public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
     
     public static int setSong;
     
-	public GuiMachineMenuMainSelectMusic(IInventory playerInv, EntityMachineBase machineIn)
+    private final EntityPlayer editingPlayer;
+    private final ItemStack itemObj;
+    
+	public GuiRadioExpansionSelectMusic(EntityPlayer player, ItemStack itemstackIn)
 	{
-		super(new ContainerMachineNoSlots(playerInv, machineIn), playerInv, machineIn);
+		super(new ContainerToolNoSlots(player.inventory));
 		
-        this.songs = ClientProxy.musicListRecord;//TODO machineIn.currentMusicListRecord;
+		//this.guiLeft = (this.width - this.xSize) / 2;
+        //this.guiTop = (this.height - this.ySize) / 2;
+        this.songs = CommonProxy.musicListRecord;
         this.zLevel = 0.0F;
+        //this.guiTop = ySize;
+        //this.guiLeft = xSize;
+        this.editingPlayer = player;
+		this.itemObj = itemstackIn;
+		this.allowUserInput = true;
+		
+		this.xSize = 176;
+		this.ySize = 222;
+		
+		if (itemstackIn.hasTagCompound())
+        {
+            NBTTagCompound nbttagcompound = itemstackIn.getTagCompound();
+            
+            this.setSong = nbttagcompound.getInteger("SongToAdd");
+            //this.textGreenNumber = nbttagcompound.getInteger("ColorGreen");
+            //this.textBlueNumber = nbttagcompound.getInteger("ColorBlue");
+        }
+		else
+		{
+			this.tagSong = new NBTTagList();
+            //this.tagSong.appendTag(new NBTTagString("Author"));
+            
+            this.setSong = 0;
+            //this.textGreenNumber = 0;
+            //this.textBlueNumber = 0;
+            
+            this.tagSong.appendTag(new NBTTagString("SongToAdd"));
+            //this.tagColor.appendTag(new NBTTagString("ColorGreen"));
+            //this.tagColor.appendTag(new NBTTagString("ColorBlue"));
+		}
+		
+		if (this.tagSong == null)
+        {
+            this.tagSong = new NBTTagList();
+            this.tagSong.appendTag(new NBTTagString("SongToAdd"));
+        }
+		
+		/*
+		if (item.hasTagCompound())
+        {
+            NBTTagCompound nbttagcompound = item.getTagCompound();
+            
+            this.textRedNumber = nbttagcompound.getInteger("ColorRed");
+            this.textGreenNumber = nbttagcompound.getInteger("ColorGreen");
+            this.textBlueNumber = nbttagcompound.getInteger("ColorBlue");
+        }
+		else
+		{
+			this.tagColor = new NBTTagList();
+            this.tagColor.appendTag(new NBTTagString("Author"));
+            
+            this.textRedNumber = 0;
+            this.textGreenNumber = 0;
+            this.textBlueNumber = 0;
+            
+            this.tagColor.appendTag(new NBTTagString("ColorRed"));
+            this.tagColor.appendTag(new NBTTagString("ColorGreen"));
+            this.tagColor.appendTag(new NBTTagString("ColorBlue"));
+		}
+		
+		if (this.tagColor == null)
+        {
+            this.tagColor = new NBTTagList();
+            this.tagColor.appendTag(new NBTTagString("Author"));
+        }
+        */
 	}
 	
 	@Override
     public void initGui() 
     {
-    	super.initGui();
+    	//super.initGui();
     	
+		Keyboard.enableRepeatEvents(true);
+		
+		//this.guiLeft = (this.width - this.xSize) / 2;
+        //this.guiTop = (this.height - this.ySize) / 2;
+        
+		
+		
     	int slotHeight = 35;
     	
     	for (ResourceLocation mod : songs)
         {
-            this.listWidth = Math.max(this.listWidth,getFontRenderer().getStringWidth(mod.getResourcePath()) + 10);
+            this.listWidth = Math.max(this.listWidth,References.getFontRenderer().getStringWidth(mod.getResourcePath()) + 10);
         }
     	
     	this.listWidth = Math.min(this.listWidth, 150);
         
-    	this.songList = new GuiScrollingListVC(this, this.songs, this.listWidth, slotHeight);
+    	this.songList = new GuiScrollingListRadioExpansion(this, this.songs, this.listWidth, slotHeight);
     	
     	GuiVM.button501 = new GuiButtonGeneral1VC(501, this.guiLeft + 60, this.guiTop + 197, 56, 14, References.localNameVC("gui.done"), 0);
     	this.buttonList.add(GuiVM.button501);
@@ -87,12 +177,19 @@ public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
     @Override
     protected void actionPerformed(GuiButton button)
     {
-    	super.actionPerformed(button);
+    	//super.actionPerformed(button);
         
-		if (button.id == 501)
-	    {
-			NetworkHandler.sendToServer(new MessageGuiMachineMenuMain());
-	    }
+		//if (button.id == 501)
+	    //{
+		//	NetworkHandler.sendToServer(new MessageGuiMachineMenuMain());
+	    //}
+		
+		
+
+		
+		this.sendTagToServer(4);
+		
+		this.mc.player.closeScreen();
 		
         this.buttonList.clear();
         this.initGui();
@@ -124,10 +221,7 @@ public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
 			
 			this.centeredString(fontRenderer, 
 			this.stringToFlashGolden(
-			References.localNameVC( "item." + 
-			//TODO this.machine.currentMusicListRecord
-			ClientProxy.musicListRecord
-			.get(this.machine.selectedSong).getResourcePath().toString() + ".desc")
+			References.localNameVC( "item." + ClientProxy.musicListRecord.get(this.setSong).getResourcePath().toString() + ".desc")
 			, 1, false, TextFormatting.DARK_AQUA, 0)	
 			, 0, 0, Color.BLUE.getRGB());
 			
@@ -176,20 +270,13 @@ public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
         Dimension logoDims = new Dimension(0, 0);
         List<String> lines = new ArrayList<String>();
         
-        for(int i = 0; i < 
-        		//this.machine.currentMusicListRecord
-        		ClientProxy.musicListRecord
-        		
-        		.size(); i++)
+        for(int i = 0; i < ClientProxy.musicListRecord.size(); i++)
 		{
-			if(
-					//TODO this.machine.currentMusicListRecord
-					ClientProxy.musicListRecord
-					.get(i).toString().toLowerCase().contains(selectedSong.toString().toLowerCase()))
+			if(ClientProxy.musicListRecord.get(i).toString().toLowerCase().contains(selectedSong.toString().toLowerCase()))
 		    {
 				this.setSong = i;
-				this.machine.selectedSong = i;
-				NetworkHandler.sendToServer(new MessageHelperGuiMachineMusicSet());
+				//this.machine.selectedSong = i;
+				//NetworkHandler.sendToServer(new MessageHelperGuiMachineMusicSet());
 		    }
 		}
     }
@@ -226,6 +313,51 @@ public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
         return index == selected;
     }
     
+    private void sendTagToServer(int publish)
+    {
+		NBTTagCompound nbttagcompound = this.itemObj.getTagCompound();
+        
+		if (this.itemObj.hasTagCompound())
+        {
+        	nbttagcompound.setInteger("SongToAdd", this.setSong);
+            //nbttagcompound.setInteger("ColorGreen", this.textGreenNumber);
+            //nbttagcompound.setInteger("ColorBlue", this.textBlueNumber);
+        }
+        else
+        {
+        	this.itemObj.setTagInfo("Author", this.tagSong);
+        }
+		
+		NetworkHandler.sendToServer(new MessageHelperItemToolRadioExpansion());
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    @Override
+	public boolean doesGuiPauseGame()
+    {
+        return false;
+    }
+	
+	@Override
+	public void onGuiClosed()
+    {
+        Keyboard.enableRepeatEvents(false);
+    }
+    
     //==================================================
     
     private class Info extends GuiScrollingList
@@ -237,13 +369,13 @@ public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
 
         public Info(int width, List<String> lines, @Nullable ResourceLocation logoPath, Dimension logoDims)
         {
-            super(GuiMachineMenuMainSelectMusic.this.getMinecraftInstance(),
+            super(GuiRadioExpansionSelectMusic.this.getMinecraftInstance(),
                   width,
-                  GuiMachineMenuMainSelectMusic.this.height,
-                  32, GuiMachineMenuMainSelectMusic.this.height - 88 + 4,
-                  GuiMachineMenuMainSelectMusic.this.listWidth + 20, 60,
-                  GuiMachineMenuMainSelectMusic.this.width,
-                  GuiMachineMenuMainSelectMusic.this.height);
+                  GuiRadioExpansionSelectMusic.this.height,
+                  32, GuiRadioExpansionSelectMusic.this.height - 88 + 4,
+                  GuiRadioExpansionSelectMusic.this.listWidth + 20, 60,
+                  GuiRadioExpansionSelectMusic.this.width,
+                  GuiRadioExpansionSelectMusic.this.height);
             this.lines    = resizeContent(lines);
             this.logoPath = logoPath;
             this.logoDims = logoDims;
@@ -272,7 +404,7 @@ public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
                 int maxTextLength = this.listWidth - 8;
                 if (maxTextLength >= 0)
                 {
-                    ret.addAll(GuiUtilRenderComponents.splitText(chat, maxTextLength, GuiMachineMenuMainSelectMusic.this.fontRenderer, false, true));
+                    ret.addAll(GuiUtilRenderComponents.splitText(chat, maxTextLength, GuiRadioExpansionSelectMusic.this.fontRenderer, false, true));
                 }
             }
             return ret;
@@ -310,7 +442,7 @@ public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
             if (logoPath != null)
             {
                 GlStateManager.enableBlend();
-                GuiMachineMenuMainSelectMusic.this.mc.renderEngine.bindTexture(logoPath);
+                GuiRadioExpansionSelectMusic.this.mc.renderEngine.bindTexture(logoPath);
                 BufferBuilder wr = tess.getBuffer();
                 int offset = (this.left + this.listWidth/2) - (logoDims.width / 2);
                 wr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
@@ -328,7 +460,7 @@ public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
                 if (line != null)
                 {
                     GlStateManager.enableBlend();
-                    GuiMachineMenuMainSelectMusic.this.fontRenderer.drawStringWithShadow(line.getFormattedText(), this.left + 4, top, 0xFFFFFF);
+                    GuiRadioExpansionSelectMusic.this.fontRenderer.drawStringWithShadow(line.getFormattedText(), this.left + 4, top, 0xFFFFFF);
                     GlStateManager.disableAlpha();
                     GlStateManager.disableBlend();
                 }
@@ -357,14 +489,78 @@ public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
                 for (ITextComponent part : line) {
                     if (!(part instanceof TextComponentString))
                         continue;
-                    k += GuiMachineMenuMainSelectMusic.this.fontRenderer.getStringWidth(((TextComponentString)part).getText());
+                    k += GuiRadioExpansionSelectMusic.this.fontRenderer.getStringWidth(((TextComponentString)part).getText());
                     if (k >= x)
                     {
-                        GuiMachineMenuMainSelectMusic.this.handleComponentClick(part);
+                        GuiRadioExpansionSelectMusic.this.handleComponentClick(part);
                         break;
                     }
                 }
             }
         }
     }
+
+	
+	/** Get the instance of the font renderer. */
+	public FontRenderer getFontRenderer()
+	{
+	    return this.mc.fontRenderer;
+	}
+	
+    /** Makes the inserted string centered with no shadow. */
+    public void centeredString(FontRenderer fontRendererIn, String text, int x, int y, int color)
+    {
+        fontRendererIn.drawString(text, (x - fontRendererIn.getStringWidth(text) / 2), y, color);
+    }
+    
+	/** Makes the inserted string flash. */
+	protected static String stringToFlashGolden(String parString, int parShineLocation, boolean parReturnToBlack, TextFormatting colorIn, int colorTypeIn)
+	{
+		int stringLength = parString.length();
+		
+		TextFormatting color1 = TextFormatting.WHITE;
+		TextFormatting color2 = TextFormatting.YELLOW;
+		
+		if (colorTypeIn == 1)
+		{
+			color1 = TextFormatting.LIGHT_PURPLE;
+			color2 = TextFormatting.DARK_PURPLE;
+		}
+		
+		if(stringLength < 1)
+		{
+			return "";
+		}
+		
+		String outputString = "";
+		
+		for(int i = 0; i < stringLength; i++)
+		{
+			if((i + parShineLocation+Minecraft.getSystemTime() / 20) % 68 == 0)
+			{
+				outputString = outputString + color1 + parString.substring(i, i + 1);    
+			}
+			else if((i + parShineLocation+Minecraft.getSystemTime() / 20) % 68 == 1)
+			{
+				outputString = outputString + color2 + parString.substring(i, i + 1);    
+			}
+			else if((i + parShineLocation+Minecraft.getSystemTime() / 20) % 68 == 87)
+			{
+				outputString = outputString + color2 + parString.substring(i, i + 1);    
+			}
+			else
+			{
+				outputString = outputString + colorIn + parString.substring(i, i + 1);        
+			}
+		}
+		
+		// Return color to a common one after (most chat is white, but for other GUI might want black):
+		if(parReturnToBlack)
+		{
+			return outputString + TextFormatting.BLACK;
+		}
+		
+		return outputString + TextFormatting.WHITE;
+	}
+	
 }

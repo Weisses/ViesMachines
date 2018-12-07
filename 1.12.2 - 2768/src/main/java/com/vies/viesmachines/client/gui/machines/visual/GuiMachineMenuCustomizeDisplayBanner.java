@@ -113,16 +113,16 @@ public class GuiMachineMenuCustomizeDisplayBanner extends GuiContainerVC {
 		
 		//--------------------------------------------------
 		
-		GuiVM.buttonT1 = new GuiButtonGeneral1VC(51, this.guiLeft + 17, this.guiTop + 95 + 3 + (22 * 0), 75, 14, References.localNameVC("viesmachines.button.symbols"), 0);
-		GuiVM.buttonT2 = new GuiButtonGeneral1VC(52, this.guiLeft + 17, this.guiTop + 95 + 3 + (22 * 1), 75, 14, References.localNameVC("viesmachines.button.blockitems"), 0);
-		GuiVM.buttonT3 = new GuiButtonGeneral1VC(53, this.guiLeft + 17, this.guiTop + 95 + 3 + (22 * 2), 75, 14, References.localNameVC("viesmachines.button.entityheads"), 0);
-		GuiVM.buttonT4 = new GuiButtonGeneral1VC(54, this.guiLeft + 17, this.guiTop + 95 + 3 + (22 * 3), 75, 14, References.localNameVC("viesmachines.button.supporterheads"), 0);
+		GuiVM.buttonT1 = new GuiButtonGeneral1VC(51, this.guiLeft + 17, this.guiTop + 92 + 12 + (18 * 0), 75, 14, References.localNameVC("viesmachines.button.symbols"), 0);
+		GuiVM.buttonT2 = new GuiButtonGeneral1VC(52, this.guiLeft + 17, this.guiTop + 92 + 12 + (18 * 1), 75, 14, References.localNameVC("viesmachines.button.blockitems"), 0);
+		GuiVM.buttonT3 = new GuiButtonGeneral1VC(53, this.guiLeft + 17, this.guiTop + 92 + 12 + (18 * 2), 75, 14, References.localNameVC("viesmachines.button.entityheads"), 0);
+		GuiVM.buttonT4 = new GuiButtonGeneral1VC(54, this.guiLeft + 17, this.guiTop + 92 + 12 + (18 * 3), 75, 14, References.localNameVC("viesmachines.button.supporterheads"), 0);
 		
 		// Holidays:
-		GuiVM.button11 = new GuiButtonGeneral2VC(1111, this.guiLeft + 67+40, this.guiTop + 95 - 14 + (14 * 2), 62, 14, this.stringToRainbow(holidayName, false), 2);
+		GuiVM.button11 = new GuiButtonGeneral2VC(1111, this.guiLeft + 67+40, this.guiTop + 92 - 16 + (14 * 2), 62, 14, this.stringToRainbow(holidayName, false), 2);
 		
 		// Creative:
-		GuiVM.button01 = new GuiButtonGeneral2VC(1101, this.guiLeft + 67+40, this.guiTop + 95 - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.holiday1"), false), 2);
+		GuiVM.button01 = new GuiButtonGeneral2VC(1101, this.guiLeft + 67+40, this.guiTop + 92 - 16 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.holiday1"), false), 2);
 		
 		//--------------------------------------------------
 		

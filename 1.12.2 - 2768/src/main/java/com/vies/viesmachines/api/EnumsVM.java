@@ -340,8 +340,8 @@ public class EnumsVM {
     // TODO            Visual Machine
 	//==================================================
 	
-	/** Visual Primary Texture enum. (47 textures) */
-	public static enum VisualPrimaryTexture
+	/** Visual Machine Texture enum. (47 textures) */
+	public static enum VisualMachineTexture
     {
 		// STRING(meta, localized name, block, block meta):
 		DEFAULT(0, "default", BlocksVM.XEGONITE_BASIC, 0),
@@ -408,7 +408,7 @@ public class EnumsVM {
         private final Block block;
 		private final int blockMetadata;
         
-        private VisualPrimaryTexture(int metadataIn, String registryNameIn, Block blockIn, int blockMetadataIn)
+        private VisualMachineTexture(int metadataIn, String registryNameIn, Block blockIn, int blockMetadataIn)
         {
         	this.metadata = metadataIn;
         	this.registryName = registryNameIn;
@@ -437,115 +437,7 @@ public class EnumsVM {
         }
         
         /** Get type by it's enum ordinal. */
-        public static EnumsVM.VisualPrimaryTexture byId(int id)
-        {
-            if (id < 0 || id >= values().length)
-            {
-                id = 0;
-            }
-            
-            return values()[id];
-        }
-    }
-	
-	/** Visual Secondary Texture enum. (47 textures) */
-	public static enum VisualSecondaryTexture
-    {
-		// STRING(meta, localized name, block, block meta):
-		DEFAULT(0, "default", BlocksVM.XEGONITE_BASIC, 0),
-    	
-    	// Tier 0:
-    	COBBLESTONE(1, "cobblestone", Blocks.COBBLESTONE, 0),
-    	SANDSTONE(2, "sandstone", Blocks.SANDSTONE, 0),
-        SNOW(3, "snow", Blocks.SNOW, 0),
-        HAY_BLOCK(4, "hay_block", Blocks.HAY_BLOCK, 0),
-        
-    	// Tier 1:
-        PLANK_OAK(5, "plank_oak", Blocks.PLANKS, 0),
-        PLANK_SPRUCE(6, "plank_spruce", Blocks.PLANKS, 1),
-        PLANK_BIRCH(7, "plank_birch", Blocks.PLANKS, 2),
-        PLANK_JUNGLE(8, "plank_jungle", Blocks.PLANKS, 3),
-        PLANK_ACACIA(9, "plank_acacia", Blocks.PLANKS, 4),
-        PLANK_DARK_OAK(10, "plank_dark_oak", Blocks.PLANKS, 5),
-        PODZOL(11, "podzol", Blocks.DIRT, 1),
-        
-    	LOG_OAK(12, "log_oak", Blocks.LOG, 0),
-    	LOG_SPRUCE(13, "log_spruce", Blocks.LOG, 1),
-    	LOG_BIRCH(14, "log_birch", Blocks.LOG, 2),
-    	LOG_JUNGLE(15, "log_jungle", Blocks.LOG, 3),
-    	LOG_ACACIA(16, "log_acacia", Blocks.LOG2, 0),
-    	LOG_DARK_OAK(17, "log_dark_oak", Blocks.LOG2, 1),
-        MYCELIUM(18, "mycelium", Blocks.MYCELIUM, 0),
-        
-        // Tier 2:
-        ORE_QUARTZ(19, "ore_quartz", Blocks.QUARTZ_ORE, 0),
-        ORE_IRON(20, "ore_iron", Blocks.IRON_ORE, 0),
-        ORE_GOLD(21, "ore_gold", Blocks.GOLD_ORE, 0),
-        ORE_REDSTONE(22, "ore_redstone", Blocks.REDSTONE_ORE, 0),
-        ORE_LAPIS_LAZULI(23, "ore_lapis_lazuli", Blocks.LAPIS_ORE, 0),
-        ORE_DIAMOND(24, "ore_diamond", Blocks.DIAMOND_ORE, 0),
-        ORE_EMERALD(25, "ore_emerald", Blocks.EMERALD_ORE, 0),
-        
-        BRICK(26, "brick", Blocks.BRICK_BLOCK, 0),
-        IRON(27, "iron", Blocks.IRON_BLOCK, 0),
-        GOLD(28, "gold", Blocks.GOLD_BLOCK, 0),
-        REDSTONE(29, "redstone", Blocks.REDSTONE_BLOCK, 0),
-        LAPIS_LAZULI(30, "lapis_lazuli", Blocks.LAPIS_BLOCK, 0),
-        DIAMOND(31, "diamond", Blocks.DIAMOND_BLOCK, 0),
-        EMERALD(32, "emerald", Blocks.EMERALD_BLOCK, 0),
-        
-        // Tier 3:
-        ICE(33, "ice", Blocks.ICE, 0),
-        SLIME(34, "slime", Blocks.SLIME_BLOCK, 0),
-        NETHER_BRICK(35, "nether_brick", Blocks.NETHER_BRICK, 0),
-        SOUL_SAND(36, "soul_sand", Blocks.SOUL_SAND, 0),
-        QUARTZ(37, "quartz", Blocks.QUARTZ_BLOCK, 0),
-        GLOWSTONE(38, "glowstone", Blocks.GLOWSTONE, 0),
-        OBSIDIAN(39, "obsidian", Blocks.OBSIDIAN, 0),
-        
-        BEDROCK(40, "bedrock", Blocks.BEDROCK, 0),
-        PRISMARINE(41, "prismarine", Blocks.PRISMARINE, 0),
-        END_STONE(42, "end_stone", Blocks.END_STONE, 0),
-        PURPUR(43, "purpur", Blocks.PURPUR_BLOCK, 0),
-    	WATER(44, "water", BlocksVM.WATER_BASIC, 0), 
-    	LAVA(45, "lava", BlocksVM.LAVA_BASIC, 0), 
-    	ENDER(46, "ender", BlocksVM.ENDER_BASIC, 0);
-		
-		private final int metadata;
-		private final String registryName;
-        private final Block block;
-		private final int blockMetadata;
-        
-        private VisualSecondaryTexture(int metadataIn, String registryNameIn, Block blockIn, int blockMetadataIn)
-        {
-        	this.metadata = metadataIn;
-        	this.registryName = registryNameIn;
-            this.block = blockIn;
-            this.blockMetadata = blockMetadataIn;
-        }
-        
-        public int getMetadata()
-        {
-        	return this.metadata;
-        }
-        
-        public String getLocalizedName()
-        {
-        	return References.Old_I18n.translateToLocal(new ItemStack(Item.getItemFromBlock(block), 1, this.blockMetadata).getUnlocalizedName() + ".name");
-        }
-        
-        public String getRegistryName()
-        {
-            return this.registryName;
-        }
-        
-        public ItemStack getBlock()
-        {
-            return new ItemStack(Item.getItemFromBlock(block), 1, this.blockMetadata);//this.block; //Block.getBlockFromItem(new ItemStack(Items.DIAMOND, 0).getItem());
-        }
-        
-        /** Get type by it's enum ordinal. */
-        public static EnumsVM.VisualSecondaryTexture byId(int id)
+        public static EnumsVM.VisualMachineTexture byId(int id)
         {
             if (id < 0 || id >= values().length)
             {
@@ -620,21 +512,217 @@ public class EnumsVM {
         }
     }
 	
+	/** Visual Texture Holiday enum. Dictates registry name. */
+	public static enum VisualTextureHoliday
+    {
+		// STRING(meta, localized name, item):
+		// Christmas:
+		NEWYEARS_0(0, "newyears_0"),
+		NEWYEARS_1(1, "newyears_1"),
+		NEWYEARS_2(2, "newyears_2"),
+		NEWYEARS_3(3, "newyears_3"),
+		NEWYEARS_4(4, "newyears_4"),
+		NEWYEARS_5(5, "newyears_5"),
+		NEWYEARS_6(6, "newyears_6"),
+		NEWYEARS_7(7, "newyears_7"),
+		NEWYEARS_8(8, "newyears_8"),
+		NEWYEARS_9(9, "newyears_9"),
+		
+		// Christmas:
+		VALENTINESDAY_0(10, "valentinesday_0"),
+		VALENTINESDAY_1(11, "valentinesday_1"),
+		VALENTINESDAY_2(12, "valentinesday_2"),
+		VALENTINESDAY_3(13, "valentinesday_3"),
+		VALENTINESDAY_4(14, "valentinesday_4"),
+		VALENTINESDAY_5(15, "valentinesday_5"),
+		VALENTINESDAY_6(16, "valentinesday_6"),
+		VALENTINESDAY_7(17, "valentinesday_7"),
+		VALENTINESDAY_8(18, "valentinesday_8"),
+		VALENTINESDAY_9(19, "valentinesday_9"),
+		
+		// Christmas:
+		EASTER_0(20, "easter_0"),
+		EASTER_1(21, "easter_1"),
+		EASTER_2(22, "easter_2"),
+		EASTER_3(23, "easter_3"),
+		EASTER_4(24, "easter_4"),
+		EASTER_5(25, "easter_5"),
+		EASTER_6(26, "easter_6"),
+		EASTER_7(27, "easter_7"),
+		EASTER_8(28, "easter_8"),
+		EASTER_9(29, "easter_9"),
+		
+		// Fourth of July:
+		FOURTHOFJULY_0(30, "4thofjuly_0"),
+		FOURTHOFJULY_1(31, "4thofjuly_1"),
+		FOURTHOFJULY_2(32, "4thofjuly_2"),
+		FOURTHOFJULY_3(33, "4thofjuly_3"),
+		FOURTHOFJULY_4(34, "4thofjuly_4"),
+		FOURTHOFJULY_5(35, "4thofjuly_5"),
+		FOURTHOFJULY_6(36, "4thofjuly_6"),
+		FOURTHOFJULY_7(37, "4thofjuly_7"),
+		FOURTHOFJULY_8(38, "4thofjuly_8"),
+		FOURTHOFJULY_9(39, "4thofjuly_9"),
+		
+		// Halloween:
+		HALLOWEEN_0(40, "halloween_0"),
+		HALLOWEEN_1(41, "halloween_1"),
+		HALLOWEEN_2(42, "halloween_2"),
+		HALLOWEEN_3(43, "halloween_3"),
+		HALLOWEEN_4(44, "halloween_4"),
+		HALLOWEEN_5(45, "halloween_5"),
+		HALLOWEEN_6(46, "halloween_6"),
+		HALLOWEEN_7(47, "halloween_7"),
+		HALLOWEEN_8(48, "halloween_8"),
+		HALLOWEEN_9(49, "halloween_9"),
+		
+		// Thanksgiving:
+		THANKSGIVING_0(50, "thanksgiving_0"),
+		THANKSGIVING_1(51, "thanksgiving_1"),
+		THANKSGIVING_2(52, "thanksgiving_2"),
+		THANKSGIVING_3(53, "thanksgiving_3"),
+		THANKSGIVING_4(54, "thanksgiving_4"),
+		THANKSGIVING_5(55, "thanksgiving_5"),
+		THANKSGIVING_6(56, "thanksgiving_6"),
+		THANKSGIVING_7(57, "thanksgiving_7"),
+		THANKSGIVING_8(58, "thanksgiving_8"),
+		THANKSGIVING_9(59, "thanksgiving_9"),
+		
+		// Christmas:
+		CHRISTMAS_CANDYCANES_WHITE(60, "christmas_candycanes_white"),
+		CHRISTMAS_CANDYCANES_BLACK(61, "christmas_candycanes_black"),
+		CHRISTMAS_LIGHTS_WHITE(62, "christmas_lights_white"),
+		CHRISTMAS_LIGHTS_BLACK(63, "christmas_lights_black"),
+		CHRISTMAS_PRESENTS_WHITE(64, "christmas_presents_white"),
+		CHRISTMAS_PRESENTS_BLACK(65, "christmas_presents_black"),
+		CHRISTMAS_6(66, "christmas_snowflakes_white"),
+		CHRISTMAS_7(67, "christmas_snowflakes_black"),
+		CHRISTMAS_8(68, "christmas_8_white"),
+		CHRISTMAS_9(69, "christmas_9_black");
+		
+		private final int metadata;
+		private final String registryName;
+        
+        private VisualTextureHoliday(int metadataIn, String registryNameIn)
+        {
+        	this.metadata = metadataIn;
+        	this.registryName = registryNameIn;
+        }
+        
+        public int getMetadata()
+        {
+        	return this.metadata;
+        }
+        
+        public String getLocalizedName()
+        {
+        	return References.Old_I18n.translateToLocal("viesmachines.holiday." + this.registryName);
+        }
+        
+        public String getRegistryName()
+        {
+            return this.registryName;
+        }
+        
+        /** Get type by it's enum ordinal. */
+        public static EnumsVM.VisualTextureHoliday byId(int id)
+        {
+            if (id < 0 || id >= values().length)
+            {
+                id = 0;
+            }
+            
+            return values()[id];
+        }
+    }
+	
 	/** Visual Display Symbol Holiday enum. Dictates registry name. */
 	public static enum VisualDisplaySymbolHoliday
     {
 		// STRING(meta, localized name, item):
 		// Christmas:
-		SYMBOL_CHRISTMAS_TREE(0, "christmas_tree", ItemsVM.SYMBOL_CHRISTMAS_TREE),
-		SYMBOL_CHRISTMAS_WREATH(1, "christmas_wreath", ItemsVM.SYMBOL_CHRISTMAS_WREATH),
-		SYMBOL_CHRISTMAS_ORNAMENT(2, "christmas_ornament", ItemsVM.SYMBOL_CHRISTMAS_ORNAMENT),
-		SYMBOL_CHRISTMAS_STOCKING(3, "christmas_stocking", ItemsVM.SYMBOL_CHRISTMAS_STOCKING),
-		SYMBOL_CHRISTMAS_NIGHTSKY(4, "christmas_nightsky", ItemsVM.SYMBOL_CHRISTMAS_NIGHTSKY),
-		SYMBOL_CHRISTMAS_GRINCH(5, "christmas_grinch", ItemsVM.SYMBOL_CHRISTMAS_GRINCH),
-		SYMBOL_CHRISTMAS_MAX(6, "christmas_max", ItemsVM.SYMBOL_CHRISTMAS_MAX),
-		SYMBOL_CHRISTMAS_FROSTY(7, "christmas_frosty", ItemsVM.SYMBOL_CHRISTMAS_FROSTY),
-		SYMBOL_CHRISTMAS_PEANUTS(8, "christmas_peanuts", ItemsVM.SYMBOL_CHRISTMAS_PEANUTS),
-		SYMBOL_CHRISTMAS_POKEMON(9, "christmas_pokemon", ItemsVM.SYMBOL_CHRISTMAS_POKEMON);
+		SYMBOL_NEWYEARS_0(0, "newyears_0", ItemsVM.SYMBOL_CHRISTMAS_TREE),
+		SYMBOL_NEWYEARS_1(1, "newyears_1", ItemsVM.SYMBOL_CHRISTMAS_WREATH),
+		SYMBOL_NEWYEARS_2(2, "newyears_2", ItemsVM.SYMBOL_CHRISTMAS_ORNAMENT),
+		SYMBOL_NEWYEARS_3(3, "newyears_3", ItemsVM.SYMBOL_CHRISTMAS_STOCKING),
+		SYMBOL_NEWYEARS_4(4, "newyears_4", ItemsVM.SYMBOL_CHRISTMAS_NIGHTSKY),
+		SYMBOL_NEWYEARS_5(5, "newyears_5", ItemsVM.SYMBOL_CHRISTMAS_GRINCH),
+		SYMBOL_NEWYEARS_6(6, "newyears_6", ItemsVM.SYMBOL_CHRISTMAS_MAX),
+		SYMBOL_NEWYEARS_7(7, "newyears_7", ItemsVM.SYMBOL_CHRISTMAS_FROSTY),
+		SYMBOL_NEWYEARS_8(8, "newyears_8", ItemsVM.SYMBOL_CHRISTMAS_PEANUTS),
+		SYMBOL_NEWYEARS_9(9, "newyears_9", ItemsVM.SYMBOL_CHRISTMAS_POKEMON),
+		
+		// Christmas:
+		SYMBOL_VALENTINESDAY_0(10, "valentinesday_0", ItemsVM.SYMBOL_CHRISTMAS_TREE),
+		SYMBOL_VALENTINESDAY_1(11, "valentinesday_1", ItemsVM.SYMBOL_CHRISTMAS_WREATH),
+		SYMBOL_VALENTINESDAY_2(12, "valentinesday_2", ItemsVM.SYMBOL_CHRISTMAS_ORNAMENT),
+		SYMBOL_VALENTINESDAY_3(13, "valentinesday_3", ItemsVM.SYMBOL_CHRISTMAS_STOCKING),
+		SYMBOL_VALENTINESDAY_4(14, "valentinesday_4", ItemsVM.SYMBOL_CHRISTMAS_NIGHTSKY),
+		SYMBOL_VALENTINESDAY_5(15, "valentinesday_5", ItemsVM.SYMBOL_CHRISTMAS_GRINCH),
+		SYMBOL_VALENTINESDAY_6(16, "valentinesday_6", ItemsVM.SYMBOL_CHRISTMAS_MAX),
+		SYMBOL_VALENTINESDAY_7(17, "valentinesday_7", ItemsVM.SYMBOL_CHRISTMAS_FROSTY),
+		SYMBOL_VALENTINESDAY_8(18, "valentinesday_8", ItemsVM.SYMBOL_CHRISTMAS_PEANUTS),
+		SYMBOL_VALENTINESDAY_9(19, "valentinesday_9", ItemsVM.SYMBOL_CHRISTMAS_POKEMON),
+		
+		// Christmas:
+		SYMBOL_EASTER_0(20, "easter_0", ItemsVM.SYMBOL_CHRISTMAS_TREE),
+		SYMBOL_EASTER_1(21, "easter_1", ItemsVM.SYMBOL_CHRISTMAS_WREATH),
+		SYMBOL_EASTER_2(22, "easter_2", ItemsVM.SYMBOL_CHRISTMAS_ORNAMENT),
+		SYMBOL_EASTER_3(23, "easter_3", ItemsVM.SYMBOL_CHRISTMAS_STOCKING),
+		SYMBOL_EASTER_4(24, "easter_4", ItemsVM.SYMBOL_CHRISTMAS_NIGHTSKY),
+		SYMBOL_EASTER_5(25, "easter_5", ItemsVM.SYMBOL_CHRISTMAS_GRINCH),
+		SYMBOL_EASTER_6(26, "easter_6", ItemsVM.SYMBOL_CHRISTMAS_MAX),
+		SYMBOL_EASTER_7(27, "easter_7", ItemsVM.SYMBOL_CHRISTMAS_FROSTY),
+		SYMBOL_EASTER_8(28, "easter_8", ItemsVM.SYMBOL_CHRISTMAS_PEANUTS),
+		SYMBOL_EASTER_9(29, "easter_9", ItemsVM.SYMBOL_CHRISTMAS_POKEMON),
+		
+		// 4th of July:
+		SYMBOL_4THOFJULY_0(30, "4thofjuly_0", ItemsVM.SYMBOL_CHRISTMAS_TREE),
+		SYMBOL_4THOFJULY_1(31, "4thofjuly_1", ItemsVM.SYMBOL_CHRISTMAS_WREATH),
+		SYMBOL_4THOFJULY_2(32, "4thofjuly_2", ItemsVM.SYMBOL_CHRISTMAS_ORNAMENT),
+		SYMBOL_4THOFJULY_3(33, "4thofjuly_3", ItemsVM.SYMBOL_CHRISTMAS_STOCKING),
+		SYMBOL_4THOFJULY_4(34, "4thofjuly_4", ItemsVM.SYMBOL_CHRISTMAS_NIGHTSKY),
+		SYMBOL_4THOFJULY_5(35, "4thofjuly_5", ItemsVM.SYMBOL_CHRISTMAS_GRINCH),
+		SYMBOL_4THOFJULY_6(36, "4thofjuly_6", ItemsVM.SYMBOL_CHRISTMAS_MAX),
+		SYMBOL_4THOFJULY_7(37, "4thofjuly_7", ItemsVM.SYMBOL_CHRISTMAS_FROSTY),
+		SYMBOL_4THOFJULY_8(38, "4thofjuly_8", ItemsVM.SYMBOL_CHRISTMAS_PEANUTS),
+		SYMBOL_4THOFJULY_9(39, "4thofjuly_9", ItemsVM.SYMBOL_CHRISTMAS_POKEMON),
+		
+		// Halloween:
+		SYMBOL_HALLOWEEN_0(40, "halloween_0", ItemsVM.SYMBOL_CHRISTMAS_TREE),
+		SYMBOL_HALLOWEEN_1(41, "halloween_1", ItemsVM.SYMBOL_CHRISTMAS_WREATH),
+		SYMBOL_HALLOWEEN_2(42, "halloween_2", ItemsVM.SYMBOL_CHRISTMAS_ORNAMENT),
+		SYMBOL_HALLOWEEN_3(43, "halloween_3", ItemsVM.SYMBOL_CHRISTMAS_STOCKING),
+		SYMBOL_HALLOWEEN_4(44, "halloween_4", ItemsVM.SYMBOL_CHRISTMAS_NIGHTSKY),
+		SYMBOL_HALLOWEEN_5(45, "halloween_5", ItemsVM.SYMBOL_CHRISTMAS_GRINCH),
+		SYMBOL_HALLOWEEN_6(46, "halloween_6", ItemsVM.SYMBOL_CHRISTMAS_MAX),
+		SYMBOL_HALLOWEEN_7(47, "halloween_7", ItemsVM.SYMBOL_CHRISTMAS_FROSTY),
+		SYMBOL_HALLOWEEN_8(48, "halloween_8", ItemsVM.SYMBOL_CHRISTMAS_PEANUTS),
+		SYMBOL_HALLOWEEN_9(49, "halloween_9", ItemsVM.SYMBOL_CHRISTMAS_POKEMON),
+		
+		// Thanksgiving:
+		SYMBOL_THANKSGIVING_0(50, "thanksgiving_0", ItemsVM.SYMBOL_CHRISTMAS_TREE),
+		SYMBOL_THANKSGIVING_1(51, "thanksgiving_1", ItemsVM.SYMBOL_CHRISTMAS_WREATH),
+		SYMBOL_THANKSGIVING_2(52, "thanksgiving_2", ItemsVM.SYMBOL_CHRISTMAS_ORNAMENT),
+		SYMBOL_THANKSGIVING_3(53, "thanksgiving_3", ItemsVM.SYMBOL_CHRISTMAS_STOCKING),
+		SYMBOL_THANKSGIVING_4(54, "thanksgiving_4", ItemsVM.SYMBOL_CHRISTMAS_NIGHTSKY),
+		SYMBOL_THANKSGIVING_5(55, "thanksgiving_5", ItemsVM.SYMBOL_CHRISTMAS_GRINCH),
+		SYMBOL_THANKSGIVING_6(56, "thanksgiving_6", ItemsVM.SYMBOL_CHRISTMAS_MAX),
+		SYMBOL_THANKSGIVING_7(57, "thanksgiving_7", ItemsVM.SYMBOL_CHRISTMAS_FROSTY),
+		SYMBOL_THANKSGIVING_8(58, "thanksgiving_8", ItemsVM.SYMBOL_CHRISTMAS_PEANUTS),
+		SYMBOL_THANKSGIVING_9(59, "thanksgiving_9", ItemsVM.SYMBOL_CHRISTMAS_POKEMON),
+		
+		// Christmas:
+		SYMBOL_CHRISTMAS_TREE(60, "christmas_tree", ItemsVM.SYMBOL_CHRISTMAS_TREE),
+		SYMBOL_CHRISTMAS_WREATH(61, "christmas_wreath", ItemsVM.SYMBOL_CHRISTMAS_WREATH),
+		SYMBOL_CHRISTMAS_ORNAMENT(62, "christmas_ornament", ItemsVM.SYMBOL_CHRISTMAS_ORNAMENT),
+		SYMBOL_CHRISTMAS_STOCKING(63, "christmas_stocking", ItemsVM.SYMBOL_CHRISTMAS_STOCKING),
+		SYMBOL_CHRISTMAS_NIGHTSKY(64, "christmas_nightsky", ItemsVM.SYMBOL_CHRISTMAS_NIGHTSKY),
+		SYMBOL_CHRISTMAS_GRINCH(65, "christmas_grinch", ItemsVM.SYMBOL_CHRISTMAS_GRINCH),
+		SYMBOL_CHRISTMAS_MAX(66, "christmas_max", ItemsVM.SYMBOL_CHRISTMAS_MAX),
+		SYMBOL_CHRISTMAS_FROSTY(67, "christmas_frosty", ItemsVM.SYMBOL_CHRISTMAS_FROSTY),
+		SYMBOL_CHRISTMAS_PEANUTS(68, "christmas_peanuts", ItemsVM.SYMBOL_CHRISTMAS_PEANUTS),
+		SYMBOL_CHRISTMAS_POKEMON(69, "christmas_pokemon", ItemsVM.SYMBOL_CHRISTMAS_POKEMON);
 		
 		private final int metadata;
 		private final String registryName;

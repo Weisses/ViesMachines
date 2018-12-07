@@ -232,6 +232,16 @@ public class GuiVM {
 	public static GuiButton buttonTexture57;
 	public static GuiButton buttonTexture58;
 	public static GuiButton buttonTexture59;
+	public static GuiButton buttonTexture60;
+	public static GuiButton buttonTexture61;
+	public static GuiButton buttonTexture62;
+	public static GuiButton buttonTexture63;
+	public static GuiButton buttonTexture64;
+	public static GuiButton buttonTexture65;
+	public static GuiButton buttonTexture66;
+	public static GuiButton buttonTexture67;
+	public static GuiButton buttonTexture68;
+	public static GuiButton buttonTexture69;
 	
 	
 	

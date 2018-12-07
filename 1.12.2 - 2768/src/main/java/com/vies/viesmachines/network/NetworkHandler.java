@@ -21,6 +21,8 @@ import com.vies.viesmachines.network.client.machine.eventtrigger.MessageHelperEv
 import com.vies.viesmachines.network.client.tileentity.MessageGuiExtractorSyncClientOn;
 import com.vies.viesmachines.network.client.tileentity.MessageGuiKitFabricatorSyncClientGem;
 import com.vies.viesmachines.network.client.tileentity.MessageGuiKitFabricatorSyncClientOn;
+import com.vies.viesmachines.network.server.item.MessageGuiRadioExpansion;
+import com.vies.viesmachines.network.server.item.MessageHelperItemToolRadioExpansion;
 import com.vies.viesmachines.network.server.machine.MessageFlyingThunderStrike;
 import com.vies.viesmachines.network.server.machine.MessageMachineProjectileShoot;
 import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger01Server;
@@ -139,6 +141,7 @@ public class NetworkHandler {
 		
 		register(MessageConfig.class, MessageConfig.class, Side.SERVER);
 		
+		register(MessageGuiRadioExpansion.class, MessageGuiRadioExpansion.class, Side.SERVER);
 		
 		
 		register(MessageGuiMachineMenuMain.class, MessageGuiMachineMenuMain.class, Side.SERVER);
@@ -249,6 +252,7 @@ public class NetworkHandler {
 		
 		
 		
+		register(MessageHelperItemToolRadioExpansion.class, MessageHelperItemToolRadioExpansion.class, Side.SERVER);
 		
 		
 		register(PlayerMessagePoweredOnEnabled.class, PlayerMessagePoweredOnEnabled.class, Side.SERVER);

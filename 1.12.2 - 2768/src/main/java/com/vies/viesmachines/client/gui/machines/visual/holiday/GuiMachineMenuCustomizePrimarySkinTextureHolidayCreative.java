@@ -3,16 +3,13 @@ package com.vies.viesmachines.client.gui.machines.visual.holiday;
 import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
-import com.vies.viesmachines.api.CostsVM;
 import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.GuiVM;
-import com.vies.viesmachines.api.ItemsVM;
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.api.util.Keybinds;
 import com.vies.viesmachines.client.gui.GuiContainerVC;
@@ -21,13 +18,11 @@ import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VC;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.entity.machines.containers.ContainerMachineNoSlots;
 import com.vies.viesmachines.network.NetworkHandler;
+import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageHelperGuiMachineMenuCustomizePrimarySkinTextureHoliday;
 import com.vies.viesmachines.network.server.machine.gui.customize.primaryskin.MessageGuiMachineMenuCustomizePrimarySkinTexture;
-import com.vies.viesmachines.network.server.machine.gui.customize.primaryskin.MessageHelperGuiMachineMenuCustomizePrimarySkinTexture;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
@@ -35,11 +30,15 @@ import net.minecraft.util.text.TextFormatting;
 
 public class GuiMachineMenuCustomizePrimarySkinTextureHolidayCreative extends GuiContainerVC {
 	
-	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize_holiday.png");
+	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize_display_holiday.png");
+	private final ResourceLocation ICON_TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize_display_holiday_icons.png");
+	private int previewPart;
 	
 	public GuiMachineMenuCustomizePrimarySkinTextureHolidayCreative(IInventory playerInv, EntityMachineBase airshipIn)
 	{
 		super(new ContainerMachineNoSlots(playerInv, airshipIn), playerInv, airshipIn);
+		
+		this.previewPart = 0;
 		
 		this.machineTexture = this.machine.getVisualFrameTexture();
 		this.modelRotationHorizontal = 160;
@@ -54,29 +53,108 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHolidayCreative extends Gu
     	buttonList.clear();
     	Keyboard.enableRepeatEvents(true);
     	
-    	GuiVM.buttonRotateLeft = new GuiButtonGeneral2VC(10, this.guiLeft + 110, this.guiTop + 68, 6, 6, "", 3);
-    	GuiVM.buttonRotateRight = new GuiButtonGeneral2VC(10, this.guiLeft + 122, this.guiTop + 68, 6, 6, "", 3);
-    	GuiVM.buttonRidingPlayerTrue = new GuiButtonGeneral1VC(12, this.guiLeft + 130, this.guiTop + 66, 10, 10, "", 1);
-    	GuiVM.buttonRidingPlayerFalse = new GuiButtonGeneral1VC(13, this.guiLeft + 140, this.guiTop + 66, 10, 10, "", 2);
-    	GuiVM.buttonUndo = new GuiButtonGeneral2VC(11, this.guiLeft + 158, this.guiTop + 66, 10, 10, "", 1);
-		
     	GuiVM.buttonApply = new GuiButtonGeneral1VC(21, this.guiLeft + 7, this.guiTop + 63, 42, 14, References.localNameVC("viesmachines.button.apply"), 1);
 		GuiVM.buttonBack = new GuiButtonGeneral1VC(22, this.guiLeft + 61, this.guiTop + 63, 42, 14, References.localNameVC("viesmachines.button.back"), 2);
 		
 		//--------------------------------------------------
 		
-		GuiVM.buttonTexture00 = new GuiButtonGeneral1VC(110, this.guiLeft + 32-14 + (14 * 0), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture01 = new GuiButtonGeneral1VC(111, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture02 = new GuiButtonGeneral1VC(112, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture03 = new GuiButtonGeneral1VC(113, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture04 = new GuiButtonGeneral1VC(114, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture05 = new GuiButtonGeneral1VC(115, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture06 = new GuiButtonGeneral1VC(116, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture07 = new GuiButtonGeneral1VC(117, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture08 = new GuiButtonGeneral1VC(118, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture09 = new GuiButtonGeneral1VC(119, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7, 14, 14, "", 3);
+		// New Years:
+		GuiVM.buttonTexture00 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture01 = new GuiButtonGeneral1VC(101, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture02 = new GuiButtonGeneral1VC(102, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture03 = new GuiButtonGeneral1VC(103, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture04 = new GuiButtonGeneral1VC(104, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture05 = new GuiButtonGeneral1VC(105, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture06 = new GuiButtonGeneral1VC(106, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture07 = new GuiButtonGeneral1VC(107, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture08 = new GuiButtonGeneral1VC(108, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture09 = new GuiButtonGeneral1VC(109, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		
+		// Valentines Day:
+		GuiVM.buttonTexture10 = new GuiButtonGeneral1VC(110, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture11 = new GuiButtonGeneral1VC(111, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture12 = new GuiButtonGeneral1VC(112, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture13 = new GuiButtonGeneral1VC(113, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture14 = new GuiButtonGeneral1VC(114, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture15 = new GuiButtonGeneral1VC(115, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture16 = new GuiButtonGeneral1VC(116, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture17 = new GuiButtonGeneral1VC(117, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture18 = new GuiButtonGeneral1VC(118, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture19 = new GuiButtonGeneral1VC(119, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		
+		// Easter:
+		GuiVM.buttonTexture20 = new GuiButtonGeneral1VC(120, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture21 = new GuiButtonGeneral1VC(121, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture22 = new GuiButtonGeneral1VC(122, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture23 = new GuiButtonGeneral1VC(123, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture24 = new GuiButtonGeneral1VC(124, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture25 = new GuiButtonGeneral1VC(125, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture26 = new GuiButtonGeneral1VC(126, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture27 = new GuiButtonGeneral1VC(127, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture28 = new GuiButtonGeneral1VC(128, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture29 = new GuiButtonGeneral1VC(129, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		
+		// 4th of July:
+		GuiVM.buttonTexture30 = new GuiButtonGeneral1VC(130, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture31 = new GuiButtonGeneral1VC(131, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture32 = new GuiButtonGeneral1VC(132, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture33 = new GuiButtonGeneral1VC(133, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture34 = new GuiButtonGeneral1VC(134, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture35 = new GuiButtonGeneral1VC(135, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture36 = new GuiButtonGeneral1VC(136, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture37 = new GuiButtonGeneral1VC(137, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture38 = new GuiButtonGeneral1VC(138, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture39 = new GuiButtonGeneral1VC(139, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		
+		// Halloween:
+		GuiVM.buttonTexture40 = new GuiButtonGeneral1VC(140, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture41 = new GuiButtonGeneral1VC(141, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture42 = new GuiButtonGeneral1VC(142, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture43 = new GuiButtonGeneral1VC(143, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture44 = new GuiButtonGeneral1VC(144, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture45 = new GuiButtonGeneral1VC(145, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture46 = new GuiButtonGeneral1VC(146, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture47 = new GuiButtonGeneral1VC(147, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture48 = new GuiButtonGeneral1VC(148, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture49 = new GuiButtonGeneral1VC(149, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		
+		// Thanksgiving:
+		GuiVM.buttonTexture50 = new GuiButtonGeneral1VC(150, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture51 = new GuiButtonGeneral1VC(151, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture52 = new GuiButtonGeneral1VC(152, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture53 = new GuiButtonGeneral1VC(153, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture54 = new GuiButtonGeneral1VC(154, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture55 = new GuiButtonGeneral1VC(155, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture56 = new GuiButtonGeneral1VC(156, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture57 = new GuiButtonGeneral1VC(157, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture58 = new GuiButtonGeneral1VC(158, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture59 = new GuiButtonGeneral1VC(159, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		
+		// Christmas:
+		GuiVM.buttonTexture60 = new GuiButtonGeneral1VC(160, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture61 = new GuiButtonGeneral1VC(161, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture62 = new GuiButtonGeneral1VC(162, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture63 = new GuiButtonGeneral1VC(163, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture64 = new GuiButtonGeneral1VC(164, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture65 = new GuiButtonGeneral1VC(165, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture66 = new GuiButtonGeneral1VC(166, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture67 = new GuiButtonGeneral1VC(167, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture68 = new GuiButtonGeneral1VC(168, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture69 = new GuiButtonGeneral1VC(169, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		
+		// Holidays:
+		GuiVM.button11 = new GuiButtonGeneral2VC(51, this.guiLeft + 22 + (70 * 0), this.guiTop + 98 - 14 + (14 * 0), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.newyears"), false), 2);
+		GuiVM.button12 = new GuiButtonGeneral2VC(52, this.guiLeft + 22 + (70 * 1), this.guiTop + 98 - 14 + (14 * 0), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.valentinesday"), false), 2);
+		GuiVM.button13 = new GuiButtonGeneral2VC(53, this.guiLeft + 22 + (70 * 0), this.guiTop + 98 - 14 + (14 * 1), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.easter"), false), 2);
+		GuiVM.button14 = new GuiButtonGeneral2VC(54, this.guiLeft + 22 + (70 * 1), this.guiTop + 98 - 14 + (14 * 1), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.4thofjuly"), false), 2);
+		GuiVM.button15 = new GuiButtonGeneral2VC(55, this.guiLeft + 22 + (70 * 0), this.guiTop + 98 - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.halloween"), false), 2);
+		GuiVM.button16 = new GuiButtonGeneral2VC(56, this.guiLeft + 22 + (70 * 1), this.guiTop + 98 - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.thanksgiving"), false), 2);
+		GuiVM.button17 = new GuiButtonGeneral2VC(57, this.guiLeft + 22 + (70 * 0), this.guiTop + 98 - 14 + (14 * 3), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.christmas"), false), 2);
 		
 		//--------------------------------------------------
+		
+		this.buttonList.add(GuiVM.buttonApply);
+		this.buttonList.add(GuiVM.buttonBack);
 		
 		this.buttonList.add(GuiVM.buttonTexture00);
 		this.buttonList.add(GuiVM.buttonTexture01);
@@ -86,18 +164,83 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHolidayCreative extends Gu
 		this.buttonList.add(GuiVM.buttonTexture05);
 		this.buttonList.add(GuiVM.buttonTexture06);
 		this.buttonList.add(GuiVM.buttonTexture07);
-		this.buttonList.add(GuiVM.buttonTexture08);
-		this.buttonList.add(GuiVM.buttonTexture09);
+		//this.buttonList.add(GuiVM.buttonTexture08);
+		//this.buttonList.add(GuiVM.buttonTexture09);
 		
-		this.buttonList.add(GuiVM.buttonApply);
-		this.buttonList.add(GuiVM.buttonBack);
+		this.buttonList.add(GuiVM.buttonTexture10);
+		this.buttonList.add(GuiVM.buttonTexture11);
+		this.buttonList.add(GuiVM.buttonTexture12);
+		this.buttonList.add(GuiVM.buttonTexture13);
+		this.buttonList.add(GuiVM.buttonTexture14);
+		this.buttonList.add(GuiVM.buttonTexture15);
+		this.buttonList.add(GuiVM.buttonTexture16);
+		this.buttonList.add(GuiVM.buttonTexture17);
+		//this.buttonList.add(GuiVM.buttonTexture18);
+		//this.buttonList.add(GuiVM.buttonTexture19);
 		
-		this.buttonList.add(GuiVM.buttonRotateLeft);
-    	this.buttonList.add(GuiVM.buttonRotateRight);
-    	this.buttonList.add(GuiVM.buttonRidingPlayerTrue);
-    	this.buttonList.add(GuiVM.buttonRidingPlayerFalse);
-    	this.buttonList.add(GuiVM.buttonUndo);
-    	
+		this.buttonList.add(GuiVM.buttonTexture20);
+		this.buttonList.add(GuiVM.buttonTexture21);
+		this.buttonList.add(GuiVM.buttonTexture22);
+		this.buttonList.add(GuiVM.buttonTexture23);
+		this.buttonList.add(GuiVM.buttonTexture24);
+		this.buttonList.add(GuiVM.buttonTexture25);
+		this.buttonList.add(GuiVM.buttonTexture26);
+		this.buttonList.add(GuiVM.buttonTexture27);
+		//this.buttonList.add(GuiVM.buttonTexture28);
+		//this.buttonList.add(GuiVM.buttonTexture29);
+		
+		this.buttonList.add(GuiVM.buttonTexture30);
+		this.buttonList.add(GuiVM.buttonTexture31);
+		this.buttonList.add(GuiVM.buttonTexture32);
+		this.buttonList.add(GuiVM.buttonTexture33);
+		this.buttonList.add(GuiVM.buttonTexture34);
+		this.buttonList.add(GuiVM.buttonTexture35);
+		this.buttonList.add(GuiVM.buttonTexture36);
+		this.buttonList.add(GuiVM.buttonTexture37);
+		//this.buttonList.add(GuiVM.buttonTexture38);
+		//this.buttonList.add(GuiVM.buttonTexture39);
+		
+		this.buttonList.add(GuiVM.buttonTexture40);
+		this.buttonList.add(GuiVM.buttonTexture41);
+		this.buttonList.add(GuiVM.buttonTexture42);
+		this.buttonList.add(GuiVM.buttonTexture43);
+		this.buttonList.add(GuiVM.buttonTexture44);
+		this.buttonList.add(GuiVM.buttonTexture45);
+		this.buttonList.add(GuiVM.buttonTexture46);
+		this.buttonList.add(GuiVM.buttonTexture47);
+		//this.buttonList.add(GuiVM.buttonTexture48);
+		//this.buttonList.add(GuiVM.buttonTexture49);
+		
+		this.buttonList.add(GuiVM.buttonTexture50);
+		this.buttonList.add(GuiVM.buttonTexture51);
+		this.buttonList.add(GuiVM.buttonTexture52);
+		this.buttonList.add(GuiVM.buttonTexture53);
+		this.buttonList.add(GuiVM.buttonTexture54);
+		this.buttonList.add(GuiVM.buttonTexture55);
+		this.buttonList.add(GuiVM.buttonTexture56);
+		this.buttonList.add(GuiVM.buttonTexture57);
+		//this.buttonList.add(GuiVM.buttonTexture58);
+		//this.buttonList.add(GuiVM.buttonTexture59);
+		
+		this.buttonList.add(GuiVM.buttonTexture60);
+		this.buttonList.add(GuiVM.buttonTexture61);
+		this.buttonList.add(GuiVM.buttonTexture62);
+		this.buttonList.add(GuiVM.buttonTexture63);
+		this.buttonList.add(GuiVM.buttonTexture64);
+		this.buttonList.add(GuiVM.buttonTexture65);
+		this.buttonList.add(GuiVM.buttonTexture66);
+		this.buttonList.add(GuiVM.buttonTexture67);
+		//this.buttonList.add(GuiVM.buttonTexture68);
+		//this.buttonList.add(GuiVM.buttonTexture69);
+		
+		this.buttonList.add(GuiVM.button11);
+		this.buttonList.add(GuiVM.button12);
+		this.buttonList.add(GuiVM.button13);
+		this.buttonList.add(GuiVM.button14);
+		this.buttonList.add(GuiVM.button15);
+		this.buttonList.add(GuiVM.button16);
+		this.buttonList.add(GuiVM.button17);
+		
     	this.buttonList.add(GuiVM.buttonMM1);
 		this.buttonList.add(GuiVM.buttonMM2);
 		this.buttonList.add(GuiVM.buttonMM3);
@@ -113,19 +256,31 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHolidayCreative extends Gu
 		// Apply:
 		if (parButton.id == 21)
 		{
-			NetworkHandler.sendToServer(new MessageHelperGuiMachineMenuCustomizePrimarySkinTexture());
+			NetworkHandler.sendToServer(new MessageHelperGuiMachineMenuCustomizePrimarySkinTextureHoliday());
 		}
+		
 		// Back:
 		if (parButton.id == 22)
 		{
 			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizePrimarySkinTexture());
 		}
-		// All main texture buttons:
-		if (parButton.id >= 100
-		&& parButton.id <= 199)
-		{
-			this.machineTexture = (parButton.id - 100);
-		}
+		
+		// Symbol Holiday Buttons:
+		if (parButton.id >= 51
+		 && parButton.id <= 60)
+	    {
+			int fixedNumber = parButton.id - 50;
+			
+			this.previewPart = fixedNumber;
+	    }
+		
+		// Symbol Holiday Buttons:
+		if (parButton.id >= 100)
+	    {
+			int fixedNumber = parButton.id + 900;
+			
+			this.machineTexture = fixedNumber;
+	    }
 		
         this.buttonList.clear();
         this.initGui();
@@ -138,24 +293,24 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHolidayCreative extends Gu
 		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
 		
 		// Draws a gray box behind the main background texture:
-		this.drawRect(this.guiLeft +8, this.guiTop + 6, this.guiLeft +168, this.guiTop + 64, Color.GRAY.getRGB());
-		
-		// Current texture:
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(55, 43, 0);
-			
-			this.drawStillItemStack(EnumsVM.VisualPrimaryTexture.byId(this.machine.getVisualFrameTexture()).getBlock(), this.guiLeft , this.guiTop);
-		}
-		GlStateManager.popMatrix();
+		this.drawRect(this.guiLeft + 8, this.guiTop + 8, this.guiLeft + 168, this.guiTop + 76, Color.GRAY.getRGB());
 		
 		// Colors, binds, and draws the background texture:
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		this.mc.getTextureManager().bindTexture(TEXTURE);
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
-		
-		// Render Preview Entity of Machine:
-		this.drawEntityOnScreen(this.guiLeft + 139, this.guiTop + 58, this.modelRotationHorizontal, 13, this.machine, this.modelRidingEntity);
+
+		// Current texture:
+		if (this.machine.getVisualFrameTexture() < 1000)
+		{
+			GlStateManager.pushMatrix();
+			{
+				GlStateManager.translate(55, 43, 0);
+				
+				this.drawStillItemStack(EnumsVM.VisualMachineTexture.byId(this.machine.getVisualFrameTexture()).getBlock(), this.guiLeft , this.guiTop);
+			}
+			GlStateManager.popMatrix();
+		}
 	}
 	
 	@Override
@@ -163,23 +318,212 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHolidayCreative extends Gu
 	{
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		
-		// 'Primary Texture':
+		// Current Texture:
+		if (this.machine.getVisualFrameTexture() >= 1000)
+		{
+			GlStateManager.pushMatrix();
+			{
+				GL11.glColor4f(1F, 1F, 1F, 1F);
+				
+		    	GlStateManager.translate(28.865 + (14 * 1), 25, 0);
+				GlStateManager.scale(0.75F, 0.75F, 0.75F);
+				
+				// Colors, binds, and draws the background texture:
+				GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+				this.mc.getTextureManager().bindTexture(ICON_TEXTURE);
+				
+				// Christmas:
+				{
+					if (this.machine.getVisualFrameTexture() == 1060)
+					{
+						this.drawTexturedModalRect((56 * 0), 0, (32 * 0), 0, 32, 32);
+					}
+					if (this.machine.getVisualFrameTexture() == 1061)
+					{
+						this.drawTexturedModalRect((56 * 0), 0, (32 * 1), 0, 32, 32);
+					}
+					if (this.machine.getVisualFrameTexture() == 1062)
+					{
+						this.drawTexturedModalRect((56 * 0), 0, (32 * 2), 0, 32, 32);
+					}
+					if (this.machine.getVisualFrameTexture() == 1063)
+					{
+						this.drawTexturedModalRect((56 * 0), 0, (32 * 3), 0, 32, 32);
+					}
+					if (this.machine.getVisualFrameTexture() == 1064)
+					{
+						this.drawTexturedModalRect((56 * 0), 0, (32 * 4), 0, 32, 32);
+					}
+					if (this.machine.getVisualFrameTexture() == 1065)
+					{
+						this.drawTexturedModalRect((56 * 0), 0, (32 * 5), 0, 32, 32);
+					}
+					if (this.machine.getVisualFrameTexture() == 1066)
+					{
+						this.drawTexturedModalRect((56 * 0), 0, (32 * 6), 0, 32, 32);
+					}
+					if (this.machine.getVisualFrameTexture() == 1067)
+					{
+						this.drawTexturedModalRect((56 * 0), 0, (32 * 7), 0, 32, 32);
+					}
+				}
+			}
+			GlStateManager.popMatrix();
+		}
+		
+		// Preview:
+		GlStateManager.pushMatrix();
+		{
+			GL11.glColor4f(1F, 1F, 1F, 1F);
+			
+	    	GlStateManager.translate(28 + (14 * 7), 25, 0);
+			GlStateManager.scale(0.75F, 0.75F, 0.75F);
+			
+			// Colors, binds, and draws the background texture:
+			GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+			this.mc.getTextureManager().bindTexture(ICON_TEXTURE);
+			
+			// Christmas:
+			if(this.previewPart == 7)
+			{
+				if (this.machineTexture == 1060)
+				{
+					this.drawTexturedModalRect((56 * 0), 0, (32 * 0), 0, 32, 32);
+				}
+				if (this.machineTexture == 1061)
+				{
+					this.drawTexturedModalRect((56 * 0), 0, (32 * 1), 0, 32, 32);
+				}
+				if (this.machineTexture == 1062)
+				{
+					this.drawTexturedModalRect((56 * 0), 0, (32 * 2), 0, 32, 32);
+				}
+				if (this.machineTexture == 1063)
+				{
+					this.drawTexturedModalRect((56 * 0), 0, (32 * 3), 0, 32, 32);
+				}
+				if (this.machineTexture == 1064)
+				{
+					this.drawTexturedModalRect((56 * 0), 0, (32 * 4), 0, 32, 32);
+				}
+				if (this.machineTexture == 1065)
+				{
+					this.drawTexturedModalRect((56 * 0), 0, (32 * 5), 0, 32, 32);
+				}
+				if (this.machineTexture == 1066)
+				{
+					this.drawTexturedModalRect((56 * 0), 0, (32 * 6), 0, 32, 32);
+				}
+				if (this.machineTexture == 1067)
+				{
+					this.drawTexturedModalRect((56 * 0), 0, (32 * 7), 0, 32, 32);
+				}
+			}
+		}
+		GlStateManager.popMatrix();
+		
+		// 'New Years':
+		if(this.previewPart == 1)
+		{
+			GlStateManager.pushMatrix();
+			{
+				GlStateManager.translate(39, 83+33+33, 0);
+		        GlStateManager.scale(0.75F, 0.75F, 0.75F);
+		        
+		        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.newyears"), false), 0, 0, Color.BLACK.getRGB());
+			}
+			GlStateManager.popMatrix();
+		}
+		// 'Valentines Day':
+		if(this.previewPart == 2)
+		{
+			GlStateManager.pushMatrix();
+			{
+				GlStateManager.translate(39, 83+33+33, 0);
+		        GlStateManager.scale(0.75F, 0.75F, 0.75F);
+		        
+		        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.valentinesday"), false), 0, 0, Color.BLACK.getRGB());
+			}
+			GlStateManager.popMatrix();
+		}
+		// 'Easter':
+		if(this.previewPart == 3)
+		{
+			GlStateManager.pushMatrix();
+			{
+				GlStateManager.translate(39, 83+33+33, 0);
+		        GlStateManager.scale(0.75F, 0.75F, 0.75F);
+		        
+		        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.easter"), false), 0, 0, Color.BLACK.getRGB());
+			}
+			GlStateManager.popMatrix();
+		}
+		// '4th of July':
+		if(this.previewPart == 4)
+		{
+			GlStateManager.pushMatrix();
+			{
+				GlStateManager.translate(39, 83+33+33, 0);
+		        GlStateManager.scale(0.75F, 0.75F, 0.75F);
+		        
+		        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.4thofjuly"), false), 0, 0, Color.BLACK.getRGB());
+			}
+			GlStateManager.popMatrix();
+		}
+		// 'Halloween':
+		if(this.previewPart == 5)
+		{
+			GlStateManager.pushMatrix();
+			{
+				GlStateManager.translate(39, 83+33+33, 0);
+		        GlStateManager.scale(0.75F, 0.75F, 0.75F);
+		        
+		        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.halloween"), false), 0, 0, Color.BLACK.getRGB());
+			}
+			GlStateManager.popMatrix();
+		}
+		// 'Thanksgiving':
+		if(this.previewPart == 6)
+		{
+			GlStateManager.pushMatrix();
+			{
+				GlStateManager.translate(39, 83+33+33, 0);
+		        GlStateManager.scale(0.75F, 0.75F, 0.75F);
+		        
+		        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.thanksgiving"), false), 0, 0, Color.BLACK.getRGB());
+			}
+			GlStateManager.popMatrix();
+		}
+		// 'Christmas':
+		if(this.previewPart == 7)
+		{
+			GlStateManager.pushMatrix();
+			{
+				GlStateManager.translate(39, 83+33+33, 0);
+		        GlStateManager.scale(0.75F, 0.75F, 0.75F);
+		        
+		        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.christmas"), false), 0, 0, Color.BLACK.getRGB());
+			}
+			GlStateManager.popMatrix();
+		}
+		
+		// 'Holiday':
 		GlStateManager.pushMatrix();
 		{
 			GlStateManager.translate(55.5, 11, 0);
 	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 	        
-	        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.christmas"), false), 0, 0, Color.BLACK.getRGB());
+	        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.holiday"), false), 0, 0, Color.BLACK.getRGB());
 		}
 		GlStateManager.popMatrix();
 		
-		// 'Current Texture':
+		// 'Current Banner':
 		GlStateManager.pushMatrix();
 		{
 			GlStateManager.translate(55.25, 53, 0);
 	        GlStateManager.scale(0.5F, 0.5F, 0.5F);
 	        
-	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.currenttexture.0"), 0, 0, Color.BLUE.getRGB());
+	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.displaybanner.currentbanner.0"), 0, 0, Color.BLUE.getRGB());
 		}
 		GlStateManager.popMatrix();
 		
@@ -193,170 +537,40 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHolidayCreative extends Gu
 		}
 		GlStateManager.popMatrix();
 		
-		// 'Holiday':
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(39, 83, 0);
-	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	        
-	        this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.holiday"), false), 0, 0, Color.CYAN.getRGB());
-		}
-		GlStateManager.popMatrix();
+		// Draws a black box over the preview buttons:
+		this.drawRect(108, 66, 130, 76, Color.BLACK.getRGB());
 		
-		//--------------------------------------------------
-		
-		// Renders the default row blocks over buttons:
+		// General Row item over button:
 		GlStateManager.pushMatrix();
 		{
 			GL11.glColor4f(1F, 1F, 1F, 1F);
 			
-	    	GlStateManager.translate(39-28, 98.75, 0);
-			GlStateManager.scale(0.5F, 0.5F, 0.5F);
-			
-			this.drawItemStack(EnumsVM.VisualPrimaryTexture.DEFAULT.getBlock(), ((14 * 1) * 2), 0, "");
-			this.drawItemStack(EnumsVM.VisualPrimaryTexture.COBBLESTONE.getBlock(), ((14 * 2) * 2), 0, "");
-			this.drawItemStack(EnumsVM.VisualPrimaryTexture.SANDSTONE.getBlock(), ((14 * 3) * 2), 0, "");
-			this.drawItemStack(EnumsVM.VisualPrimaryTexture.SNOW.getBlock(), ((14 * 4) * 2), 0, "");
-			this.drawItemStack(EnumsVM.VisualPrimaryTexture.HAY_BLOCK.getBlock(), ((14 * 5) * 2), 0, "");
-		}
-		GlStateManager.popMatrix();
-		
-		// Draws a black line under the machine preview options buttons:
-		this.drawRect(130, 75, 168, 76, Color.BLACK.getRGB());
-		
-		// Colors and binds the background texture:
-		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
-		this.mc.getTextureManager().bindTexture(TEXTURE);
-		
-		// Preview Left Arrow symbol:
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(110, 67.75, 0);
-			GlStateManager.scale(0.5F, 0.5F, 0.5F);
-			
-			this.drawTexturedModalRect(0, 0, 176, 16, 12, 12);
-		}
-		GlStateManager.popMatrix();
-		// Preview Right Arrow symbol:
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(122, 67.75, 0);
-			GlStateManager.scale(0.5F, 0.5F, 0.5F);
-			
-			this.drawTexturedModalRect(0, 0, 176, 28, 12, 12);
-		}
-		GlStateManager.popMatrix();
-		// Preview Steve head symbol:
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(132, 67.5, 0);
-			GlStateManager.scale(0.5F, 0.5F, 0.5F);
-			
-			this.drawTexturedModalRect(0, 0, 176, 40, 12, 12);
-		}
-		GlStateManager.popMatrix();
-		// Preview Steve head 'X' symbol:
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(142, 67.5, 0);
-			GlStateManager.scale(0.5F, 0.5F, 0.5F);
-			
-			this.drawTexturedModalRect(0, 0, 176, 52, 12, 12);
-		}
-		GlStateManager.popMatrix();
-		// Preview Undo symbol:
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(161, 69, 0);
+	    	GlStateManager.translate(21+14, 164, 0);
 			GlStateManager.scale(0.25F, 0.25F, 0.25F);
 			
-			this.drawTexturedModalRect(0, 0, 176, 0, 16, 16);
+			// Colors, binds, and draws the background texture:
+			GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+			this.mc.getTextureManager().bindTexture(ICON_TEXTURE);
+			
+			// Christmas:
+			if(this.previewPart == 7)
+			{
+				this.drawTexturedModalRect((56 * 0), 0, (32 * 0), 0, 32, 32);
+				this.drawTexturedModalRect((56 * 1), 0, (32 * 1), 0, 32, 32);
+				this.drawTexturedModalRect((56 * 2), 0, (32 * 2), 0, 32, 32);
+				this.drawTexturedModalRect((56 * 3), 0, (32 * 3), 0, 32, 32);
+				this.drawTexturedModalRect((56 * 4), 0, (32 * 4), 0, 32, 32);
+				this.drawTexturedModalRect((56 * 5), 0, (32 * 5), 0, 32, 32);
+				this.drawTexturedModalRect((56 * 6), 0, (32 * 6), 0, 32, 32);
+				this.drawTexturedModalRect((56 * 7), 0, (32 * 7), 0, 32, 32);
+				
+			}
 		}
 		GlStateManager.popMatrix();
-		
-		
 		
 		this.mouseOverTooltipHandler(mouseX, mouseY);
 		
-		
-		
-		// Logic for mouse-over tooltip - Turn Left:
-		if(mouseX >= this.guiLeft + 110 && mouseX <= this.guiLeft + 115
-		&& mouseY >= this.guiTop + 68 && mouseY <= this.guiTop + 73)
-		{
-			if(this.isShiftKeyDown())
-			{
-				List<String> text = new ArrayList<String>();
-				text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.general.previewturnleft.0"));
-				
-				GlStateManager.pushMatrix();
-				{
-					int textNumber = text.toString().length();
-					
-					GlStateManager.translate(mouseX - this.guiLeft + 3 - textNumber - (textNumber / 2), mouseY - this.guiTop + 6, 0);
-					GlStateManager.scale(0.5, 0.5, 0.5);
-					
-					this.drawHoveringText(text, 0, 0);
-				}
-				GlStateManager.popMatrix();
-			}
-			else
-			{
-				List<String> text = new ArrayList<String>();
-				text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.general.previewturn.0"));
-				
-				GlStateManager.pushMatrix();
-				{
-					int textNumber = text.toString().length();
-					
-					GlStateManager.translate(mouseX - this.guiLeft + 3 - textNumber - (textNumber / 2), mouseY - this.guiTop + 6, 0);
-					GlStateManager.scale(0.5, 0.5, 0.5);
-					
-					this.drawHoveringText(text, 0, 0);
-				}
-				GlStateManager.popMatrix();
-			}
-		}
-		
-		// Logic for mouse-over tooltip - Turn Right:
-		if(mouseX >= this.guiLeft + 122 && mouseX <= this.guiLeft + 127
-		&& mouseY >= this.guiTop + 68 && mouseY <= this.guiTop + 73)
-		{
-			if(this.isShiftKeyDown())
-			{
-				List<String> text = new ArrayList<String>();
-				text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.general.previewturnright.0"));
-				
-				GlStateManager.pushMatrix();
-				{
-					int textNumber = text.toString().length();
-					
-					GlStateManager.translate(mouseX - this.guiLeft + 3 - textNumber - (textNumber / 2), mouseY - this.guiTop + 6, 0);
-					GlStateManager.scale(0.5, 0.5, 0.5);
-					
-					this.drawHoveringText(text, 0, 0);
-				}
-				GlStateManager.popMatrix();
-			}
-			else
-			{
-				List<String> text = new ArrayList<String>();
-				text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.general.previewturn.0"));
-				
-				GlStateManager.pushMatrix();
-				{
-					int textNumber = text.toString().length();
-					
-					GlStateManager.translate(mouseX - this.guiLeft + 3 - textNumber - (textNumber / 2), mouseY - this.guiTop + 6, 0);
-					GlStateManager.scale(0.5, 0.5, 0.5);
-					
-					this.drawHoveringText(text, 0, 0);
-				}
-				GlStateManager.popMatrix();
-			}
-		}
-		
-		
+		//--------------------------------------------------
 		
 		// Logic for mouse-over tooltip - Apply:
 		if (mouseX >= this.guiLeft + 7 && mouseX <= this.guiLeft + 7+41
@@ -366,7 +580,7 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHolidayCreative extends Gu
 			
 			if (!GuiVM.buttonApply.enabled)
 			{
-				
+				text.add(TextFormatting.RED + References.localNameVC("viesmachines.gui.tt.customize.color.cost.0"));
 			}
 			else
 			{
@@ -403,60 +617,183 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHolidayCreative extends Gu
         super.updateScreen();
         
         // Handles when the 'Apply' button is enabled:
-        if (this.machine.getControllingPassenger() instanceof EntityPlayer)
-    	{
-    		EntityPlayer player = (EntityPlayer) this.machine.getControllingPassenger();
-    		
-    		if (this.machineTexture == this.machine.getVisualFrameTexture())
-    		{
-    			GuiVM.buttonApply.enabled = false;
-    		}
-    		else if (this.machineTexture == 0)
-    		{
-    			GuiVM.buttonApply.enabled = true;
-    		}
-    		else if (player.isCreative())
-    		{
-    			GuiVM.buttonApply.enabled = true;
-    		}
-    		else if (this.machine.getEnergy() >= CostsVM.COST_FRAME_TEXTURE)
-    		{
-    			GuiVM.buttonApply.enabled = true;
-    		}
-    		else
-    		{
-    			GuiVM.buttonApply.enabled = false;
-    		}
-    	}
+        if (this.machineTexture < 1000)
+        {
+        	GuiVM.buttonApply.enabled = false;
+        }
+        else
+        {
+        	if (this.machine.getControllingPassenger() instanceof EntityPlayer)
+        	{
+        		EntityPlayer player = (EntityPlayer) this.machine.getControllingPassenger();
+        		
+        		if (this.machineTexture == this.machine.getVisualFrameTexture())
+        		{
+        			GuiVM.buttonApply.enabled = false;
+        		}
+        		else
+        		{
+        			GuiVM.buttonApply.enabled = true;
+        		}
+        	}
+        }
         
-        //--------------------------------------------------
+        this.hideAllButtons();
         
-        // Deals with the Preview player buttons toggle:
-        if(!this.modelRidingEntity)
+ 		// Handles the buttons for Previewing New Years:
+ 		if(this.previewPart == 1)
 		{
-        	GuiVM.buttonRidingPlayerTrue.enabled = true;
-			GuiVM.buttonRidingPlayerFalse.enabled = false;
+ 			GuiVM.button11.enabled = false;
+ 			
+			GuiVM.buttonTexture00.visible = true;
+	    	GuiVM.buttonTexture01.visible = true;
+	    	GuiVM.buttonTexture02.visible = true;
+			GuiVM.buttonTexture03.visible = true;
+	    	GuiVM.buttonTexture04.visible = true;
+	    	GuiVM.buttonTexture05.visible = true;
+			GuiVM.buttonTexture06.visible = true;
+			GuiVM.buttonTexture07.visible = true;
+			//GuiVM.buttonTexture08.visible = true;
+			//GuiVM.buttonTexture09.visible = true;
 		}
-		else
-		{
-			GuiVM.buttonRidingPlayerTrue.enabled = false;
-			GuiVM.buttonRidingPlayerFalse.enabled = true;
-		}
-        
-        // Turn machine preview left with shift down:
-        if (GuiVM.buttonRotateLeft.isMouseOver() 
-		&& this.isShiftKeyDown())
- 	    {
- 			this.modelRotationHorizontal = this.modelRotationHorizontal - 2;
+ 		else
+ 		{
+ 			GuiVM.button11.enabled = true;
  		}
- 		// Turn machine preview right with shift down:
- 		if (GuiVM.buttonRotateRight.isMouseOver()
- 		&& this.isShiftKeyDown())
- 	    {
- 			this.modelRotationHorizontal = this.modelRotationHorizontal + 2;
+        
+ 		// Handles the buttons for Previewing Valentines Day:
+ 		if(this.previewPart == 2)
+		{
+ 			GuiVM.button12.enabled = false;
+ 			
+			GuiVM.buttonTexture10.visible = true;
+	    	GuiVM.buttonTexture11.visible = true;
+	    	GuiVM.buttonTexture12.visible = true;
+			GuiVM.buttonTexture13.visible = true;
+	    	GuiVM.buttonTexture14.visible = true;
+	    	GuiVM.buttonTexture15.visible = true;
+			GuiVM.buttonTexture16.visible = true;
+			GuiVM.buttonTexture17.visible = true;
+			//GuiVM.buttonTexture18.visible = true;
+			//GuiVM.buttonTexture19.visible = true;
+		}
+ 		else
+ 		{
+ 			GuiVM.button12.enabled = true;
+ 		}
+        
+ 		// Handles the buttons for Previewing Easter:
+ 		if(this.previewPart == 3)
+		{
+ 			GuiVM.button13.enabled = false;
+ 			
+			GuiVM.buttonTexture20.visible = true;
+	    	GuiVM.buttonTexture21.visible = true;
+	    	GuiVM.buttonTexture22.visible = true;
+			GuiVM.buttonTexture23.visible = true;
+	    	GuiVM.buttonTexture24.visible = true;
+	    	GuiVM.buttonTexture25.visible = true;
+			GuiVM.buttonTexture26.visible = true;
+			GuiVM.buttonTexture27.visible = true;
+			//GuiVM.buttonTexture28.visible = true;
+			//GuiVM.buttonTexture29.visible = true;
+		}
+ 		else
+ 		{
+ 			GuiVM.button13.enabled = true;
+ 		}
+        
+ 		// Handles the buttons for Previewing 4th of July:
+ 		if(this.previewPart == 4)
+		{
+ 			GuiVM.button14.enabled = false;
+ 			
+			GuiVM.buttonTexture30.visible = true;
+	    	GuiVM.buttonTexture31.visible = true;
+	    	GuiVM.buttonTexture32.visible = true;
+			GuiVM.buttonTexture33.visible = true;
+	    	GuiVM.buttonTexture34.visible = true;
+	    	GuiVM.buttonTexture35.visible = true;
+			GuiVM.buttonTexture36.visible = true;
+			GuiVM.buttonTexture37.visible = true;
+			//GuiVM.buttonTexture38.visible = true;
+			//GuiVM.buttonTexture39.visible = true;
+		}
+ 		else
+ 		{
+ 			GuiVM.button14.enabled = true;
+ 		}
+        
+ 		// Handles the buttons for Previewing Halloween:
+ 		if(this.previewPart == 5)
+		{
+ 			GuiVM.button15.enabled = false;
+ 			
+			GuiVM.buttonTexture40.visible = true;
+	    	GuiVM.buttonTexture41.visible = true;
+	    	GuiVM.buttonTexture42.visible = true;
+			GuiVM.buttonTexture43.visible = true;
+	    	GuiVM.buttonTexture44.visible = true;
+	    	GuiVM.buttonTexture45.visible = true;
+			GuiVM.buttonTexture46.visible = true;
+			GuiVM.buttonTexture47.visible = true;
+			//GuiVM.buttonTexture48.visible = true;
+			//GuiVM.buttonTexture49.visible = true;
+		}
+ 		else
+ 		{
+ 			GuiVM.button15.enabled = true;
+ 		}
+        
+ 		// Handles the buttons for Previewing Thanksgiving:
+ 		if(this.previewPart == 6)
+		{
+ 			GuiVM.button16.enabled = false;
+ 			
+			GuiVM.buttonTexture50.visible = true;
+	    	GuiVM.buttonTexture51.visible = true;
+	    	GuiVM.buttonTexture52.visible = true;
+			GuiVM.buttonTexture53.visible = true;
+	    	GuiVM.buttonTexture54.visible = true;
+	    	GuiVM.buttonTexture55.visible = true;
+			GuiVM.buttonTexture56.visible = true;
+			GuiVM.buttonTexture57.visible = true;
+			//GuiVM.buttonTexture58.visible = true;
+			//GuiVM.buttonTexture59.visible = true;
+		}
+ 		else
+ 		{
+ 			GuiVM.button16.enabled = true;
+ 		}
+        
+ 		// Handles the buttons for Previewing Christmas:
+ 		if(this.previewPart == 7)
+		{
+ 			GuiVM.button17.enabled = false;
+ 			
+			GuiVM.buttonTexture60.visible = true;
+	    	GuiVM.buttonTexture61.visible = true;
+	    	GuiVM.buttonTexture62.visible = true;
+			GuiVM.buttonTexture63.visible = true;
+	    	GuiVM.buttonTexture64.visible = true;
+	    	GuiVM.buttonTexture65.visible = true;
+			GuiVM.buttonTexture66.visible = true;
+			GuiVM.buttonTexture67.visible = true;
+			//GuiVM.buttonTexture68.visible = true;
+			//GuiVM.buttonTexture69.visible = true;
+		}
+ 		else
+ 		{
+ 			GuiVM.button17.enabled = true;
  		}
  		
- 		this.buttonHandler();
+ 		//TODO Placed to block unfinished holidays
+ 		GuiVM.button11.enabled = false;
+ 		GuiVM.button12.enabled = false;
+ 		GuiVM.button13.enabled = false;
+ 		GuiVM.button14.enabled = false;
+ 		GuiVM.button15.enabled = false;
+ 		GuiVM.button16.enabled = false;
     }
 	
 	@Override
@@ -473,13 +810,13 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHolidayCreative extends Gu
 		&& mouseY >= this.guiTop + yIn && mouseY <= this.guiTop + yIn + 13)
 		{
 			List<String> text = new ArrayList<String>();
-			text.add(TextFormatting.GREEN + "" + TextFormatting.BOLD + References.Old_I18n.translateToLocal(EnumsVM.VisualPrimaryTexture.byId(enumIn).getLocalizedName()));
+			text.add(TextFormatting.GREEN + "" + TextFormatting.BOLD + References.Old_I18n.translateToLocal(EnumsVM.VisualTextureHoliday.byId(enumIn).getLocalizedName()));
 			
 			GlStateManager.pushMatrix();
 			{
-				int textNumber = References.Old_I18n.translateToLocal(EnumsVM.VisualPrimaryTexture.byId(enumIn).getLocalizedName()).length();
+				int textNumber = text.toString().length();
 				
-				GlStateManager.translate(mouseX - this.guiLeft - 6 - textNumber - (textNumber / 2), mouseY - this.guiTop - 11, 0);
+				GlStateManager.translate(mouseX - this.guiLeft +3 - textNumber - (textNumber / 2), mouseY - this.guiTop - 11, 0);
 				GlStateManager.scale(0.5, 0.5, 0.5);
 				
 				this.drawHoveringText(text, 0, 0);
@@ -488,601 +825,110 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHolidayCreative extends Gu
 		}
 	}
 	
-	/** Deals with visibility and enabled texture buttons: */
-	protected void buttonHandler()
-	{
-		// Tier 1:
-		if (this.machine.getTierFrame() >= 1)
-		{
-			GuiVM.buttonTexture05.visible = true;
-			GuiVM.buttonTexture06.visible = true;
-			GuiVM.buttonTexture07.visible = true;
-			GuiVM.buttonTexture08.visible = true;
-			GuiVM.buttonTexture09.visible = true;
-			GuiVM.buttonTexture10.visible = true;
-			GuiVM.buttonTexture11.visible = true;
-			
-			GuiVM.buttonTexture12.visible = true;
-			GuiVM.buttonTexture13.visible = true;
-			GuiVM.buttonTexture14.visible = true;
-			GuiVM.buttonTexture15.visible = true;
-			GuiVM.buttonTexture16.visible = true;
-			GuiVM.buttonTexture17.visible = true;
-			GuiVM.buttonTexture18.visible = true;
-		}
-		else
-		{
-			GuiVM.buttonTexture05.visible = false;
-			GuiVM.buttonTexture06.visible = false;
-			GuiVM.buttonTexture07.visible = false;
-			GuiVM.buttonTexture08.visible = false;
-			GuiVM.buttonTexture09.visible = false;
-			GuiVM.buttonTexture10.visible = false;
-			GuiVM.buttonTexture11.visible = false;
-			
-			GuiVM.buttonTexture12.visible = false;
-			GuiVM.buttonTexture13.visible = false;
-			GuiVM.buttonTexture14.visible = false;
-			GuiVM.buttonTexture15.visible = false;
-			GuiVM.buttonTexture16.visible = false;
-			GuiVM.buttonTexture17.visible = false;
-			GuiVM.buttonTexture18.visible = false;
-		}
-		
-		// Tier 2:
-		if (this.machine.getTierFrame() >= 2)
-		{
-			GuiVM.buttonTexture19.visible = true;
-			GuiVM.buttonTexture20.visible = true;
-			GuiVM.buttonTexture21.visible = true;
-			GuiVM.buttonTexture22.visible = true;
-			GuiVM.buttonTexture23.visible = true;
-			GuiVM.buttonTexture24.visible = true;
-			GuiVM.buttonTexture25.visible = true;
-			
-			GuiVM.buttonTexture26.visible = true;
-			GuiVM.buttonTexture27.visible = true;
-			GuiVM.buttonTexture28.visible = true;
-			GuiVM.buttonTexture29.visible = true;
-			GuiVM.buttonTexture30.visible = true;
-			GuiVM.buttonTexture31.visible = true;
-			GuiVM.buttonTexture32.visible = true;
-		}
-		else
-		{
-			GuiVM.buttonTexture19.visible = false;
-			GuiVM.buttonTexture20.visible = false;
-			GuiVM.buttonTexture21.visible = false;
-			GuiVM.buttonTexture22.visible = false;
-			GuiVM.buttonTexture23.visible = false;
-			GuiVM.buttonTexture24.visible = false;
-			GuiVM.buttonTexture25.visible = false;
-			
-			GuiVM.buttonTexture26.visible = false;
-			GuiVM.buttonTexture27.visible = false;
-			GuiVM.buttonTexture28.visible = false;
-			GuiVM.buttonTexture29.visible = false;
-			GuiVM.buttonTexture30.visible = false;
-			GuiVM.buttonTexture31.visible = false;
-			GuiVM.buttonTexture32.visible = false;
-		}
-		
-		// Tier 3:
-		if (this.machine.getTierFrame() >= 3)
-		{
-			GuiVM.buttonTexture33.visible = true;
-			GuiVM.buttonTexture34.visible = true;
-			GuiVM.buttonTexture35.visible = true;
-			GuiVM.buttonTexture36.visible = true;
-			GuiVM.buttonTexture37.visible = true;
-			GuiVM.buttonTexture38.visible = true;
-			GuiVM.buttonTexture39.visible = true;
-			
-			GuiVM.buttonTexture40.visible = true;
-			GuiVM.buttonTexture41.visible = true;
-			GuiVM.buttonTexture42.visible = true;
-			GuiVM.buttonTexture43.visible = true;
-			GuiVM.buttonTexture44.visible = true;
-			GuiVM.buttonTexture45.visible = true;
-			GuiVM.buttonTexture46.visible = true;
-		}
-		else
-		{
-			GuiVM.buttonTexture33.visible = false;
-			GuiVM.buttonTexture34.visible = false;
-			GuiVM.buttonTexture35.visible = false;
-			GuiVM.buttonTexture36.visible = false;
-			GuiVM.buttonTexture37.visible = false;
-			GuiVM.buttonTexture38.visible = false;
-			GuiVM.buttonTexture39.visible = false;
-			
-			GuiVM.buttonTexture40.visible = false;
-			GuiVM.buttonTexture41.visible = false;
-			GuiVM.buttonTexture42.visible = false;
-			GuiVM.buttonTexture43.visible = false;
-			GuiVM.buttonTexture44.visible = false;
-			GuiVM.buttonTexture45.visible = false;
-			GuiVM.buttonTexture46.visible = false;
-		}
-		
-		//==================================================
-		
-		if(this.machine.getVisualFrameTexture() == 0)
-		{
-			GuiVM.buttonTexture00.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture00.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 1)
-		{
-			GuiVM.buttonTexture01.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture01.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 2)
-		{
-			GuiVM.buttonTexture02.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture02.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 3)
-		{
-			GuiVM.buttonTexture03.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture03.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 4)
-		{
-			GuiVM.buttonTexture04.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture04.enabled = true;
-		}
-		
-		//--------------------------------------------------
-		
-		if(this.machine.getVisualFrameTexture() == 5)
-		{
-			GuiVM.buttonTexture05.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture05.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 6)
-		{
-			GuiVM.buttonTexture06.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture06.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 7)
-		{
-			GuiVM.buttonTexture07.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture07.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 8)
-		{
-			GuiVM.buttonTexture08.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture08.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 9)
-		{
-			GuiVM.buttonTexture09.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture09.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 10)
-		{
-			GuiVM.buttonTexture10.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture10.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 11)
-		{
-			GuiVM.buttonTexture11.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture11.enabled = true;
-		}
-		
-		if(this.machine.getVisualFrameTexture() == 12)
-		{
-			GuiVM.buttonTexture12.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture12.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 13)
-		{
-			GuiVM.buttonTexture13.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture13.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 14)
-		{
-			GuiVM.buttonTexture14.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture14.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 15)
-		{
-			GuiVM.buttonTexture15.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture15.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 16)
-		{
-			GuiVM.buttonTexture16.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture16.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 17)
-		{
-			GuiVM.buttonTexture17.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture17.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 18)
-		{
-			GuiVM.buttonTexture18.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture18.enabled = true;
-		}
-		
-		//--------------------------------------------------
-		
-		if(this.machine.getVisualFrameTexture() == 19)
-		{
-			GuiVM.buttonTexture19.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture19.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 20)
-		{
-			GuiVM.buttonTexture20.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture20.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 21)
-		{
-			GuiVM.buttonTexture21.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture21.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 22)
-		{
-			GuiVM.buttonTexture22.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture22.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 23)
-		{
-			GuiVM.buttonTexture23.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture23.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 24)
-		{
-			GuiVM.buttonTexture24.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture24.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 25)
-		{
-			GuiVM.buttonTexture25.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture25.enabled = true;
-		}
-		
-		if(this.machine.getVisualFrameTexture() == 26)
-		{
-			GuiVM.buttonTexture26.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture26.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 27)
-		{
-			GuiVM.buttonTexture27.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture27.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 28)
-		{
-			GuiVM.buttonTexture28.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture28.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 29)
-		{
-			GuiVM.buttonTexture29.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture29.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 30)
-		{
-			GuiVM.buttonTexture30.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture30.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 31)
-		{
-			GuiVM.buttonTexture31.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture31.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 32)
-		{
-			GuiVM.buttonTexture32.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture32.enabled = true;
-		}
-		
-		//--------------------------------------------------
-		
-		if(this.machine.getVisualFrameTexture() == 33)
-		{
-			GuiVM.buttonTexture33.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture33.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 34)
-		{
-			GuiVM.buttonTexture34.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture34.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 35)
-		{
-			GuiVM.buttonTexture35.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture35.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 36)
-		{
-			GuiVM.buttonTexture36.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture36.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 37)
-		{
-			GuiVM.buttonTexture37.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture37.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 38)
-		{
-			GuiVM.buttonTexture38.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture38.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 39)
-		{
-			GuiVM.buttonTexture39.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture39.enabled = true;
-		}
-		
-		if(this.machine.getVisualFrameTexture() == 40)
-		{
-			GuiVM.buttonTexture40.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture40.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 41)
-		{
-			GuiVM.buttonTexture41.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture41.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 42)
-		{
-			GuiVM.buttonTexture42.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture42.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 43)
-		{
-			GuiVM.buttonTexture43.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture43.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 44)
-		{
-			GuiVM.buttonTexture44.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture44.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 45)
-		{
-			GuiVM.buttonTexture45.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture45.enabled = true;
-		}
-		if(this.machine.getVisualFrameTexture() == 46)
-		{
-			GuiVM.buttonTexture46.enabled = false;
-		}
-		else
-		{
-			GuiVM.buttonTexture46.enabled = true;
-		}
-	}
-	
-	/** Handles all of the mouseover tooltip names for all texture buttons. */
+	/** Deals with visibility and enabled texture buttons. */
 	protected void mouseOverTooltipHandler(int mouseX, int mouseY) 
 	{
-		// Default Row:
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 86, EnumsVM.VisualPrimaryTexture.DEFAULT.getMetadata());
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 86, EnumsVM.VisualPrimaryTexture.COBBLESTONE.getMetadata());
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 86, EnumsVM.VisualPrimaryTexture.SANDSTONE.getMetadata());
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 86, EnumsVM.VisualPrimaryTexture.SNOW.getMetadata());
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 86, EnumsVM.VisualPrimaryTexture.HAY_BLOCK.getMetadata());
-		
-		//--------------------------------------------------
-		
-		// Tier 1 Row:
-		if (this.machine.getTierFrame() >= 1)
+		// Christmas:
+		if(this.previewPart == 7)
 		{
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 106, EnumsVM.VisualPrimaryTexture.PLANK_OAK.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 106, EnumsVM.VisualPrimaryTexture.PLANK_SPRUCE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 106, EnumsVM.VisualPrimaryTexture.PLANK_BIRCH.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 106, EnumsVM.VisualPrimaryTexture.PLANK_JUNGLE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 106, EnumsVM.VisualPrimaryTexture.PLANK_ACACIA.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 106, EnumsVM.VisualPrimaryTexture.PLANK_DARK_OAK.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 6), 106, EnumsVM.VisualPrimaryTexture.PODZOL.getMetadata());
-			
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 106 + (14 * 1), EnumsVM.VisualPrimaryTexture.LOG_OAK.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 106 + (14 * 1), EnumsVM.VisualPrimaryTexture.LOG_SPRUCE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 106 + (14 * 1), EnumsVM.VisualPrimaryTexture.LOG_BIRCH.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 106 + (14 * 1), EnumsVM.VisualPrimaryTexture.LOG_JUNGLE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 106 + (14 * 1), EnumsVM.VisualPrimaryTexture.LOG_ACACIA.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 106 + (14 * 1), EnumsVM.VisualPrimaryTexture.LOG_DARK_OAK.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 6), 106 + (14 * 1), EnumsVM.VisualPrimaryTexture.MYCELIUM.getMetadata());
-		}
-		
-		//--------------------------------------------------
-		
-		// Tier 2 Row:
-		if (this.machine.getTierFrame() >= 2)
-		{
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 136, EnumsVM.VisualPrimaryTexture.ORE_QUARTZ.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 136, EnumsVM.VisualPrimaryTexture.ORE_IRON.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 136, EnumsVM.VisualPrimaryTexture.ORE_GOLD.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 136, EnumsVM.VisualPrimaryTexture.ORE_REDSTONE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 136, EnumsVM.VisualPrimaryTexture.ORE_LAPIS_LAZULI.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 136, EnumsVM.VisualPrimaryTexture.ORE_DIAMOND.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 6), 136, EnumsVM.VisualPrimaryTexture.ORE_EMERALD.getMetadata());
-	
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 136 + (14 * 1), EnumsVM.VisualPrimaryTexture.BRICK.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 136 + (14 * 1), EnumsVM.VisualPrimaryTexture.IRON.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 136 + (14 * 1), EnumsVM.VisualPrimaryTexture.GOLD.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 136 + (14 * 1), EnumsVM.VisualPrimaryTexture.REDSTONE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 136 + (14 * 1), EnumsVM.VisualPrimaryTexture.LAPIS_LAZULI.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 136 + (14 * 1), EnumsVM.VisualPrimaryTexture.DIAMOND.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 6), 136 + (14 * 1), EnumsVM.VisualPrimaryTexture.EMERALD.getMetadata());
-		}
-		
-		//--------------------------------------------------
-		
-		// Tier 3 Row:
-		if (this.machine.getTierFrame() >= 3)
-		{
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 166, EnumsVM.VisualPrimaryTexture.ICE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 166, EnumsVM.VisualPrimaryTexture.SLIME.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 166, EnumsVM.VisualPrimaryTexture.NETHER_BRICK.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 166, EnumsVM.VisualPrimaryTexture.SOUL_SAND.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 166, EnumsVM.VisualPrimaryTexture.QUARTZ.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 166, EnumsVM.VisualPrimaryTexture.GLOWSTONE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 6), 166, EnumsVM.VisualPrimaryTexture.OBSIDIAN.getMetadata());
-	
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 166 + (14 * 1), EnumsVM.VisualPrimaryTexture.BEDROCK.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 166 + (14 * 1), EnumsVM.VisualPrimaryTexture.PRISMARINE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 166 + (14 * 1), EnumsVM.VisualPrimaryTexture.END_STONE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 166 + (14 * 1), EnumsVM.VisualPrimaryTexture.PURPUR.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 166 + (14 * 1), EnumsVM.VisualPrimaryTexture.WATER.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 166 + (14 * 1), EnumsVM.VisualPrimaryTexture.LAVA.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 6), 166 + (14 * 1), EnumsVM.VisualPrimaryTexture.ENDER.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 1) * 1), 102-7+33+33, EnumsVM.VisualDisplaySymbolHoliday.SYMBOL_CHRISTMAS_TREE.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 2) * 1), 102-7+33+33, EnumsVM.VisualDisplaySymbolHoliday.SYMBOL_CHRISTMAS_WREATH.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 3) * 1), 102-7+33+33, EnumsVM.VisualDisplaySymbolHoliday.SYMBOL_CHRISTMAS_ORNAMENT.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 4) * 1), 102-7+33+33, EnumsVM.VisualDisplaySymbolHoliday.SYMBOL_CHRISTMAS_STOCKING.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 5) * 1), 102-7+33+33, EnumsVM.VisualDisplaySymbolHoliday.SYMBOL_CHRISTMAS_NIGHTSKY.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 6) * 1), 102-7+33+33, EnumsVM.VisualDisplaySymbolHoliday.SYMBOL_CHRISTMAS_GRINCH.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 7) * 1), 102-7+33+33, EnumsVM.VisualDisplaySymbolHoliday.SYMBOL_CHRISTMAS_MAX.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 8) * 1), 102-7+33+33, EnumsVM.VisualDisplaySymbolHoliday.SYMBOL_CHRISTMAS_FROSTY.getMetadata());
+			//this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 8) * 1), 102-7+33+33, EnumsVM.VisualDisplaySymbolHoliday.SYMBOL_CHRISTMAS_PEANUTS.getMetadata());
+			//this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 9) * 1), 102-7+33+33, EnumsVM.VisualDisplaySymbolHoliday.SYMBOL_CHRISTMAS_POKEMON.getMetadata());
 		}
 	}
 	
-	@Override
-	protected void drawEntityOnScreen(int posX, int posY, int horizontalIn, int scale, Entity entityIn, boolean ridingEntityIn)
-    {
-		int oldTexture = this.machine.getVisualFrameTexture();
+	/** Deals with visibility of all holiday symbol buttons. */
+	protected void hideAllButtons() 
+	{
+		// New Years:
+		GuiVM.buttonTexture00.visible = false;
+    	GuiVM.buttonTexture01.visible = false;
+    	GuiVM.buttonTexture02.visible = false;
+		GuiVM.buttonTexture03.visible = false;
+    	GuiVM.buttonTexture04.visible = false;
+    	GuiVM.buttonTexture05.visible = false;
+		GuiVM.buttonTexture06.visible = false;
+		GuiVM.buttonTexture07.visible = false;
+		//GuiVM.buttonTexture08.visible = false;
+		//GuiVM.buttonTexture09.visible = false;
 		
-		this.machine.setVisualFrameTexture(this.machineTexture);
+		// Valentines Day:
+		GuiVM.buttonTexture10.visible = false;
+    	GuiVM.buttonTexture11.visible = false;
+    	GuiVM.buttonTexture12.visible = false;
+		GuiVM.buttonTexture13.visible = false;
+    	GuiVM.buttonTexture14.visible = false;
+    	GuiVM.buttonTexture15.visible = false;
+		GuiVM.buttonTexture16.visible = false;
+		GuiVM.buttonTexture17.visible = false;
+		//GuiVM.buttonTexture18.visible = false;
+		//GuiVM.buttonTexture19.visible = false;
 		
-		super.drawEntityOnScreen(posX, posY, horizontalIn, scale, entityIn, ridingEntityIn);
+		// Easter:
+		GuiVM.buttonTexture20.visible = false;
+    	GuiVM.buttonTexture21.visible = false;
+    	GuiVM.buttonTexture22.visible = false;
+		GuiVM.buttonTexture23.visible = false;
+    	GuiVM.buttonTexture24.visible = false;
+    	GuiVM.buttonTexture25.visible = false;
+		GuiVM.buttonTexture26.visible = false;
+		GuiVM.buttonTexture27.visible = false;
+		//GuiVM.buttonTexture28.visible = false;
+		//GuiVM.buttonTexture29.visible = false;
 		
-		this.machine.setVisualFrameTexture(oldTexture);
-    }
+		// 4th of July:
+		GuiVM.buttonTexture30.visible = false;
+    	GuiVM.buttonTexture31.visible = false;
+    	GuiVM.buttonTexture32.visible = false;
+		GuiVM.buttonTexture33.visible = false;
+    	GuiVM.buttonTexture34.visible = false;
+    	GuiVM.buttonTexture35.visible = false;
+		GuiVM.buttonTexture36.visible = false;
+		GuiVM.buttonTexture37.visible = false;
+		//GuiVM.buttonTexture38.visible = false;
+		//GuiVM.buttonTexture39.visible = false;
+		
+		// Halloween:
+		GuiVM.buttonTexture40.visible = false;
+    	GuiVM.buttonTexture41.visible = false;
+    	GuiVM.buttonTexture42.visible = false;
+		GuiVM.buttonTexture43.visible = false;
+    	GuiVM.buttonTexture44.visible = false;
+    	GuiVM.buttonTexture45.visible = false;
+		GuiVM.buttonTexture46.visible = false;
+		GuiVM.buttonTexture47.visible = false;
+		//GuiVM.buttonTexture48.visible = false;
+		//GuiVM.buttonTexture49.visible = false;
+		
+		// Thanksgiving:
+		GuiVM.buttonTexture50.visible = false;
+    	GuiVM.buttonTexture51.visible = false;
+    	GuiVM.buttonTexture52.visible = false;
+		GuiVM.buttonTexture53.visible = false;
+    	GuiVM.buttonTexture54.visible = false;
+    	GuiVM.buttonTexture55.visible = false;
+		GuiVM.buttonTexture56.visible = false;
+		GuiVM.buttonTexture57.visible = false;
+		//GuiVM.buttonTexture58.visible = false;
+		//GuiVM.buttonTexture59.visible = false;
+		
+		// Christmas:
+		GuiVM.buttonTexture60.visible = false;
+    	GuiVM.buttonTexture61.visible = false;
+    	GuiVM.buttonTexture62.visible = false;
+		GuiVM.buttonTexture63.visible = false;
+    	GuiVM.buttonTexture64.visible = false;
+    	GuiVM.buttonTexture65.visible = false;
+		GuiVM.buttonTexture66.visible = false;
+		GuiVM.buttonTexture67.visible = false;
+		//GuiVM.buttonTexture68.visible = false;
+		//GuiVM.buttonTexture69.visible = false;
+	}
 }

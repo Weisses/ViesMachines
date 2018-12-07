@@ -235,7 +235,7 @@ public class GuiMachineMenuCustomizeDisplayEntityHeadPg1 extends GuiContainerVC 
 		}
 		
 		// Renders the selected Display Banner for the current machine:
-		if (this.headInfo >= 1)
+		if (this.headInfo >= 0)
 		{
 			GlStateManager.pushMatrix();
 			{

@@ -48,6 +48,7 @@ item.viesmachines:machines/item_machine_flying_helicopter.name=Helicopter
 item.viesmachines:machines/item_machine_flying_3.name=WIP
 
 item.viesmachines:item_tool_dismounter.name=Dismounter
+item.viesmachines:item_tool_radio_expansion.name=Radio Expansion
 
 
 item.viesmachines:kits/item_kit_raw.name=Raw Kit
@@ -136,6 +137,13 @@ item.viesmachines:item_tool_dismounter.tt.1=[Left-Click]
 item.viesmachines:item_tool_dismounter.tt.2=on a mounted entity to
 item.viesmachines:item_tool_dismounter.tt.3=safely dismount it.
 item.viesmachines:item_tool_dismounter.tt.4=Does no damage, may cause laughter.
+
+item.viesmachines:item_tool_radio_expansion.tt.1=[Left-Click]
+item.viesmachines:item_tool_radio_expansion.tt.2=on a mounted entity to
+item.viesmachines:item_tool_radio_expansion.tt.3=safely dismount it.
+item.viesmachines:item_tool_radio_expansion.tt.4=Does no damage, may cause laughter.
+
+
 
 item.viesmachines:item_xegonite_water.tt.1=This material is used to 
 item.viesmachines:item_xegonite_water.tt.2=make building blocks.
@@ -247,8 +255,10 @@ viesmachines.gui.toggle.0=Toggle
 viesmachines.gui.fueltank.0=Fuel Tank
 viesmachines.gui.weapons.0=Weapons
 viesmachines.gui.music.0=Music
+viesmachines.gui.radio.0=Radio
 viesmachines.gui.selectsong.0=Select Song
 viesmachines.gui.currentsong.0=Current Song
+viesmachines.gui.currentsong.1=No songs learned
 viesmachines.gui.selectprojectile.0=Select Projectile
 viesmachines.gui.selectcolor.0=Select Color
 viesmachines.gui.weaponmenu.0=Weapon Menu
@@ -443,6 +453,17 @@ viesmachines.button.holiday=Holiday
 viesmachines.button.holiday1=!!! Holiday !!!
 viesmachines.button.holiday.cost=Free! Happy Holidays!!!
 
+
+
+viesmachines.gui.tt.holiday.0=!!! Happy Holidays !!!
+viesmachines.gui.tt.holiday.1=
+viesmachines.gui.tt.holiday.2=Start Date
+viesmachines.gui.tt.holiday.3=End Date
+viesmachines.gui.tt.holiday.4=
+viesmachines.gui.tt.holiday.5=Apply any option for free!
+viesmachines.gui.tt.holiday.6=
+
+
 viesmachines.enum.displaysymbol.0=None
 viesmachines.enum.displaysymbol.1=Category - Block/Item
 viesmachines.enum.displaysymbol.2=Category - Head
@@ -454,6 +475,14 @@ viesmachines.enum.displaysymbol.7=Unused Category
 viesmachines.enum.displaysymbol.8=Unused Category
 viesmachines.enum.displaysymbol.9=Unused Category
 
+viesmachines.holiday.christmas_candycanes_white=Christmas Candy Canes (White)
+viesmachines.holiday.christmas_candycanes_black=Christmas Candy Canes (Black)
+viesmachines.holiday.christmas_lights_white=Christmas Lights (White)
+viesmachines.holiday.christmas_lights_black=Christmas Lights (Black)
+viesmachines.holiday.christmas_presents_white=Christmas Presents (White)
+viesmachines.holiday.christmas_presents_black=Christmas Presents (Black)
+viesmachines.holiday.christmas_snowflakes_white=Christmas Snowflake (White)
+viesmachines.holiday.christmas_snowflakes_black=Christmas Snowflake (Black)
 
 item.viesmachines:symbols/item_symbol_logoviesmachines.name=ViesCraft Logo
 item.viesmachines:symbols/item_symbol_logoforge.name=Forge Logo
@@ -947,7 +976,7 @@ z.viesmachines.button.particles=Particles
 z.viesmachines.button.newyears=New Years
 z.viesmachines.button.valentinesday=Valentine's Day
 z.viesmachines.button.easter=Easter
-z.viesmachines.button.4thofjuly=4th of July
+z.viesmachines.button.4thofjuly=Independence Day
 z.viesmachines.button.halloween=Halloween
 z.viesmachines.button.thanksgiving=Thanksgiving
 z.viesmachines.button.christmas=Christmas

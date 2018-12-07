@@ -11,6 +11,7 @@ import com.vies.viesmachines.api.CostsVM;
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.api.util.Keybinds;
+import com.vies.viesmachines.api.util.LogHelper;
 import com.vies.viesmachines.client.gui.GuiContainerVC;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VC;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VC;
@@ -730,7 +731,7 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
 		this.machine.setVisualModelFrame(this.modelFrame);
 		this.machine.setVisualModelEngine(this.modelEngine);
 		this.machine.setVisualModelComponent(this.modelComponent);
-			
+		
 		super.drawEntityMachinePartOnScreen(posX, posY, horizontalIn, scale, entityIn, ridingEntityIn, previewPartIn);
 	    
 		this.machine.setVisualModelFrame(originalFrameModel);

@@ -37,6 +37,7 @@ import net.minecraft.util.text.TextFormatting;
 
 public class GuiContainerVC extends GuiContainer {
 	
+	
 	protected int modelRotationHorizontal;
 	protected boolean modelRidingEntity;
 	

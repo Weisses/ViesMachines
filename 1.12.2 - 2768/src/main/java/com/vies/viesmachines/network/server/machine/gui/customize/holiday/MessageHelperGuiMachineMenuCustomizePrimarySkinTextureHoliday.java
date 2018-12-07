@@ -1,7 +1,6 @@
 package com.vies.viesmachines.network.server.machine.gui.customize.holiday;
 
-import com.vies.viesmachines.api.CostsVM;
-import com.vies.viesmachines.client.gui.machines.visual.GuiMachineMenuCustomizePrimarySkinTexture;
+import com.vies.viesmachines.client.gui.machines.visual.holiday.GuiMachineMenuCustomizePrimarySkinTextureHoliday;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.packet.MessageBase;
 
@@ -21,7 +20,7 @@ public class MessageHelperGuiMachineMenuCustomizePrimarySkinTextureHoliday exten
 	@Override
 	public void toBytes(ByteBuf buf) 
 	{
-		buf.writeInt(GuiMachineMenuCustomizePrimarySkinTexture.machineTexture);
+		buf.writeInt(GuiMachineMenuCustomizePrimarySkinTextureHoliday.machineTexture);
 	}
 	
 	@Override
@@ -35,23 +34,6 @@ public class MessageHelperGuiMachineMenuCustomizePrimarySkinTextureHoliday exten
 	{
 		EntityMachineBase machineIn = (EntityMachineBase) player.getRidingEntity();
 		
-		if (player.isCreative())
-		{
-			machineIn.setVisualFrameTexture(message.textureID);
-		}
-		else if (message.textureID == 0)
-		{
-			machineIn.setVisualFrameTexture(message.textureID);
-		}
-		else if (machineIn.getEnergy() >= CostsVM.COST_FRAME_TEXTURE)
-		{
-			machineIn.setVisualFrameTexture(message.textureID);
-			machineIn.setEnergy(machineIn.getEnergy() - CostsVM.COST_FRAME_TEXTURE);
-		}
-		
-		
-		//machineIn.setVisualFrameTexture(intIn);.setVisualModelFrame(0);
-		//machineIn.setVisualModelEngine(0);
-		//machineIn.setVisualModelComponent(0);
+		machineIn.setVisualFrameTexture(message.textureID);
 	}
 }

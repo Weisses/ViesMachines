@@ -37,6 +37,7 @@ public class MessageMachineProjectileShoot extends MessageBase<MessageMachinePro
 	{
 		EntityMachineBase machineIn = (EntityMachineBase) player.getRidingEntity();
 		
+		LogHelper.info(machineIn.getControllingPassengerPitch() +" --- "+ machineIn.getControllingPassengerYaw());
 		if (player.isCreative())
 		{
 			//Normal
@@ -49,7 +50,7 @@ public class MessageMachineProjectileShoot extends MessageBase<MessageMachinePro
 				//LogHelper.info(machineIn + " " + machineIn.rotationPitch);
 				
 				entitybulletnormal.shoot(player, 
-						player.rotationPitch, player.rotationYaw, 
+						machineIn.rotationPitch, machineIn.rotationYaw, 
 						//machineIn.rotationPitch//.getPitchYaw()//.cameraPitch//.rotationPitch
 						//, machineIn.rotationYaw//.rotationYaw
 						//, 0.0F
@@ -66,7 +67,7 @@ public class MessageMachineProjectileShoot extends MessageBase<MessageMachinePro
 						player.posY + 0.95D, 
 						player.posZ + (double)(MathHelper.cos(player.rotationYaw * 0.017453292F) * 02.50F));
 				
-				entitybulletelectrical.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 2.5F, 0.0F);
+				entitybulletelectrical.shoot(player, machineIn.getControllingPassengerPitch(), machineIn.getControllingPassengerYaw(), 0.0F, 2.5F, 0.0F);
 		        
 				machineIn.world.spawnEntity(entitybulletelectrical);
 			}
@@ -79,7 +80,7 @@ public class MessageMachineProjectileShoot extends MessageBase<MessageMachinePro
 						player.posY + 0.95D, 
 						player.posZ + (double)(MathHelper.cos(player.rotationYaw * 0.017453292F) * 02.50F));
 				
-				entitybulletexplosive.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 2.5F, 0.0F);
+				entitybulletexplosive.shoot(player, machineIn.getControllingPassengerPitch(), machineIn.getControllingPassengerYaw(), 0.0F, 2.5F, 0.0F);
 				
 				machineIn.world.spawnEntity(entitybulletexplosive);
 			}
@@ -100,7 +101,7 @@ public class MessageMachineProjectileShoot extends MessageBase<MessageMachinePro
 						player.posY + 0.95D, 
 						player.posZ + (double)(MathHelper.cos(player.rotationYaw * 0.017453292F) * 02.50F));
 				
-				entitybulletnormal.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 2.5F, 0.0F);
+				entitybulletnormal.shoot(player, machineIn.getControllingPassengerPitch(), machineIn.getControllingPassengerYaw(), 0.0F, 2.5F, 0.0F);
 		        
 				machineIn.world.spawnEntity(entitybulletnormal);
 				
@@ -116,7 +117,7 @@ public class MessageMachineProjectileShoot extends MessageBase<MessageMachinePro
 						player.posY + 0.95D, 
 						player.posZ + (double)(MathHelper.cos(player.rotationYaw * 0.017453292F) * 02.50F));
 				
-				entitybulletelectrical.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 2.5F, 0.0F);
+				entitybulletelectrical.shoot(player, machineIn.getControllingPassengerPitch(), machineIn.getControllingPassengerYaw(), 0.0F, 2.5F, 0.0F);
 		        
 				machineIn.world.spawnEntity(entitybulletelectrical);
 				
@@ -133,7 +134,7 @@ public class MessageMachineProjectileShoot extends MessageBase<MessageMachinePro
 						player.posY + 0.95D, 
 						player.posZ + (double)(MathHelper.cos(player.rotationYaw * 0.017453292F) * 02.50F));
 				
-				entitybulletexplosive.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 2.5F, 0.0F);
+				entitybulletexplosive.shoot(player, machineIn.getControllingPassengerPitch(), machineIn.getControllingPassengerYaw(), 0.0F, 2.5F, 0.0F);
 				
 				machineIn.world.spawnEntity(entitybulletexplosive);
 				

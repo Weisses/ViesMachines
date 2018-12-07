@@ -1,5 +1,7 @@
 package com.vies.viesmachines.common.entity.machines;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -32,6 +34,7 @@ import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEv
 import com.vies.viesmachines.network.server.machine.gui.navigation.MessageGuiMachineMenuMain;
 import com.vies.viesmachines.network.server.world.PlayerMessageWeaponSystemError;
 import com.vies.viesmachines.network.server.world.PlayerMessageWeaponSystemOutOfAmmo;
+import com.vies.viesmachines.proxy.CommonProxy;
 
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
@@ -47,10 +50,10 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -59,6 +62,7 @@ import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -69,6 +73,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -114,6 +119,19 @@ public class EntityMachineBase extends EntityLiving {
 	private static final DataParameter<Integer> AMMO_AMOUNT_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
 	/** Keeps track of the ammo type value. */
 	private static final DataParameter<Integer> AMMO_TYPE_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
+	
+	/** Keeps track of the learned record in slot 1. */
+	private static final DataParameter<String> LEARNED_RECORD_SLOT_1_DM = EntityDataManager.<String>createKey(EntityMachineBase.class, DataSerializers.STRING);
+	/** Keeps track of the learned record in slot 2. */
+	private static final DataParameter<String> LEARNED_RECORD_SLOT_2_DM = EntityDataManager.<String>createKey(EntityMachineBase.class, DataSerializers.STRING);
+	/** Keeps track of the learned record in slot 3. */
+	private static final DataParameter<String> LEARNED_RECORD_SLOT_3_DM = EntityDataManager.<String>createKey(EntityMachineBase.class, DataSerializers.STRING);
+	/** Keeps track of the learned record in slot 4. */
+	private static final DataParameter<String> LEARNED_RECORD_SLOT_4_DM = EntityDataManager.<String>createKey(EntityMachineBase.class, DataSerializers.STRING);
+	/** Keeps track of the learned record in slot 5. */
+	private static final DataParameter<String> LEARNED_RECORD_SLOT_5_DM = EntityDataManager.<String>createKey(EntityMachineBase.class, DataSerializers.STRING);
+	/** Keeps track of the learned record in slot 6. */
+	private static final DataParameter<String> LEARNED_RECORD_SLOT_6_DM = EntityDataManager.<String>createKey(EntityMachineBase.class, DataSerializers.STRING);
 	
 	/** Keeps track of the current active machine Enhancement slot 1. */
 	private static final DataParameter<Integer> MACHINE_ENHANCEMENT_1_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
@@ -181,7 +199,8 @@ public class EntityMachineBase extends EntityLiving {
 	 *  1 = Renders Block/Item. (Default) <br>
 	 *  2 = Renders Head. (Default) <br>
 	 *  3 = Renders Supporter Head. (Default) <br>
-	 *  10+ = Renders Symbols. (Default) <br>
+	 *  10 - 999 = Renders Symbols. (Default) <br>
+	 *  1000+ = Renders Holiday Symbols. (Default) <br>
      * 
      * (Block, Item, Head, etc...) */
     protected static final DataParameter<Integer> VISUAL_ENGINE_DISPLAY_TYPE_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
@@ -309,8 +328,15 @@ public class EntityMachineBase extends EntityLiving {
     protected boolean toggleAbilityInputDown;
     
     // Radio:
+    public ArrayList<ResourceLocation> currentMusicListRecord = new ArrayList<ResourceLocation>();
+	
+    
     /** Stores the selected song using the int position of the musicListRecord array. */
-    public static int selectedSong;
+    public int selectedSong;
+    
+
+    public float controllingPassengerPitch;
+    public float controllingPassengerYaw;
 	
     // To debug and fix...
 	private BlockPos homePosition = BlockPos.ORIGIN;
@@ -453,6 +479,13 @@ public class EntityMachineBase extends EntityLiving {
         this.dataManager.register(AMMO_AMOUNT_DM, Integer.valueOf(0));
         this.dataManager.register(AMMO_TYPE_DM, Integer.valueOf(0));
         
+        this.dataManager.register(LEARNED_RECORD_SLOT_1_DM, String.valueOf(""));
+        this.dataManager.register(LEARNED_RECORD_SLOT_2_DM, String.valueOf(""));
+        this.dataManager.register(LEARNED_RECORD_SLOT_3_DM, String.valueOf(""));
+        this.dataManager.register(LEARNED_RECORD_SLOT_4_DM, String.valueOf(""));
+        this.dataManager.register(LEARNED_RECORD_SLOT_5_DM, String.valueOf(""));
+        this.dataManager.register(LEARNED_RECORD_SLOT_6_DM, String.valueOf(""));
+        
         this.dataManager.register(MACHINE_ENHANCEMENT_1_DM, Integer.valueOf(0));
         
         this.dataManager.register(PRIMED_FOR_LIGHTNING_STRIKE_DM, Integer.valueOf(0));
@@ -522,6 +555,12 @@ public class EntityMachineBase extends EntityLiving {
 		compound.setInteger(rf.AMMO_AMOUNT_TAG, this.getAmmoAmount());
 		compound.setInteger(rf.AMMO_TYPE_TAG, this.getAmmoType());
 		
+		compound.setString(rf.LEARNED_RECORD_SLOT_1_TAG, this.getLearnedRecordSlot1());
+		compound.setString(rf.LEARNED_RECORD_SLOT_2_TAG, this.getLearnedRecordSlot2());
+		compound.setString(rf.LEARNED_RECORD_SLOT_3_TAG, this.getLearnedRecordSlot3());
+		compound.setString(rf.LEARNED_RECORD_SLOT_4_TAG, this.getLearnedRecordSlot4());
+		compound.setString(rf.LEARNED_RECORD_SLOT_5_TAG, this.getLearnedRecordSlot5());
+		
 		compound.setInteger(rf.MACHINE_ENHANCEMENT_1_TAG, this.getMachineEnhancement1());
 		
 		compound.setInteger(rf.SELECTED_SONG_TAG, this.selectedSong);
@@ -529,7 +568,7 @@ public class EntityMachineBase extends EntityLiving {
 		compound.setInteger(rf.MACHINE_ISSUE_TAG, this.getIssueTick());
 		compound.setInteger(rf.EVENT_TRIGGER_TAG, this.getEventTrigger());
 		
-		
+		//--------------------------------------------------
 		
 		compound.setInteger(rf.VISUAL_MODEL_FRAME_TAG, this.getVisualModelFrame());
 		compound.setInteger(rf.VISUAL_MODEL_ENGINE_TAG, this.getVisualModelEngine());
@@ -559,6 +598,19 @@ public class EntityMachineBase extends EntityLiving {
     	
     	compound.setInteger(rf.VISUAL_NAME_COLOR_TAG, this.getVisualNameColor());
     	
+    	/*
+    	NBTTagList nbtTagList = new NBTTagList();
+    	for (int i = 0; i < this.currentMusicListRecord.size(); i++)
+        {
+        	NBTTagCompound itemTag = new NBTTagCompound();
+            itemTag.setString("Record", this.currentMusicListRecord.get(i).getResourceDomain() + ":" + this.currentMusicListRecord.get(i).getResourcePath());
+            
+            nbtTagList.appendTag(itemTag);
+        }
+        
+        compound.setTag("LearnedRecords", nbtTagList);
+    	*/
+    	
     	super.writeEntityToNBT(compound);
 	}
 	
@@ -586,6 +638,12 @@ public class EntityMachineBase extends EntityLiving {
 		this.setAmmoAmount(compound.getInteger(rf.AMMO_AMOUNT_TAG));
 		this.setAmmoType(compound.getInteger(rf.AMMO_TYPE_TAG));
 		
+		this.setLearnedRecordSlot1(compound.getString(rf.LEARNED_RECORD_SLOT_1_TAG));
+		this.setLearnedRecordSlot2(compound.getString(rf.LEARNED_RECORD_SLOT_2_TAG));
+		this.setLearnedRecordSlot3(compound.getString(rf.LEARNED_RECORD_SLOT_3_TAG));
+		this.setLearnedRecordSlot4(compound.getString(rf.LEARNED_RECORD_SLOT_4_TAG));
+		this.setLearnedRecordSlot5(compound.getString(rf.LEARNED_RECORD_SLOT_5_TAG));
+		
 		this.setMachineEnhancement1(compound.getInteger(rf.MACHINE_ENHANCEMENT_1_TAG));
 		
 		this.selectedSong = compound.getInteger(rf.SELECTED_SONG_TAG);
@@ -593,7 +651,7 @@ public class EntityMachineBase extends EntityLiving {
 		this.setIssueTick(compound.getInteger(rf.MACHINE_ISSUE_TAG));
 		this.setEventTrigger(compound.getInteger(rf.EVENT_TRIGGER_TAG));
 		
-		
+		//--------------------------------------------------
 		
 		this.setVisualModelFrame(compound.getInteger(rf.VISUAL_MODEL_FRAME_TAG));
 		this.setVisualModelEngine(compound.getInteger(rf.VISUAL_MODEL_ENGINE_TAG));
@@ -623,6 +681,22 @@ public class EntityMachineBase extends EntityLiving {
     	
     	this.setVisualNameColor(compound.getInteger(rf.VISUAL_NAME_COLOR_TAG));
     	
+    	/*
+    	// Clears the list so it doesn't keep the old one from the previous world load:
+    	//this.currentMusicListRecord.clear();
+    	
+    	NBTTagList tagList = compound.getTagList("LearnedRecords", Constants.NBT.TAG_COMPOUND);
+    	for (int i = 0; i < tagList.tagCount(); i++)
+        {
+            NBTTagCompound itemTags = tagList.getCompoundTagAt(i);
+            
+            this.currentMusicListRecord.add(new ResourceLocation(itemTags.getString("Record")));
+            
+        }
+    	Collections.sort(this.currentMusicListRecord);
+    	LogHelper.info("******************READ = " +this.currentMusicListRecord);
+    	*/
+    	
     	super.readEntityFromNBT(compound);
     }
 	
@@ -641,9 +715,14 @@ public class EntityMachineBase extends EntityLiving {
 		//Used to clear out all test machines for testing purposes:
         //	this.isDead = true;
         
+		//this.currentMusicListRecord.clear();
+		//this.currentMusicListRecord = new ArrayList<ResourceLocation>();
+		
+		//LogHelper.info(this.currentMusicListRecord);
 		//--------------------------------------------------
 		//////////LogHelper.info(this.getEventTrigger());
-		//LogHelper.info(EnumsVM.EventTrigger.DESTRUCTION.getMetadata());
+		//LogHelper.info(this.getEntityId() + " - " + this.currentMusicListRecord);
+		//this.currentMusicListRecord.clear();
         //LogHelper.info(this.getEntityId() +" - Tier Frame = " + this.getTierFrame());
         //LogHelper.info(this.getEntityId() +" - Tier Engine = " + this.getTierEngine());
         //LogHelper.info(this.getEntityId() +" - Tier Component = " + this.getTierComponent());
@@ -2195,7 +2274,7 @@ public class EntityMachineBase extends EntityLiving {
     {
     	return EnumsVM.FlyingMachineComponentTier.byId(this.getTierComponent()).getMaxAmmoModifier();
     }
-
+    
     /** Gets the ammo type. */
     public final int getAmmoType()
     {
@@ -2205,6 +2284,61 @@ public class EntityMachineBase extends EntityLiving {
     public void setAmmoType(int intIn)
     {
         this.dataManager.set(AMMO_TYPE_DM, Integer.valueOf(intIn));
+    }
+    
+    /** Gets the Learned Record Slot 1 Song. */
+    public final String getLearnedRecordSlot1()
+    {
+        return ((String)this.dataManager.get(LEARNED_RECORD_SLOT_1_DM));
+    }
+    /** Sets the Learned Record Slot 1 Song. */
+    public void setLearnedRecordSlot1(String stringIn)
+    {
+        this.dataManager.set(LEARNED_RECORD_SLOT_1_DM, String.valueOf(stringIn));
+    }
+    
+    /** Gets the Learned Record Slot 2 Song. */
+    public final String getLearnedRecordSlot2()
+    {
+        return ((String)this.dataManager.get(LEARNED_RECORD_SLOT_2_DM));
+    }
+    /** Sets the Learned Record Slot 2 Song. */
+    public void setLearnedRecordSlot2(String stringIn)
+    {
+        this.dataManager.set(LEARNED_RECORD_SLOT_2_DM, String.valueOf(stringIn));
+    }
+    
+    /** Gets the Learned Record Slot 3 Song. */
+    public final String getLearnedRecordSlot3()
+    {
+        return ((String)this.dataManager.get(LEARNED_RECORD_SLOT_3_DM));
+    }
+    /** Sets the Learned Record Slot 3 Song. */
+    public void setLearnedRecordSlot3(String stringIn)
+    {
+        this.dataManager.set(LEARNED_RECORD_SLOT_3_DM, String.valueOf(stringIn));
+    }
+    
+    /** Gets the Learned Record Slot 4 Song. */
+    public final String getLearnedRecordSlot4()
+    {
+        return ((String)this.dataManager.get(LEARNED_RECORD_SLOT_4_DM));
+    }
+    /** Sets the Learned Record Slot 4 Song. */
+    public void setLearnedRecordSlot4(String stringIn)
+    {
+        this.dataManager.set(LEARNED_RECORD_SLOT_4_DM, String.valueOf(stringIn));
+    }
+    
+    /** Gets the Learned Record Slot 5 Song. */
+    public final String getLearnedRecordSlot5()
+    {
+        return ((String)this.dataManager.get(LEARNED_RECORD_SLOT_5_DM));
+    }
+    /** Sets the Learned Record Slot 5 Song. */
+    public void setLearnedRecordSlot5(String stringIn)
+    {
+        this.dataManager.set(LEARNED_RECORD_SLOT_5_DM, String.valueOf(stringIn));
     }
     
     //--------------------------------------------------
@@ -3543,5 +3677,21 @@ public class EntityMachineBase extends EntityLiving {
     	
     	// Resets the event trigger:
     	this.setEventTrigger(0);
+    }
+    
+    public void applySongtoRecordList(int intIn)
+    {
+    	if (!this.currentMusicListRecord.toString().contains(CommonProxy.musicListRecord.get(intIn).getResourcePath()))
+    	{
+    		this.currentMusicListRecord.add(new ResourceLocation(this.addSongtoRecordList(intIn)));
+    		Collections.sort(this.currentMusicListRecord);
+    	}
+    }
+    
+    protected String addSongtoRecordList(int resourceLocationIn)
+    {
+    	String name = CommonProxy.musicListRecord.get(resourceLocationIn).getResourceDomain() + ":" + CommonProxy.musicListRecord.get(resourceLocationIn).getResourcePath();
+		
+		return name;
     }
 }

@@ -3,6 +3,8 @@ package com.vies.viesmachines.api;
 import java.util.Calendar;
 import java.util.Random;
 
+import com.vies.viesmachines.api.util.LogHelper;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
@@ -51,6 +53,13 @@ public class References {
 	public static final String ARMED_TAG = "Armed";
 	public static final String AMMO_AMOUNT_TAG = "AmmoAmount";
 	public static final String AMMO_TYPE_TAG = "AmmoType";
+	
+	public static final String LEARNED_RECORD_SLOT_1_TAG = "LearnedRecordSlot1";
+	public static final String LEARNED_RECORD_SLOT_2_TAG = "LearnedRecordSlot2";
+	public static final String LEARNED_RECORD_SLOT_3_TAG = "LearnedRecordSlot3";
+	public static final String LEARNED_RECORD_SLOT_4_TAG = "LearnedRecordSlot4";
+	public static final String LEARNED_RECORD_SLOT_5_TAG = "LearnedRecordSlot5";
+	public static final String LEARNED_RECORD_SLOT_6_TAG = "LearnedRecordSlot6";
 	public static final String SELECTED_SONG_TAG = "SelectedSong";
 	
 	public static final String FUEL_TAG = "Fuel";
@@ -105,46 +114,125 @@ public class References {
 	/** Name localization method that works on both client and server. */
 	public static net.minecraft.util.text.translation.I18n Old_I18n;
 	
+	
+	
 	/** Check if January 1st is within 3 days before and 3 days after. */
 	public static boolean isDateAroundNewYears(Calendar calendarIn)
     {
-        return calendarIn.get(2) + 1 == 12 && calendarIn.get(5) >= 29 || calendarIn.get(2) + 1 == 1 && calendarIn.get(5) <= 4;
+        return calendarIn.get(2) + 1 == 12 && calendarIn.get(5) >= 29 
+		&& calendarIn.get(2) + 1 == 1 && calendarIn.get(5) <= 4;
+    }
+	/** December 29th. */
+	public static String startDateNewYears()
+    {
+        return "12/29";
+    }
+	/** January 4th. */
+	public static String endDateNewYears()
+    {
+        return "1/4";
     }
 	
 	/** Check if February 14th is within 10 days before and 3 days after. */
 	public static boolean isDateAroundValentinesDay(Calendar calendarIn)
     {
-        return calendarIn.get(2) + 1 == 2 && calendarIn.get(5) >= 4 || calendarIn.get(2) + 1 == 2 && calendarIn.get(5) <= 17;
+        return calendarIn.get(2) + 1 == 2 && calendarIn.get(5) >= 4 
+		&& calendarIn.get(2) + 1 == 2 && calendarIn.get(5) <= 17;
+    }
+	/** February 4th. */
+	public static String startDateValentinesDay()
+    {
+        return "2/4";
+    }
+	/** February 17th. */
+	public static String endDateValentinesDay()
+    {
+        return "2/17";
     }
 	
 	/** Check if April 7th is within 8 days before and 7 days after. */
 	public static boolean isDateAroundEaster(Calendar calendarIn)
     {
-        return calendarIn.get(2) + 1 == 3 && calendarIn.get(5) >= 29 || calendarIn.get(2) + 1 == 4 && calendarIn.get(5) <= 14;
+        return calendarIn.get(2) + 1 == 3 && calendarIn.get(5) >= 29 
+		&& calendarIn.get(2) + 1 == 4 && calendarIn.get(5) <= 14;
+    }
+	/** March 29th. */
+	public static String startDateEaster()
+    {
+        return "3/29";
+    }
+	/** April 14th. */
+	public static String endDateEaster()
+    {
+        return "4/14";
     }
 	
 	/** Check if July 4th is within 10 days before and 3 days after. */
 	public static boolean isDateAroundIndependenceDay(Calendar calendarIn)
     {
-        return calendarIn.get(2) + 1 == 5 && calendarIn.get(5) >= 27 || calendarIn.get(2) + 1 == 6 && calendarIn.get(5) <= 7;
+        return calendarIn.get(2) + 1 == 6 && calendarIn.get(5) >= 27 
+		&& calendarIn.get(2) + 1 == 7 && calendarIn.get(5) <= 7;
+    }
+	/** June 27th. */
+	public static String startDateIndependenceDay()
+    {
+        return "6/27";
+    }
+	/** July 7th. */
+	public static String endDateIndependenceDay()
+    {
+        return "7/7";
     }
 	
 	/** Check if October 31st is within 10 days before and 3 days after. */
 	public static boolean isDateAroundHalloween(Calendar calendarIn)
     {
-        return calendarIn.get(2) + 1 == 10 && calendarIn.get(5) >= 20 || calendarIn.get(2) + 1 == 11 && calendarIn.get(5) <= 3;
+        return calendarIn.get(2) + 1 == 10 && calendarIn.get(5) >= 20 
+        && calendarIn.get(2) + 1 == 11 && calendarIn.get(5) <= 3;
+    }
+	/** October 20th. */
+	public static String startDateHalloween()
+    {
+        return "10/20";
+    }
+	/** November 3rd. */
+	public static String endDateHalloween()
+    {
+        return "11/3";
     }
 	
 	/** Check if November 28th is within 10 days before and 3 days after. */
 	public static boolean isDateAroundThanksgiving(Calendar calendarIn)
     {
-        return calendarIn.get(2) + 1 == 11 && calendarIn.get(5) >= 18 || calendarIn.get(2) + 1 == 11 && calendarIn.get(5) <= 30;
+        return calendarIn.get(2) + 1 == 11 && calendarIn.get(5) >= 18 
+        && calendarIn.get(2) + 1 == 11 && calendarIn.get(5) <= 30;
+    }
+	/** November 18th. */
+	public static String startDateThanksgiving()
+    {
+        return "11/18";
+    }
+	/** November 30th. */
+	public static String endDateThanksgiving()
+    {
+        return "11/30";
     }
 	
 	/** Check if December 25th is within 10 days before and 3 days after. */
 	public static boolean isDateAroundChristmas(Calendar calendarIn)
     {
-        return calendarIn.get(2) + 1 == 12 && calendarIn.get(5) >= 15 || calendarIn.get(2) + 1 == 12 && calendarIn.get(5) <= 28;
+		return calendarIn.get(2) + 1 == 12 && calendarIn.get(5) >= 15//TODO Change back to 15! 
+        && calendarIn.get(2) + 1 == 12 && calendarIn.get(5) <= 28;
+    }
+	/** December 15th. */
+	public static String startDateChristmas()
+    {
+		return "12/15";
+    }
+	/** December 28th. */
+	public static String endDateChristmas()
+    {
+		return "12/28";
     }
 	
 	/** Sets the correct Main Toolitp color. */
@@ -250,7 +338,7 @@ public class References {
 	}
 	
     /** Used for the font renderer. */
-    protected FontRenderer getFontRenderer()
+    public static FontRenderer getFontRenderer()
     {
         return Minecraft.getMinecraft().fontRenderer;
     }

@@ -23,11 +23,6 @@ import com.vies.viesmachines.common.entity.machines.containers.ContainerMachineN
 import com.vies.viesmachines.network.NetworkHandler;
 import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeSecondarySkinTextureHoliday;
 import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeSecondarySkinTextureHolidayCreative;
-import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeSecondarySkinTextureHolidayEaster;
-import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeSecondarySkinTextureHolidayHalloween;
-import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeSecondarySkinTextureHolidayNewYears;
-import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeSecondarySkinTextureHolidayThanksgiving;
-import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeSecondarySkinTextureHolidayValentinesDay;
 import com.vies.viesmachines.network.server.machine.gui.customize.secondaryskin.MessageHelperGuiMachineMenuCustomizeSecondarySkinTexture;
 import com.vies.viesmachines.network.server.machine.gui.navigation.MessageGuiMachineMenuCustomize;
 
@@ -43,6 +38,7 @@ import net.minecraft.util.text.TextFormatting;
 public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC {
 	
 	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize_texture.png");
+	private final ResourceLocation ICON_TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize_display_holiday_icons.png");
 	
 	public GuiMachineMenuCustomizeSecondarySkinTexture(IInventory playerInv, EntityMachineBase airshipIn)
 	{
@@ -60,6 +56,44 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
     	
     	buttonList.clear();
     	Keyboard.enableRepeatEvents(true);
+    	
+    	String holidayName = "";
+    	
+    	// 'New Years':
+		if(References.isDateAroundNewYears(Calendar.getInstance()))
+		{
+			holidayName = References.localNameVC("viesmachines.button.newyears");
+		}
+		// 'Valentines Day':
+		if(References.isDateAroundValentinesDay(Calendar.getInstance()))
+		{
+			holidayName = References.localNameVC("viesmachines.button.valentinesday");
+		}
+		// 'Easter':
+		if(References.isDateAroundEaster(Calendar.getInstance()))
+		{
+			holidayName = References.localNameVC("viesmachines.button.easter");
+		}
+		// '4th of July':
+		if(References.isDateAroundIndependenceDay(Calendar.getInstance()))
+		{
+			holidayName = References.localNameVC("viesmachines.button.4thofJuly");
+		}
+		// 'Halloween':
+		if(References.isDateAroundHalloween(Calendar.getInstance()))
+		{
+			holidayName = References.localNameVC("viesmachines.button.halloween");
+		}
+		// 'Thanksgiving':
+		if(References.isDateAroundThanksgiving(Calendar.getInstance()))
+		{
+			holidayName = References.localNameVC("viesmachines.button.thanksgiving");
+		}
+		// 'Christmas':
+		if(References.isDateAroundChristmas(Calendar.getInstance()))
+		{
+			holidayName = References.localNameVC("viesmachines.button.christmas");
+		}
     	
     	GuiVM.buttonRotateLeft = new GuiButtonGeneral2VC(10, this.guiLeft + 110, this.guiTop + 68, 6, 6, "", 3);
     	GuiVM.buttonRotateRight = new GuiButtonGeneral2VC(10, this.guiLeft + 122, this.guiTop + 68, 6, 6, "", 3);
@@ -131,76 +165,11 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 		
 		//--------------------------------------------------
 		
-		int startPlace = 95;
-		
 		// Holidays:
-		GuiVM.button11 = new GuiButtonGeneral2VC(1101, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.newyears"), false), 2);
-		GuiVM.button12 = new GuiButtonGeneral2VC(1102, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.valentinesday"), false), 2);
-		GuiVM.button13 = new GuiButtonGeneral2VC(1103, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.easter"), false), 2);
-		GuiVM.button14 = new GuiButtonGeneral2VC(1104, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.4thofjuly"), false), 2);
-		GuiVM.button15 = new GuiButtonGeneral2VC(1105, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.halloween"), false), 2);
-		GuiVM.button16 = new GuiButtonGeneral2VC(1106, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.thanksgiving"), false), 2);
-		GuiVM.button17 = new GuiButtonGeneral2VC(1107, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.christmas"), false), 2);
-		GuiVM.button18 = new GuiButtonGeneral2VC(1108, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.christmas"), false), 2);
+		GuiVM.button11 = new GuiButtonGeneral2VC(1111, this.guiLeft + 67+40, this.guiTop + 92 - 14 + (14 * 2), 62, 14, this.stringToRainbow(holidayName, false), 2);
 		
 		// Creative:
-		GuiVM.button01 = new GuiButtonGeneral2VC(1101, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 0), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.newyears"), false), 2);
-		GuiVM.button02 = new GuiButtonGeneral2VC(1102, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 1), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.valentinesday"), false), 2);
-		GuiVM.button03 = new GuiButtonGeneral2VC(1103, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.easter"), false), 2);
-		GuiVM.button04 = new GuiButtonGeneral2VC(1104, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 3), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.4thofjuly"), false), 2);
-		GuiVM.button05 = new GuiButtonGeneral2VC(1105, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 4), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.halloween"), false), 2);
-		GuiVM.button06 = new GuiButtonGeneral2VC(1106, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 5), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.thanksgiving"), false), 2);
-		GuiVM.button07 = new GuiButtonGeneral2VC(1107, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 6), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.christmas"), false), 2);
-		GuiVM.button08 = new GuiButtonGeneral2VC(1108, this.guiLeft + 67+40, this.guiTop + startPlace - 14 + (14 * 7), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.christmas"), false), 2);
-		
-		//--------------------------------------------------
-		
-		if (Minecraft.getMinecraft().player.isCreative())
-		{
-			this.buttonList.add(GuiVM.button01);
-			this.buttonList.add(GuiVM.button02);
-			this.buttonList.add(GuiVM.button03);
-			this.buttonList.add(GuiVM.button04);
-			this.buttonList.add(GuiVM.button05);
-			this.buttonList.add(GuiVM.button06);
-			this.buttonList.add(GuiVM.button07);
-			//this.buttonList.add(GuiVM.button08);
-		}
-		else
-		{
-			if(References.isDateAroundNewYears(Calendar.getInstance()))
-			{
-				this.buttonList.add(GuiVM.button11);
-			}
-			if(References.isDateAroundValentinesDay(Calendar.getInstance()))
-			{
-				this.buttonList.add(GuiVM.button12);
-			}
-			if(References.isDateAroundEaster(Calendar.getInstance()))
-			{
-				this.buttonList.add(GuiVM.button13);
-			}
-			if(References.isDateAroundIndependenceDay(Calendar.getInstance()))
-			{
-				this.buttonList.add(GuiVM.button14);
-			}
-			if(References.isDateAroundHalloween(Calendar.getInstance()))
-			{
-				this.buttonList.add(GuiVM.button15);
-			}
-			if(References.isDateAroundThanksgiving(Calendar.getInstance()))
-			{
-				this.buttonList.add(GuiVM.button16);
-			}
-			if(References.isDateAroundChristmas(Calendar.getInstance()))
-			{
-				this.buttonList.add(GuiVM.button17);
-			}
-			//if(References.isDateAroundChristmas(Calendar.getInstance()))
-			//{
-			//	this.buttonList.add(GuiVM.button18);
-			//}
-		}
+		GuiVM.button01 = new GuiButtonGeneral2VC(1101, this.guiLeft + 67+40, this.guiTop + 92 - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.holiday1"), false), 2);
 		
 		//--------------------------------------------------
 		
@@ -266,6 +235,24 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
     	this.buttonList.add(GuiVM.buttonRidingPlayerTrue);
     	this.buttonList.add(GuiVM.buttonRidingPlayerFalse);
     	this.buttonList.add(GuiVM.buttonUndo);
+		
+		if(Minecraft.getMinecraft().player.isCreative())
+		{
+			this.buttonList.add(GuiVM.button01);
+		}
+		else
+		{
+			if(References.isDateAroundNewYears(Calendar.getInstance())
+			|| References.isDateAroundValentinesDay(Calendar.getInstance())
+			|| References.isDateAroundEaster(Calendar.getInstance())
+			|| References.isDateAroundIndependenceDay(Calendar.getInstance())
+			|| References.isDateAroundHalloween(Calendar.getInstance())
+			|| References.isDateAroundThanksgiving(Calendar.getInstance())
+			|| References.isDateAroundChristmas(Calendar.getInstance()))
+			{
+				this.buttonList.add(GuiVM.button11);
+			}
+		}
     	
     	this.buttonList.add(GuiVM.buttonMM1);
 		this.buttonList.add(GuiVM.buttonMM2);
@@ -298,32 +285,13 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 			this.machineTexture = (parButton.id - 100);
 		}
 		
-		// Holidays:
-		if (parButton.id == 1101)
-	    {
-			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeSecondarySkinTextureHolidayNewYears());
-	    }
-		if (parButton.id == 1102)
-	    {
-			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeSecondarySkinTextureHolidayValentinesDay());
-	    }
-		if (parButton.id == 1103)
-	    {
-			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeSecondarySkinTextureHolidayEaster());
-	    }
-		if (parButton.id == 1104)
+		// Holiday Normal:
+		if (parButton.id == 1111)
 	    {
 			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeSecondarySkinTextureHoliday());
 	    }
-		if (parButton.id == 1105)
-	    {
-			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeSecondarySkinTextureHolidayHalloween());
-	    }
-		if (parButton.id == 1106)
-	    {
-			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeSecondarySkinTextureHolidayThanksgiving());
-	    }
-		if (parButton.id == 1107)
+		// Holiday Creative:
+		if (parButton.id == 1101)
 	    {
 			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeSecondarySkinTextureHolidayCreative());
 	    }
@@ -342,20 +310,23 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 		this.drawRect(this.guiLeft +8, this.guiTop + 6, this.guiLeft +168, this.guiTop + 64, Color.GRAY.getRGB());
 		
 		// Current texture:
-		GlStateManager.pushMatrix();
+		if (this.machine.getVisualComponentTexture() < 1000)
 		{
-			GlStateManager.translate(55, 43, 0);
-			
-			this.drawStillItemStack(EnumsVM.VisualSecondaryTexture.byId(this.machine.getVisualComponentTexture()).getBlock(), this.guiLeft , this.guiTop);
+			GlStateManager.pushMatrix();
+			{
+				GlStateManager.translate(55, 43, 0);
+				
+				this.drawStillItemStack(EnumsVM.VisualMachineTexture.byId(this.machine.getVisualComponentTexture()).getBlock(), this.guiLeft , this.guiTop);
+			}
+			GlStateManager.popMatrix();
 		}
-		GlStateManager.popMatrix();
 		
 		// Colors, binds, and draws the background texture:
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		this.mc.getTextureManager().bindTexture(TEXTURE);
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 		
-		// Renders the 'Preview Entity' for the current machine:
+		// Render Preview Entity of Machine:
 		this.drawEntityOnScreen(this.guiLeft + 139, this.guiTop + 58, this.modelRotationHorizontal, 13, this.machine, this.modelRidingEntity);
 	}
 	
@@ -364,13 +335,67 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 	{
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		
+		// Current Texture:
+		if (this.machine.getVisualComponentTexture() >= 1000)
+		{
+			GlStateManager.pushMatrix();
+			{
+				GL11.glColor4f(1F, 1F, 1F, 1F);
+				
+		    	GlStateManager.translate(28.865 + (14 * 1), 25, 0);
+				GlStateManager.scale(0.75F, 0.75F, 0.75F);
+				
+				// Colors, binds, and draws the background texture:
+				GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+				this.mc.getTextureManager().bindTexture(ICON_TEXTURE);
+				
+				// Christmas:
+				if(References.isDateAroundChristmas(Calendar.getInstance()))
+				{
+					if (this.machine.getVisualComponentTexture() == 1060)
+					{
+						this.drawTexturedModalRect((56 * 0), 0, (32 * 0), 0, 32, 32);
+					}
+					if (this.machine.getVisualComponentTexture() == 1061)
+					{
+						this.drawTexturedModalRect((56 * 0), 0, (32 * 1), 0, 32, 32);
+					}
+					if (this.machine.getVisualComponentTexture() == 1062)
+					{
+						this.drawTexturedModalRect((56 * 0), 0, (32 * 2), 0, 32, 32);
+					}
+					if (this.machine.getVisualComponentTexture() == 1063)
+					{
+						this.drawTexturedModalRect((56 * 0), 0, (32 * 3), 0, 32, 32);
+					}
+					if (this.machine.getVisualComponentTexture() == 1064)
+					{
+						this.drawTexturedModalRect((56 * 0), 0, (32 * 4), 0, 32, 32);
+					}
+					if (this.machine.getVisualComponentTexture() == 1065)
+					{
+						this.drawTexturedModalRect((56 * 0), 0, (32 * 5), 0, 32, 32);
+					}
+					if (this.machine.getVisualComponentTexture() == 1066)
+					{
+						this.drawTexturedModalRect((56 * 0), 0, (32 * 6), 0, 32, 32);
+					}
+					if (this.machine.getVisualComponentTexture() == 1067)
+					{
+						this.drawTexturedModalRect((56 * 0), 0, (32 * 7), 0, 32, 32);
+					}
+				}
+			}
+			GlStateManager.popMatrix();
+		}
+		
 		// 'Secondary Texture':
 		GlStateManager.pushMatrix();
 		{
 			GlStateManager.translate(55.5, 11, 0);
 	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 	        
-	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.secondarycolor.secondarytexture.0"), 0, 0, Color.BLACK.getRGB());
+	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.primarycolor.primarytexture.0"), 0, 0, Color.BLACK.getRGB());
 		}
 		GlStateManager.popMatrix();
 		
@@ -404,11 +429,11 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 	    	GlStateManager.translate(39-26, 89.75, 0);
 			GlStateManager.scale(0.5F, 0.5F, 0.5F);
 			
-			this.drawItemStack(EnumsVM.VisualSecondaryTexture.DEFAULT.getBlock(), ((14 * 1) * 2), 0, "");
-			this.drawItemStack(EnumsVM.VisualSecondaryTexture.COBBLESTONE.getBlock(), ((14 * 2) * 2), 0, "");
-			this.drawItemStack(EnumsVM.VisualSecondaryTexture.SANDSTONE.getBlock(), ((14 * 3) * 2), 0, "");
-			this.drawItemStack(EnumsVM.VisualSecondaryTexture.SNOW.getBlock(), ((14 * 4) * 2), 0, "");
-			this.drawItemStack(EnumsVM.VisualSecondaryTexture.HAY_BLOCK.getBlock(), ((14 * 5) * 2), 0, "");
+			this.drawItemStack(EnumsVM.VisualMachineTexture.DEFAULT.getBlock(), ((14 * 1) * 2), 0, "");
+			this.drawItemStack(EnumsVM.VisualMachineTexture.COBBLESTONE.getBlock(), ((14 * 2) * 2), 0, "");
+			this.drawItemStack(EnumsVM.VisualMachineTexture.SANDSTONE.getBlock(), ((14 * 3) * 2), 0, "");
+			this.drawItemStack(EnumsVM.VisualMachineTexture.SNOW.getBlock(), ((14 * 4) * 2), 0, "");
+			this.drawItemStack(EnumsVM.VisualMachineTexture.HAY_BLOCK.getBlock(), ((14 * 5) * 2), 0, "");
 		}
 		GlStateManager.popMatrix();
 		
@@ -422,21 +447,21 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 		    	GlStateManager.translate(39-26, 91+18.75, 0);
 				GlStateManager.scale(0.5F, 0.5F, 0.5F);
 				
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.PLANK_OAK.getBlock(), ((14 * 0) * 2), 0, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.PLANK_SPRUCE.getBlock(), ((14 * 1) * 2), 0, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.PLANK_BIRCH.getBlock(), ((14 * 2) * 2), 0, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.PLANK_JUNGLE.getBlock(), ((14 * 3) * 2), 0, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.PLANK_ACACIA.getBlock(), ((14 * 4) * 2), 0, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.PLANK_DARK_OAK.getBlock(), ((14 * 5) * 2), 0, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.PODZOL.getBlock(), ((14 * 6) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.PLANK_OAK.getBlock(), ((14 * 0) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.PLANK_SPRUCE.getBlock(), ((14 * 1) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.PLANK_BIRCH.getBlock(), ((14 * 2) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.PLANK_JUNGLE.getBlock(), ((14 * 3) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.PLANK_ACACIA.getBlock(), ((14 * 4) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.PLANK_DARK_OAK.getBlock(), ((14 * 5) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.PODZOL.getBlock(), ((14 * 6) * 2), 0, "");
 				
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.LOG_OAK.getBlock(), ((14 * 0) * 2), 28, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.LOG_SPRUCE.getBlock(), ((14 * 1) * 2), 28, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.LOG_BIRCH.getBlock(), ((14 * 2) * 2), 28, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.LOG_JUNGLE.getBlock(), ((14 * 3) * 2), 28, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.LOG_ACACIA.getBlock(), ((14 * 4) * 2), 28, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.LOG_DARK_OAK.getBlock(), ((14 * 5) * 2), 28, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.MYCELIUM.getBlock(), ((14 * 6) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.LOG_OAK.getBlock(), ((14 * 0) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.LOG_SPRUCE.getBlock(), ((14 * 1) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.LOG_BIRCH.getBlock(), ((14 * 2) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.LOG_JUNGLE.getBlock(), ((14 * 3) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.LOG_ACACIA.getBlock(), ((14 * 4) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.LOG_DARK_OAK.getBlock(), ((14 * 5) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.MYCELIUM.getBlock(), ((14 * 6) * 2), 28, "");
 			}
 			GlStateManager.popMatrix();
 		}
@@ -457,7 +482,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 				GlStateManager.translate(55.5, 118, 0);
 		        GlStateManager.scale(0.5F, 0.5F, 0.5F);
 		        
-		        this.centeredString(fontRenderer, References.localNameVC(ItemsVM.UPGRADE_COMPONENT_TIER1.getUnlocalizedName() + ".name"), 0, 8, Color.YELLOW.getRGB());
+		        this.centeredString(fontRenderer, References.localNameVC(ItemsVM.UPGRADE_FRAME_TIER1.getUnlocalizedName() + ".name"), 0, 8, Color.YELLOW.getRGB());
 			}
 			GlStateManager.popMatrix();
 		}
@@ -472,21 +497,21 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 		    	GlStateManager.translate(39-26, 89+50.75, 0);
 				GlStateManager.scale(0.5F, 0.5F, 0.5F);
 				
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.ORE_QUARTZ.getBlock(), ((14 * 0) * 2), 0, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.ORE_IRON.getBlock(), ((14 * 1) * 2), 0, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.ORE_GOLD.getBlock(), ((14 * 2) * 2), 0, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.ORE_REDSTONE.getBlock(), ((14 * 3) * 2), 0, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.ORE_LAPIS_LAZULI.getBlock(), ((14 * 4) * 2), 0, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.ORE_DIAMOND.getBlock(), ((14 * 5) * 2), 0, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.ORE_EMERALD.getBlock(), ((14 * 6) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.ORE_QUARTZ.getBlock(), ((14 * 0) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.ORE_IRON.getBlock(), ((14 * 1) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.ORE_GOLD.getBlock(), ((14 * 2) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.ORE_REDSTONE.getBlock(), ((14 * 3) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.ORE_LAPIS_LAZULI.getBlock(), ((14 * 4) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.ORE_DIAMOND.getBlock(), ((14 * 5) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.ORE_EMERALD.getBlock(), ((14 * 6) * 2), 0, "");
 				
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.BRICK.getBlock(), ((14 * 0) * 2), 28, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.IRON.getBlock(), ((14 * 1) * 2), 28, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.GOLD.getBlock(), ((14 * 2) * 2), 28, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.REDSTONE.getBlock(), ((14 * 3) * 2), 28, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.LAPIS_LAZULI.getBlock(), ((14 * 4) * 2), 28, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.DIAMOND.getBlock(), ((14 * 5) * 2), 28, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.EMERALD.getBlock(), ((14 * 6) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.BRICK.getBlock(), ((14 * 0) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.IRON.getBlock(), ((14 * 1) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.GOLD.getBlock(), ((14 * 2) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.REDSTONE.getBlock(), ((14 * 3) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.LAPIS_LAZULI.getBlock(), ((14 * 4) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.DIAMOND.getBlock(), ((14 * 5) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.EMERALD.getBlock(), ((14 * 6) * 2), 28, "");
 			}
 			GlStateManager.popMatrix();
 		}
@@ -507,7 +532,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 				GlStateManager.translate(55.5, 118+30, 0);
 		        GlStateManager.scale(0.5F, 0.5F, 0.5F);
 		        
-		        this.centeredString(fontRenderer, References.localNameVC(ItemsVM.UPGRADE_COMPONENT_TIER2.getUnlocalizedName() + ".name"), 0, 8, Color.CYAN.getRGB());
+		        this.centeredString(fontRenderer, References.localNameVC(ItemsVM.UPGRADE_FRAME_TIER2.getUnlocalizedName() + ".name"), 0, 8, Color.CYAN.getRGB());
 			}
 			GlStateManager.popMatrix();
 		}
@@ -522,21 +547,21 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 		    	GlStateManager.translate(39-26, 87+50.75 + 32, 0);
 				GlStateManager.scale(0.5F, 0.5F, 0.5F);
 				
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.ICE.getBlock(), ((14 * 0) * 2), 0, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.SLIME.getBlock(), ((14 * 1) * 2), 0, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.NETHER_BRICK.getBlock(), ((14 * 2) * 2), 0, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.SOUL_SAND.getBlock(), ((14 * 3) * 2), 0, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.QUARTZ.getBlock(), ((14 * 4) * 2), 0, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.GLOWSTONE.getBlock(), ((14 * 5) * 2), 0, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.OBSIDIAN.getBlock(), ((14 * 6) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.ICE.getBlock(), ((14 * 0) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.SLIME.getBlock(), ((14 * 1) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.NETHER_BRICK.getBlock(), ((14 * 2) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.SOUL_SAND.getBlock(), ((14 * 3) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.QUARTZ.getBlock(), ((14 * 4) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.GLOWSTONE.getBlock(), ((14 * 5) * 2), 0, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.OBSIDIAN.getBlock(), ((14 * 6) * 2), 0, "");
 				
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.BEDROCK.getBlock(), ((14 * 0) * 2), 28, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.PRISMARINE.getBlock(), ((14 * 1) * 2), 28, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.END_STONE.getBlock(), ((14 * 2) * 2), 28, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.PURPUR.getBlock(), ((14 * 3) * 2), 28, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.WATER.getBlock(), ((14 * 4) * 2), 28, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.LAVA.getBlock(), ((14 * 5) * 2), 28, "");
-				this.drawItemStack(EnumsVM.VisualSecondaryTexture.ENDER.getBlock(), ((14 * 6) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.BEDROCK.getBlock(), ((14 * 0) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.PRISMARINE.getBlock(), ((14 * 1) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.END_STONE.getBlock(), ((14 * 2) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.PURPUR.getBlock(), ((14 * 3) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.WATER.getBlock(), ((14 * 4) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.LAVA.getBlock(), ((14 * 5) * 2), 28, "");
+				this.drawItemStack(EnumsVM.VisualMachineTexture.ENDER.getBlock(), ((14 * 6) * 2), 28, "");
 			}
 			GlStateManager.popMatrix();
 		}
@@ -557,7 +582,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 				GlStateManager.translate(55.5, 118+60, 0);
 		        GlStateManager.scale(0.5F, 0.5F, 0.5F);
 		        
-		        this.centeredString(fontRenderer, References.localNameVC(ItemsVM.UPGRADE_COMPONENT_TIER3.getUnlocalizedName() + ".name"), 0, 8, Color.MAGENTA.getRGB());
+		        this.centeredString(fontRenderer, References.localNameVC(ItemsVM.UPGRADE_FRAME_TIER3.getUnlocalizedName() + ".name"), 0, 8, Color.MAGENTA.getRGB());
 			}
 			GlStateManager.popMatrix();
 		}
@@ -706,10 +731,10 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
         		EntityPlayer player = (EntityPlayer) this.machine.getControllingPassenger();
         		
         		if (!GuiVM.buttonApply.enabled
-				&& this.machine.getEnergy() < CostsVM.COST_COMPONENT_TEXTURE
+				&& this.machine.getEnergy() < CostsVM.COST_FRAME_TEXTURE
 				&& !player.isCreative())
 				{
-					text.add(TextFormatting.DARK_RED + "" + CostsVM.COST_COMPONENT_TEXTURE + " " + References.localNameVC("viesmachines.gui.tt.customize.color.cost.4"));
+					text.add(TextFormatting.DARK_RED + "" + CostsVM.COST_FRAME_TEXTURE + " " + References.localNameVC("viesmachines.gui.tt.customize.color.cost.4"));
 				}
         		else if (!GuiVM.buttonApply.enabled)
 				{
@@ -720,13 +745,13 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 					text.add(TextFormatting.GREEN + References.localNameVC("viesmachines.gui.tt.customize.color.cost.5"));
 				}
         		else if (this.machineTexture == 0
-        		&& this.machineTexture != this.machine.getVisualFrameTexture())
+        		&& this.machineTexture != this.machine.getVisualComponentTexture())
 				{
         			text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.color.cost.3"));
 				}
 				else
 				{
-					text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.color.cost.1") + " " + CostsVM.COST_COMPONENT_TEXTURE + " " + References.localNameVC("viesmachines.gui.tt.customize.color.cost.2"));
+					text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.color.cost.1") + " " + CostsVM.COST_FRAME_TEXTURE + " " + References.localNameVC("viesmachines.gui.tt.customize.color.cost.2"));
 				}
         	}
 			
@@ -776,7 +801,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
     		{
     			GuiVM.buttonApply.enabled = true;
     		}
-    		else if (this.machine.getEnergy() >= CostsVM.COST_COMPONENT_TEXTURE)
+    		else if (this.machine.getEnergy() >= CostsVM.COST_FRAME_TEXTURE)
     		{
     			GuiVM.buttonApply.enabled = true;
     		}
@@ -800,13 +825,13 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 			GuiVM.buttonRidingPlayerFalse.enabled = true;
 		}
         
-        // Turns machine preview left with shift down:
+        // Turn machine preview left with shift down:
         if (GuiVM.buttonRotateLeft.isMouseOver() 
 		&& this.isShiftKeyDown())
  	    {
  			this.modelRotationHorizontal = this.modelRotationHorizontal - 2;
  		}
- 		// Turns machine preview right with shift down:
+ 		// Turn machine preview right with shift down:
  		if (GuiVM.buttonRotateRight.isMouseOver()
  		&& this.isShiftKeyDown())
  	    {
@@ -830,11 +855,11 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 		&& mouseY >= this.guiTop + yIn && mouseY <= this.guiTop + yIn + 13)
 		{
 			List<String> text = new ArrayList<String>();
-			text.add(TextFormatting.GREEN + "" + TextFormatting.BOLD + References.Old_I18n.translateToLocal(EnumsVM.VisualSecondaryTexture.byId(enumIn).getLocalizedName()));
+			text.add(TextFormatting.GREEN + "" + TextFormatting.BOLD + References.Old_I18n.translateToLocal(EnumsVM.VisualMachineTexture.byId(enumIn).getLocalizedName()));
 			
 			GlStateManager.pushMatrix();
 			{
-				int textNumber = References.Old_I18n.translateToLocal(EnumsVM.VisualSecondaryTexture.byId(enumIn).getLocalizedName()).length();
+				int textNumber = References.Old_I18n.translateToLocal(EnumsVM.VisualMachineTexture.byId(enumIn).getLocalizedName()).length();
 				
 				GlStateManager.translate(mouseX - this.guiLeft - 6 - textNumber - (textNumber / 2), mouseY - this.guiTop - 11, 0);
 				GlStateManager.scale(0.5, 0.5, 0.5);
@@ -1358,32 +1383,32 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 	protected void mouseOverTooltipHandler(int mouseX, int mouseY) 
 	{
 		// Default Row:
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 86, EnumsVM.VisualSecondaryTexture.DEFAULT.getMetadata());
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 86, EnumsVM.VisualSecondaryTexture.COBBLESTONE.getMetadata());
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 86, EnumsVM.VisualSecondaryTexture.SANDSTONE.getMetadata());
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 86, EnumsVM.VisualSecondaryTexture.SNOW.getMetadata());
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 86, EnumsVM.VisualSecondaryTexture.HAY_BLOCK.getMetadata());
+		this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 86, EnumsVM.VisualMachineTexture.DEFAULT.getMetadata());
+		this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 86, EnumsVM.VisualMachineTexture.COBBLESTONE.getMetadata());
+		this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 86, EnumsVM.VisualMachineTexture.SANDSTONE.getMetadata());
+		this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 86, EnumsVM.VisualMachineTexture.SNOW.getMetadata());
+		this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 86, EnumsVM.VisualMachineTexture.HAY_BLOCK.getMetadata());
 		
 		//--------------------------------------------------
 		
 		// Tier 1 Row:
 		if (this.machine.getTierComponent() >= 1)
 		{
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 106, EnumsVM.VisualSecondaryTexture.PLANK_OAK.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 106, EnumsVM.VisualSecondaryTexture.PLANK_SPRUCE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 106, EnumsVM.VisualSecondaryTexture.PLANK_BIRCH.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 106, EnumsVM.VisualSecondaryTexture.PLANK_JUNGLE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 106, EnumsVM.VisualSecondaryTexture.PLANK_ACACIA.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 106, EnumsVM.VisualSecondaryTexture.PLANK_DARK_OAK.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 6), 106, EnumsVM.VisualSecondaryTexture.PODZOL.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 106, EnumsVM.VisualMachineTexture.PLANK_OAK.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 106, EnumsVM.VisualMachineTexture.PLANK_SPRUCE.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 106, EnumsVM.VisualMachineTexture.PLANK_BIRCH.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 106, EnumsVM.VisualMachineTexture.PLANK_JUNGLE.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 106, EnumsVM.VisualMachineTexture.PLANK_ACACIA.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 106, EnumsVM.VisualMachineTexture.PLANK_DARK_OAK.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 6), 106, EnumsVM.VisualMachineTexture.PODZOL.getMetadata());
 			
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 106 + (14 * 1), EnumsVM.VisualSecondaryTexture.LOG_OAK.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 106 + (14 * 1), EnumsVM.VisualSecondaryTexture.LOG_SPRUCE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 106 + (14 * 1), EnumsVM.VisualSecondaryTexture.LOG_BIRCH.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 106 + (14 * 1), EnumsVM.VisualSecondaryTexture.LOG_JUNGLE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 106 + (14 * 1), EnumsVM.VisualSecondaryTexture.LOG_ACACIA.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 106 + (14 * 1), EnumsVM.VisualSecondaryTexture.LOG_DARK_OAK.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 6), 106 + (14 * 1), EnumsVM.VisualSecondaryTexture.MYCELIUM.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 106 + (14 * 1), EnumsVM.VisualMachineTexture.LOG_OAK.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 106 + (14 * 1), EnumsVM.VisualMachineTexture.LOG_SPRUCE.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 106 + (14 * 1), EnumsVM.VisualMachineTexture.LOG_BIRCH.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 106 + (14 * 1), EnumsVM.VisualMachineTexture.LOG_JUNGLE.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 106 + (14 * 1), EnumsVM.VisualMachineTexture.LOG_ACACIA.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 106 + (14 * 1), EnumsVM.VisualMachineTexture.LOG_DARK_OAK.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 6), 106 + (14 * 1), EnumsVM.VisualMachineTexture.MYCELIUM.getMetadata());
 		}
 		
 		//--------------------------------------------------
@@ -1391,21 +1416,21 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 		// Tier 2 Row:
 		if (this.machine.getTierComponent() >= 2)
 		{
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 136, EnumsVM.VisualSecondaryTexture.ORE_QUARTZ.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 136, EnumsVM.VisualSecondaryTexture.ORE_IRON.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 136, EnumsVM.VisualSecondaryTexture.ORE_GOLD.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 136, EnumsVM.VisualSecondaryTexture.ORE_REDSTONE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 136, EnumsVM.VisualSecondaryTexture.ORE_LAPIS_LAZULI.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 136, EnumsVM.VisualSecondaryTexture.ORE_DIAMOND.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 6), 136, EnumsVM.VisualSecondaryTexture.ORE_EMERALD.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 136, EnumsVM.VisualMachineTexture.ORE_QUARTZ.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 136, EnumsVM.VisualMachineTexture.ORE_IRON.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 136, EnumsVM.VisualMachineTexture.ORE_GOLD.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 136, EnumsVM.VisualMachineTexture.ORE_REDSTONE.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 136, EnumsVM.VisualMachineTexture.ORE_LAPIS_LAZULI.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 136, EnumsVM.VisualMachineTexture.ORE_DIAMOND.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 6), 136, EnumsVM.VisualMachineTexture.ORE_EMERALD.getMetadata());
 	
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 136 + (14 * 1), EnumsVM.VisualSecondaryTexture.BRICK.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 136 + (14 * 1), EnumsVM.VisualSecondaryTexture.IRON.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 136 + (14 * 1), EnumsVM.VisualSecondaryTexture.GOLD.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 136 + (14 * 1), EnumsVM.VisualSecondaryTexture.REDSTONE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 136 + (14 * 1), EnumsVM.VisualSecondaryTexture.LAPIS_LAZULI.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 136 + (14 * 1), EnumsVM.VisualSecondaryTexture.DIAMOND.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 6), 136 + (14 * 1), EnumsVM.VisualSecondaryTexture.EMERALD.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 136 + (14 * 1), EnumsVM.VisualMachineTexture.BRICK.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 136 + (14 * 1), EnumsVM.VisualMachineTexture.IRON.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 136 + (14 * 1), EnumsVM.VisualMachineTexture.GOLD.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 136 + (14 * 1), EnumsVM.VisualMachineTexture.REDSTONE.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 136 + (14 * 1), EnumsVM.VisualMachineTexture.LAPIS_LAZULI.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 136 + (14 * 1), EnumsVM.VisualMachineTexture.DIAMOND.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 6), 136 + (14 * 1), EnumsVM.VisualMachineTexture.EMERALD.getMetadata());
 		}
 		
 		//--------------------------------------------------
@@ -1413,21 +1438,21 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 		// Tier 3 Row:
 		if (this.machine.getTierComponent() >= 3)
 		{
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 166, EnumsVM.VisualSecondaryTexture.ICE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 166, EnumsVM.VisualSecondaryTexture.SLIME.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 166, EnumsVM.VisualSecondaryTexture.NETHER_BRICK.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 166, EnumsVM.VisualSecondaryTexture.SOUL_SAND.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 166, EnumsVM.VisualSecondaryTexture.QUARTZ.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 166, EnumsVM.VisualSecondaryTexture.GLOWSTONE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 6), 166, EnumsVM.VisualSecondaryTexture.OBSIDIAN.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 166, EnumsVM.VisualMachineTexture.ICE.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 166, EnumsVM.VisualMachineTexture.SLIME.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 166, EnumsVM.VisualMachineTexture.NETHER_BRICK.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 166, EnumsVM.VisualMachineTexture.SOUL_SAND.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 166, EnumsVM.VisualMachineTexture.QUARTZ.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 166, EnumsVM.VisualMachineTexture.GLOWSTONE.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 6), 166, EnumsVM.VisualMachineTexture.OBSIDIAN.getMetadata());
 	
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 166 + (14 * 1), EnumsVM.VisualSecondaryTexture.BEDROCK.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 166 + (14 * 1), EnumsVM.VisualSecondaryTexture.PRISMARINE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 166 + (14 * 1), EnumsVM.VisualSecondaryTexture.END_STONE.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 166 + (14 * 1), EnumsVM.VisualSecondaryTexture.PURPUR.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 166 + (14 * 1), EnumsVM.VisualSecondaryTexture.WATER.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 166 + (14 * 1), EnumsVM.VisualSecondaryTexture.LAVA.getMetadata());
-			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 6), 166 + (14 * 1), EnumsVM.VisualSecondaryTexture.ENDER.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 166 + (14 * 1), EnumsVM.VisualMachineTexture.BEDROCK.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 166 + (14 * 1), EnumsVM.VisualMachineTexture.PRISMARINE.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 2), 166 + (14 * 1), EnumsVM.VisualMachineTexture.END_STONE.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 3), 166 + (14 * 1), EnumsVM.VisualMachineTexture.PURPUR.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 4), 166 + (14 * 1), EnumsVM.VisualMachineTexture.WATER.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 5), 166 + (14 * 1), EnumsVM.VisualMachineTexture.LAVA.getMetadata());
+			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 6), 166 + (14 * 1), EnumsVM.VisualMachineTexture.ENDER.getMetadata());
 		}
 	}
 	

@@ -14,6 +14,7 @@ import com.vies.viesmachines.common.items.parts.ItemComponentFlying;
 import com.vies.viesmachines.common.items.parts.ItemComponentGround;
 import com.vies.viesmachines.common.items.parts.ItemComponentWater;
 import com.vies.viesmachines.common.items.tools.ItemToolDismounting;
+import com.vies.viesmachines.common.items.tools.ItemToolRadioExpansion;
 import com.vies.viesmachines.common.items.upgrades.ItemUpgradeComponent;
 import com.vies.viesmachines.common.items.upgrades.ItemUpgradeEngine;
 import com.vies.viesmachines.common.items.upgrades.ItemUpgradeFrame;
@@ -80,6 +81,7 @@ public class ItemsVM {
 	//===============================================================
 	
 	public static final Item TOOL_DISMOUNTER = new ItemToolDismounting();
+	public static final Item TOOL_RADIO_EXPANSION = new ItemToolRadioExpansion();
 	
 	//===============================================================
 	
@@ -128,6 +130,7 @@ public class ItemsVM {
 	public static final Item SYMBOL_CHRISTMAS_FROSTY = new ItemGenericSymbol("symbols/holidays/item_symbol_christmas_frosty");
 	public static final Item SYMBOL_CHRISTMAS_PEANUTS = new ItemGenericSymbol("symbols/holidays/item_symbol_christmas_peanuts");
 	public static final Item SYMBOL_CHRISTMAS_POKEMON = new ItemGenericSymbol("symbols/holidays/item_symbol_christmas_pokemon");
+	
 	
 	
 	//==================================================

@@ -8,6 +8,7 @@ import org.lwjgl.input.Keyboard;
 
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.References;
+import com.vies.viesmachines.api.util.LogHelper;
 import com.vies.viesmachines.client.gui.GuiContainerVC;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VC;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VC;
@@ -52,6 +53,8 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 		super(new ContainerMachineMenuMain(playerInv, airshipIn), playerInv, airshipIn);
 		
 		this.machineId = this.machine.getEntityId();
+		
+		
 	}
 	
 	@Override
@@ -300,36 +303,57 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 			this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.toggle.0"), 134, 10, Color.BLACK.getRGB());
 			this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.fueltank.0"), 191, 10, Color.BLACK.getRGB());
 			this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.weapons.0"), 45, 58, Color.BLACK.getRGB());
-			this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.music.0"), 191, 107, Color.BLACK.getRGB());
+			this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.radio.0"), 191, 107, Color.BLACK.getRGB());
 		}
 		GlStateManager.popMatrix();
 		
 		// If the machine isn't broken, display song information:
 		if (!this.machine.getBroken())
         {
-			// Current Song:
-			GlStateManager.pushMatrix();
-			{
-				GlStateManager.translate(144, 105, 0);
-				GlStateManager.scale(0.5F, 0.5F, 0.5F);
+			if (
+					//TODO this.machine.currentMusicListRecord
+					ClientProxy.musicListRecord
+					.size() > 0)
+	        {
+				// Current Song:
+				GlStateManager.pushMatrix();
+				{
+					GlStateManager.translate(144, 105, 0);
+					GlStateManager.scale(0.5F, 0.5F, 0.5F);
+					
+					this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.currentsong.0") + " :", 0, 0, Color.WHITE.getRGB());
+				}
+				GlStateManager.popMatrix();
 				
-				this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.currentsong.0") + " :", 0, 0, Color.WHITE.getRGB());
-			}
-			GlStateManager.popMatrix();
-			
-			// Actual song name:
-			GlStateManager.pushMatrix();
+				// Actual song name:
+				GlStateManager.pushMatrix();
+				{
+					GlStateManager.translate(144, 112, 0);
+					GlStateManager.scale(0.5F, 0.5F, 0.5F);
+					
+					this.centeredString(fontRenderer, 
+					this.stringToFlashGolden(
+					References.localNameVC( "item." + 
+					//TODO this.machine.currentMusicListRecord
+					ClientProxy.musicListRecord
+					.get(this.machine.selectedSong).getResourcePath().toString() + ".desc")
+					, 1, false, TextFormatting.DARK_AQUA, 0)	
+					, 0, 0, Color.BLUE.getRGB());
+				}
+				GlStateManager.popMatrix();
+	        }
+			else
 			{
-				GlStateManager.translate(144, 112, 0);
-				GlStateManager.scale(0.5F, 0.5F, 0.5F);
-				
-				this.centeredString(fontRenderer, 
-				this.stringToFlashGolden(
-				References.localNameVC("item." + ClientProxy.musicListRecord.get(this.machine.selectedSong).getResourcePath().toString() + ".desc")
-				, 1, false, TextFormatting.DARK_AQUA, 0)	
-				, 0, 0, Color.BLUE.getRGB());
+				// No songs:
+				GlStateManager.pushMatrix();
+				{
+					GlStateManager.translate(143, 108.5, 0);
+					GlStateManager.scale(0.5F, 0.5F, 0.5F);
+					
+					this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.currentsong.1") + "!", 0, 0, Color.RED.getRGB());
+				}
+				GlStateManager.popMatrix();
 			}
-			GlStateManager.popMatrix();
         }
 		
 		//--------------------------------------------------
@@ -597,62 +621,65 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 				GlStateManager.popMatrix();
 			}
 			
-			// Logic for mouse-over tooltip - Music Stop:
-			if(mouseX >= this.guiLeft + 119 && mouseX <= this.guiLeft + 132
-			&& mouseY >= this.guiTop + 119 && mouseY <= this.guiTop + 132)
-			{
-				List<String> text = new ArrayList<String>();
-				text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.main.musicstop.0"));
-				
-				GlStateManager.pushMatrix();
+			if (this.machine.currentMusicListRecord.size() > 0)
+	        {
+				// Logic for mouse-over tooltip - Music Stop:
+				if(mouseX >= this.guiLeft + 119 && mouseX <= this.guiLeft + 132
+				&& mouseY >= this.guiTop + 119 && mouseY <= this.guiTop + 132)
 				{
-					int textNumber = References.localNameVC("viesmachines.gui.tt.main.musicstop.0").length();
+					List<String> text = new ArrayList<String>();
+					text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.main.musicstop.0"));
 					
-					GlStateManager.translate(mouseX - this.guiLeft - 6 - textNumber - (textNumber / 2), mouseY - this.guiTop - 19, 0);
-					GlStateManager.scale(0.5, 0.5, 0.5);
-					
-					this.drawHoveringText(text, 0, 0);
+					GlStateManager.pushMatrix();
+					{
+						int textNumber = References.localNameVC("viesmachines.gui.tt.main.musicstop.0").length();
+						
+						GlStateManager.translate(mouseX - this.guiLeft - 6 - textNumber - (textNumber / 2), mouseY - this.guiTop - 19, 0);
+						GlStateManager.scale(0.5, 0.5, 0.5);
+						
+						this.drawHoveringText(text, 0, 0);
+					}
+					GlStateManager.popMatrix();
 				}
-				GlStateManager.popMatrix();
-			}
-			
-			// Logic for mouse-over tooltip - Music Play:
-			if(mouseX >= this.guiLeft + 136 && mouseX <= this.guiLeft + 149
-			&& mouseY >= this.guiTop + 119 && mouseY <= this.guiTop + 132)
-			{
-				List<String> text = new ArrayList<String>();
-				text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.main.musicplay.0"));
 				
-				GlStateManager.pushMatrix();
+				// Logic for mouse-over tooltip - Music Play:
+				if(mouseX >= this.guiLeft + 136 && mouseX <= this.guiLeft + 149
+				&& mouseY >= this.guiTop + 119 && mouseY <= this.guiTop + 132)
 				{
-					int textNumber = References.localNameVC("viesmachines.gui.tt.main.musicplay.0").length();
+					List<String> text = new ArrayList<String>();
+					text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.main.musicplay.0"));
 					
-					GlStateManager.translate(mouseX - this.guiLeft - 6 - textNumber - (textNumber / 2), mouseY - this.guiTop - 19, 0);
-					GlStateManager.scale(0.5, 0.5, 0.5);
-					
-					this.drawHoveringText(text, 0, 0);
+					GlStateManager.pushMatrix();
+					{
+						int textNumber = References.localNameVC("viesmachines.gui.tt.main.musicplay.0").length();
+						
+						GlStateManager.translate(mouseX - this.guiLeft - 6 - textNumber - (textNumber / 2), mouseY - this.guiTop - 19, 0);
+						GlStateManager.scale(0.5, 0.5, 0.5);
+						
+						this.drawHoveringText(text, 0, 0);
+					}
+					GlStateManager.popMatrix();
 				}
-				GlStateManager.popMatrix();
-			}
-			
-			// Logic for mouse-over tooltip - Music Random:
-			if(mouseX >= this.guiLeft + 153 && mouseX <= this.guiLeft + 166
-			&& mouseY >= this.guiTop + 119 && mouseY <= this.guiTop + 132)
-			{
-				List<String> text = new ArrayList<String>();
-				text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.main.musicrandom.0"));
 				
-				GlStateManager.pushMatrix();
+				// Logic for mouse-over tooltip - Music Random:
+				if(mouseX >= this.guiLeft + 153 && mouseX <= this.guiLeft + 166
+				&& mouseY >= this.guiTop + 119 && mouseY <= this.guiTop + 132)
 				{
-					int textNumber = References.localNameVC("viesmachines.gui.tt.main.musicrandom.0").length();
+					List<String> text = new ArrayList<String>();
+					text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.main.musicrandom.0"));
 					
-					GlStateManager.translate(mouseX - this.guiLeft - 6 - textNumber - (textNumber / 2), mouseY - this.guiTop - 19, 0);
-					GlStateManager.scale(0.5, 0.5, 0.5);
-					
-					this.drawHoveringText(text, 0, 0);
+					GlStateManager.pushMatrix();
+					{
+						int textNumber = References.localNameVC("viesmachines.gui.tt.main.musicrandom.0").length();
+						
+						GlStateManager.translate(mouseX - this.guiLeft - 6 - textNumber - (textNumber / 2), mouseY - this.guiTop - 19, 0);
+						GlStateManager.scale(0.5, 0.5, 0.5);
+						
+						this.drawHoveringText(text, 0, 0);
+					}
+					GlStateManager.popMatrix();
 				}
-				GlStateManager.popMatrix();
-			}
+	        }
 		}
 		else
 		{
@@ -664,7 +691,7 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 	public void updateScreen()
     {
         super.updateScreen();
-        
+        //LogHelper.info(this.machine.getControllingPassengerYaw());
         // Deals with hiding unused toggle buttons:
         if(this.machine.getPoweredOn())
 		{
@@ -778,5 +805,27 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 			GuiVM.buttonMachineArmedFalse.enabled = true;
 			GuiVM.buttonMachineSelectProjectile.enabled = true;
         }
+        
+        
+
+        if (
+        		//TODO this.machine.currentMusicListRecord
+        		ClientProxy.musicListRecord
+        		.size() > 0)
+        {
+        	GuiVM.buttonMusicPlay.enabled = true;
+        	GuiVM.buttonMusicRandom.enabled = true;
+        	GuiVM.buttonMusicStop.enabled = true;
+        	GuiVM.buttonMusicSelect.enabled = true;
+        	
+        }
+        else
+        {
+        	GuiVM.buttonMusicPlay.enabled = false;
+        	GuiVM.buttonMusicRandom.enabled = false;
+        	GuiVM.buttonMusicStop.enabled = false;
+        	GuiVM.buttonMusicSelect.enabled = false;
+        }
+        
     }
 }

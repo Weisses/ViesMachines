@@ -8,7 +8,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
-public class MessageHelperGuiMachineMusicSet extends MessageBase<MessageHelperGuiMachineMusicSet> implements IMessage {
+public class MessageHelperGuiMachineMainSyncMusic extends MessageBase<MessageHelperGuiMachineMainSyncMusic> implements IMessage {
 	
 	public static int setSongId;
 	
@@ -25,16 +25,17 @@ public class MessageHelperGuiMachineMusicSet extends MessageBase<MessageHelperGu
 	}
 	
 	@Override
-	public void handleClientSide(MessageHelperGuiMachineMusicSet message, EntityPlayer player) 
+	public void handleClientSide(MessageHelperGuiMachineMainSyncMusic message, EntityPlayer player) 
 	{
 		
 	}
 	
 	@Override
-	public void handleServerSide(MessageHelperGuiMachineMusicSet message, EntityPlayer player) 
+	public void handleServerSide(MessageHelperGuiMachineMainSyncMusic message, EntityPlayer player) 
 	{
 		EntityMachineBase machine = (EntityMachineBase) player.getRidingEntity();
 		
+		//machine.currentMusicListRecord = 
 		//machine.selectedSong = message.setSongId;
 	}
 }

@@ -128,12 +128,16 @@ public class RenderEntityMachineFlyingAirship extends RenderEntityMachineFlyingA
         // Render the Engine ONLY:
         else if (entity.getPreviewPart() == 2)
         {
+        	this.frameTextureColorChecking(entity, frameRed, frameGreen, frameBlue);
+            
         	// Renders the Primary Engine:
             this.currentModelEnginePrimary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
         }
         // Render the Component ONLY:
         else if (entity.getPreviewPart() == 3)
         {
+        	this.frameTextureColorChecking(entity, frameRed, frameGreen, frameBlue);
+            
         	// Renders the Primary Component:
             this.currentModelComponentPrimary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
         	
@@ -148,8 +152,6 @@ public class RenderEntityMachineFlyingAirship extends RenderEntityMachineFlyingA
         	this.renderEngineDisplaySymbol(entity, partialTicks);
             this.selectedModelControlPanel(entity, partialTicks);
             
-            this.frameTextureColorChecking(entity, frameRed, frameGreen, frameBlue);
-            
             // Transparency check:
             if(entity.getVisualFrameTransparent())
             {
@@ -157,14 +159,7 @@ public class RenderEntityMachineFlyingAirship extends RenderEntityMachineFlyingA
             	GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             }
             
-            // Renders the Frame ONLY:
-            this.currentModelFramePrimary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
-            // Renders the Engine ONLY:
-            this.currentModelEnginePrimary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
-            // Renders the Component ONLY:
-            this.currentModelComponentPrimary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
-            // Renders the Component Propellers:
-            this.airshipPropellersRegular(entity, frameRed, frameGreen, frameBlue);
+            this.frameTextureColorChecking(entity, frameRed, frameGreen, frameBlue);
             
             // Renders the Display Banner:
             if (entity.getVisualEngineDisplayType() > 0)
@@ -177,6 +172,15 @@ public class RenderEntityMachineFlyingAirship extends RenderEntityMachineFlyingA
             {
             	this.modelAirshipSkids.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
             }
+            
+            // Renders the Frame ONLY:
+            this.currentModelFramePrimary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
+            // Renders the Engine ONLY:
+            this.currentModelEnginePrimary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
+            // Renders the Component ONLY:
+            this.currentModelComponentPrimary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
+            // Renders the Component Propellers:
+            this.airshipPropellersRegular(entity, frameRed, frameGreen, frameBlue);
         }
         
         this.resetColorTransparency();
@@ -390,7 +394,7 @@ public class RenderEntityMachineFlyingAirship extends RenderEntityMachineFlyingA
             this.modelMachineControlPanel.render(entity, partialTicks, 0.0F, 0F, 0.0F, 0.0F, 0.0625F);
         	
             // Binds and Renders the Frame overlay: (Primary)
-            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/frames/overlay_airship_frame_primary.png"));
+            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/overlay_airship_frame_primary.png"));
             this.currentModelFramePrimary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
         	
             // Binds and Renders the Display Banner overlay:
@@ -400,33 +404,33 @@ public class RenderEntityMachineFlyingAirship extends RenderEntityMachineFlyingA
             }
             
             // Binds and Renders the Frame overlay: (Secondary)
-            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/frames/overlay_airship_frame_secondary.png"));
+            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/overlay_airship_frame_secondary.png"));
             this.currentModelFrameSecondary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
         }
         // Render the Primary Engine ONLY:
         else if (entity.getPreviewPart() == 2)
         {
         	// Binds and Renders the Engine overlay: (Primary)
-            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/engines/overlay_airship_engine_primary.png"));
+            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/overlay_airship_engine_primary.png"));
             this.currentModelEnginePrimary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
             
             // Binds and Renders the Engine overlay: (Secondary)
-            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/engines/overlay_airship_engine_secondary.png"));
+            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/overlay_airship_engine_secondary.png"));
             this.currentModelEngineSecondary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
         }
         // Render the Primary Component ONLY:
         else if (entity.getPreviewPart() == 3)
         {
         	// Binds and Renders the Component overlay: (Primary)
-            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/components/overlay_airship_component_primary.png"));
+            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/overlay_airship_component_primary.png"));
             this.currentModelComponentPrimary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
             
             // Binds and Renders the Component overlay: (Secondary)
-            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/components/overlay_airship_component_secondary.png"));
+            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/overlay_airship_component_secondary.png"));
             this.currentModelComponentSecondary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
             
             // Binds and Renders the Component Propeller overlay:
-            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/frames/overlay_airship_propeller.png"));
+            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/overlay_airship_propeller.png"));
         	this.airshipPropellersMultipass(entity);
         }
         // Render the WHOLE machine: (Primary)
@@ -446,7 +450,7 @@ public class RenderEntityMachineFlyingAirship extends RenderEntityMachineFlyingA
             this.modelMachineControlPanel.render(entity, partialTicks, 0.0F, 0F, 0.0F, 0.0F, 0.0625F);
         	
             // Binds and Renders the Frame overlay: (Primary)
-            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/frames/overlay_airship_frame_primary.png"));
+            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/overlay_airship_frame_primary.png"));
             this.currentModelFramePrimary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
             
             // Renders skids when a machine in on the ground:
@@ -462,27 +466,27 @@ public class RenderEntityMachineFlyingAirship extends RenderEntityMachineFlyingA
             }
             
             // Binds and Renders the Frame overlay: (Secondary)
-            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/frames/overlay_airship_frame_secondary.png"));
+            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/overlay_airship_frame_secondary.png"));
             this.currentModelFrameSecondary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
             
             // Binds and Renders Engine overlay: (Primary)
-            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/engines/overlay_airship_engine_primary.png"));
+            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/overlay_airship_engine_primary.png"));
             this.currentModelEnginePrimary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
             
             // Binds and Renders Engine overlay: (Secondary)
-            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/engines/overlay_airship_engine_secondary.png"));
+            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/overlay_airship_engine_secondary.png"));
             this.currentModelEngineSecondary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
             
             // Binds and Renders Component overlay: (Primary)
-            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/components/overlay_airship_component_primary.png"));
+            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/overlay_airship_component_primary.png"));
             this.currentModelComponentPrimary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
             
             // Binds and Renders Component overlay: (Secondary)
-            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/components/overlay_airship_component_secondary.png"));
+            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/overlay_airship_component_secondary.png"));
             this.currentModelComponentSecondary.render(entity, partialTicks, 0F, 0F, 0F, 0F, 0.0625F);
             
             // Binds and Renders the Component Propeller overlay:
-            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/frames/overlay_airship_propeller.png"));
+            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/overlay_airship_propeller.png"));
         	this.airshipPropellersMultipass(entity);
         }
         
@@ -620,7 +624,7 @@ public class RenderEntityMachineFlyingAirship extends RenderEntityMachineFlyingA
     protected void airshipPropellersMultipass(EntityMachineFlyingAirship entity)
     {
     	// Binds the Component Propeller overlay:
-        this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/frames/overlay_airship_propeller.png"));
+        this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/overlay_airship_propeller.png"));
         
         // Component model 0 positioning:
     	if (entity.getVisualModelComponent() == 0)
@@ -734,13 +738,29 @@ public class RenderEntityMachineFlyingAirship extends RenderEntityMachineFlyingA
         	// Color logic applied:
         	GlStateManager.color(frameRed, frameGreen, frameBlue, 1F);
         	
-        	// Texture to bind:
-            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/frames/grayscale_bg_" + EnumsVM.VisualPrimaryTexture.byId(entity.getVisualFrameTexture()).getRegistryName() + ".png"));
+        	if (entity.getVisualFrameTexture() >= 1000)
+        	{
+        		// Texture to bind:
+                this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/holidays/grayscale_bg_" + EnumsVM.VisualTextureHoliday.byId(entity.getVisualFrameTexture() - 1000).getRegistryName() + ".png"));
+        	}
+        	else
+        	{
+        		// Texture to bind:
+                this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/grayscale_bg_" + EnumsVM.VisualMachineTexture.byId(entity.getVisualFrameTexture()).getRegistryName() + ".png"));
+        	}
         }
         else
         {
-        	// Texture to bind:
-            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/frames/bg_" + EnumsVM.VisualPrimaryTexture.byId(entity.getVisualFrameTexture()).getRegistryName() + ".png"));
+        	if (entity.getVisualFrameTexture() >= 1000)
+        	{
+        		// Texture to bind:
+                this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/holidays/bg_" + EnumsVM.VisualTextureHoliday.byId(entity.getVisualFrameTexture() - 1000).getRegistryName() + ".png"));
+        	}
+        	else
+        	{
+        		// Texture to bind:
+        		this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/bg_" + EnumsVM.VisualMachineTexture.byId(entity.getVisualFrameTexture()).getRegistryName() + ".png"));
+        	}
         }
     }
     
@@ -753,13 +773,29 @@ public class RenderEntityMachineFlyingAirship extends RenderEntityMachineFlyingA
         	// Color logic applied:
         	GlStateManager.color(componentRed, componentGreen, componentBlue, 1F);
         	
-        	// Texture to bind:
-            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/components/grayscale_bg_" + EnumsVM.VisualSecondaryTexture.byId(entity.getVisualComponentTexture()).getRegistryName() + ".png"));
+        	if (entity.getVisualComponentTexture() >= 1000)
+        	{
+        		// Texture to bind:
+                this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/holidays/grayscale_bg_" + EnumsVM.VisualTextureHoliday.byId(entity.getVisualComponentTexture() - 1000).getRegistryName() + ".png"));
+        	}
+        	else
+        	{
+        		// Texture to bind:
+                this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/grayscale_bg_" + EnumsVM.VisualMachineTexture.byId(entity.getVisualComponentTexture()).getRegistryName() + ".png"));
+        	}
         }
         else
         {
-        	// Texture to bind:
-            this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/components/bg_" + EnumsVM.VisualSecondaryTexture.byId(entity.getVisualComponentTexture()).getRegistryName() + ".png"));
+        	if (entity.getVisualComponentTexture() >= 1000)
+        	{
+        		// Texture to bind:
+                this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/holidays/bg_" + EnumsVM.VisualTextureHoliday.byId(entity.getVisualComponentTexture() - 1000).getRegistryName() + ".png"));
+        	}
+        	else
+        	{
+        		// Texture to bind:
+        		this.bindTexture(new ResourceLocation(References.MOD_ID, "textures/models/machines/bg_" + EnumsVM.VisualMachineTexture.byId(entity.getVisualComponentTexture()).getRegistryName() + ".png"));
+        	}
         }
     }
     

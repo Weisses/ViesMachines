@@ -22,7 +22,7 @@ repositories {
   }
 }
 
-version = "1.12.2-0.6.13-beta"
+version = "1.12.2-0.7.15-beta"
 group = "com.vies.viesmachines" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "viesmachines"
 

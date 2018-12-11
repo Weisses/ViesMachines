@@ -60,6 +60,7 @@ public class References {
 	public static final String LEARNED_RECORD_SLOT_4_TAG = "LearnedRecordSlot4";
 	public static final String LEARNED_RECORD_SLOT_5_TAG = "LearnedRecordSlot5";
 	public static final String LEARNED_RECORD_SLOT_6_TAG = "LearnedRecordSlot6";
+	public static final String LEARNED_RECORD_SLOT_7_TAG = "LearnedRecordSlot7";
 	public static final String SELECTED_SONG_TAG = "SelectedSong";
 	
 	public static final String FUEL_TAG = "Fuel";

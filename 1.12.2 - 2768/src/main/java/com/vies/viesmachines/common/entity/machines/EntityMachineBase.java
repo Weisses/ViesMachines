@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Lists;
 import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.References;
+import com.vies.viesmachines.api.SoundsVM;
 import com.vies.viesmachines.api.util.Keybinds;
 import com.vies.viesmachines.api.util.LogHelper;
 import com.vies.viesmachines.client.InitParticlesVCRender;
@@ -81,12 +82,12 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class EntityMachineBase extends EntityLiving {
 	
-	/** Shortcut to References. */
-    protected static References rf;
-    
 	// Attribute:
 	//public static final IAttribute DEFENSE = (new RangedAttribute(null, "generic.defense", 4.0D, 0.0D, 1024.0D)).setShouldWatch(true);
 	
+	/** Shortcut to References. */
+    protected static References rf;
+    
 	// Data Manager:
     /** Keeps track of a machine's energy value. */
 	private static final DataParameter<Integer> ENERGY_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
@@ -100,8 +101,8 @@ public class EntityMachineBase extends EntityLiving {
 	/** Keeps track of the component tier value. (Ground = Jump Height / Water = Max Oxygen / Flying = Max Altitude) */
 	private static final DataParameter<Integer> TIER_COMPONENT_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
   	
-	/** Keeps track of the type value. (Hovercraft, Submarine, Airship, etc.) */
-	private static final DataParameter<Integer> TYPE_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
+	//** Keeps track of the type value. (Hovercraft, Submarine, Airship, etc.) */
+	//private static final DataParameter<Integer> TYPE_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
 	/** Keeps track of the forward speed value. */
 	private static final DataParameter<Float> FORWARD_SPEED_DM = EntityDataManager.<Float>createKey(EntityMachineBase.class, DataSerializers.FLOAT);
 	/** Keeps track of the turn speed value. */
@@ -119,7 +120,9 @@ public class EntityMachineBase extends EntityLiving {
 	private static final DataParameter<Integer> AMMO_AMOUNT_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
 	/** Keeps track of the ammo type value. */
 	private static final DataParameter<Integer> AMMO_TYPE_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
-	
+
+	/** Keeps track of the selected record. */
+	private static final DataParameter<Integer> SELECTED_RECORD_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
 	/** Keeps track of the learned record in slot 1. */
 	private static final DataParameter<String> LEARNED_RECORD_SLOT_1_DM = EntityDataManager.<String>createKey(EntityMachineBase.class, DataSerializers.STRING);
 	/** Keeps track of the learned record in slot 2. */
@@ -132,15 +135,18 @@ public class EntityMachineBase extends EntityLiving {
 	private static final DataParameter<String> LEARNED_RECORD_SLOT_5_DM = EntityDataManager.<String>createKey(EntityMachineBase.class, DataSerializers.STRING);
 	/** Keeps track of the learned record in slot 6. */
 	private static final DataParameter<String> LEARNED_RECORD_SLOT_6_DM = EntityDataManager.<String>createKey(EntityMachineBase.class, DataSerializers.STRING);
+	/** Keeps track of the learned record in slot 7. */
+	private static final DataParameter<String> LEARNED_RECORD_SLOT_7_DM = EntityDataManager.<String>createKey(EntityMachineBase.class, DataSerializers.STRING);
+	
+	/** Keeps track of the primed for lightning strike in ticks. */
+	private static final DataParameter<Integer> PRIMED_FOR_LIGHTNING_STRIKE_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
+	/** Keeps track of the machine issue in ticks. */
+	private static final DataParameter<Integer> MACHINE_ISSUE_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
 	
 	/** Keeps track of the current active machine Enhancement slot 1. */
 	private static final DataParameter<Integer> MACHINE_ENHANCEMENT_1_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
 	
-	/** Keeps track of the primed for lightning strike in ticks. */
-	private static final DataParameter<Integer> PRIMED_FOR_LIGHTNING_STRIKE_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
 	
-	/** Keeps track of the machine issue in ticks. */
-	private static final DataParameter<Integer> MACHINE_ISSUE_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
 	
 	/**
 	 * Keeps track of the event to be triggered. <br> <br>
@@ -171,7 +177,10 @@ public class EntityMachineBase extends EntityLiving {
 	
 	
 	
-	/** Keeps track of what machine variant is active. (Spiked, etc) */
+	/** Keeps track of the customName color value. */
+    protected static final DataParameter<Integer> VISUAL_NAME_COLOR_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
+    
+    /** Keeps track of what machine variant is active. (Spiked, etc) */
     protected static final DataParameter<Integer> VISUAL_MODEL_FRAME_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
     /** Keeps track of what machine variant is active. (Single exhaust, Double exhaust, etc) */
     protected static final DataParameter<Integer> VISUAL_MODEL_ENGINE_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
@@ -191,8 +200,6 @@ public class EntityMachineBase extends EntityLiving {
     /** Keeps track of the frame blue color value. */
     protected static final DataParameter<Integer> VISUAL_FRAME_COLOR_BLUE_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
     
-    /** Keeps track of the particle texture. */
-    protected static final DataParameter<Integer> VISUAL_ENGINE_PARTICLE_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
     /** Keeps track of the display type. <br> <br>
 	 *
 	 *  0 = Renders Nothing. (Default) <br>
@@ -214,6 +221,8 @@ public class EntityMachineBase extends EntityLiving {
     protected static final DataParameter<Integer> VISUAL_ENGINE_DISPLAY_SUPPORTER_HEAD_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
     /** Keeps track of the display holiday value. */
     protected static final DataParameter<Integer> VISUAL_ENGINE_DISPLAY_HOLIDAY_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
+    /** Keeps track of the particle texture. */
+    protected static final DataParameter<Integer> VISUAL_ENGINE_PARTICLE_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
     
     /** Keeps track of the component texture. */
     protected static final DataParameter<Integer> VISUAL_COMPONENT_TEXTURE_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
@@ -228,11 +237,6 @@ public class EntityMachineBase extends EntityLiving {
     /** Keeps track of the component blue color value. */
     protected static final DataParameter<Integer> VISUAL_COMPONENT_COLOR_BLUE_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
     
-    /** Keeps track of the customName color value. */
-    protected static final DataParameter<Integer> VISUAL_NAME_COLOR_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
-    
-    
-    
     /** Keeps track of the preview part value. <br> <br>
 	 *
 	 *  0 = Render whole model. (Default) <br>
@@ -240,7 +244,6 @@ public class EntityMachineBase extends EntityLiving {
 	 *  2 = Render Engine only. <br>
 	 *  3 = Render Component only. <br>
 	 */
-   
     protected static final DataParameter<Integer> PREVIEW_PART_DM = EntityDataManager.<Integer>createKey(EntityMachineBase.class, DataSerializers.VARINT);
     
     //===============================================================
@@ -252,7 +255,7 @@ public class EntityMachineBase extends EntityLiving {
     public boolean autorunTrigger;
 	/** Keeps count of the firing cooldown. */
 	protected int weaponCooldown;
-	/** Keeps count of the number of charges before a lightning strike happens. 20 charges equals 1 strike.*/
+	//** Keeps count of the number of charges before a lightning strike happens. 20 charges equals 1 strike.*/
 	//protected int primedForLightningStrike;
     
 	// Status:
@@ -328,15 +331,15 @@ public class EntityMachineBase extends EntityLiving {
     protected boolean toggleAbilityInputDown;
     
     // Radio:
-    public ArrayList<ResourceLocation> currentMusicListRecord = new ArrayList<ResourceLocation>();
+    //public ArrayList<ResourceLocation> currentMusicListRecord = new ArrayList<ResourceLocation>();
 	
     
-    /** Stores the selected song using the int position of the musicListRecord array. */
-    public int selectedSong;
+    //** Stores the selected song using the int position of the musicListRecord array. */
+    //public int selectedSong;
     
 
-    public float controllingPassengerPitch;
-    public float controllingPassengerYaw;
+    //public float controllingPassengerPitch;
+    //public float controllingPassengerYaw;
 	
     // To debug and fix...
 	private BlockPos homePosition = BlockPos.ORIGIN;
@@ -468,7 +471,7 @@ public class EntityMachineBase extends EntityLiving {
         this.dataManager.register(TIER_ENGINE_DM, Integer.valueOf(0));
         this.dataManager.register(TIER_COMPONENT_DM, Integer.valueOf(0));
         
-        this.dataManager.register(TYPE_DM, Integer.valueOf(0));
+        //this.dataManager.register(TYPE_DM, Integer.valueOf(0));
         this.dataManager.register(FORWARD_SPEED_DM, Float.valueOf(0.0F));
         this.dataManager.register(TURN_SPEED_DM, Float.valueOf(0.0F));
         this.dataManager.register(BROKEN_DM, Boolean.valueOf(false));
@@ -478,18 +481,21 @@ public class EntityMachineBase extends EntityLiving {
         this.dataManager.register(ARMED_DM, Boolean.valueOf(false));
         this.dataManager.register(AMMO_AMOUNT_DM, Integer.valueOf(0));
         this.dataManager.register(AMMO_TYPE_DM, Integer.valueOf(0));
-        
+
+        this.dataManager.register(SELECTED_RECORD_DM, Integer.valueOf(-1));
         this.dataManager.register(LEARNED_RECORD_SLOT_1_DM, String.valueOf(""));
         this.dataManager.register(LEARNED_RECORD_SLOT_2_DM, String.valueOf(""));
         this.dataManager.register(LEARNED_RECORD_SLOT_3_DM, String.valueOf(""));
         this.dataManager.register(LEARNED_RECORD_SLOT_4_DM, String.valueOf(""));
         this.dataManager.register(LEARNED_RECORD_SLOT_5_DM, String.valueOf(""));
         this.dataManager.register(LEARNED_RECORD_SLOT_6_DM, String.valueOf(""));
-        
-        this.dataManager.register(MACHINE_ENHANCEMENT_1_DM, Integer.valueOf(0));
+        this.dataManager.register(LEARNED_RECORD_SLOT_7_DM, String.valueOf(""));
         
         this.dataManager.register(PRIMED_FOR_LIGHTNING_STRIKE_DM, Integer.valueOf(0));
         this.dataManager.register(MACHINE_ISSUE_DM, Integer.valueOf(0));
+        
+        this.dataManager.register(MACHINE_ENHANCEMENT_1_DM, Integer.valueOf(0));
+        
         this.dataManager.register(EVENT_TRIGGER_DM, Integer.valueOf(0));
         
         
@@ -544,7 +550,7 @@ public class EntityMachineBase extends EntityLiving {
 		
 		compound.setInteger(rf.DURABILITY_TAG, this.getDurability());
 		
-		compound.setFloat(rf.TYPE_TAG, this.getType());
+		//compound.setFloat(rf.TYPE_TAG, this.getType());
 		compound.setFloat(rf.FORWARD_SPEED_TAG, this.getForwardSpeed());
 		compound.setFloat(rf.TURN_SPEED_TAG, this.getTurnSpeed());
 		compound.setBoolean(rf.BROKEN_TAG, this.getBroken());
@@ -554,22 +560,27 @@ public class EntityMachineBase extends EntityLiving {
 		compound.setBoolean(rf.ARMED_TAG, this.getArmed());
 		compound.setInteger(rf.AMMO_AMOUNT_TAG, this.getAmmoAmount());
 		compound.setInteger(rf.AMMO_TYPE_TAG, this.getAmmoType());
-		
+
+		compound.setInteger(rf.SELECTED_SONG_TAG, this.getSelectedRecord());
 		compound.setString(rf.LEARNED_RECORD_SLOT_1_TAG, this.getLearnedRecordSlot1());
 		compound.setString(rf.LEARNED_RECORD_SLOT_2_TAG, this.getLearnedRecordSlot2());
 		compound.setString(rf.LEARNED_RECORD_SLOT_3_TAG, this.getLearnedRecordSlot3());
 		compound.setString(rf.LEARNED_RECORD_SLOT_4_TAG, this.getLearnedRecordSlot4());
 		compound.setString(rf.LEARNED_RECORD_SLOT_5_TAG, this.getLearnedRecordSlot5());
+		compound.setString(rf.LEARNED_RECORD_SLOT_6_TAG, this.getLearnedRecordSlot6());
+		compound.setString(rf.LEARNED_RECORD_SLOT_7_TAG, this.getLearnedRecordSlot7());
+		
+		compound.setInteger(rf.PRIMED_FOR_LIGHTNING_STRIKE_TAG, this.getPrimedForLightningStrike());
+		compound.setInteger(rf.MACHINE_ISSUE_TAG, this.getIssueTick());
 		
 		compound.setInteger(rf.MACHINE_ENHANCEMENT_1_TAG, this.getMachineEnhancement1());
 		
-		compound.setInteger(rf.SELECTED_SONG_TAG, this.selectedSong);
-		compound.setInteger(rf.PRIMED_FOR_LIGHTNING_STRIKE_TAG, this.getPrimedForLightningStrike());
-		compound.setInteger(rf.MACHINE_ISSUE_TAG, this.getIssueTick());
 		compound.setInteger(rf.EVENT_TRIGGER_TAG, this.getEventTrigger());
 		
 		//--------------------------------------------------
 		
+		compound.setInteger(rf.VISUAL_NAME_COLOR_TAG, this.getVisualNameColor());
+    	
 		compound.setInteger(rf.VISUAL_MODEL_FRAME_TAG, this.getVisualModelFrame());
 		compound.setInteger(rf.VISUAL_MODEL_ENGINE_TAG, this.getVisualModelEngine());
 		compound.setInteger(rf.VISUAL_MODEL_COMPONENT_TAG, this.getVisualModelComponent());
@@ -596,7 +607,6 @@ public class EntityMachineBase extends EntityLiving {
     	compound.setInteger(rf.VISUAL_COMPONENT_COLOR_GREEN_TAG, this.getVisualComponentColorGreen());
     	compound.setInteger(rf.VISUAL_COMPONENT_COLOR_BLUE_TAG, this.getVisualComponentColorBlue());
     	
-    	compound.setInteger(rf.VISUAL_NAME_COLOR_TAG, this.getVisualNameColor());
     	
     	/*
     	NBTTagList nbtTagList = new NBTTagList();
@@ -627,7 +637,7 @@ public class EntityMachineBase extends EntityLiving {
 		
 		this.setDurability(compound.getInteger(rf.DURABILITY_TAG));
 		
-		this.setType(compound.getInteger(rf.TYPE_TAG));
+		//this.setType(compound.getInteger(rf.TYPE_TAG));
 		this.setForwardSpeed(compound.getFloat(rf.FORWARD_SPEED_TAG));
 		this.setTurnSpeed(compound.getFloat(rf.TURN_SPEED_TAG));
 		this.setBroken(compound.getBoolean(rf.BROKEN_TAG));
@@ -637,22 +647,28 @@ public class EntityMachineBase extends EntityLiving {
 		this.setArmed(compound.getBoolean(rf.ARMED_TAG));
 		this.setAmmoAmount(compound.getInteger(rf.AMMO_AMOUNT_TAG));
 		this.setAmmoType(compound.getInteger(rf.AMMO_TYPE_TAG));
-		
+
+		this.setSelectedRecord(compound.getInteger(rf.SELECTED_SONG_TAG));
 		this.setLearnedRecordSlot1(compound.getString(rf.LEARNED_RECORD_SLOT_1_TAG));
 		this.setLearnedRecordSlot2(compound.getString(rf.LEARNED_RECORD_SLOT_2_TAG));
 		this.setLearnedRecordSlot3(compound.getString(rf.LEARNED_RECORD_SLOT_3_TAG));
 		this.setLearnedRecordSlot4(compound.getString(rf.LEARNED_RECORD_SLOT_4_TAG));
 		this.setLearnedRecordSlot5(compound.getString(rf.LEARNED_RECORD_SLOT_5_TAG));
+		this.setLearnedRecordSlot6(compound.getString(rf.LEARNED_RECORD_SLOT_6_TAG));
+		this.setLearnedRecordSlot7(compound.getString(rf.LEARNED_RECORD_SLOT_7_TAG));
+		
+		
+		this.setPrimedForLightningStrike(compound.getInteger(rf.PRIMED_FOR_LIGHTNING_STRIKE_TAG));
+		this.setIssueTick(compound.getInteger(rf.MACHINE_ISSUE_TAG));
 		
 		this.setMachineEnhancement1(compound.getInteger(rf.MACHINE_ENHANCEMENT_1_TAG));
 		
-		this.selectedSong = compound.getInteger(rf.SELECTED_SONG_TAG);
-		this.setPrimedForLightningStrike(compound.getInteger(rf.PRIMED_FOR_LIGHTNING_STRIKE_TAG));
-		this.setIssueTick(compound.getInteger(rf.MACHINE_ISSUE_TAG));
 		this.setEventTrigger(compound.getInteger(rf.EVENT_TRIGGER_TAG));
 		
 		//--------------------------------------------------
 		
+		this.setVisualNameColor(compound.getInteger(rf.VISUAL_NAME_COLOR_TAG));
+    	
 		this.setVisualModelFrame(compound.getInteger(rf.VISUAL_MODEL_FRAME_TAG));
 		this.setVisualModelEngine(compound.getInteger(rf.VISUAL_MODEL_ENGINE_TAG));
 		this.setVisualModelComponent(compound.getInteger(rf.VISUAL_MODEL_COMPONENT_TAG));
@@ -679,7 +695,6 @@ public class EntityMachineBase extends EntityLiving {
     	this.setVisualComponentColorGreen(compound.getInteger(rf.VISUAL_COMPONENT_COLOR_GREEN_TAG));
     	this.setVisualComponentColorBlue(compound.getInteger(rf.VISUAL_COMPONENT_COLOR_BLUE_TAG));
     	
-    	this.setVisualNameColor(compound.getInteger(rf.VISUAL_NAME_COLOR_TAG));
     	
     	/*
     	// Clears the list so it doesn't keep the old one from the previous world load:
@@ -714,9 +729,27 @@ public class EntityMachineBase extends EntityLiving {
     {
 		//Used to clear out all test machines for testing purposes:
         //	this.isDead = true;
-        
+        /**
+		if (this.ticksExisted % 40 == 0)
+		{
+			//this.setLearnedRecordSlot1("");
+		LogHelper.info(
+			  this.getLearnedRecordSlot1() + " - "
+			+ this.getLearnedRecordSlot2() + " - "
+			+ this.getLearnedRecordSlot3() + " - "
+			+ this.getLearnedRecordSlot4() + " - "
+			+ this.getLearnedRecordSlot5() + " - "
+			+ this.getLearnedRecordSlot6() + " - "
+			+ this.getLearnedRecordSlot7() + " - "
+			);
+		}
+		*/
 		//this.currentMusicListRecord.clear();
 		//this.currentMusicListRecord = new ArrayList<ResourceLocation>();
+		
+		
+		//LogHelper.info(this.getSelectedRecord());
+		
 		
 		//LogHelper.info(this.currentMusicListRecord);
 		//--------------------------------------------------
@@ -1494,37 +1527,37 @@ public class EntityMachineBase extends EntityLiving {
 	/** Gets the sound to be triggered when a machine is broken. */
 	protected SoundEvent getInjuredSound()
     {
-        return SoundEvents.ENTITY_GENERIC_EXPLODE;
+        return SoundEvents.BLOCK_PISTON_EXTEND;
     }
 	
 	/** Gets the sound to be triggered when a machine is struck by lightning. */
 	protected SoundEvent getLightningStrikeSound()
     {
-        return SoundEvents.ENTITY_GENERIC_EXPLODE;
+        return SoundEvents.BLOCK_ANVIL_LAND;
     }
 	
 	/** Gets the sound to be triggered when a machine's Tier is upgraded. */
 	protected SoundEvent getUpgradeSound()
     {
-        return SoundEvents.ENTITY_GENERIC_EXPLODE;
+        return SoundsVM.UPGRADE;
     }
 	
 	/** Gets the sound to be triggered when a machine's health is healed. */
 	public SoundEvent getHealHealthSound()
     {
-        return SoundEvents.ENTITY_GENERIC_EXPLODE;
+        return SoundsVM.HEAL;
     }
 	
 	/** Gets the sound to be triggered when a machine's energy is healed. */
 	protected SoundEvent getHealEnergySound()
     {
-        return SoundEvents.ENTITY_GENERIC_EXPLODE;
+        return SoundsVM.HEAL;
     }
 	
 	/** Gets the sound to be triggered when a machine's durability is healed. */
 	protected SoundEvent getHealDurabilitySound()
     {
-        return SoundEvents.ENTITY_GENERIC_EXPLODE;
+        return SoundsVM.HEAL;
     }
     
     
@@ -2162,15 +2195,15 @@ public class EntityMachineBase extends EntityLiving {
     //--------------------------------------------------
     
     /** Gets the type. (Hovercraft, Submarine, Airship, etc.) */
-    public final int getType()
-    {
-        return ((Integer)this.dataManager.get(TYPE_DM)).intValue();
-    }
+    //public final int getType()
+    //{
+    //    return ((Integer)this.dataManager.get(TYPE_DM)).intValue();
+    //}
     /** Sets the type. (Hovercraft, Submarine, Airship, etc.) */
-    public void setType(int intIn)
-    {
-        this.dataManager.set(TYPE_DM, Integer.valueOf(intIn));
-    }
+    //public void setType(int intIn)
+    //{
+    //    this.dataManager.set(TYPE_DM, Integer.valueOf(intIn));
+    //}
     
     //--------------------------------------------------
     
@@ -2286,6 +2319,19 @@ public class EntityMachineBase extends EntityLiving {
         this.dataManager.set(AMMO_TYPE_DM, Integer.valueOf(intIn));
     }
     
+    //----------------------------------------------------
+    
+    /** Gets the selected record. */
+    public final int getSelectedRecord()
+    {
+        return ((Integer)this.dataManager.get(SELECTED_RECORD_DM)).intValue();
+    }
+    /** Sets the selected record. */
+    public void setSelectedRecord(int intIn)
+    {
+        this.dataManager.set(SELECTED_RECORD_DM, Integer.valueOf(intIn));
+    }
+    
     /** Gets the Learned Record Slot 1 Song. */
     public final String getLearnedRecordSlot1()
     {
@@ -2339,6 +2385,28 @@ public class EntityMachineBase extends EntityLiving {
     public void setLearnedRecordSlot5(String stringIn)
     {
         this.dataManager.set(LEARNED_RECORD_SLOT_5_DM, String.valueOf(stringIn));
+    }
+    
+    /** Gets the Learned Record Slot 6 Song. */
+    public final String getLearnedRecordSlot6()
+    {
+        return ((String)this.dataManager.get(LEARNED_RECORD_SLOT_6_DM));
+    }
+    /** Sets the Learned Record Slot 6 Song. */
+    public void setLearnedRecordSlot6(String stringIn)
+    {
+        this.dataManager.set(LEARNED_RECORD_SLOT_6_DM, String.valueOf(stringIn));
+    }
+    
+    /** Gets the Learned Record Slot 7 Song. */
+    public final String getLearnedRecordSlot7()
+    {
+        return ((String)this.dataManager.get(LEARNED_RECORD_SLOT_7_DM));
+    }
+    /** Sets the Learned Record Slot 7 Song. */
+    public void setLearnedRecordSlot7(String stringIn)
+    {
+        this.dataManager.set(LEARNED_RECORD_SLOT_7_DM, String.valueOf(stringIn));
     }
     
     //--------------------------------------------------
@@ -3675,22 +3743,32 @@ public class EntityMachineBase extends EntityLiving {
     		}
     	}
     	
+    	//this.setLearnedRecordSlot1("");
+    	
     	// Resets the event trigger:
     	this.setEventTrigger(0);
     }
     
-    public void applySongtoRecordList(int intIn)
+    public String applySongtoRecordList(int intIn)
     {
-    	if (!this.currentMusicListRecord.toString().contains(CommonProxy.musicListRecord.get(intIn).getResourcePath()))
-    	{
-    		this.currentMusicListRecord.add(new ResourceLocation(this.addSongtoRecordList(intIn)));
-    		Collections.sort(this.currentMusicListRecord);
-    	}
+    	this.setLearnedRecordSlot1(CommonProxy.musicListRecord.get(intIn).getResourcePath());
+		return cachedUniqueIdString;
+		
+    	//if (!this.currentMusicListRecord.toString().contains(CommonProxy.musicListRecord.get(intIn).getResourcePath()))
+    	//{
+    	//	this.setLearnedRecordSlot1(CommonProxy.musicListRecord.get(intIn).getResourcePath());
+    	//	//this.currentMusicListRecord.add(new ResourceLocation(this.addSongtoRecordList(intIn)));
+    	//	//Collections.sort(this.currentMusicListRecord);
+    	//}
     }
     
-    protected String addSongtoRecordList(int resourceLocationIn)
+    public String addSongtoRecordList(int resourceLocationIn)
     {
-    	String name = CommonProxy.musicListRecord.get(resourceLocationIn).getResourceDomain() + ":" + CommonProxy.musicListRecord.get(resourceLocationIn).getResourcePath();
+    	String name = /*CommonProxy.musicListRecord.get(resourceLocationIn).getResourceDomain() + ":" + 
+    	*/
+    	//"item." + 
+    	
+    	CommonProxy.musicListRecord.get(resourceLocationIn).getResourcePath();
 		
 		return name;
     }

@@ -65,7 +65,7 @@ public class GuiMachineMenuMain extends GuiContainerVC {
     	buttonList.clear();
     	Keyboard.enableRepeatEvents(true);
     	
-    	GuiVM.buttonMusicSelect = new GuiButtonGeneral1VC(40, this.guiLeft + 117, this.guiTop + 88, 52, 14, References.localNameVC("viesmachines.gui.selectsong.0"), 0);
+    	GuiVM.buttonMusicSelect = new GuiButtonGeneral1VC(40, this.guiLeft + 117, this.guiTop + 88, 52, 14, References.localNameVC("viesmachines.gui.select.0"), 0);
     	GuiVM.buttonMusicStop = new GuiButtonGeneral1VC(41, this.guiLeft + 119, this.guiTop + 119, 14, 14, References.localNameVC(""), 2);
     	GuiVM.buttonMusicPlay = new GuiButtonGeneral1VC(42, this.guiLeft + 136, this.guiTop + 119, 14, 14, References.localNameVC(""), 1);
     	GuiVM.buttonMusicRandom = new GuiButtonGeneral1VC(43, this.guiLeft + 153, this.guiTop + 119, 14, 14, References.localNameVC(""), 3);
@@ -310,38 +310,50 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 		// If the machine isn't broken, display song information:
 		if (!this.machine.getBroken())
         {
-			if (
-					//TODO this.machine.currentMusicListRecord
-					ClientProxy.musicListRecord
-					.size() > 0)
+			if (this.machine.getSelectedRecord() < 0)
+			{
+				// No songs:
+				GlStateManager.pushMatrix();
+				{
+					GlStateManager.translate(143, 108.5, 0);
+					GlStateManager.scale(0.5F, 0.5F, 0.5F);
+					
+					this.centeredString(fontRenderer, References.localNameVC("--------"), 0, 0, Color.RED.getRGB());
+				}
+				GlStateManager.popMatrix();
+			}
+			else if (this.machine.getTierComponent() == 0
+			&& !this.machine.getLearnedRecordSlot1().equals(""))
 	        {
-				// Current Song:
-				GlStateManager.pushMatrix();
-				{
-					GlStateManager.translate(144, 105, 0);
-					GlStateManager.scale(0.5F, 0.5F, 0.5F);
-					
-					this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.currentsong.0") + " :", 0, 0, Color.WHITE.getRGB());
-				}
-				GlStateManager.popMatrix();
-				
-				// Actual song name:
-				GlStateManager.pushMatrix();
-				{
-					GlStateManager.translate(144, 112, 0);
-					GlStateManager.scale(0.5F, 0.5F, 0.5F);
-					
-					this.centeredString(fontRenderer, 
-					this.stringToFlashGolden(
-					References.localNameVC( "item." + 
-					//TODO this.machine.currentMusicListRecord
-					ClientProxy.musicListRecord
-					.get(this.machine.selectedSong).getResourcePath().toString() + ".desc")
-					, 1, false, TextFormatting.DARK_AQUA, 0)	
-					, 0, 0, Color.BLUE.getRGB());
-				}
-				GlStateManager.popMatrix();
+				this.validRecordName(this.machine);
 	        }
+			else if (this.machine.getTierComponent() == 1
+			&& !this.machine.getLearnedRecordSlot1().equals("")
+			|| !this.machine.getLearnedRecordSlot2().equals("")
+			|| !this.machine.getLearnedRecordSlot3().equals(""))
+			{
+				this.validRecordName(this.machine);
+			}
+			else if (this.machine.getTierComponent() == 2
+			&& !this.machine.getLearnedRecordSlot1().equals("")
+			|| !this.machine.getLearnedRecordSlot2().equals("")
+			|| !this.machine.getLearnedRecordSlot3().equals("")
+			|| !this.machine.getLearnedRecordSlot4().equals("")
+			|| !this.machine.getLearnedRecordSlot5().equals(""))
+			{
+				this.validRecordName(this.machine);
+			}
+			else if (this.machine.getTierComponent() == 3
+			&& !this.machine.getLearnedRecordSlot1().equals("")
+			|| !this.machine.getLearnedRecordSlot2().equals("")
+			|| !this.machine.getLearnedRecordSlot3().equals("")
+			|| !this.machine.getLearnedRecordSlot4().equals("")
+			|| !this.machine.getLearnedRecordSlot5().equals("")
+			|| !this.machine.getLearnedRecordSlot6().equals("")
+			|| !this.machine.getLearnedRecordSlot7().equals(""))
+			{
+				this.validRecordName(this.machine);
+			}
 			else
 			{
 				// No songs:
@@ -621,7 +633,7 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 				GlStateManager.popMatrix();
 			}
 			
-			if (this.machine.currentMusicListRecord.size() > 0)
+			//if (this.machine.currentMusicListRecord.size() > 0)
 	        {
 				// Logic for mouse-over tooltip - Music Stop:
 				if(mouseX >= this.guiLeft + 119 && mouseX <= this.guiLeft + 132
@@ -691,6 +703,12 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 	public void updateScreen()
     {
         super.updateScreen();
+        /*
+        LogHelper.info("item." + 
+					//TODO this.machine.currentMusicListRecord
+					ClientProxy.musicListRecord
+					.get(this.machine.selectedSong).getResourcePath().toString() + ".desc");
+        */
         //LogHelper.info(this.machine.getControllingPassengerYaw());
         // Deals with hiding unused toggle buttons:
         if(this.machine.getPoweredOn())
@@ -827,5 +845,49 @@ public class GuiMachineMenuMain extends GuiContainerVC {
         	GuiVM.buttonMusicSelect.enabled = false;
         }
         
+        if (this.machine.getSelectedRecord() < 0)
+        {
+        	GuiVM.buttonMusicPlay.enabled = false;
+        	GuiVM.buttonMusicStop.enabled = false;
+        }
+
+        if (this.machine.getBroken())
+        {
+        	GuiVM.buttonMusicPlay.enabled = false;
+        	GuiVM.buttonMusicStop.enabled = false;
+        	GuiVM.buttonMusicRandom.enabled = false;
+        	GuiVM.buttonMusicSelect.enabled = false;
+        }
+        
     }
+	
+	public void validRecordName(EntityMachineBase machineIn)
+	{
+		// Current Song:
+		GlStateManager.pushMatrix();
+		{
+			GlStateManager.translate(144, 105, 0);
+			GlStateManager.scale(0.5F, 0.5F, 0.5F);
+			
+			this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.currentsong.0") + " :", 0, 0, Color.WHITE.getRGB());
+		}
+		GlStateManager.popMatrix();
+		
+		// Actual song name:
+		GlStateManager.pushMatrix();
+		{
+			GlStateManager.translate(144, 112, 0);
+			GlStateManager.scale(0.5F, 0.5F, 0.5F);
+			
+			this.centeredString(fontRenderer, 
+			this.stringToFlashGolden(
+			References.localNameVC( "item." + 
+			//TODO this.machine.currentMusicListRecord
+			ClientProxy.musicListRecord
+			.get(machineIn.getSelectedRecord()).getResourcePath().toString() + ".desc")
+			, 1, false, TextFormatting.DARK_AQUA, 0)	
+			, 0, 0, Color.BLUE.getRGB());
+		}
+		GlStateManager.popMatrix();
+	}
 }

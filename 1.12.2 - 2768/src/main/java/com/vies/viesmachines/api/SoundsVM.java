@@ -13,6 +13,8 @@ public class SoundsVM {
 	public static SoundEvent STORMS;
 	public static SoundEvent TIMESCAR;
 	public static SoundEvent ENGINEON;
+	public static SoundEvent UPGRADE;
+	public static SoundEvent HEAL;
 	
 	public static void registerSounds()
 	{
@@ -23,6 +25,8 @@ public class SoundsVM {
 		STORMS = registerSound("record.storms");
 		TIMESCAR = registerSound("record.timescar");
 		ENGINEON = registerSound("sound.engineon");
+		UPGRADE = registerSound("sound.upgrade");
+		HEAL = registerSound("sound.heal");
 	}
 	
 	/** Registers all custom sounds. */

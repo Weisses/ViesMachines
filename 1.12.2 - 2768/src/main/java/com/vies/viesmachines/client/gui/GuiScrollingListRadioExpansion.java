@@ -15,20 +15,22 @@ public class GuiScrollingListRadioExpansion extends GuiScrollingList {
     
     private GuiRadioExpansionSelectMusic parent;
     private ArrayList<ResourceLocation> songs;
+    private int slotHeight;
 
-    public GuiScrollingListRadioExpansion(GuiRadioExpansionSelectMusic parent, ArrayList<ResourceLocation> songsIn, int listWidth, int slotHeight)
+    public GuiScrollingListRadioExpansion(GuiRadioExpansionSelectMusic parent, ArrayList<ResourceLocation> songsIn, int listWidth, int slotHeightIn)
     {
         super(parent.getMinecraftInstance(), 
         		
         		listWidth+2, parent.height, 
         		
-        		parent.getGuiTop() + 44, parent.getGuiTop() + parent.height - 53, 
+        		parent.getGuiTop()+16+34, parent.getGuiTop() + parent.height-89, 
         		
         		parent.getGuiLeft() + 42, 
-        		slotHeight, parent.width, parent.height);
+        		slotHeightIn, parent.width, parent.height);
         
         this.parent = parent;
         this.songs = songsIn;
+        this.slotHeight = slotHeightIn;
     }
 
     @Override
@@ -58,7 +60,7 @@ public class GuiScrollingListRadioExpansion extends GuiScrollingList {
     @Override
     protected int getContentHeight()
     {
-        return (this.getSize()) * 35  + 1;
+        return (this.getSize()) * this.slotHeight  + 1;
     }
 
     public ArrayList<ResourceLocation> getSongs()
@@ -73,6 +75,6 @@ public class GuiScrollingListRadioExpansion extends GuiScrollingList {
         String           version  = StringUtils.stripControlCodes(References.localNameVC("item." + mc.getResourcePath() + ".desc"));
         FontRenderer     font     = this.parent.getFontRenderer();
         
-        font.drawString(version, this.left + 3 , top + 12, 0xCCCCCC);
+        font.drawString(version, this.left + 3 , top + 2, 0xCCCCCC);
     }
 }

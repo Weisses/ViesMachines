@@ -7,7 +7,7 @@ import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.ItemsVM;
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
-import com.vies.viesmachines.common.entity.machines.EntityMachineFuel;
+import com.vies.viesmachines.common.entity.machines.EntityMachineFlying;
 import com.vies.viesmachines.common.entity.machines.types.flying.EntityMachineFlyingAirship;
 
 import net.minecraft.client.Minecraft;
@@ -72,7 +72,7 @@ public class GuiMachineHUD extends Gui {
 	{
 		if (event.getType() == ElementType.ALL) 
 		{
-			if (mc.player.getRidingEntity() instanceof EntityMachineFuel)
+			if (mc.player.getRidingEntity() instanceof EntityMachineFlying)
 		    {
 				this.machine = (EntityMachineFlyingAirship) Minecraft.getMinecraft().player.getRidingEntity();
 				

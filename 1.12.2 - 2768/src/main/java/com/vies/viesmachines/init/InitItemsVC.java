@@ -102,7 +102,7 @@ public class InitItemsVC extends ItemsVM {
 					//--------------------------------------------------
 					
 					TOOL_DISMOUNTER,
-					//TOOL_RADIO_EXPANSION,
+					TOOL_RADIO_EXPANSION,
 					
 					//--------------------------------------------------
 					

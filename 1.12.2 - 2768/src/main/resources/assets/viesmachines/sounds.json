@@ -61,5 +61,23 @@
             "stream": false
             }
         ]
+    },
+    "sound.upgrade": {
+        "category": "sound",
+        "sounds": [
+            {
+            "name": "viesmachines:upgrade",
+            "stream": false
+            }
+        ]
+    },
+    "sound.heal": {
+        "category": "sound",
+        "sounds": [
+            {
+            "name": "viesmachines:heal",
+            "stream": false
+            }
+        ]
     }
 }

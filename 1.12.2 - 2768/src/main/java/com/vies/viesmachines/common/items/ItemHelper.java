@@ -4,14 +4,14 @@ import net.minecraft.item.Item;
 
 public class ItemHelper extends Item {
 	
-	public ItemHelper(String itemName) 
+	public ItemHelper(String itemNameIn) 
 	{
-		setItemName(this, itemName);
+		this.setItemName(this, itemNameIn);
 	}
 	
-	public static void setItemName(Item item, String itemName) 
+	public static void setItemName(Item itemIn, String itemNameIn) 
 	{
-		item.setRegistryName(itemName);
-		item.setUnlocalizedName(item.getRegistryName().toString());
+		itemIn.setRegistryName(itemNameIn);
+		itemIn.setUnlocalizedName(itemIn.getRegistryName().toString());
 	}
 }

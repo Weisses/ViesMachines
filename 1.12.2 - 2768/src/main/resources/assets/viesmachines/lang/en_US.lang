@@ -47,8 +47,8 @@ item.viesmachines:machines/item_machine_flying_airship.name=Airship
 item.viesmachines:machines/item_machine_flying_helicopter.name=Helicopter
 item.viesmachines:machines/item_machine_flying_3.name=WIP
 
-item.viesmachines:item_tool_dismounter.name=Dismounter
-item.viesmachines:item_tool_radio_expansion.name=Radio Expansion
+item.viesmachines:item_tool_dismounter.name=Dismounter Tool
+item.viesmachines:item_tool_radio_expansion.name=Radio Expansion Tool
 
 
 item.viesmachines:kits/item_kit_raw.name=Raw Kit
@@ -59,6 +59,8 @@ item.viesmachines:item_xegonite_water.name=Water-Infused Xegonite
 item.viesmachines:item_xegonite_lava.name=Lava-Infused Xegonite
 item.viesmachines:item_xegonite_ender.name=Ender-Infused Xegonite
 
+
+item.viesmachines:item_circuit_adaptive.name=Adaptive Circuit
 
 //-----Item ToolTips-----
 item.viesmachines:item_xegonite.tt.1=This material seems to react
@@ -138,10 +140,12 @@ item.viesmachines:item_tool_dismounter.tt.2=on a mounted entity to
 item.viesmachines:item_tool_dismounter.tt.3=safely dismount it.
 item.viesmachines:item_tool_dismounter.tt.4=Does no damage, may cause laughter.
 
-item.viesmachines:item_tool_radio_expansion.tt.1=[Left-Click]
-item.viesmachines:item_tool_radio_expansion.tt.2=on a mounted entity to
-item.viesmachines:item_tool_radio_expansion.tt.3=safely dismount it.
-item.viesmachines:item_tool_radio_expansion.tt.4=Does no damage, may cause laughter.
+item.viesmachines:item_tool_radio_expansion.tt.1=[Shift + Right-Click]
+item.viesmachines:item_tool_radio_expansion.tt.2=to open the item
+item.viesmachines:item_tool_radio_expansion.tt.3=menu and assign a record.
+item.viesmachines:item_tool_radio_expansion.tt.4=[Left-Click]
+item.viesmachines:item_tool_radio_expansion.tt.5=on a machine to apply
+item.viesmachines:item_tool_radio_expansion.tt.6=the record.
 
 
 
@@ -256,9 +260,12 @@ viesmachines.gui.fueltank.0=Fuel Tank
 viesmachines.gui.weapons.0=Weapons
 viesmachines.gui.music.0=Music
 viesmachines.gui.radio.0=Radio
-viesmachines.gui.selectsong.0=Select Song
-viesmachines.gui.currentsong.0=Current Song
-viesmachines.gui.currentsong.1=No songs learned
+viesmachines.gui.select.0=Select
+viesmachines.gui.selectsong.0=Selected Record
+viesmachines.gui.selectsong.1=Select Record
+viesmachines.gui.currentsong.0=Record
+viesmachines.gui.norecordselected.0=No record selected
+viesmachines.gui.currentsong.2=Music Menu
 viesmachines.gui.selectprojectile.0=Select Projectile
 viesmachines.gui.selectcolor.0=Select Color
 viesmachines.gui.weaponmenu.0=Weapon Menu
@@ -423,6 +430,8 @@ viesmachines.main.per=per
 viesmachines.main.seconds=seconds
 viesmachines.main.sec=sec
 
+viesmachines.main.empty=Empty
+viesmachines.main.confirmdelete=Confirm Delete
 
 viesmachines.main.unlimited=Unlimited
 
@@ -606,8 +615,17 @@ viesmachines.message.visual.secondary.transparent.1=Enabled Secondary Transparen
 viesmachines.message.visual.secondary.transparent.2=Disabled Secondary Transparency.
 
 
-
-
+viesmachines.message.tool.radio_expansion.0=Machine already knows this record.
+viesmachines.message.tool.radio_expansion.1=Record slots are full!
+viesmachines.message.tool.radio_expansion.2=
+viesmachines.message.tool.radio_expansion.3=No record selected!
+viesmachines.message.tool.radio_expansion.11=Record applied to slot 1.
+viesmachines.message.tool.radio_expansion.12=Record applied to slot 2.
+viesmachines.message.tool.radio_expansion.13=Record applied to slot 3.
+viesmachines.message.tool.radio_expansion.14=Record applied to slot 4.
+viesmachines.message.tool.radio_expansion.15=Record applied to slot 5.
+viesmachines.message.tool.radio_expansion.16=Record applied to slot 6.
+viesmachines.message.tool.radio_expansion.17=Record applied to slot 7.
 
 
 //-----Colors-----

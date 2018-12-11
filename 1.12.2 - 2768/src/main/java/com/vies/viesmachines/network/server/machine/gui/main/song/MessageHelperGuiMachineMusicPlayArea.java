@@ -42,7 +42,7 @@ public class MessageHelperGuiMachineMusicPlayArea extends MessageBase<MessageHel
 		soundHandler.playSound(new JukeboxMovingSoundVC(this.machine, ForgeRegistries.SOUND_EVENTS.getValue(
 				//TODO this.machine.currentMusicListRecord
 				ClientProxy.musicListRecord
-				.get(this.machine.selectedSong))));
+				.get(this.machine.getSelectedRecord()))));
 	}
 	
 	@SideOnly(Side.CLIENT)

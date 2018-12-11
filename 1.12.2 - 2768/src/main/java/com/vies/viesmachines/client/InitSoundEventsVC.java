@@ -22,7 +22,9 @@ public class InitSoundEventsVC extends SoundsVM {
 				DIRE,
 				STORMS,
 				TIMESCAR,
-				ENGINEON
+				ENGINEON,
+				UPGRADE,
+				HEAL
 		);
 	}
 }

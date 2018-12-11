@@ -115,6 +115,48 @@ public class GuiVM {
 	public static GuiButton buttonMusicPlay;
 	public static GuiButton buttonMusicRandom;
 	
+
+	public static GuiButton buttonLearnedRecordSlot1;
+	public static GuiButton buttonLearnedRecordSlot2;
+	public static GuiButton buttonLearnedRecordSlot3;
+	public static GuiButton buttonLearnedRecordSlot4;
+	public static GuiButton buttonLearnedRecordSlot5;
+	public static GuiButton buttonLearnedRecordSlot6;
+	public static GuiButton buttonLearnedRecordSlot7;
+	
+	public static GuiButton buttonLearnedRecordSlot1Delete;
+	public static GuiButton buttonLearnedRecordSlot2Delete;
+	public static GuiButton buttonLearnedRecordSlot3Delete;
+	public static GuiButton buttonLearnedRecordSlot4Delete;
+	public static GuiButton buttonLearnedRecordSlot5Delete;
+	public static GuiButton buttonLearnedRecordSlot6Delete;
+	public static GuiButton buttonLearnedRecordSlot7Delete;
+	
+	public static GuiButton buttonLearnedRecordSlot1Cancel;
+	public static GuiButton buttonLearnedRecordSlot2Cancel;
+	public static GuiButton buttonLearnedRecordSlot3Cancel;
+	public static GuiButton buttonLearnedRecordSlot4Cancel;
+	public static GuiButton buttonLearnedRecordSlot5Cancel;
+	public static GuiButton buttonLearnedRecordSlot6Cancel;
+	public static GuiButton buttonLearnedRecordSlot7Cancel;
+	
+	public static GuiButton buttonLearnedRecordSlot1Empty;
+	public static GuiButton buttonLearnedRecordSlot2Empty;
+	public static GuiButton buttonLearnedRecordSlot3Empty;
+	public static GuiButton buttonLearnedRecordSlot4Empty;
+	public static GuiButton buttonLearnedRecordSlot5Empty;
+	public static GuiButton buttonLearnedRecordSlot6Empty;
+	public static GuiButton buttonLearnedRecordSlot7Empty;
+	
+	public static GuiButton buttonLearnedRecordSlot1Confirm;
+	public static GuiButton buttonLearnedRecordSlot2Confirm;
+	public static GuiButton buttonLearnedRecordSlot3Confirm;
+	public static GuiButton buttonLearnedRecordSlot4Confirm;
+	public static GuiButton buttonLearnedRecordSlot5Confirm;
+	public static GuiButton buttonLearnedRecordSlot6Confirm;
+	public static GuiButton buttonLearnedRecordSlot7Confirm;
+	
+	
 	public static GuiButton buttonAccept;
 	public static GuiButton buttonBack;
 	public static GuiButton buttonUndo;

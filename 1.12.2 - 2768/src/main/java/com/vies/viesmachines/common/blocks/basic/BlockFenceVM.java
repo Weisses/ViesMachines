@@ -19,6 +19,9 @@ public class BlockFenceVM extends BlockFence {
 		this.setResistance(50.0F);
 		this.setSoundType(soundTypeIn);
 		this.setCreativeTab(ViesMachines.tabBlocks);
-		this.setLightOpacity(255);
+		
+		this.fullBlock = false;
+		this.useNeighborBrightness = true;
+		//this.setLightOpacity(0);
 	}
 }

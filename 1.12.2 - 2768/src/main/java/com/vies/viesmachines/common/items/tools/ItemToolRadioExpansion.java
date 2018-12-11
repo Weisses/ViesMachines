@@ -6,11 +6,20 @@ import javax.annotation.Nullable;
 
 import com.vies.viesmachines.ViesMachines;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.client.gui.misc.GuiRadioExpansionSelectMusic;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.items.ItemHelper;
 import com.vies.viesmachines.network.NetworkHandler;
 import com.vies.viesmachines.network.server.item.MessageGuiRadioExpansion;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionAlreadyKnown;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionApply1;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionApply2;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionApply3;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionApply4;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionApply5;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionApply6;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionApply7;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionFull;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionNoRecord;
 import com.vies.viesmachines.proxy.CommonProxy;
 
 import net.minecraft.client.Minecraft;
@@ -48,13 +57,251 @@ public class ItemToolRadioExpansion extends Item {
     {
 		if (entity instanceof EntityMachineBase)
         {
-			if (!((EntityMachineBase) entity).getBroken())
+			EntityMachineBase machine = (EntityMachineBase) entity;
+			
+			if (!machine.getBroken())
 			{
 				if(stack.hasTagCompound())
 				{
-					if (!((EntityMachineBase) entity).currentMusicListRecord.contains(CommonProxy.musicListRecord.get(stack.getTagCompound().getInteger("SongToAdd"))))
+					if (!machine.getLearnedRecordSlot1().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")))
+					&& !machine.getLearnedRecordSlot2().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")))
+					&& !machine.getLearnedRecordSlot3().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")))
+					&& !machine.getLearnedRecordSlot4().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")))
+					&& !machine.getLearnedRecordSlot5().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")))
+					&& !machine.getLearnedRecordSlot6().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")))
+					&& !machine.getLearnedRecordSlot7().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd"))))
 					{
-						((EntityMachineBase) entity).applySongtoRecordList(stack.getTagCompound().getInteger("SongToAdd"));
+						if (machine.getTierComponent() == 0)
+						{
+							if (machine.getLearnedRecordSlot1().equals(""))
+							{
+								machine.setLearnedRecordSlot1(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								
+								if(player.world.isRemote)
+								{
+									// Record applied:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply1());
+								}
+							}
+							else
+							{
+								if(player.world.isRemote)
+								{
+									// Record slots are full:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionFull());
+								}
+							}
+						}
+						
+						
+						if (machine.getTierComponent() == 1)
+						{
+							if (machine.getLearnedRecordSlot1().equals(""))
+							{
+								machine.setLearnedRecordSlot1(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								
+								if(player.world.isRemote)
+								{
+									// Record applied:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply1());
+								}
+							}
+							else if (machine.getLearnedRecordSlot2().equals(""))
+							{
+								machine.setLearnedRecordSlot2(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								
+								if(player.world.isRemote)
+								{
+									// Record applied:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply2());
+								}
+							}
+							else if (machine.getLearnedRecordSlot3().equals(""))
+							{
+								machine.setLearnedRecordSlot3(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								
+								if(player.world.isRemote)
+								{
+									// Record applied:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply3());
+								}
+							}
+							else
+							{
+								if(player.world.isRemote)
+								{
+									// Record slots are full:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionFull());
+								}
+							}
+						}
+						
+						
+						
+						if (machine.getTierComponent() == 2)
+						{
+							if (machine.getLearnedRecordSlot1().equals(""))
+							{
+								machine.setLearnedRecordSlot1(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								
+								if(player.world.isRemote)
+								{
+									// Record applied:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply1());
+								}
+							}
+							else if (machine.getLearnedRecordSlot2().equals(""))
+							{
+								machine.setLearnedRecordSlot2(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								
+								if(player.world.isRemote)
+								{
+									// Record applied:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply2());
+								}
+							}
+							else if (machine.getLearnedRecordSlot3().equals(""))
+							{
+								machine.setLearnedRecordSlot3(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								
+								if(player.world.isRemote)
+								{
+									// Record applied:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply3());
+								}
+							}
+							else if (machine.getLearnedRecordSlot4().equals(""))
+							{
+								machine.setLearnedRecordSlot4(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								
+								if(player.world.isRemote)
+								{
+									// Record applied:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply4());
+								}
+							}
+							else if (machine.getLearnedRecordSlot5().equals(""))
+							{
+								machine.setLearnedRecordSlot5(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								
+								if(player.world.isRemote)
+								{
+									// Record applied:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply5());
+								}
+							}
+							else
+							{
+								if(player.world.isRemote)
+								{
+									// Record slots are full:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionFull());
+								}
+							}
+						}
+						
+						
+						
+						if (machine.getTierComponent() == 3)
+						{
+							if (machine.getLearnedRecordSlot1().equals(""))
+							{
+								machine.setLearnedRecordSlot1(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								
+								if(player.world.isRemote)
+								{
+									// Record applied:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply1());
+								}
+							}
+							else if (machine.getLearnedRecordSlot2().equals(""))
+							{
+								machine.setLearnedRecordSlot2(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								
+								if(player.world.isRemote)
+								{
+									// Record applied:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply2());
+								}
+							}
+							else if (machine.getLearnedRecordSlot3().equals(""))
+							{
+								machine.setLearnedRecordSlot3(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								
+								if(player.world.isRemote)
+								{
+									// Record applied:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply3());
+								}
+							}
+							else if (machine.getLearnedRecordSlot4().equals(""))
+							{
+								machine.setLearnedRecordSlot4(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								
+								if(player.world.isRemote)
+								{
+									// Record applied:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply4());
+								}
+							}
+							else if (machine.getLearnedRecordSlot5().equals(""))
+							{
+								machine.setLearnedRecordSlot5(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								
+								if(player.world.isRemote)
+								{
+									// Record applied:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply5());
+								}
+							}
+							else if (machine.getLearnedRecordSlot6().equals(""))
+							{
+								machine.setLearnedRecordSlot6(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								
+								if(player.world.isRemote)
+								{
+									// Record applied:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply6());
+								}
+							}
+							else if (machine.getLearnedRecordSlot7().equals(""))
+							{
+								machine.setLearnedRecordSlot7(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								
+								if(player.world.isRemote)
+								{
+									// Record applied:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply7());
+								}
+							}
+							else
+							{
+								if(player.world.isRemote)
+								{
+									// Record slots are full:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionFull());
+								}
+							}
+						}
+						
+					}
+					else
+					{
+						if(player.world.isRemote)
+						{
+							// Already knows record:
+							NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionAlreadyKnown());
+						}
+						
+					}
+				
+				}
+				else
+				{
+					if(player.world.isRemote)
+					{
+						// No record selected:
+						NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionNoRecord());
 					}
 				}
 				return true;
@@ -100,14 +347,14 @@ public class ItemToolRadioExpansion extends Item {
 		if(stack.hasTagCompound())
 		{
 			tooltip.add(
-					"Song to apply : " + 
+					"Record : " + 
 					this.stringToFlashGolden(
 					References.localNameVC( "item." + CommonProxy.musicListRecord.get(stack.getTagCompound().getInteger("SongToAdd")).getResourcePath().toString() + ".desc")
 					, 1, false, TextFormatting.DARK_AQUA, 0));
 		}
 		else
 		{
-			tooltip.add("Unassigned.");
+			tooltip.add(TextFormatting.RED + "No Record Programmed.");
 		}
 		
 		tooltip.add("");
@@ -115,7 +362,8 @@ public class ItemToolRadioExpansion extends Item {
 		+ " " + TextFormatting.GRAY + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.2"));
 		tooltip.add(References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.3"));
 		tooltip.add("");
-		tooltip.add(References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.4"));
+		tooltip.add(TextFormatting.WHITE + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.4")+ " " + TextFormatting.GRAY + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.5"));
+		tooltip.add(References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.6"));
 	}
 	
 	@Override

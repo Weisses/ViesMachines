@@ -395,7 +395,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 			GlStateManager.translate(55.5, 11, 0);
 	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 	        
-	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.primarycolor.primarytexture.0"), 0, 0, Color.BLACK.getRGB());
+	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.secondarycolor.secondarytexture.0"), 0, 0, Color.BLACK.getRGB());
 		}
 		GlStateManager.popMatrix();
 		
@@ -482,7 +482,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 				GlStateManager.translate(55.5, 118, 0);
 		        GlStateManager.scale(0.5F, 0.5F, 0.5F);
 		        
-		        this.centeredString(fontRenderer, References.localNameVC(ItemsVM.UPGRADE_FRAME_TIER1.getUnlocalizedName() + ".name"), 0, 8, Color.YELLOW.getRGB());
+		        this.centeredString(fontRenderer, References.localNameVC(ItemsVM.UPGRADE_COMPONENT_TIER1.getUnlocalizedName() + ".name"), 0, 8, Color.YELLOW.getRGB());
 			}
 			GlStateManager.popMatrix();
 		}
@@ -532,7 +532,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 				GlStateManager.translate(55.5, 118+30, 0);
 		        GlStateManager.scale(0.5F, 0.5F, 0.5F);
 		        
-		        this.centeredString(fontRenderer, References.localNameVC(ItemsVM.UPGRADE_FRAME_TIER2.getUnlocalizedName() + ".name"), 0, 8, Color.CYAN.getRGB());
+		        this.centeredString(fontRenderer, References.localNameVC(ItemsVM.UPGRADE_COMPONENT_TIER2.getUnlocalizedName() + ".name"), 0, 8, Color.CYAN.getRGB());
 			}
 			GlStateManager.popMatrix();
 		}
@@ -582,7 +582,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVC 
 				GlStateManager.translate(55.5, 118+60, 0);
 		        GlStateManager.scale(0.5F, 0.5F, 0.5F);
 		        
-		        this.centeredString(fontRenderer, References.localNameVC(ItemsVM.UPGRADE_FRAME_TIER3.getUnlocalizedName() + ".name"), 0, 8, Color.MAGENTA.getRGB());
+		        this.centeredString(fontRenderer, References.localNameVC(ItemsVM.UPGRADE_COMPONENT_TIER3.getUnlocalizedName() + ".name"), 0, 8, Color.MAGENTA.getRGB());
 			}
 			GlStateManager.popMatrix();
 		}

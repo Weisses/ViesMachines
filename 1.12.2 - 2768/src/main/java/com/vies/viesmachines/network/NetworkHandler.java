@@ -91,12 +91,27 @@ import com.vies.viesmachines.network.server.machine.gui.main.projectile.MessageH
 import com.vies.viesmachines.network.server.machine.gui.main.projectile.MessageHelperGuiMachineMenuSelectProjectileBulletExplosive;
 import com.vies.viesmachines.network.server.machine.gui.main.projectile.MessageHelperGuiMachineMenuSelectProjectileBulletNormal;
 import com.vies.viesmachines.network.server.machine.gui.main.song.MessageGuiMachineMenuSelectMusic;
+import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperGuiMachineMainRecordDefault;
 import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperGuiMachineMusicPlay;
 import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperGuiMachineMusicPlayArea;
 import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperGuiMachineMusicRandom;
 import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperGuiMachineMusicSet;
 import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperGuiMachineMusicStop;
 import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperGuiMachineMusicStopArea;
+import com.vies.viesmachines.network.server.machine.gui.main.song.delete.MessageHelperGuiMachineMainRecordDelete1;
+import com.vies.viesmachines.network.server.machine.gui.main.song.delete.MessageHelperGuiMachineMainRecordDelete2;
+import com.vies.viesmachines.network.server.machine.gui.main.song.delete.MessageHelperGuiMachineMainRecordDelete3;
+import com.vies.viesmachines.network.server.machine.gui.main.song.delete.MessageHelperGuiMachineMainRecordDelete4;
+import com.vies.viesmachines.network.server.machine.gui.main.song.delete.MessageHelperGuiMachineMainRecordDelete5;
+import com.vies.viesmachines.network.server.machine.gui.main.song.delete.MessageHelperGuiMachineMainRecordDelete6;
+import com.vies.viesmachines.network.server.machine.gui.main.song.delete.MessageHelperGuiMachineMainRecordDelete7;
+import com.vies.viesmachines.network.server.machine.gui.main.song.select.MessageHelperGuiMachineMainRecordSelect1;
+import com.vies.viesmachines.network.server.machine.gui.main.song.select.MessageHelperGuiMachineMainRecordSelect2;
+import com.vies.viesmachines.network.server.machine.gui.main.song.select.MessageHelperGuiMachineMainRecordSelect3;
+import com.vies.viesmachines.network.server.machine.gui.main.song.select.MessageHelperGuiMachineMainRecordSelect4;
+import com.vies.viesmachines.network.server.machine.gui.main.song.select.MessageHelperGuiMachineMainRecordSelect5;
+import com.vies.viesmachines.network.server.machine.gui.main.song.select.MessageHelperGuiMachineMainRecordSelect6;
+import com.vies.viesmachines.network.server.machine.gui.main.song.select.MessageHelperGuiMachineMainRecordSelect7;
 import com.vies.viesmachines.network.server.machine.gui.navigation.MessageGuiMachineMenuCustomize;
 import com.vies.viesmachines.network.server.machine.gui.navigation.MessageGuiMachineMenuMain;
 import com.vies.viesmachines.network.server.machine.gui.navigation.MessageGuiMachineMenuStats;
@@ -109,6 +124,16 @@ import com.vies.viesmachines.network.server.world.PlayerMessageMachineBroken;
 import com.vies.viesmachines.network.server.world.PlayerMessageNameColor;
 import com.vies.viesmachines.network.server.world.PlayerMessagePoweredOnDisabled;
 import com.vies.viesmachines.network.server.world.PlayerMessagePoweredOnEnabled;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionAlreadyKnown;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionApply1;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionApply2;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionApply3;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionApply4;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionApply5;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionApply6;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionApply7;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionFull;
+import com.vies.viesmachines.network.server.world.PlayerMessageToolRadioExpansionNoRecord;
 import com.vies.viesmachines.network.server.world.PlayerMessageVisualPrimaryColorSelected;
 import com.vies.viesmachines.network.server.world.PlayerMessageVisualPrimaryTextureSelected;
 import com.vies.viesmachines.network.server.world.PlayerMessageVisualPrimaryTransparentDisabled;
@@ -156,6 +181,13 @@ public class NetworkHandler {
 		register(MessageHelperGuiMachineMusicStopArea.class, MessageHelperGuiMachineMusicStopArea.class, Side.CLIENT);
 		register(MessageHelperGuiMachineMusicRandom.class, MessageHelperGuiMachineMusicRandom.class, Side.SERVER);
 		
+		register(MessageHelperGuiMachineMainRecordDelete1.class, MessageHelperGuiMachineMainRecordDelete1.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordDelete2.class, MessageHelperGuiMachineMainRecordDelete2.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordDelete3.class, MessageHelperGuiMachineMainRecordDelete3.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordDelete4.class, MessageHelperGuiMachineMainRecordDelete4.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordDelete5.class, MessageHelperGuiMachineMainRecordDelete5.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordDelete6.class, MessageHelperGuiMachineMainRecordDelete6.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordDelete7.class, MessageHelperGuiMachineMainRecordDelete7.class, Side.SERVER);
 		
 		
 		register(MessageHelperGuiMachineMenuChangeName.class, MessageHelperGuiMachineMenuChangeName.class, Side.SERVER);
@@ -243,7 +275,15 @@ public class NetworkHandler {
 		register(MessageHelperGuiMachineMenuCustomizeSecondarySkinTexture.class, MessageHelperGuiMachineMenuCustomizeSecondarySkinTexture.class, Side.SERVER);
 		
 		
+		register(MessageHelperGuiMachineMainRecordSelect1.class, MessageHelperGuiMachineMainRecordSelect1.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordSelect2.class, MessageHelperGuiMachineMainRecordSelect2.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordSelect3.class, MessageHelperGuiMachineMainRecordSelect3.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordSelect4.class, MessageHelperGuiMachineMainRecordSelect4.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordSelect5.class, MessageHelperGuiMachineMainRecordSelect5.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordSelect6.class, MessageHelperGuiMachineMainRecordSelect6.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordSelect7.class, MessageHelperGuiMachineMainRecordSelect7.class, Side.SERVER);
 		
+		register(MessageHelperGuiMachineMainRecordDefault.class, MessageHelperGuiMachineMainRecordDefault.class, Side.SERVER);
 		
 		
 		register(MessageFlyingThunderStrike.class, MessageFlyingThunderStrike.class, Side.SERVER);
@@ -294,6 +334,16 @@ public class NetworkHandler {
 		register(MessageGuiKitFabricatorSyncClientGem.class, MessageGuiKitFabricatorSyncClientGem.class, Side.CLIENT);
 		register(MessageGuiKitFabricatorSyncServerGem.class, MessageGuiKitFabricatorSyncServerGem.class, Side.SERVER);
 		
+		register(PlayerMessageToolRadioExpansionAlreadyKnown.class, PlayerMessageToolRadioExpansionAlreadyKnown.class, Side.SERVER);
+		register(PlayerMessageToolRadioExpansionFull.class, PlayerMessageToolRadioExpansionFull.class, Side.SERVER);
+		register(PlayerMessageToolRadioExpansionNoRecord.class, PlayerMessageToolRadioExpansionNoRecord.class, Side.SERVER);
+		register(PlayerMessageToolRadioExpansionApply1.class, PlayerMessageToolRadioExpansionApply1.class, Side.SERVER);
+		register(PlayerMessageToolRadioExpansionApply2.class, PlayerMessageToolRadioExpansionApply2.class, Side.SERVER);
+		register(PlayerMessageToolRadioExpansionApply3.class, PlayerMessageToolRadioExpansionApply3.class, Side.SERVER);
+		register(PlayerMessageToolRadioExpansionApply4.class, PlayerMessageToolRadioExpansionApply4.class, Side.SERVER);
+		register(PlayerMessageToolRadioExpansionApply5.class, PlayerMessageToolRadioExpansionApply5.class, Side.SERVER);
+		register(PlayerMessageToolRadioExpansionApply6.class, PlayerMessageToolRadioExpansionApply6.class, Side.SERVER);
+		register(PlayerMessageToolRadioExpansionApply7.class, PlayerMessageToolRadioExpansionApply7.class, Side.SERVER);
 		
 		
 		register(MessageHelperEventTrigger01Client.class, MessageHelperEventTrigger01Client.class, Side.CLIENT);

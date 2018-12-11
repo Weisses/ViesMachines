@@ -533,5 +533,20 @@ public class GuiMachineMenuCustomize extends GuiContainerVC {
  	    {
  			this.modelRotationHorizontal = this.modelRotationHorizontal + 2;
  		}
+ 		
+ 		if (this.machine.getBroken())
+ 		{
+ 			GuiVM.buttonCustomizeActiveModels.enabled = false;
+ 	    	GuiVM.buttonCustomizeDisplayBanner.enabled = false;
+ 	    	GuiVM.buttonCustomizePrimaryTexture.enabled = false;
+ 	    	GuiVM.buttonCustomizePrimaryColor.enabled = false;
+ 	    	GuiVM.buttonCustomizePrimaryTransparentTrue.enabled = false;
+ 	    	GuiVM.buttonCustomizePrimaryTransparentFalse.enabled = false;
+ 	    	GuiVM.buttonCustomizeSecondaryTexture.enabled = false;
+ 	    	GuiVM.buttonCustomizeSecondaryColor.enabled = false;
+ 	    	GuiVM.buttonCustomizeSecondaryTransparentTrue.enabled = false;
+ 			GuiVM.buttonCustomizeSecondaryTransparentFalse.enabled = false;
+ 			
+ 		}
     }
 }

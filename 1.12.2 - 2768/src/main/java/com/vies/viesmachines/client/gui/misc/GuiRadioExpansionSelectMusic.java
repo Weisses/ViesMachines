@@ -19,7 +19,6 @@ import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VC;
 import com.vies.viesmachines.common.items.tools.ContainerToolNoSlots;
 import com.vies.viesmachines.network.NetworkHandler;
 import com.vies.viesmachines.network.server.item.MessageHelperItemToolRadioExpansion;
-import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperGuiMachineMusicSet;
 import com.vies.viesmachines.proxy.ClientProxy;
 import com.vies.viesmachines.proxy.CommonProxy;
 
@@ -47,12 +46,12 @@ import net.minecraftforge.fml.client.GuiScrollingList;
 
 public class GuiRadioExpansionSelectMusic extends GuiContainer {
 	
-	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_machine_music.png");
+	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_radio_expansion.png");
 	
 	private NBTTagList tagSong;
 	
-	protected int guiLeft;
-    protected int guiTop;
+	//protected int guiLeft;
+    //protected int guiTop;
     protected int xSize = 176;
     protected int ySize = 222;
     
@@ -150,8 +149,9 @@ public class GuiRadioExpansionSelectMusic extends GuiContainer {
 	@Override
     public void initGui() 
     {
-    	//super.initGui();
+    	super.initGui();
     	
+    	buttonList.clear();
 		Keyboard.enableRepeatEvents(true);
 		
 		//this.guiLeft = (this.width - this.xSize) / 2;
@@ -159,7 +159,7 @@ public class GuiRadioExpansionSelectMusic extends GuiContainer {
         
 		
 		
-    	int slotHeight = 35;
+    	int slotHeight = 15;
     	
     	for (ResourceLocation mod : songs)
         {
@@ -170,7 +170,7 @@ public class GuiRadioExpansionSelectMusic extends GuiContainer {
         
     	this.songList = new GuiScrollingListRadioExpansion(this, this.songs, this.listWidth, slotHeight);
     	
-    	GuiVM.button501 = new GuiButtonGeneral1VC(501, this.guiLeft + 60, this.guiTop + 197, 56, 14, References.localNameVC("gui.done"), 0);
+    	GuiVM.button501 = new GuiButtonGeneral1VC(501, this.guiLeft + 60, this.guiTop + 169, 56, 14, References.localNameVC("gui.done"), 0);
     	this.buttonList.add(GuiVM.button501);
     }
     
@@ -199,25 +199,37 @@ public class GuiRadioExpansionSelectMusic extends GuiContainer {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) 
 	{
+		//super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
+		
 		// Binds the texture to use:
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		this.mc.getTextureManager().bindTexture(TEXTURE);
 		
 		// Draws the background texture:
-		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
+		this.drawTexturedModalRect(this.guiLeft, this.guiTop-28, 0, 0, this.xSize, this.ySize);
     }
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
+		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
+		
 		// Current Song label:
-		this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.currentsong.0"), 88, 10, Color.BLACK.getRGB());
+		this.centeredString(fontRenderer, References.localNameVC(
+				//"viesmachines.gui.currentsong.0"
+				"Radio Expansion Tool"
+				), 88, -20, Color.BLACK.getRGB());
 		
 		// Song:
 		GlStateManager.pushMatrix();
 		{
-			GlStateManager.translate(88, 27.5, 0);
+			GlStateManager.translate(88, 30, 0);
 			GlStateManager.scale(0.65F, 0.65F, 0.65F);
+			// Current Song label:
+			this.centeredString(fontRenderer, References.localNameVC(
+					//"viesmachines.gui.currentsong.0"
+					"Selected Record"
+					), 0, -24, Color.BLACK.getRGB());
 			
 			this.centeredString(fontRenderer, 
 			this.stringToFlashGolden(

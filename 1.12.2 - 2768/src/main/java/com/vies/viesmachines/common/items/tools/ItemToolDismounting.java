@@ -47,7 +47,21 @@ public class ItemToolDismounting extends Item {
 	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
     {
-		return true;
+        if (entity.world.isRemote)
+        {
+            return false;
+        }
+        
+        if (entity.getRidingEntity() != null)
+        {
+        	stack.damageItem(1, player);
+        	
+        	entity.dismountRidingEntity();
+        	
+            return true;
+        }
+        
+        return true;
     }
 	
 	@Override

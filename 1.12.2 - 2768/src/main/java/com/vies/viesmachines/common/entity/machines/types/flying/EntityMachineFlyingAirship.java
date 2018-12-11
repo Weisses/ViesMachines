@@ -81,7 +81,7 @@ public class EntityMachineFlyingAirship extends EntityMachineFlying {
         this.setTierFrame(frameTierIn);
 		this.setTierEngine(engineTierIn);
 		this.setTierComponent(componentTierIn);
-		this.setType(typeIn);
+		//this.setType(typeIn);
 		
 		this.setHealth(healthIn);
 		this.setEnergy(energyIn);
@@ -223,7 +223,7 @@ public class EntityMachineFlyingAirship extends EntityMachineFlying {
 		stack.getTagCompound().setInteger(rf.TIER_ENGINE_TAG, this.getTierEngine());
 		stack.getTagCompound().setInteger(rf.TIER_COMPONENT_TAG, this.getTierComponent());
 		
-		stack.getTagCompound().setInteger(rf.TYPE_TAG, this.getType());
+		//stack.getTagCompound().setInteger(rf.TYPE_TAG, this.getType());
 		stack.getTagCompound().setFloat(rf.HEALTH_TAG, this.getHealth());
 		stack.getTagCompound().setInteger(rf.ENERGY_TAG, this.getEnergy());
 		stack.getTagCompound().setInteger(rf.DURABILITY_TAG, this.getDurability());
@@ -272,11 +272,11 @@ public class EntityMachineFlyingAirship extends EntityMachineFlying {
 	
     //--------------------------------------------------
     
-	@Override
-	public String getTypeName()
-	{
-		return References.Old_I18n.translateToLocalFormatted("viesmachines.enum.machinename.typeflying." + this.getType());
-	}
+	//@Override
+	//public String getTypeName()
+	//{
+	//	return References.Old_I18n.translateToLocalFormatted("viesmachines.enum.machinename.typeflying." + this.getType());
+	//}
 	
 	@Override
 	public String getVariantName()

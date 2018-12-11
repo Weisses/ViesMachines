@@ -73,7 +73,8 @@ public class EventHandlerConfig {
 				|| output.getItem() == ItemsVM.ITEM_MACHINE_FLYING_AIRSHIP
 	            
 	            || output.getItem() == ItemsVM.TOOL_DISMOUNTER
-	            
+        		|| output.getItem() == ItemsVM.TOOL_RADIO_EXPANSION
+				
         		|| output.getItem() == ItemsVM.XEGONITE_WATER
 				|| output.getItem() == ItemsVM.XEGONITE_LAVA
 				|| output.getItem() == ItemsVM.XEGONITE_ENDER

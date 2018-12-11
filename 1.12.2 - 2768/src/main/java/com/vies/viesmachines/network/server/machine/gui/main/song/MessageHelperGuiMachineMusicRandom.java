@@ -38,6 +38,6 @@ public class MessageHelperGuiMachineMusicRandom extends MessageBase<MessageHelpe
 	{
 		EntityMachineBase machine = (EntityMachineBase) player.getRidingEntity();
 		
-		machine.selectedSong = message.selectedSong;
+		machine.setSelectedRecord(message.selectedSong);
 	}
 }

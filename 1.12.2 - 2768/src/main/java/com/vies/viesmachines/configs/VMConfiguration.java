@@ -39,33 +39,33 @@ public class VMConfiguration {
 	// General options:
 	public static final boolean MACHINEHARDMODE_DEFAULT = false;
 	public static final String MACHINEHARDMODE_NAME = "Enable machine Hardmode?";
-	public static final String MACHINEHARDMODE_COMMENT = "Should machines be unable to be converted back into an item if broken?";
+	public static final String MACHINEHARDMODE_COMMENT = "If enabled, broken machines CANNOT be converted to items.";
 	
 	public static final boolean TOOLDISMOUNTERPLAYER_DEFAULT = false;
 	public static final String TOOLDISMOUNTERPLAYER_NAME = "Enable Dismounter to affect players?";
-	public static final String TOOLDISMOUNTERPLAYER_COMMENT = "Should the Dismounter Tool affect players as well?";
+	public static final String TOOLDISMOUNTERPLAYER_COMMENT = "If enabled, the Dismounter Tool will also affect players riding any entity.";
 	
 	// Fuel options:
 	public static final boolean VANILLAFUEL_DEFAULT = true;
 	public static final String VANILLAFUEL_NAME = "Enable using vanilla fuel?";
-	public static final String VANILLAFUEL_COMMENT = "Should machines be able to use vanilla fuel to run?";
+	public static final String VANILLAFUEL_COMMENT = "If enabled, machines will be able to use vanilla fuel to run.";
 	
 	public static final boolean OUTSIDEMODFUEL_DEFAULT = true;
 	public static final String OUTSIDEMODFUEL_NAME = "Enable using other mod's fuel?";
-	public static final String OUTSIDEMODFUEL_COMMENT = "Should machines be able to use other mod's fuel to run?";
+	public static final String OUTSIDEMODFUEL_COMMENT = "If enabled, machines will be able to use other mod's fuel to run.";
 	
 	public static final int MACHINEPELLETSBURNTIME_DEFAULT = 60;
-	public static final String MACHINEPELLETSBURNTIME_NAME = "Machine Pellets Burn Time?";
-	public static final String MACHINEPELLETSBURNTIME_COMMENT = "How long do the Machine Pellets burn for in seconds? ";
+	public static final String MACHINEPELLETSBURNTIME_NAME = "Machine Pellets burn time?";
+	public static final String MACHINEPELLETSBURNTIME_COMMENT = "How long do the Machine Pellets burn for in seconds?";
 	
 	// Client only options:
 	public static final boolean ENGINESOUND_DEFAULT = true;
 	public static final String ENGINESOUND_NAME = "Enable machine engine on sounds?";
-	public static final String ENGINESOUND_COMMENT = "Should machines have engine sounds when powered on?";
+	public static final String ENGINESOUND_COMMENT = "If enabled, machines will have engine sounds when powered on.";
 	
 	public static final boolean RENDERNAMEPLATES_DEFAULT = true;
 	public static final String RENDERNAMEPLATES_NAME = "Enable machine overhead nameplates?";
-	public static final String RENDERNAMEPLATES_COMMENT = "Should machines display their overhead nameplates when looked at?";
+	public static final String RENDERNAMEPLATES_COMMENT = "If enabled, machines will display their overhead nameplates when looked at.";
 	
 	
 	

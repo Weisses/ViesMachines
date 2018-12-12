@@ -41,16 +41,6 @@ public final class InitItemsVMRender extends ItemsVM {
 		InitItemsVM.RegistrationHandler.ITEMS.stream().filter(item -> !itemsRegistered.contains(item)).forEach(this::registerRender);
 	}
 	
-	private static void registerItemRenderTEMP()
-	{
-		//========================
-		//    To be deleted
-		//========================
-		
-		
-		
-	}
-	
 	private void registerRender(Item item)
 	{
 		itemsRegistered.add(item);

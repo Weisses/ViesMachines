@@ -1,7 +1,5 @@
 package com.vies.viesmachines;
 
-import java.io.File;
-
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.api.creative.BlocksTab;
 import com.vies.viesmachines.api.creative.ItemsTab;
@@ -32,8 +30,6 @@ public class ViesMachines {
 	public static final ItemsTab tabItems = new ItemsTab("tabItems");
 	public static final BlocksTab tabBlocks = new BlocksTab("tabBlocks");
 	
-	//private static File configDir;
-	
 	@Mod.Instance(References.MOD_ID)
 	public static ViesMachines instance;
 	
@@ -43,10 +39,6 @@ public class ViesMachines {
 		MinecraftForge.EVENT_BUS.register(instance);
 		
 		VMConfiguration.load(event);
-		
-		//configDir = new File(event.getModConfigurationDirectory() + "/" + References.MOD_ID);
-		//configDir.mkdirs();
-		//VMConfiguration.load(new File(configDir.getPath(), References.MOD_ID + ".cfg"));
 		
 		this.proxy.preInit(event);
 		Loghelper.info("<<==============================>>");

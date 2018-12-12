@@ -17,7 +17,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class References {
 	
 	public static final String MOD_ID = "viesmachines";
-	
 	public static final String MOD_NAME = "Vies Machines";
 	public static final String MOD_VERSION_NUMBER = "0.7.18-beta";
 	public static final String MOD_VERSION_MC = "1.12.2";

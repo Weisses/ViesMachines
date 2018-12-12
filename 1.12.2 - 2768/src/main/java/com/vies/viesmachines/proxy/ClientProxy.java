@@ -17,21 +17,13 @@ public class ClientProxy extends CommonProxy {
 	{
 		super.preInit(event);
 		
-		//////Allows the loading of .obj files
-		//////OBJLoader.INSTANCE.addDomain(References.MOD_ID.toLowerCase());
-		//////AnimationModelBase test;
-		//InitSoundEventsVC.registerSounds();
-		//InitItemsVCRender.registerItemRender();
-		//InitBlocksVCRender.registerBlockRender();
+		// Allows the loading of .obj files:
+		//OBJLoader.INSTANCE.addDomain(References.MOD_ID.toLowerCase());
+		
 		InitEntityVMRender.registerEntityRender();
 		InitTileEntityVMRender.registerTileEntityRender();
 		
 		Keybinds.init();
-		//NetworkHandler.preInitClient();
-		//InitItemsVCRender.registerItemRenderTEMP();
-		//InitBlocksVCRender.registerBlockRenderTEMP();
-		//InitEntityVCRender.registerEntityRenderTEMP();
-		//InitTileEntityVCRender.registerTileEntityRenderTEMP();
 	}
 	
 	@Override

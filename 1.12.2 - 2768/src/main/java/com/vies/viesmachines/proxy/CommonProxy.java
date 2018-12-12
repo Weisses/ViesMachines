@@ -28,32 +28,15 @@ public class CommonProxy {
 	
 	public void preInit(FMLPreInitializationEvent event) 
 	{
-		//SoundEventsEA.registerSounds();
-		
-		//InitItemsVC.registerItem();
-		//InitBlocksVC.registerBlock();
-		//InitTileEntitiesVC.registerTileEntity();
 		InitEntityVM.registerEntity();
 		
 		NetworkHandler.preInit();
-		
-		//InitItemsVC.registerItemTEMP();
-		//InitBlocksVC.registerBlockTEMP();
-		//InitTileEntitiesVC.registerTileEntityTEMP();
-		//InitEntityVC.registerEntityTEMP();
 	}
 	
 	public void init(FMLInitializationEvent event) 
 	{
-		//InitRecipesVC.initShapedRecipe();
-		//InitAchievementsVC.init();
-		
-		
 		InitSoundEventsVM.registerSounds();
 		
-		
-		//MinecraftForge.EVENT_BUS.register(new AchievementTriggersVC());
-		//MinecraftForge.EVENT_BUS.register(new EventHandlerAchievement());
 		MinecraftForge.EVENT_BUS.register(new EventHandlerConfig());
 		MinecraftForge.EVENT_BUS.register(new EventHandlerMachine());
 		
@@ -62,22 +45,10 @@ public class CommonProxy {
 	
 	public void postInit(FMLPostInitializationEvent event) 
 	{
-		//ResourceLocation group = null;
-		
-		//GameRegistry.addShapedRecipe(new ResourceLocation(References.MOD_ID + ":recipes/airship_balloon"), 
-		//		group, 
-		//		new ItemStack(InitItemsVC.AIRSHIP_BALLOON, 1), 
-		//		new Object[]{"LLL", "L#L", "LLL", 'L', Items.LEATHER, '#', Items.STRING}
-		//);
-		
-		//GameRegistry.addShapelessRecipe(new ItemStack(InitItemsVC.viesoline_pellets), new ItemStack(Items.COAL), new ItemStack(Items.REDSTONE));
-		
-		//RecipeRemoverVC.removeRecipe();
-		
 		this.setupMusic();
 	}
 	
-
+	//--------------------------------------------------
 	
 	/**
 	 * Creates the initial music record array upon spawning.

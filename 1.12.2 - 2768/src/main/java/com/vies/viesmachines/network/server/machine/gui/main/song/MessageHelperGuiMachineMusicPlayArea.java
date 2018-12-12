@@ -1,6 +1,6 @@
 package com.vies.viesmachines.network.server.machine.gui.main.song;
 
-import com.vies.viesmachines.client.sound.JukeboxMovingSoundVC;
+import com.vies.viesmachines.client.sound.JukeboxMovingSoundVM;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.packet.MessageBase;
 import com.vies.viesmachines.proxy.ClientProxy;
@@ -39,7 +39,7 @@ public class MessageHelperGuiMachineMusicPlayArea extends MessageBase<MessageHel
 		SoundHandler soundHandler = Minecraft.getMinecraft().getSoundHandler();
 		soundHandler.stopSounds();
 		
-		soundHandler.playSound(new JukeboxMovingSoundVC(this.machine, ForgeRegistries.SOUND_EVENTS.getValue(
+		soundHandler.playSound(new JukeboxMovingSoundVM(this.machine, ForgeRegistries.SOUND_EVENTS.getValue(
 				//TODO this.machine.currentMusicListRecord
 				ClientProxy.musicListRecord
 				.get(this.machine.getSelectedRecord()))));

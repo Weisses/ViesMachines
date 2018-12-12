@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.vies.viesmachines.ViesMachines;
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.common.items.ItemHelper;
+import com.vies.viesmachines.configs.VMConfiguration;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
@@ -54,9 +55,26 @@ public class ItemToolDismounting extends Item {
         
         if (entity.getRidingEntity() != null)
         {
-        	stack.damageItem(1, player);
+        	if (VMConfiguration.toolDismounterPlayer)
+        	{
+        		if (entity.getRidingEntity() instanceof EntityPlayer)
+        		{
+        			stack.damageItem(1, player);
+        			
+        			entity.dismountRidingEntity();
+        		}
+        	}
         	
-        	entity.dismountRidingEntity();
+        	if (entity.getRidingEntity() instanceof EntityPlayer)
+    		{
+        		
+    		}
+        	else
+        	{
+	        	stack.damageItem(1, player);
+	        	
+	        	entity.dismountRidingEntity();
+        	}
         	
             return true;
         }
@@ -74,9 +92,26 @@ public class ItemToolDismounting extends Item {
         
         if (entity.getRidingEntity() != null)
         {
-        	itemstack.damageItem(1, entity);
+        	if (VMConfiguration.toolDismounterPlayer)
+        	{
+        		if (entity.getRidingEntity() instanceof EntityPlayer)
+        		{
+        			itemstack.damageItem(1, player);
+        			
+        			entity.dismountRidingEntity();
+        		}
+        	}
         	
-        	entity.dismountRidingEntity();
+        	if (entity.getRidingEntity() instanceof EntityPlayer)
+    		{
+        		
+    		}
+        	else
+        	{
+	        	itemstack.damageItem(1, player);
+	        	
+	        	entity.dismountRidingEntity();
+        	}
         	
             return true;
         }

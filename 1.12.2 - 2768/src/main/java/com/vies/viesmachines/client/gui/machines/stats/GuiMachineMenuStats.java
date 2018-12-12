@@ -9,9 +9,9 @@ import org.lwjgl.input.Keyboard;
 import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.client.gui.GuiContainerVC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VC;
+import com.vies.viesmachines.client.gui.GuiContainerVM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VM;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.entity.machines.containers.ContainerMachineNoSlots;
 
@@ -21,7 +21,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-public class GuiMachineMenuStats extends GuiContainerVC {
+public class GuiMachineMenuStats extends GuiContainerVM {
 	
 	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_stats.png");
 	
@@ -41,11 +41,11 @@ public class GuiMachineMenuStats extends GuiContainerVC {
     	buttonList.clear();
     	Keyboard.enableRepeatEvents(true);
     	
-    	GuiVM.buttonRotateLeft = new GuiButtonGeneral2VC(10, this.guiLeft + 110, this.guiTop + 68, 6, 6, "", 3);
-    	GuiVM.buttonRotateRight = new GuiButtonGeneral2VC(10, this.guiLeft + 122, this.guiTop + 68, 6, 6, "", 3);
-    	GuiVM.buttonRidingPlayerTrue = new GuiButtonGeneral1VC(12, this.guiLeft + 130, this.guiTop + 66, 10, 10, "", 1);
-    	GuiVM.buttonRidingPlayerFalse = new GuiButtonGeneral1VC(13, this.guiLeft + 140, this.guiTop + 66, 10, 10, "", 2);
-    	GuiVM.buttonUndo = new GuiButtonGeneral2VC(11, this.guiLeft + 158, this.guiTop + 66, 10, 10, "", 1);
+    	GuiVM.buttonRotateLeft = new GuiButtonGeneral2VM(10, this.guiLeft + 110, this.guiTop + 68, 6, 6, "", 3);
+    	GuiVM.buttonRotateRight = new GuiButtonGeneral2VM(10, this.guiLeft + 122, this.guiTop + 68, 6, 6, "", 3);
+    	GuiVM.buttonRidingPlayerTrue = new GuiButtonGeneral1VM(12, this.guiLeft + 130, this.guiTop + 66, 10, 10, "", 1);
+    	GuiVM.buttonRidingPlayerFalse = new GuiButtonGeneral1VM(13, this.guiLeft + 140, this.guiTop + 66, 10, 10, "", 2);
+    	GuiVM.buttonUndo = new GuiButtonGeneral2VM(11, this.guiLeft + 158, this.guiTop + 66, 10, 10, "", 1);
 		
     	//--------------------------------------------------
     	
@@ -241,9 +241,9 @@ public class GuiMachineMenuStats extends GuiContainerVC {
 			this.centeredString(fontRenderer, TextFormatting.BOLD + References.Old_I18n.translateToLocalFormatted("viesmachines.gui.tt.stats.ammo.0"), 284, 230+13, 11111111);
 			this.centeredString(fontRenderer, Integer.toString(this.machine.getAmmoAmount()) + " / "+ Integer.toString(this.machine.getMaxAmmoAmount()), 284, 250+13, Color.WHITE.getRGB());
 			
-			// Special Stat:
-			this.centeredString(fontRenderer, "----------", 284, 270+12, 11111111);
-			this.centeredString(fontRenderer, "----------", 284, 290+12, Color.WHITE.getRGB());
+			// Max Record Slots:
+			this.centeredString(fontRenderer, TextFormatting.BOLD + References.Old_I18n.translateToLocalFormatted("viesmachines.gui.tt.stats.record.0"), 284, 270+12, 11111111);
+			this.centeredString(fontRenderer, Integer.toString(EnumsVM.FlyingMachineComponentTier.byId(this.machine.getTierComponent()).getMaxRecordSlots()), 284, 290+12, Color.WHITE.getRGB());
 			
 			// Special Stat:
 			this.centeredString(fontRenderer, TextFormatting.BOLD + this.machine.getComponentName(), 284, 310+12, 11111111);

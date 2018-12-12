@@ -3,7 +3,7 @@ package com.vies.viesmachines.common.tileentity.containers;
 import com.vies.viesmachines.api.BlocksVM;
 import com.vies.viesmachines.common.tileentity.TileEntityExtractor;
 import com.vies.viesmachines.common.tileentity.slots.SlotInputExtractor;
-import com.vies.viesmachines.common.tileentity.slots.SlotOutputVG;
+import com.vies.viesmachines.common.tileentity.slots.SlotOutputVM;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -32,7 +32,7 @@ public class ContainerExtractor extends ContainerTileEntityVM {
         this.addSlotToContainer(new SlotInputExtractor(this.appliance.inventory, 0, 80, 53));
         
         // Shard output slot:
-        this.addSlotToContainer(new SlotOutputVG(this.appliance.inventory, 1, 134, 35));
+        this.addSlotToContainer(new SlotOutputVM(this.appliance.inventory, 1, 134, 35));
         
         // Player Hotbar, Slot 0-8, Slot IDs 36-44:
         for (int k = 0; k < 9; ++k)

@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.registries.IForgeRegistry;
 
 @ObjectHolder(References.MOD_ID)
-public class InitBlocksVC extends BlocksVM {
+public class InitBlocksVM extends BlocksVM {
 	
 	public static void registerBlockTEMP()
 	{

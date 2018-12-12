@@ -11,8 +11,8 @@ import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.api.SoundsVM;
 import com.vies.viesmachines.api.util.Keybinds;
-import com.vies.viesmachines.api.util.LogHelper;
-import com.vies.viesmachines.client.InitParticlesVCRender;
+import com.vies.viesmachines.api.util.Loghelper;
+import com.vies.viesmachines.client.InitParticlesVMRender;
 import com.vies.viesmachines.network.NetworkHandler;
 import com.vies.viesmachines.network.server.machine.MessageFlyingThunderStrike;
 import com.vies.viesmachines.network.server.machine.MessageMachineProjectileShoot;
@@ -1281,21 +1281,21 @@ public class EntityMachineBase extends EntityLiving {
     	if (this.status == this.status.ON_LAND
     	|| this.status == this.status.IN_AIR)
     	{
-			InitParticlesVCRender.generateParticlesBrokenSmoke(this);
+			InitParticlesVMRender.generateParticlesBrokenSmoke(this);
     	}
     	
     	if (this.status == this.status.IN_WATER)
     	{
-    		InitParticlesVCRender.generateParticlesBrokenSmoke(this);
-    		InitParticlesVCRender.generateParticlesBrokenBubbles(this);
-    		InitParticlesVCRender.generateParticlesBrokenWakes(this);
+    		InitParticlesVMRender.generateParticlesBrokenSmoke(this);
+    		InitParticlesVMRender.generateParticlesBrokenBubbles(this);
+    		InitParticlesVMRender.generateParticlesBrokenWakes(this);
     	}
     	
     	if (this.status == this.status.UNDER_WATER
     	|| this.status == this.status.UNDER_FLOWING_WATER)
     	{
-    		InitParticlesVCRender.generateParticlesBrokenBubbles(this);
-    		InitParticlesVCRender.generateParticlesBrokenWakes(this);
+    		InitParticlesVMRender.generateParticlesBrokenBubbles(this);
+    		InitParticlesVMRender.generateParticlesBrokenWakes(this);
     	}
     }
     
@@ -1307,7 +1307,7 @@ public class EntityMachineBase extends EntityLiving {
     {
     	for (int i = 0; i < 20; i++)
 		{
-			InitParticlesVCRender.generateParticlesExplosions(this);
+			InitParticlesVMRender.generateParticlesExplosions(this);
 		}
     }
     
@@ -1319,7 +1319,7 @@ public class EntityMachineBase extends EntityLiving {
     {
     	for (int i = 0; i < 20; i++)
 		{
-			InitParticlesVCRender.generateParticlesExplosions(this);
+			InitParticlesVMRender.generateParticlesExplosions(this);
 		}
     }
     
@@ -1350,10 +1350,10 @@ public class EntityMachineBase extends EntityLiving {
     {
     	for (int i = 0; i < 100; i++)
 		{
-			InitParticlesVCRender.generateParticleStaticChargeLightningStrike(this);
-			InitParticlesVCRender.generateParticleStaticChargeLightningStrike(this);
-			InitParticlesVCRender.generateParticleStaticChargeLightningStrike(this);
-			InitParticlesVCRender.generateParticleStaticChargeLightningStrike(this);
+			InitParticlesVMRender.generateParticleStaticChargeLightningStrike(this);
+			InitParticlesVMRender.generateParticleStaticChargeLightningStrike(this);
+			InitParticlesVMRender.generateParticleStaticChargeLightningStrike(this);
+			InitParticlesVMRender.generateParticleStaticChargeLightningStrike(this);
 		}
     }
     
@@ -1363,7 +1363,7 @@ public class EntityMachineBase extends EntityLiving {
     {
     	for (int i = 0; i < 10; i++)
 		{
-    		InitParticlesVCRender.generateHealHealthParticles(this);
+    		InitParticlesVMRender.generateHealHealthParticles(this);
 		}
     }
     /** Particles that spawn when a machine's health is healed. */
@@ -1372,7 +1372,7 @@ public class EntityMachineBase extends EntityLiving {
     {
     	for (int i = 0; i < 25; i++)
 		{
-    		InitParticlesVCRender.generateHealHealthParticles(this);
+    		InitParticlesVMRender.generateHealHealthParticles(this);
 		}
     }
     /** Particles that spawn when a machine's health is healed. */
@@ -1381,7 +1381,7 @@ public class EntityMachineBase extends EntityLiving {
     {
     	for (int i = 0; i < 50; i++)
 		{
-    		InitParticlesVCRender.generateHealHealthParticles(this);
+    		InitParticlesVMRender.generateHealHealthParticles(this);
 		}
     }
     
@@ -1391,7 +1391,7 @@ public class EntityMachineBase extends EntityLiving {
     {
     	for (int i = 0; i < 10; i++)
 		{
-    		InitParticlesVCRender.generateHealEnergyParticles(this);
+    		InitParticlesVMRender.generateHealEnergyParticles(this);
 		}
     }
     /** Particles that spawn when a machine's energy is healed. */
@@ -1400,7 +1400,7 @@ public class EntityMachineBase extends EntityLiving {
     {
     	for (int i = 0; i < 25; i++)
 		{
-    		InitParticlesVCRender.generateHealEnergyParticles(this);
+    		InitParticlesVMRender.generateHealEnergyParticles(this);
 		}
     }
     /** Particles that spawn when a machine's energy is healed. */
@@ -1409,7 +1409,7 @@ public class EntityMachineBase extends EntityLiving {
     {
     	for (int i = 0; i < 50; i++)
 		{
-    		InitParticlesVCRender.generateHealEnergyParticles(this);
+    		InitParticlesVMRender.generateHealEnergyParticles(this);
 		}
     }
     
@@ -1419,7 +1419,7 @@ public class EntityMachineBase extends EntityLiving {
     {
     	for (int i = 0; i < 10; i++)
 		{
-    		InitParticlesVCRender.generateHealDurabilityParticles(this);
+    		InitParticlesVMRender.generateHealDurabilityParticles(this);
 		}
     }
     /** Particles that spawn when a machine's durability is healed. */
@@ -1428,7 +1428,7 @@ public class EntityMachineBase extends EntityLiving {
     {
     	for (int i = 0; i < 25; i++)
 		{
-    		InitParticlesVCRender.generateHealDurabilityParticles(this);
+    		InitParticlesVMRender.generateHealDurabilityParticles(this);
 		}
     }
     /** Particles that spawn when a machine's durability is healed. */
@@ -1437,7 +1437,7 @@ public class EntityMachineBase extends EntityLiving {
     {
     	for (int i = 0; i < 50; i++)
 		{
-    		InitParticlesVCRender.generateHealDurabilityParticles(this);
+    		InitParticlesVMRender.generateHealDurabilityParticles(this);
 		}
     }
     
@@ -1447,7 +1447,7 @@ public class EntityMachineBase extends EntityLiving {
     {
     	for (int i = 0; i < 10; i++)
 		{
-			InitParticlesVCRender.generateUpgradeParticles(this);
+			InitParticlesVMRender.generateUpgradeParticles(this);
 		}
     }
     
@@ -1457,7 +1457,7 @@ public class EntityMachineBase extends EntityLiving {
     {
     	for (int i = 0; i < 25; i++)
 		{
-			InitParticlesVCRender.generateUpgradeParticles(this);
+			InitParticlesVMRender.generateUpgradeParticles(this);
 		}
     }
     
@@ -1467,7 +1467,7 @@ public class EntityMachineBase extends EntityLiving {
     {
     	for (int i = 0; i < 50; i++)
 		{
-			InitParticlesVCRender.generateUpgradeParticles(this);
+			InitParticlesVMRender.generateUpgradeParticles(this);
 		}
     }
 	
@@ -3380,14 +3380,14 @@ public class EntityMachineBase extends EntityLiving {
     		{
     			if (References.random.nextInt(20) <= 1)
     			{
-    				InitParticlesVCRender.generateParticleStaticCharge(this);
+    				InitParticlesVMRender.generateParticleStaticCharge(this);
     			}
     			
     			if (this.getPrimedForLightningStrike() >= 5)
         		{
     				if (References.random.nextInt(10) <= 1)
         			{
-        				InitParticlesVCRender.generateParticleStaticCharge(this);
+        				InitParticlesVMRender.generateParticleStaticCharge(this);
         			}
         		}
     			
@@ -3395,7 +3395,7 @@ public class EntityMachineBase extends EntityLiving {
         		{
     				if (References.random.nextInt(10) <= 1)
         			{
-        				InitParticlesVCRender.generateParticleStaticCharge(this);
+        				InitParticlesVMRender.generateParticleStaticCharge(this);
         			}
         		}
     			
@@ -3403,7 +3403,7 @@ public class EntityMachineBase extends EntityLiving {
         		{
     				if (References.random.nextInt(5) <= 1)
         			{
-        				InitParticlesVCRender.generateParticleStaticCharge(this);
+        				InitParticlesVMRender.generateParticleStaticCharge(this);
         			}
         		}
     		}

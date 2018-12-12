@@ -1,6 +1,6 @@
 package com.vies.viesmachines.network.server.machine.gui.customize.holiday;
 
-import com.vies.viesmachines.client.gui.GuiContainerVC;
+import com.vies.viesmachines.client.gui.GuiContainerVM;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.packet.MessageBase;
 
@@ -20,7 +20,7 @@ public class MessageHelperGuiCustomizeMenuEngineDisplaySymbolHoliday extends Mes
 	@Override
 	public void toBytes(ByteBuf buf) 
 	{
-		buf.writeInt(GuiContainerVC.metaInfo);
+		buf.writeInt(GuiContainerVM.metaInfo);
 	}
 	
 	@Override

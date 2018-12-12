@@ -3,7 +3,7 @@ package com.vies.viesmachines.api;
 import java.util.Calendar;
 import java.util.Random;
 
-import com.vies.viesmachines.api.util.LogHelper;
+import com.vies.viesmachines.api.util.Loghelper;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -27,7 +27,7 @@ public class References {
 	//public static final String websitePatreon = "https://www.patreon.com/lycanite";
 	public static final String ACCEPTED_MINECRAFT_VERSIONS = "[1.12,1.13]";
 	
-	public static final String CONFIG_GUI = "com.vies.viesmachines.api.gui.VCGuiFactory";
+	public static final String CONFIG_GUI = "com.vies.viesmachines.api.gui.VMGuiFactory";
 	public static final String CLIENT_PROXY_CLASS = "com.vies.viesmachines.proxy.ClientProxy";
 	public static final String SERVER_PROXY_CLASS = "com.vies.viesmachines.proxy.ServerProxy";
 	
@@ -111,6 +111,8 @@ public class References {
 	public static final String VISUAL_COMPONENT_COLOR_BLUE_TAG = "VisualComponentColorBlue";
 	
 	public static final String VISUAL_NAME_COLOR_TAG = "VisualNameColor";
+	
+	public static final String TOOL_RECORD_TO_ADD_TAG = "RecordToAdd";
 	
 	/** Name localization method that works on both client and server. */
 	public static net.minecraft.util.text.translation.I18n Old_I18n;

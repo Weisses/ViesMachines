@@ -9,9 +9,9 @@ import org.lwjgl.input.Keyboard;
 import com.vies.viesmachines.api.CostsVM;
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.client.gui.GuiContainerVC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VC;
+import com.vies.viesmachines.client.gui.GuiContainerVM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VM;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.entity.machines.containers.ContainerMachineNoSlots;
 import com.vies.viesmachines.network.NetworkHandler;
@@ -36,7 +36,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-public class GuiMachineMenuCustomize extends GuiContainerVC {
+public class GuiMachineMenuCustomize extends GuiContainerVM {
 	
 	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize.png");
 	
@@ -56,22 +56,22 @@ public class GuiMachineMenuCustomize extends GuiContainerVC {
     	buttonList.clear();
     	Keyboard.enableRepeatEvents(true);
     	
-    	GuiVM.buttonRotateLeft = new GuiButtonGeneral2VC(10, this.guiLeft + 60, this.guiTop + 68, 6, 6, "", 3);
-    	GuiVM.buttonRotateRight = new GuiButtonGeneral2VC(10, this.guiLeft + 72, this.guiTop + 68, 6, 6, "", 3);
-    	GuiVM.buttonRidingPlayerTrue = new GuiButtonGeneral1VC(12, this.guiLeft + 80, this.guiTop + 66, 10, 10, "", 1);
-    	GuiVM.buttonRidingPlayerFalse = new GuiButtonGeneral1VC(13, this.guiLeft + 90, this.guiTop + 66, 10, 10, "", 2);
-    	GuiVM.buttonUndo = new GuiButtonGeneral2VC(11, this.guiLeft + 108, this.guiTop + 66, 10, 10, "", 1);
+    	GuiVM.buttonRotateLeft = new GuiButtonGeneral2VM(10, this.guiLeft + 60, this.guiTop + 68, 6, 6, "", 3);
+    	GuiVM.buttonRotateRight = new GuiButtonGeneral2VM(10, this.guiLeft + 72, this.guiTop + 68, 6, 6, "", 3);
+    	GuiVM.buttonRidingPlayerTrue = new GuiButtonGeneral1VM(12, this.guiLeft + 80, this.guiTop + 66, 10, 10, "", 1);
+    	GuiVM.buttonRidingPlayerFalse = new GuiButtonGeneral1VM(13, this.guiLeft + 90, this.guiTop + 66, 10, 10, "", 2);
+    	GuiVM.buttonUndo = new GuiButtonGeneral2VM(11, this.guiLeft + 108, this.guiTop + 66, 10, 10, "", 1);
 		
-    	GuiVM.buttonCustomizeActiveModels = new GuiButtonGeneral1VC(30, this.guiLeft + 28, this.guiTop + 102, 42, 14, References.Old_I18n.translateToLocal("Model"), 0);
-    	GuiVM.buttonCustomizeDisplayBanner = new GuiButtonGeneral1VC(31, this.guiLeft + 106, this.guiTop + 102, 42, 14, References.Old_I18n.translateToLocal("Display"), 0);
-    	GuiVM.buttonCustomizePrimaryTexture = new GuiButtonGeneral1VC(32, this.guiLeft + 28, this.guiTop + 143, 42, 14, References.Old_I18n.translateToLocal("Texture"), 0);
-    	GuiVM.buttonCustomizePrimaryColor = new GuiButtonGeneral1VC(33, this.guiLeft + 28, this.guiTop + 161, 42, 14, References.Old_I18n.translateToLocal("Color"), 0);
-    	GuiVM.buttonCustomizePrimaryTransparentTrue = new GuiButtonGeneral1VC(34, this.guiLeft + 28, this.guiTop + 179, 14, 14, References.Old_I18n.translateToLocal(""), 1);
-    	GuiVM.buttonCustomizePrimaryTransparentFalse = new GuiButtonGeneral1VC(35, this.guiLeft + 28, this.guiTop + 179, 14, 14, References.Old_I18n.translateToLocal(""), 2);
-    	GuiVM.buttonCustomizeSecondaryTexture = new GuiButtonGeneral1VC(36, this.guiLeft + 106, this.guiTop + 143, 42, 14, References.Old_I18n.translateToLocal("Texture"), 0);
-    	GuiVM.buttonCustomizeSecondaryColor = new GuiButtonGeneral1VC(37, this.guiLeft + 106, this.guiTop + 161, 42, 14, References.Old_I18n.translateToLocal("Color"), 0);
-    	GuiVM.buttonCustomizeSecondaryTransparentTrue = new GuiButtonGeneral1VC(38, this.guiLeft + 106, this.guiTop + 179, 14, 14, References.Old_I18n.translateToLocal(""), 1);
-		GuiVM.buttonCustomizeSecondaryTransparentFalse = new GuiButtonGeneral1VC(39, this.guiLeft + 106, this.guiTop + 179, 14, 14, References.Old_I18n.translateToLocal(""), 2);
+    	GuiVM.buttonCustomizeActiveModels = new GuiButtonGeneral1VM(30, this.guiLeft + 28, this.guiTop + 102, 42, 14, References.Old_I18n.translateToLocal("Model"), 0);
+    	GuiVM.buttonCustomizeDisplayBanner = new GuiButtonGeneral1VM(31, this.guiLeft + 106, this.guiTop + 102, 42, 14, References.Old_I18n.translateToLocal("Display"), 0);
+    	GuiVM.buttonCustomizePrimaryTexture = new GuiButtonGeneral1VM(32, this.guiLeft + 28, this.guiTop + 143, 42, 14, References.Old_I18n.translateToLocal("Texture"), 0);
+    	GuiVM.buttonCustomizePrimaryColor = new GuiButtonGeneral1VM(33, this.guiLeft + 28, this.guiTop + 161, 42, 14, References.Old_I18n.translateToLocal("Color"), 0);
+    	GuiVM.buttonCustomizePrimaryTransparentTrue = new GuiButtonGeneral1VM(34, this.guiLeft + 28, this.guiTop + 179, 14, 14, References.Old_I18n.translateToLocal(""), 1);
+    	GuiVM.buttonCustomizePrimaryTransparentFalse = new GuiButtonGeneral1VM(35, this.guiLeft + 28, this.guiTop + 179, 14, 14, References.Old_I18n.translateToLocal(""), 2);
+    	GuiVM.buttonCustomizeSecondaryTexture = new GuiButtonGeneral1VM(36, this.guiLeft + 106, this.guiTop + 143, 42, 14, References.Old_I18n.translateToLocal("Texture"), 0);
+    	GuiVM.buttonCustomizeSecondaryColor = new GuiButtonGeneral1VM(37, this.guiLeft + 106, this.guiTop + 161, 42, 14, References.Old_I18n.translateToLocal("Color"), 0);
+    	GuiVM.buttonCustomizeSecondaryTransparentTrue = new GuiButtonGeneral1VM(38, this.guiLeft + 106, this.guiTop + 179, 14, 14, References.Old_I18n.translateToLocal(""), 1);
+		GuiVM.buttonCustomizeSecondaryTransparentFalse = new GuiButtonGeneral1VM(39, this.guiLeft + 106, this.guiTop + 179, 14, 14, References.Old_I18n.translateToLocal(""), 2);
 		
 		//--------------------------------------------------
     	

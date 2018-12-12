@@ -5,9 +5,9 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerVC extends Container {
+public class ContainerVM extends Container {
 	
-	public ContainerVC() 
+	public ContainerVM() 
 	{
 		
 	}

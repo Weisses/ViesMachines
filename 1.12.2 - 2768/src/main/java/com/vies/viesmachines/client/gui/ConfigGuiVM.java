@@ -3,18 +3,18 @@ package com.vies.viesmachines.client.gui;
 import org.lwjgl.input.Keyboard;
 
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.api.util.LogHelper;
+import com.vies.viesmachines.api.util.Loghelper;
 import com.vies.viesmachines.configs.VMConfiguration;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.fml.client.config.GuiConfig;
 
-public class ConfigGui extends GuiConfig {
+public class ConfigGuiVM extends GuiConfig {
 	
-	public ConfigGui(GuiScreen screen) 
+	public ConfigGuiVM(GuiScreen screen) 
 	{
-		super(screen, new ConfigElement(VMConfiguration.config.getCategory(VMConfiguration.CATEGORY_VM)).getChildElements(), References.MOD_NAME, true, true, GuiConfig.getAbridgedConfigPath(VMConfiguration.config.toString()));
+		super(screen, new ConfigElement(VMConfiguration.config.getCategory(VMConfiguration.CATEGORY_VM)).getChildElements(), References.MOD_NAME, true, false, GuiConfig.getAbridgedConfigPath(VMConfiguration.config.toString()));
 	}
 	
 	@Override
@@ -34,8 +34,10 @@ public class ConfigGui extends GuiConfig {
 			Keyboard.enableRepeatEvents(false);
 		}
 		
-		VMConfiguration.config.save();
-		VMConfiguration.config.load();
-		LogHelper.info("Configuration saved.");
+		// Saves the config:
+		VMConfiguration.reloadConfig();
+		Loghelper.info("Config saved.");
+		
+		super.onGuiClosed();
 	}
 }

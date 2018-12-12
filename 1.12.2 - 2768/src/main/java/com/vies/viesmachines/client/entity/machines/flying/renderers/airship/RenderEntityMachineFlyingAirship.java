@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.client.InitParticlesVCRender;
+import com.vies.viesmachines.client.InitParticlesVMRender;
 import com.vies.viesmachines.common.entity.machines.types.flying.EntityMachineFlyingAirship;
 import com.vies.viesmachines.configs.VMConfiguration;
 
@@ -296,7 +296,7 @@ public class RenderEntityMachineFlyingAirship extends RenderEntityMachineFlyingA
         		{
         			if (!Minecraft.getMinecraft().isGamePaused())
         			{
-        				InitParticlesVCRender.generateAirshipSmokeParticles0(entity, 0, -0.15, 0);
+        				InitParticlesVMRender.generateAirshipSmokeParticles0(entity, 0, -0.15, 0);
         			}
         		}
         	}
@@ -306,7 +306,7 @@ public class RenderEntityMachineFlyingAirship extends RenderEntityMachineFlyingA
         		{
         			if (!Minecraft.getMinecraft().isGamePaused())
         			{
-        				InitParticlesVCRender.generateAirshipSmokeParticles1(entity, 0, -0.05, 0);
+        				InitParticlesVMRender.generateAirshipSmokeParticles1(entity, 0, -0.05, 0);
         			}
         		}
         	}
@@ -316,7 +316,7 @@ public class RenderEntityMachineFlyingAirship extends RenderEntityMachineFlyingA
         		{
         			if (!Minecraft.getMinecraft().isGamePaused())
         			{
-        				InitParticlesVCRender.generateAirshipSmokeParticles2(entity, 0, 0, 0);
+        				InitParticlesVMRender.generateAirshipSmokeParticles2(entity, 0, 0, 0);
         			}
         		}
         	}

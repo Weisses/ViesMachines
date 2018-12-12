@@ -1,8 +1,8 @@
 package com.vies.viesmachines.network.server.machine.gui.customize.displaybanner.sub;
 
 import com.vies.viesmachines.api.CostsVM;
-import com.vies.viesmachines.api.util.LogHelper;
-import com.vies.viesmachines.client.gui.GuiContainerVC;
+import com.vies.viesmachines.api.util.Loghelper;
+import com.vies.viesmachines.client.gui.GuiContainerVM;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.packet.MessageBase;
 
@@ -26,9 +26,9 @@ public class MessageHelperGuiCustomizeMenuEngineDisplayBlockItem extends Message
 	@Override
 	public void toBytes(ByteBuf buf) 
 	{
-		buf.writeInt(GuiContainerVC.metaInfo);
-		buf.writeInt(GuiContainerVC.itemstackInfo);
-		buf.writeInt(GuiContainerVC.itemstackMetaInfo);
+		buf.writeInt(GuiContainerVM.metaInfo);
+		buf.writeInt(GuiContainerVM.itemstackInfo);
+		buf.writeInt(GuiContainerVM.itemstackMetaInfo);
 	}
 	
 	@Override

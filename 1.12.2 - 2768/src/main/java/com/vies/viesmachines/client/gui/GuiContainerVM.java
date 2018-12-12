@@ -9,9 +9,9 @@ import org.lwjgl.opengl.GL11;
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.api.util.Keybinds;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonMenuCustomizeVC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonMenuMainVC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonMenuStatsVC;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonMenuCustomizeVM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonMenuMainVM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonMenuStatsVM;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.NetworkHandler;
 import com.vies.viesmachines.network.server.machine.gui.navigation.MessageGuiMachineMenuCustomize;
@@ -35,9 +35,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-public class GuiContainerVC extends GuiContainer {
+public class GuiContainerVM extends GuiContainer {
 	
-	
+	protected String localizedModName = "";
 	protected int modelRotationHorizontal;
 	protected boolean modelRidingEntity;
 	
@@ -64,7 +64,7 @@ public class GuiContainerVC extends GuiContainer {
 	
 	
 	
-	public GuiContainerVC(Container inventorySlotsIn, IInventory playerInvIn, EntityMachineBase machineIn) 
+	public GuiContainerVM(Container inventorySlotsIn, IInventory playerInvIn, EntityMachineBase machineIn) 
 	{
 		super(inventorySlotsIn);
 
@@ -85,9 +85,9 @@ public class GuiContainerVC extends GuiContainer {
     	buttonList.clear();
     	Keyboard.enableRepeatEvents(true);
     	
-    	GuiVM.buttonMM1 = new GuiButtonMenuMainVC(1001, this.guiLeft - 35, this.guiTop + 14 + (14 * 0)+50, 36, 14, "", 0);
-    	GuiVM.buttonMM2 = new GuiButtonMenuStatsVC(1002, this.guiLeft - 35, this.guiTop + 14 + (14 * 1)+50, 36, 14, "", 0);
-    	GuiVM.buttonMM3 = new GuiButtonMenuCustomizeVC(1003, this.guiLeft - 35, this.guiTop + 14 + (14 * 2)+50, 36, 14, "", 0);
+    	GuiVM.buttonMM1 = new GuiButtonMenuMainVM(1001, this.guiLeft - 35, this.guiTop + 14 + (14 * 0)+50, 36, 14, "", 0);
+    	GuiVM.buttonMM2 = new GuiButtonMenuStatsVM(1002, this.guiLeft - 35, this.guiTop + 14 + (14 * 1)+50, 36, 14, "", 0);
+    	GuiVM.buttonMM3 = new GuiButtonMenuCustomizeVM(1003, this.guiLeft - 35, this.guiTop + 14 + (14 * 2)+50, 36, 14, "", 0);
     	//GuiVM.buttonMM4 = new GuiButtonMenuModuleVC(1004, this.guiLeft - 35, this.guiTop + 14 + (14 * 3)+50, 36, 14, "", 0);
     	//GuiVM.buttonMM5 = new GuiButtonMenuRedstoneVC(1005, this.guiLeft - 35, this.guiTop + 14 + (14 * 6)+50, 36, 14, "", 0);
     }

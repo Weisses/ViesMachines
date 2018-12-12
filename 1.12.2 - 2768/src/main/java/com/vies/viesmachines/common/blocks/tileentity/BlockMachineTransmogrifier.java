@@ -205,5 +205,6 @@ public class BlockMachineTransmogrifier extends BlockGeneric implements ITileEnt
 	{
 		tooltip.add(TextFormatting.GREEN + References.localNameVC(this.getUnlocalizedName() + ".tt.1"));
 		tooltip.add(TextFormatting.GREEN + References.localNameVC(this.getUnlocalizedName() + ".tt.2"));
+		tooltip.add(TextFormatting.GREEN + References.localNameVC(this.getUnlocalizedName() + ".tt.3"));
 	}
 }

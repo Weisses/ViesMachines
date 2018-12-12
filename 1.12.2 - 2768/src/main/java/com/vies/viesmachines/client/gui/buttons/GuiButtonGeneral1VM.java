@@ -8,14 +8,14 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiButtonMenuCustomizeVC extends GuiButton {
+public class GuiButtonGeneral1VM extends GuiButton {
 	
-	protected static final ResourceLocation BUTTON_TEXTURES = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/buttons_menu_customize.png");
-    protected int buttonLocationY;
+	protected static final ResourceLocation BUTTON_TEXTURES = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/buttons_general1.png");
+    protected int texture;
     
-	public GuiButtonMenuCustomizeVC(int buttonId, int x, int y, int widthIn, int heightIn, String buttonText, int buttonLocationYIn) 
+	public GuiButtonGeneral1VM(int buttonId, int x, int y, int widthIn, int heightIn, String buttonTextIn, int textureIn) 
 	{
-		super(buttonId, x, y, widthIn, heightIn, buttonText);
+		super(buttonId, x, y, widthIn, heightIn, buttonTextIn);
 		
 		this.width = 200;
         this.height = 20;
@@ -26,8 +26,8 @@ public class GuiButtonMenuCustomizeVC extends GuiButton {
         this.y = y;
         this.width = widthIn;
         this.height = heightIn;
-        this.displayString = buttonText;
-        this.buttonLocationY = buttonLocationYIn;
+        this.displayString = buttonTextIn;
+        this.texture = textureIn;
 	}
 	
 	@Override
@@ -45,20 +45,10 @@ public class GuiButtonMenuCustomizeVC extends GuiButton {
             GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
             
             // First half of the button:
-            this.drawTexturedModalRect(this.x, this.y, 0, 0 + i * 20, this.width / 2, this.height);
+            this.drawTexturedModalRect(this.x, this.y, 0, (this.texture * 54) + 0 + i * 20, this.width / 2, this.height);
             // Second half of the button:
-            this.drawTexturedModalRect(this.x + this.width / 2, this.y, 200 - this.width / 2, 0 + i * 20, this.width / 2, this.height);
+            this.drawTexturedModalRect(this.x + this.width / 2, this.y, 200 - this.width / 2, (this.texture * 54) + 0 + i * 20, this.width / 2, this.height);
             
-            // Text image overlay:
-            GlStateManager.pushMatrix();
-			{
-				GlStateManager.translate(this.x + 1, this.y + 1, 0);
-				GlStateManager.scale(.25, .25, .25);
-            
-				this.drawTexturedModalRect(0, 0, 0, 64 + (48 * this.buttonLocationY), 136, 48);
-			}
-			GlStateManager.popMatrix();
-			
             this.mouseDragged(mc, mouseX, mouseY);
             int j = 14737632;
 			
@@ -75,8 +65,15 @@ public class GuiButtonMenuCustomizeVC extends GuiButton {
             {
                 j = 16777120;
             }
-
-            this.drawCenteredString(fontrenderer, this.displayString, this.x + this.width / 2, this.y + (this.height - 8) / 2, j);
+            
+            GlStateManager.pushMatrix();
+			{
+				GlStateManager.translate(this.x + this.width / 2, this.y + (this.height - 6) / 2, 0); //-6 was a -8 by default
+				GlStateManager.scale(.75, .75, .75);
+            
+				this.drawCenteredString(fontrenderer, this.displayString, 0, 0, j);
+			}
+			GlStateManager.popMatrix();
         }
 	}
 }

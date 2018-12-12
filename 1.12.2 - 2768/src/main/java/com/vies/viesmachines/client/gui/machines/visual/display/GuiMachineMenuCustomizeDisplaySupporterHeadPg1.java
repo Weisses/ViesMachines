@@ -13,8 +13,8 @@ import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.api.util.Keybinds;
-import com.vies.viesmachines.client.gui.GuiContainerVC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VC;
+import com.vies.viesmachines.client.gui.GuiContainerVM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VM;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.entity.machines.containers.ContainerMachineNoSlots;
 import com.vies.viesmachines.network.NetworkHandler;
@@ -30,7 +30,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-public class GuiMachineMenuCustomizeDisplaySupporterHeadPg1 extends GuiContainerVC {
+public class GuiMachineMenuCustomizeDisplaySupporterHeadPg1 extends GuiContainerVM {
 	
 	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize_display_supporterhead.png");
 	
@@ -54,41 +54,41 @@ public class GuiMachineMenuCustomizeDisplaySupporterHeadPg1 extends GuiContainer
     	buttonList.clear();
     	Keyboard.enableRepeatEvents(true);
     	
-    	GuiVM.buttonApply = new GuiButtonGeneral1VC(21, this.guiLeft + 7, this.guiTop + 63, 42, 14, References.localNameVC("viesmachines.button.apply"), 1);
-		GuiVM.buttonBack = new GuiButtonGeneral1VC(22, this.guiLeft + 61, this.guiTop + 63, 42, 14, References.localNameVC("viesmachines.button.back"), 2);
+    	GuiVM.buttonApply = new GuiButtonGeneral1VM(21, this.guiLeft + 7, this.guiTop + 63, 42, 14, References.localNameVC("viesmachines.button.apply"), 1);
+		GuiVM.buttonBack = new GuiButtonGeneral1VM(22, this.guiLeft + 61, this.guiTop + 63, 42, 14, References.localNameVC("viesmachines.button.back"), 2);
 		
-		GuiVM.buttonTexture00 = new GuiButtonGeneral1VC(101, this.guiLeft + 32-14 + (14 * 0), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture01 = new GuiButtonGeneral1VC(102, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture02 = new GuiButtonGeneral1VC(103, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture03 = new GuiButtonGeneral1VC(104, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture04 = new GuiButtonGeneral1VC(105, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture05 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture06 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture07 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture08 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture09 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture00 = new GuiButtonGeneral1VM(101, this.guiLeft + 32-14 + (14 * 0), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture01 = new GuiButtonGeneral1VM(102, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture02 = new GuiButtonGeneral1VM(103, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture03 = new GuiButtonGeneral1VM(104, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture04 = new GuiButtonGeneral1VM(105, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture05 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture06 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture07 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture08 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture09 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7, 14, 14, "", 3);
 		
-		GuiVM.buttonTexture11 = new GuiButtonGeneral1VC(103, this.guiLeft + 32-14 + (14 * 0), this.guiTop + 102-7+33, 14, 14, "", 3);
-		GuiVM.buttonTexture12 = new GuiButtonGeneral1VC(104, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33, 14, 14, "", 3);
-		GuiVM.buttonTexture13 = new GuiButtonGeneral1VC(105, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7+33, 14, 14, "", 3);
-		GuiVM.buttonTexture14 = new GuiButtonGeneral1VC(106, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7+33, 14, 14, "", 3);
-		GuiVM.buttonTexture15 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7+33, 14, 14, "", 3);
-		GuiVM.buttonTexture16 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7+33, 14, 14, "", 3);
-		GuiVM.buttonTexture17 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33, 14, 14, "", 3);
-		GuiVM.buttonTexture18 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33, 14, 14, "", 3);
-		GuiVM.buttonTexture19 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33, 14, 14, "", 3);
-		GuiVM.buttonTexture20 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture11 = new GuiButtonGeneral1VM(103, this.guiLeft + 32-14 + (14 * 0), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture12 = new GuiButtonGeneral1VM(104, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture13 = new GuiButtonGeneral1VM(105, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture14 = new GuiButtonGeneral1VM(106, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture15 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture16 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture17 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture18 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture19 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture20 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33, 14, 14, "", 3);
 		
-		GuiVM.buttonTexture21 = new GuiButtonGeneral1VC(106, this.guiLeft + 32-14 + (14 * 0), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture22 = new GuiButtonGeneral1VC(107, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture23 = new GuiButtonGeneral1VC(108, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture24 = new GuiButtonGeneral1VC(109, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture25 = new GuiButtonGeneral1VC(110, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture26 = new GuiButtonGeneral1VC(111, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture27 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture28 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture29 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture30 = new GuiButtonGeneral1VC(100, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture21 = new GuiButtonGeneral1VM(106, this.guiLeft + 32-14 + (14 * 0), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture22 = new GuiButtonGeneral1VM(107, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture23 = new GuiButtonGeneral1VM(108, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture24 = new GuiButtonGeneral1VM(109, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture25 = new GuiButtonGeneral1VM(110, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture26 = new GuiButtonGeneral1VM(111, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture27 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture28 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture29 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture30 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		
 		//--------------------------------------------------
 		

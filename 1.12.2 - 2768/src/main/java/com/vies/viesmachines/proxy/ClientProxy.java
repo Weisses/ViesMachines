@@ -1,8 +1,8 @@
 package com.vies.viesmachines.proxy;
 
 import com.vies.viesmachines.api.util.Keybinds;
-import com.vies.viesmachines.client.InitEntityVCRender;
-import com.vies.viesmachines.client.InitTileEntityVCRender;
+import com.vies.viesmachines.client.InitEntityVMRender;
+import com.vies.viesmachines.client.InitTileEntityVMRender;
 import com.vies.viesmachines.client.gui.machines.GuiMachineHUD;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -23,8 +23,8 @@ public class ClientProxy extends CommonProxy {
 		//InitSoundEventsVC.registerSounds();
 		//InitItemsVCRender.registerItemRender();
 		//InitBlocksVCRender.registerBlockRender();
-		InitEntityVCRender.registerEntityRender();
-		InitTileEntityVCRender.registerTileEntityRender();
+		InitEntityVMRender.registerEntityRender();
+		InitTileEntityVMRender.registerTileEntityRender();
 		
 		Keybinds.init();
 		//NetworkHandler.preInitClient();

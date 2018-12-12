@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import com.vies.viesmachines.api.ItemsVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.api.util.LogHelper;
+import com.vies.viesmachines.api.util.Loghelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

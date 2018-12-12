@@ -11,10 +11,10 @@ import com.vies.viesmachines.api.CostsVM;
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.api.util.Keybinds;
-import com.vies.viesmachines.api.util.LogHelper;
-import com.vies.viesmachines.client.gui.GuiContainerVC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VC;
+import com.vies.viesmachines.api.util.Loghelper;
+import com.vies.viesmachines.client.gui.GuiContainerVM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VM;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.entity.machines.containers.ContainerMachineNoSlots;
 import com.vies.viesmachines.network.NetworkHandler;
@@ -29,7 +29,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
+public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVM {
 	
 	public static int modelFrame;
 	public static int modelEngine;
@@ -60,30 +60,30 @@ public class GuiMachineMenuCustomizeActiveModels extends GuiContainerVC {
     	buttonList.clear();
     	Keyboard.enableRepeatEvents(true);
     	
-    	GuiVM.buttonRotateLeft = new GuiButtonGeneral2VC(10, this.guiLeft + 110, this.guiTop + 68, 6, 6, "", 3);
-    	GuiVM.buttonRotateRight = new GuiButtonGeneral2VC(10, this.guiLeft + 122, this.guiTop + 68, 6, 6, "", 3);
+    	GuiVM.buttonRotateLeft = new GuiButtonGeneral2VM(10, this.guiLeft + 110, this.guiTop + 68, 6, 6, "", 3);
+    	GuiVM.buttonRotateRight = new GuiButtonGeneral2VM(10, this.guiLeft + 122, this.guiTop + 68, 6, 6, "", 3);
     	
-    	GuiVM.buttonApply = new GuiButtonGeneral1VC(21, this.guiLeft + 7, this.guiTop + 63, 42, 14, References.localNameVC("viesmachines.button.apply"), 1);
-		GuiVM.buttonBack = new GuiButtonGeneral1VC(22, this.guiLeft + 61, this.guiTop + 63, 42, 14, References.localNameVC("viesmachines.button.back"), 2);
+    	GuiVM.buttonApply = new GuiButtonGeneral1VM(21, this.guiLeft + 7, this.guiTop + 63, 42, 14, References.localNameVC("viesmachines.button.apply"), 1);
+		GuiVM.buttonBack = new GuiButtonGeneral1VM(22, this.guiLeft + 61, this.guiTop + 63, 42, 14, References.localNameVC("viesmachines.button.back"), 2);
 		
-		GuiVM.button41 = new GuiButtonGeneral1VC(41, this.guiLeft + 12, this.guiTop + 141, 50, 14, "Standard", 3);
-		GuiVM.button42 = new GuiButtonGeneral1VC(42, this.guiLeft + 12+51, this.guiTop + 141, 50, 14, "Reinforced", 3);
-		GuiVM.button43 = new GuiButtonGeneral1VC(43, this.guiLeft + 12+51+51, this.guiTop + 141, 50, 14, "Spiked", 3);
+		GuiVM.button41 = new GuiButtonGeneral1VM(41, this.guiLeft + 12, this.guiTop + 141, 50, 14, "Standard", 3);
+		GuiVM.button42 = new GuiButtonGeneral1VM(42, this.guiLeft + 12+51, this.guiTop + 141, 50, 14, "Reinforced", 3);
+		GuiVM.button43 = new GuiButtonGeneral1VM(43, this.guiLeft + 12+51+51, this.guiTop + 141, 50, 14, "Spiked", 3);
     	
-		GuiVM.button51 = new GuiButtonGeneral1VC(51, this.guiLeft + 12, this.guiTop + 141, 50, 14, "Standard", 3);
-		GuiVM.button52 = new GuiButtonGeneral1VC(52, this.guiLeft + 12+51, this.guiTop + 141, 50, 14, "Big", 3);
-		GuiVM.button53 = new GuiButtonGeneral1VC(53, this.guiLeft + 12+51+51, this.guiTop + 141, 50, 14, "Dual", 3);
+		GuiVM.button51 = new GuiButtonGeneral1VM(51, this.guiLeft + 12, this.guiTop + 141, 50, 14, "Standard", 3);
+		GuiVM.button52 = new GuiButtonGeneral1VM(52, this.guiLeft + 12+51, this.guiTop + 141, 50, 14, "Big", 3);
+		GuiVM.button53 = new GuiButtonGeneral1VM(53, this.guiLeft + 12+51+51, this.guiTop + 141, 50, 14, "Dual", 3);
     	
-		GuiVM.button61 = new GuiButtonGeneral1VC(61, this.guiLeft + 12, this.guiTop + 141, 50, 14, "Standard", 3);
-		GuiVM.button62 = new GuiButtonGeneral1VC(62, this.guiLeft + 12+51, this.guiTop + 141, 50, 14, "Hindenburg", 3);
-		GuiVM.button63 = new GuiButtonGeneral1VC(63, this.guiLeft + 12+51+51, this.guiTop + 141, 50, 14, "Dirgible", 3);
-    	GuiVM.button64 = new GuiButtonGeneral1VC(64, this.guiLeft + 12, this.guiTop + 159, 50, 14, "Zeppelin", 3);
-    	GuiVM.button65 = new GuiButtonGeneral1VC(65, this.guiLeft + 12+51, this.guiTop + 159, 50, 14, "Akronus", 3);
-    	GuiVM.button66 = new GuiButtonGeneral1VC(66, this.guiLeft + 12+51+51, this.guiTop + 159, 50, 14, "Standard", 3);
+		GuiVM.button61 = new GuiButtonGeneral1VM(61, this.guiLeft + 12, this.guiTop + 141, 50, 14, "Standard", 3);
+		GuiVM.button62 = new GuiButtonGeneral1VM(62, this.guiLeft + 12+51, this.guiTop + 141, 50, 14, "Hindenburg", 3);
+		GuiVM.button63 = new GuiButtonGeneral1VM(63, this.guiLeft + 12+51+51, this.guiTop + 141, 50, 14, "Dirgible", 3);
+    	GuiVM.button64 = new GuiButtonGeneral1VM(64, this.guiLeft + 12, this.guiTop + 159, 50, 14, "Zeppelin", 3);
+    	GuiVM.button65 = new GuiButtonGeneral1VM(65, this.guiLeft + 12+51, this.guiTop + 159, 50, 14, "Akronus", 3);
+    	GuiVM.button66 = new GuiButtonGeneral1VM(66, this.guiLeft + 12+51+51, this.guiTop + 159, 50, 14, "Standard", 3);
     	
-    	GuiVM.buttonFrame = new GuiButtonGeneral2VC(1, this.guiLeft + 13, this.guiTop + 94, 48, 14, "Frame", 1);
-    	GuiVM.buttonEngine = new GuiButtonGeneral2VC(2, this.guiLeft + 13+51, this.guiTop + 94, 48, 14, "Engine", 1);
-    	GuiVM.buttonComponent = new GuiButtonGeneral2VC(3, this.guiLeft + 13+51+51, this.guiTop + 94, 48, 14, "Component", 1);
+    	GuiVM.buttonFrame = new GuiButtonGeneral2VM(1, this.guiLeft + 13, this.guiTop + 94, 48, 14, "Frame", 1);
+    	GuiVM.buttonEngine = new GuiButtonGeneral2VM(2, this.guiLeft + 13+51, this.guiTop + 94, 48, 14, "Engine", 1);
+    	GuiVM.buttonComponent = new GuiButtonGeneral2VM(3, this.guiLeft + 13+51+51, this.guiTop + 94, 48, 14, "Component", 1);
     	
     	//--------------------------------------------------
     	

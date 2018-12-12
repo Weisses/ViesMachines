@@ -1,6 +1,6 @@
 package com.vies.viesmachines.common.entity.machines;
 
-import com.vies.viesmachines.api.util.LogHelper;
+import com.vies.viesmachines.api.util.Loghelper;
 import com.vies.viesmachines.init.LootTableHandler;
 
 import net.minecraft.entity.Entity;
@@ -413,7 +413,7 @@ public class EntityMachineWater extends EntityMachineFuel {
 	
 	public PotionEffect passiveAbility()
 	{
-		LogHelper.info("here0");
+		Loghelper.info("here0");
 		/**
 		if (this.getRidingEntity() instanceof Entity)
 		{

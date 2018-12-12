@@ -1,7 +1,7 @@
 package com.vies.viesmachines.network.server.machine.gui.customize.activemodels;
 
 import com.vies.viesmachines.api.CostsVM;
-import com.vies.viesmachines.api.util.LogHelper;
+import com.vies.viesmachines.api.util.Loghelper;
 import com.vies.viesmachines.client.gui.machines.visual.GuiMachineMenuCustomizeActiveModels;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.packet.MessageBase;

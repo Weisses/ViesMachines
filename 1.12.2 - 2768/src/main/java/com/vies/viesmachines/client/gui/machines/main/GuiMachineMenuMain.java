@@ -8,13 +8,14 @@ import org.lwjgl.input.Keyboard;
 
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.api.util.LogHelper;
-import com.vies.viesmachines.client.gui.GuiContainerVC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VC;
+import com.vies.viesmachines.api.util.Loghelper;
+import com.vies.viesmachines.client.gui.GuiContainerVM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VM;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.entity.machines.EntityMachineFuel;
 import com.vies.viesmachines.common.entity.machines.containers.ContainerMachineMenuMain;
+import com.vies.viesmachines.configs.VMConfiguration;
 import com.vies.viesmachines.network.NetworkHandler;
 import com.vies.viesmachines.network.server.machine.gui.main.MessageHelperGuiMachineMenuMainArmed;
 import com.vies.viesmachines.network.server.machine.gui.main.MessageHelperGuiMachineMenuMainAutorun;
@@ -41,7 +42,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-public class GuiMachineMenuMain extends GuiContainerVC {
+public class GuiMachineMenuMain extends GuiContainerVM {
 	
 	public static int machineId;
 	public static int selectedSongId;
@@ -65,28 +66,28 @@ public class GuiMachineMenuMain extends GuiContainerVC {
     	buttonList.clear();
     	Keyboard.enableRepeatEvents(true);
     	
-    	GuiVM.buttonMusicSelect = new GuiButtonGeneral1VC(40, this.guiLeft + 117, this.guiTop + 88, 52, 14, References.localNameVC("viesmachines.gui.select.0"), 0);
-    	GuiVM.buttonMusicStop = new GuiButtonGeneral1VC(41, this.guiLeft + 119, this.guiTop + 119, 14, 14, References.localNameVC(""), 2);
-    	GuiVM.buttonMusicPlay = new GuiButtonGeneral1VC(42, this.guiLeft + 136, this.guiTop + 119, 14, 14, References.localNameVC(""), 1);
-    	GuiVM.buttonMusicRandom = new GuiButtonGeneral1VC(43, this.guiLeft + 153, this.guiTop + 119, 14, 14, References.localNameVC(""), 3);
+    	GuiVM.buttonMusicSelect = new GuiButtonGeneral1VM(40, this.guiLeft + 117, this.guiTop + 88, 52, 14, References.localNameVC("viesmachines.gui.select.0"), 0);
+    	GuiVM.buttonMusicStop = new GuiButtonGeneral1VM(41, this.guiLeft + 119, this.guiTop + 119, 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonMusicPlay = new GuiButtonGeneral1VM(42, this.guiLeft + 136, this.guiTop + 119, 14, 14, References.localNameVC(""), 1);
+    	GuiVM.buttonMusicRandom = new GuiButtonGeneral1VM(43, this.guiLeft + 153, this.guiTop + 119, 14, 14, References.localNameVC(""), 3);
 		
-    	GuiVM.buttonMachineCompress = new GuiButtonGeneral2VC(51, this.guiLeft + 13, this.guiTop + 21, 14, 14, References.localNameVC(""), 0);
-    	GuiVM.buttonMachineRename = new GuiButtonGeneral2VC(52, this.guiLeft + 39, this.guiTop + 21, 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonMachineCompress = new GuiButtonGeneral2VM(51, this.guiLeft + 13, this.guiTop + 21, 14, 14, References.localNameVC(""), 0);
+    	GuiVM.buttonMachineRename = new GuiButtonGeneral2VM(52, this.guiLeft + 39, this.guiTop + 21, 14, 14, References.localNameVC(""), 2);
     	
-    	GuiVM.buttonMachineArmedTrue = new GuiButtonGeneral1VC(59, this.guiLeft + 13, this.guiTop + 57, 14, 14, References.localNameVC(""), 1);
-    	GuiVM.buttonMachineArmedFalse = new GuiButtonGeneral1VC(60, this.guiLeft + 13, this.guiTop + 57, 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonMachineArmedTrue = new GuiButtonGeneral1VM(59, this.guiLeft + 13, this.guiTop + 57, 14, 14, References.localNameVC(""), 1);
+    	GuiVM.buttonMachineArmedFalse = new GuiButtonGeneral1VM(60, this.guiLeft + 13, this.guiTop + 57, 14, 14, References.localNameVC(""), 2);
     	
-    	GuiVM.buttonMachineSelectProjectile = new GuiButtonGeneral2VC(63, this.guiLeft + 39, this.guiTop + 57, 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonMachineSelectProjectile = new GuiButtonGeneral2VM(63, this.guiLeft + 39, this.guiTop + 57, 14, 14, References.localNameVC(""), 2);
     	
-    	GuiVM.buttonMachineOnTrue = new GuiButtonGeneral1VC(53, this.guiLeft + 93, this.guiTop + 21, 14, 14, References.localNameVC(""), 1);
-    	GuiVM.buttonMachineOnFalse = new GuiButtonGeneral1VC(54, this.guiLeft + 93, this.guiTop + 21, 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonMachineOnTrue = new GuiButtonGeneral1VM(53, this.guiLeft + 93, this.guiTop + 21, 14, 14, References.localNameVC(""), 1);
+    	GuiVM.buttonMachineOnFalse = new GuiButtonGeneral1VM(54, this.guiLeft + 93, this.guiTop + 21, 14, 14, References.localNameVC(""), 2);
     	
     	// Not used right now:
-    	GuiVM.button01 = new GuiButtonGeneral1VC(55, this.guiLeft + 93, this.guiTop + 39, 14, 14, References.localNameVC(""), 1);
-    	GuiVM.button02 = new GuiButtonGeneral1VC(56, this.guiLeft + 93, this.guiTop + 39, 14, 14, References.localNameVC(""), 3);
+    	GuiVM.button01 = new GuiButtonGeneral1VM(55, this.guiLeft + 93, this.guiTop + 39, 14, 14, References.localNameVC(""), 1);
+    	GuiVM.button02 = new GuiButtonGeneral1VM(56, this.guiLeft + 93, this.guiTop + 39, 14, 14, References.localNameVC(""), 3);
     	
-    	GuiVM.buttonMachineAutorunTrue = new GuiButtonGeneral1VC(57, this.guiLeft + 93, this.guiTop + 57, 14, 14, References.localNameVC(""), 1);
-    	GuiVM.buttonMachineAutorunFalse = new GuiButtonGeneral1VC(58, this.guiLeft + 93, this.guiTop + 57, 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonMachineAutorunTrue = new GuiButtonGeneral1VM(57, this.guiLeft + 93, this.guiTop + 57, 14, 14, References.localNameVC(""), 1);
+    	GuiVM.buttonMachineAutorunFalse = new GuiButtonGeneral1VM(58, this.guiLeft + 93, this.guiTop + 57, 14, 14, References.localNameVC(""), 2);
     	
     	//--------------------------------------------------
     	
@@ -473,12 +474,30 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 		&& mouseY >= this.guiTop + 21 && mouseY <= this.guiTop + 34)
 		{
 			List<String> text = new ArrayList<String>();
-			text.add(TextFormatting.RED + "" + TextFormatting.BOLD + References.localNameVC("viesmachines.gui.tt.compress.1"));
-			text.add(TextFormatting.RED + "" + TextFormatting.BOLD + References.localNameVC("viesmachines.gui.tt.compress.2"));
+			if (VMConfiguration.machineHardmode)
+	        {
+				text.add(TextFormatting.DARK_RED + "" + TextFormatting.BOLD + "!!! " + References.localNameVC("viesmachines.gui.tt.compress.3") + " !!!");
+				text.add(TextFormatting.RED + "" + TextFormatting.BOLD + References.localNameVC("viesmachines.gui.tt.compress.4"));
+				text.add(TextFormatting.RED + "" + TextFormatting.BOLD + References.localNameVC("viesmachines.gui.tt.compress.5"));
+	        }
+			else
+			{
+				text.add(TextFormatting.RED + "" + TextFormatting.BOLD + References.localNameVC("viesmachines.gui.tt.compress.1"));
+				text.add(TextFormatting.RED + "" + TextFormatting.BOLD + References.localNameVC("viesmachines.gui.tt.compress.2"));
+			}
 			
 			GlStateManager.pushMatrix();
 			{
-				int textNumber = References.localNameVC("viesmachines.gui.tt.compress.1").length();
+				int textNumber = 0;
+				
+				if (VMConfiguration.machineHardmode)
+		        {
+					textNumber = References.localNameVC("viesmachines.gui.tt.compress.4").length();
+		        }
+				else
+				{
+					textNumber = References.localNameVC("viesmachines.gui.tt.compress.1").length();
+				}
 				
 				GlStateManager.translate(mouseX - this.guiLeft - 6 - textNumber - (textNumber / 2), mouseY - this.guiTop - 19, 0);
 				GlStateManager.scale(0.5, 0.5, 0.5);
@@ -618,8 +637,22 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 			&& mouseY >= this.guiTop + 37 && mouseY <= this.guiTop + 54)
 			{
 				List<String> text = new ArrayList<String>();
-				text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.fuel.1"));
-				text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.fuel.2"));
+				
+				if (this.machine.getControllingPassenger() instanceof EntityPlayer)
+				{
+					EntityPlayer playerin = (EntityPlayer) this.machine.getControllingPassenger();
+					
+					if (playerin.isCreative())
+					{
+						text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.fuel.3"));
+						text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.fuel.4"));
+					}
+					else
+					{
+						text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.fuel.1"));
+						text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.fuel.2"));
+					}
+				}
 				
 				GlStateManager.pushMatrix();
 				{
@@ -644,9 +677,9 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 					
 					GlStateManager.pushMatrix();
 					{
-						int textNumber = References.localNameVC("viesmachines.gui.tt.main.musicstop.0").length();
+						int textNumber = text.toString().length();
 						
-						GlStateManager.translate(mouseX - this.guiLeft - 6 - textNumber - (textNumber / 2), mouseY - this.guiTop - 19, 0);
+						GlStateManager.translate(mouseX - this.guiLeft + 3 - textNumber - (textNumber / 2), mouseY - this.guiTop - 19, 0);
 						GlStateManager.scale(0.5, 0.5, 0.5);
 						
 						this.drawHoveringText(text, 0, 0);
@@ -663,9 +696,9 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 					
 					GlStateManager.pushMatrix();
 					{
-						int textNumber = References.localNameVC("viesmachines.gui.tt.main.musicplay.0").length();
+						int textNumber = text.toString().length();
 						
-						GlStateManager.translate(mouseX - this.guiLeft - 6 - textNumber - (textNumber / 2), mouseY - this.guiTop - 19, 0);
+						GlStateManager.translate(mouseX - this.guiLeft + 3 - textNumber - (textNumber / 2), mouseY - this.guiTop - 19, 0);
 						GlStateManager.scale(0.5, 0.5, 0.5);
 						
 						this.drawHoveringText(text, 0, 0);
@@ -678,13 +711,20 @@ public class GuiMachineMenuMain extends GuiContainerVC {
 				&& mouseY >= this.guiTop + 119 && mouseY <= this.guiTop + 132)
 				{
 					List<String> text = new ArrayList<String>();
-					text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.main.musicrandom.0"));
 					
+					if (this.machine.getTierComponent() >= 3)
+			        {
+						text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.main.musicrandom.0"));
+			        }
+					else
+					{
+						text.add(TextFormatting.RED + References.localNameVC("viesmachines.gui.tt.main.musicrandom.1"));
+					}
 					GlStateManager.pushMatrix();
 					{
-						int textNumber = References.localNameVC("viesmachines.gui.tt.main.musicrandom.0").length();
+						int textNumber = text.toString().length();
 						
-						GlStateManager.translate(mouseX - this.guiLeft - 6 - textNumber - (textNumber / 2), mouseY - this.guiTop - 19, 0);
+						GlStateManager.translate(mouseX - this.guiLeft + 3 - textNumber - (textNumber / 2), mouseY - this.guiTop - 19, 0);
 						GlStateManager.scale(0.5, 0.5, 0.5);
 						
 						this.drawHoveringText(text, 0, 0);
@@ -850,6 +890,15 @@ public class GuiMachineMenuMain extends GuiContainerVC {
         	GuiVM.buttonMusicPlay.enabled = false;
         	GuiVM.buttonMusicStop.enabled = false;
         }
+        
+        if (this.machine.getTierComponent() >= 3)
+        {
+        	GuiVM.buttonMusicRandom.enabled = true;
+        }
+        else
+        {
+        	GuiVM.buttonMusicRandom.enabled = false;
+        }
 
         if (this.machine.getBroken())
         {
@@ -859,6 +908,14 @@ public class GuiMachineMenuMain extends GuiContainerVC {
         	GuiVM.buttonMusicSelect.enabled = false;
         }
         
+        // Makes it so you can't convert broken machines into item via config:
+        if (VMConfiguration.machineHardmode)
+        {
+        	if (this.machine.getBroken())
+        	{
+        		GuiVM.buttonMachineCompress.enabled = false;
+        	}
+        }
     }
 	
 	public void validRecordName(EntityMachineBase machineIn)

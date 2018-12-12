@@ -2,13 +2,13 @@ package com.vies.viesmachines.api.gui;
 
 import java.util.Set;
 
-import com.vies.viesmachines.client.gui.ConfigGui;
+import com.vies.viesmachines.client.gui.ConfigGuiVM;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.client.IModGuiFactory;
 
-public class VCGuiFactory implements IModGuiFactory {
+public class VMGuiFactory implements IModGuiFactory {
 
 	@Override
 	public void initialize(Minecraft minecraftInstance) 
@@ -25,7 +25,7 @@ public class VCGuiFactory implements IModGuiFactory {
 	@Override
 	public GuiScreen createConfigGui(GuiScreen parentScreen) 
 	{
-		return new ConfigGui(parentScreen);
+		return new ConfigGuiVM(parentScreen);
 	}
 
 	@Override

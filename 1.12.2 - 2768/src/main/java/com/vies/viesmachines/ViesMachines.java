@@ -5,7 +5,7 @@ import java.io.File;
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.api.creative.BlocksTab;
 import com.vies.viesmachines.api.creative.ItemsTab;
-import com.vies.viesmachines.api.util.LogHelper;
+import com.vies.viesmachines.api.util.Loghelper;
 import com.vies.viesmachines.configs.VMConfiguration;
 import com.vies.viesmachines.proxy.CommonProxy;
 
@@ -32,7 +32,7 @@ public class ViesMachines {
 	public static final ItemsTab tabItems = new ItemsTab("tabItems");
 	public static final BlocksTab tabBlocks = new BlocksTab("tabBlocks");
 	
-	private static File configDir;
+	//private static File configDir;
 	
 	@Mod.Instance(References.MOD_ID)
 	public static ViesMachines instance;
@@ -42,31 +42,33 @@ public class ViesMachines {
 	{
 		MinecraftForge.EVENT_BUS.register(instance);
 		
-		configDir = new File(event.getModConfigurationDirectory() + "/" + References.MOD_ID);
-		configDir.mkdirs();
-		VMConfiguration.init(new File(configDir.getPath(), References.MOD_ID + ".cfg"));
+		VMConfiguration.load(event);
+		
+		//configDir = new File(event.getModConfigurationDirectory() + "/" + References.MOD_ID);
+		//configDir.mkdirs();
+		//VMConfiguration.load(new File(configDir.getPath(), References.MOD_ID + ".cfg"));
 		
 		this.proxy.preInit(event);
-		LogHelper.info("<<==============================>>");
-		LogHelper.info("        Pre-Init Complete.        ");
-		LogHelper.info("<<==============================>>");
+		Loghelper.info("<<==============================>>");
+		Loghelper.info("        Pre-Init Complete.        ");
+		Loghelper.info("<<==============================>>");
 	}
 	
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
 		this.proxy.init(event);
-		LogHelper.info("<<==============================>>");
-		LogHelper.info("          Init Complete.          ");
-		LogHelper.info("<<==============================>>");
+		Loghelper.info("<<==============================>>");
+		Loghelper.info("          Init Complete.          ");
+		Loghelper.info("<<==============================>>");
 	}
 	
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		this.proxy.postInit(event);
-		LogHelper.info("<<==============================>>");
-		LogHelper.info("   Enforcing Brannigan's Law...   ");
-		LogHelper.info("<<==============================>>");
+		Loghelper.info("<<==============================>>");
+		Loghelper.info("   Enforcing Brannigan's Law...   ");
+		Loghelper.info("<<==============================>>");
 	}
 }

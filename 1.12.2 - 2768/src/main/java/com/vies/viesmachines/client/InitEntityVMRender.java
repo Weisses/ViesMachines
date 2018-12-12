@@ -17,7 +17,7 @@ import com.vies.viesmachines.common.entity.thrown.EntityThrownMachineFlyingAirsh
 
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
-public final class InitEntityVCRender extends ItemsVM {
+public final class InitEntityVMRender extends ItemsVM {
 	
 	public static void registerEntityRender()
 	{

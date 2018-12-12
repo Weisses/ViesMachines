@@ -6,7 +6,7 @@ import com.vies.viesmachines.api.References;
 
 import net.minecraftforge.fml.common.FMLLog;
 
-public class LogHelper {
+public class Loghelper {
 	
 	public static void log(Level logLevel, Object object)
 	{

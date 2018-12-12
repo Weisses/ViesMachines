@@ -9,8 +9,8 @@ import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.ItemsVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.client.gui.GuiContainerVC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VC;
+import com.vies.viesmachines.client.gui.GuiContainerVM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VM;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.entity.machines.containers.ContainerMachineMenuMainSelectProjectile;
 import com.vies.viesmachines.network.NetworkHandler;
@@ -26,7 +26,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiMachineMenuMainSelectProjectile extends GuiContainerVC {
+public class GuiMachineMenuMainSelectProjectile extends GuiContainerVM {
 	
 	private ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_main_select_projectile.png");
 	
@@ -45,12 +45,12 @@ public class GuiMachineMenuMainSelectProjectile extends GuiContainerVC {
     	buttonList.clear();
     	Keyboard.enableRepeatEvents(true);
     	
-    	GuiVM.buttonBulletNormal = new GuiButtonGeneral1VC(21, this.guiLeft + 102, this.guiTop + 35, 14, 14, References.localNameVC(""), 1);
-    	GuiVM.buttonBulletElectrical = new GuiButtonGeneral1VC(22, this.guiLeft + 124, this.guiTop + 35, 14, 14, References.localNameVC(""), 1);
-    	GuiVM.buttonBulletExplosive = new GuiButtonGeneral1VC(23, this.guiLeft + 146, this.guiTop + 35, 14, 14, References.localNameVC(""), 1);
+    	GuiVM.buttonBulletNormal = new GuiButtonGeneral1VM(21, this.guiLeft + 102, this.guiTop + 35, 14, 14, References.localNameVC(""), 1);
+    	GuiVM.buttonBulletElectrical = new GuiButtonGeneral1VM(22, this.guiLeft + 124, this.guiTop + 35, 14, 14, References.localNameVC(""), 1);
+    	GuiVM.buttonBulletExplosive = new GuiButtonGeneral1VM(23, this.guiLeft + 146, this.guiTop + 35, 14, 14, References.localNameVC(""), 1);
 		
-    	GuiVM.buttonConsume = new GuiButtonGeneral1VC(12, this.guiLeft + 24, this.guiTop + 110, 42, 14, References.localNameVC("viesmachines.button.consume"), 1);
-		GuiVM.buttonBack = new GuiButtonGeneral1VC(13, this.guiLeft + 127, this.guiTop + 121, 42, 14, References.localNameVC("viesmachines.button.back"), 2);
+    	GuiVM.buttonConsume = new GuiButtonGeneral1VM(12, this.guiLeft + 24, this.guiTop + 110, 42, 14, References.localNameVC("viesmachines.button.consume"), 1);
+		GuiVM.buttonBack = new GuiButtonGeneral1VM(13, this.guiLeft + 127, this.guiTop + 121, 42, 14, References.localNameVC("viesmachines.button.back"), 2);
 		
 		//--------------------------------------------------
 		

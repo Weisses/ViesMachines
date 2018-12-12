@@ -12,9 +12,10 @@ import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.api.util.Keybinds;
-import com.vies.viesmachines.client.gui.GuiContainerVC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VC;
+import com.vies.viesmachines.api.util.Loghelper;
+import com.vies.viesmachines.client.gui.GuiContainerVM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VM;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.entity.machines.containers.ContainerMachineNoSlots;
 import com.vies.viesmachines.network.NetworkHandler;
@@ -27,6 +28,7 @@ import com.vies.viesmachines.network.server.machine.gui.customize.holiday.Messag
 import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative;
 import com.vies.viesmachines.network.server.machine.gui.navigation.MessageGuiMachineMenuCustomize;
 
+import mezz.jei.startup.ForgeModIdHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
@@ -35,8 +37,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.common.ForgeModContainer;
+import net.minecraftforge.fml.common.ModContainer;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-public class GuiMachineMenuCustomizeDisplayBanner extends GuiContainerVC {
+public class GuiMachineMenuCustomizeDisplayBanner extends GuiContainerVM {
 	
 	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize_display_banner.png");
 	
@@ -101,28 +106,28 @@ public class GuiMachineMenuCustomizeDisplayBanner extends GuiContainerVC {
 			holidayName = References.localNameVC("viesmachines.button.christmas");
 		}
     			
-    	GuiVM.buttonRotateLeft = new GuiButtonGeneral2VC(10, this.guiLeft + 110, this.guiTop + 68, 6, 6, "", 3);
-    	GuiVM.buttonRotateRight = new GuiButtonGeneral2VC(11, this.guiLeft + 122, this.guiTop + 68, 6, 6, "", 3);
-    	GuiVM.buttonRidingPlayerTrue = new GuiButtonGeneral1VC(12, this.guiLeft + 130, this.guiTop + 66, 10, 10, "", 1);
-    	GuiVM.buttonRidingPlayerFalse = new GuiButtonGeneral1VC(13, this.guiLeft + 140, this.guiTop + 66, 10, 10, "", 2);
-    	GuiVM.buttonUndo = new GuiButtonGeneral2VC(11, this.guiLeft + 158, this.guiTop + 66, 10, 10, "", 1);
+    	GuiVM.buttonRotateLeft = new GuiButtonGeneral2VM(10, this.guiLeft + 110, this.guiTop + 68, 6, 6, "", 3);
+    	GuiVM.buttonRotateRight = new GuiButtonGeneral2VM(11, this.guiLeft + 122, this.guiTop + 68, 6, 6, "", 3);
+    	GuiVM.buttonRidingPlayerTrue = new GuiButtonGeneral1VM(12, this.guiLeft + 130, this.guiTop + 66, 10, 10, "", 1);
+    	GuiVM.buttonRidingPlayerFalse = new GuiButtonGeneral1VM(13, this.guiLeft + 140, this.guiTop + 66, 10, 10, "", 2);
+    	GuiVM.buttonUndo = new GuiButtonGeneral2VM(11, this.guiLeft + 158, this.guiTop + 66, 10, 10, "", 1);
 		
-    	GuiVM.button00 = new GuiButtonGeneral2VC(20, this.guiLeft + 89, this.guiTop + 45, 14, 14, "", 1);
-    	GuiVM.buttonApply = new GuiButtonGeneral2VC(21, this.guiLeft + 7, this.guiTop + 63, 42, 14, References.localNameVC("viesmachines.button.remove"), 0);
-		GuiVM.buttonBack = new GuiButtonGeneral1VC(22, this.guiLeft + 61, this.guiTop + 63, 42, 14, References.localNameVC("viesmachines.button.back"), 2);
+    	GuiVM.button00 = new GuiButtonGeneral2VM(20, this.guiLeft + 89, this.guiTop + 45, 14, 14, "", 1);
+    	GuiVM.buttonApply = new GuiButtonGeneral2VM(21, this.guiLeft + 7, this.guiTop + 63, 42, 14, References.localNameVC("viesmachines.button.remove"), 0);
+		GuiVM.buttonBack = new GuiButtonGeneral1VM(22, this.guiLeft + 61, this.guiTop + 63, 42, 14, References.localNameVC("viesmachines.button.back"), 2);
 		
 		//--------------------------------------------------
 		
-		GuiVM.buttonT1 = new GuiButtonGeneral1VC(51, this.guiLeft + 17, this.guiTop + 92 + 12 + (18 * 0), 75, 14, References.localNameVC("viesmachines.button.symbols"), 0);
-		GuiVM.buttonT2 = new GuiButtonGeneral1VC(52, this.guiLeft + 17, this.guiTop + 92 + 12 + (18 * 1), 75, 14, References.localNameVC("viesmachines.button.blockitems"), 0);
-		GuiVM.buttonT3 = new GuiButtonGeneral1VC(53, this.guiLeft + 17, this.guiTop + 92 + 12 + (18 * 2), 75, 14, References.localNameVC("viesmachines.button.entityheads"), 0);
-		GuiVM.buttonT4 = new GuiButtonGeneral1VC(54, this.guiLeft + 17, this.guiTop + 92 + 12 + (18 * 3), 75, 14, References.localNameVC("viesmachines.button.supporterheads"), 0);
+		GuiVM.buttonT1 = new GuiButtonGeneral1VM(51, this.guiLeft + 17, this.guiTop + 92 + 12 + (18 * 0), 75, 14, References.localNameVC("viesmachines.button.symbols"), 0);
+		GuiVM.buttonT2 = new GuiButtonGeneral1VM(52, this.guiLeft + 17, this.guiTop + 92 + 12 + (18 * 1), 75, 14, References.localNameVC("viesmachines.button.blockitems"), 0);
+		GuiVM.buttonT3 = new GuiButtonGeneral1VM(53, this.guiLeft + 17, this.guiTop + 92 + 12 + (18 * 2), 75, 14, References.localNameVC("viesmachines.button.entityheads"), 0);
+		GuiVM.buttonT4 = new GuiButtonGeneral1VM(54, this.guiLeft + 17, this.guiTop + 92 + 12 + (18 * 3), 75, 14, References.localNameVC("viesmachines.button.supporterheads"), 0);
 		
 		// Holidays:
-		GuiVM.button11 = new GuiButtonGeneral2VC(1111, this.guiLeft + 67+40, this.guiTop + 92 - 16 + (14 * 2), 62, 14, this.stringToRainbow(holidayName, false), 2);
+		GuiVM.button11 = new GuiButtonGeneral2VM(1111, this.guiLeft + 67+40, this.guiTop + 92 - 16 + (14 * 2), 62, 14, this.stringToRainbow(holidayName, false), 2);
 		
 		// Creative:
-		GuiVM.button01 = new GuiButtonGeneral2VC(1101, this.guiLeft + 67+40, this.guiTop + 92 - 16 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.holiday1"), false), 2);
+		GuiVM.button01 = new GuiButtonGeneral2VM(1101, this.guiLeft + 67+40, this.guiTop + 92 - 16 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.holiday1"), false), 2);
 		
 		//--------------------------------------------------
 		

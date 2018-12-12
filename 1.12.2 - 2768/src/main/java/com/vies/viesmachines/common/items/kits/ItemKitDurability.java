@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import com.vies.viesmachines.ViesMachines;
 import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.api.util.LogHelper;
+import com.vies.viesmachines.api.util.Loghelper;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.items.ItemHelper;
 

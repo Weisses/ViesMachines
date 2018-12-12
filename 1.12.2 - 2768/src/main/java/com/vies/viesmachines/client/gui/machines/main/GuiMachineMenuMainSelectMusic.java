@@ -6,9 +6,10 @@ import java.io.IOException;
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.ItemsVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.client.gui.GuiContainerVC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VC;
+import com.vies.viesmachines.api.util.Loghelper;
+import com.vies.viesmachines.client.gui.GuiContainerVM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VM;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.entity.machines.containers.ContainerMachineNoSlots;
 import com.vies.viesmachines.network.NetworkHandler;
@@ -30,14 +31,18 @@ import com.vies.viesmachines.network.server.machine.gui.main.song.select.Message
 import com.vies.viesmachines.network.server.machine.gui.navigation.MessageGuiMachineMenuMain;
 import com.vies.viesmachines.proxy.ClientProxy;
 
+import mezz.jei.startup.ForgeModIdHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.common.ForgeModContainer;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ModContainer;
 
-public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
+public class GuiMachineMenuMainSelectMusic extends GuiContainerVM {
 	
 	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_machine_music.png");
 	
@@ -120,47 +125,47 @@ public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
     	
     	//--------------------------------------------------
     	
-    	GuiVM.button501 = new GuiButtonGeneral1VC(501, this.guiLeft + 60, this.guiTop + 197, 56, 14, References.localNameVC("gui.done"), 0);
+    	GuiVM.button501 = new GuiButtonGeneral1VM(501, this.guiLeft + 60, this.guiTop + 197, 56, 14, References.localNameVC("gui.done"), 0);
     	
-    	GuiVM.buttonLearnedRecordSlot1 = new GuiButtonGeneral1VC(71, this.guiLeft + 46, this.guiTop +  69 + (16 * 0), 84, 14, slotName1, 0);
-    	GuiVM.buttonLearnedRecordSlot2 = new GuiButtonGeneral1VC(72, this.guiLeft + 46, this.guiTop +  89 + (16 * 0), 84, 14, slotName2, 0);
-    	GuiVM.buttonLearnedRecordSlot3 = new GuiButtonGeneral1VC(73, this.guiLeft + 46, this.guiTop +  89 + (16 * 1), 84, 14, slotName3, 0);
-    	GuiVM.buttonLearnedRecordSlot4 = new GuiButtonGeneral1VC(74, this.guiLeft + 46, this.guiTop + 125 + (16 * 0), 84, 14, slotName4, 0);
-    	GuiVM.buttonLearnedRecordSlot5 = new GuiButtonGeneral1VC(75, this.guiLeft + 46, this.guiTop + 125 + (16 * 1), 84, 14, slotName5, 0);
-    	GuiVM.buttonLearnedRecordSlot6 = new GuiButtonGeneral1VC(76, this.guiLeft + 46, this.guiTop + 161 + (16 * 0), 84, 14, slotName6, 0);
-    	GuiVM.buttonLearnedRecordSlot7 = new GuiButtonGeneral1VC(77, this.guiLeft + 46, this.guiTop + 161 + (16 * 1), 84, 14, slotName7, 0);
+    	GuiVM.buttonLearnedRecordSlot1 = new GuiButtonGeneral1VM(71, this.guiLeft + 46, this.guiTop +  69 + (16 * 0), 84, 14, slotName1, 0);
+    	GuiVM.buttonLearnedRecordSlot2 = new GuiButtonGeneral1VM(72, this.guiLeft + 46, this.guiTop +  89 + (16 * 0), 84, 14, slotName2, 0);
+    	GuiVM.buttonLearnedRecordSlot3 = new GuiButtonGeneral1VM(73, this.guiLeft + 46, this.guiTop +  89 + (16 * 1), 84, 14, slotName3, 0);
+    	GuiVM.buttonLearnedRecordSlot4 = new GuiButtonGeneral1VM(74, this.guiLeft + 46, this.guiTop + 125 + (16 * 0), 84, 14, slotName4, 0);
+    	GuiVM.buttonLearnedRecordSlot5 = new GuiButtonGeneral1VM(75, this.guiLeft + 46, this.guiTop + 125 + (16 * 1), 84, 14, slotName5, 0);
+    	GuiVM.buttonLearnedRecordSlot6 = new GuiButtonGeneral1VM(76, this.guiLeft + 46, this.guiTop + 161 + (16 * 0), 84, 14, slotName6, 0);
+    	GuiVM.buttonLearnedRecordSlot7 = new GuiButtonGeneral1VM(77, this.guiLeft + 46, this.guiTop + 161 + (16 * 1), 84, 14, slotName7, 0);
     	
-    	GuiVM.buttonLearnedRecordSlot1Empty = new GuiButtonGeneral1VC(1, this.guiLeft + 46, this.guiTop +  69 + (16 * 0), 84, 14, empty_name, 0);
-    	GuiVM.buttonLearnedRecordSlot2Empty = new GuiButtonGeneral1VC(1, this.guiLeft + 46, this.guiTop +  89 + (16 * 0), 84, 14, empty_name, 0);
-    	GuiVM.buttonLearnedRecordSlot3Empty = new GuiButtonGeneral1VC(1, this.guiLeft + 46, this.guiTop +  89 + (16 * 1), 84, 14, empty_name, 0);
-    	GuiVM.buttonLearnedRecordSlot4Empty = new GuiButtonGeneral1VC(1, this.guiLeft + 46, this.guiTop + 125 + (16 * 0), 84, 14, empty_name, 0);
-    	GuiVM.buttonLearnedRecordSlot5Empty = new GuiButtonGeneral1VC(1, this.guiLeft + 46, this.guiTop + 125 + (16 * 1), 84, 14, empty_name, 0);
-    	GuiVM.buttonLearnedRecordSlot6Empty = new GuiButtonGeneral1VC(1, this.guiLeft + 46, this.guiTop + 161 + (16 * 0), 84, 14, empty_name, 0);
-    	GuiVM.buttonLearnedRecordSlot7Empty = new GuiButtonGeneral1VC(1, this.guiLeft + 46, this.guiTop + 161 + (16 * 1), 84, 14, empty_name, 0);
+    	GuiVM.buttonLearnedRecordSlot1Empty = new GuiButtonGeneral1VM(1, this.guiLeft + 46, this.guiTop +  69 + (16 * 0), 84, 14, empty_name, 0);
+    	GuiVM.buttonLearnedRecordSlot2Empty = new GuiButtonGeneral1VM(1, this.guiLeft + 46, this.guiTop +  89 + (16 * 0), 84, 14, empty_name, 0);
+    	GuiVM.buttonLearnedRecordSlot3Empty = new GuiButtonGeneral1VM(1, this.guiLeft + 46, this.guiTop +  89 + (16 * 1), 84, 14, empty_name, 0);
+    	GuiVM.buttonLearnedRecordSlot4Empty = new GuiButtonGeneral1VM(1, this.guiLeft + 46, this.guiTop + 125 + (16 * 0), 84, 14, empty_name, 0);
+    	GuiVM.buttonLearnedRecordSlot5Empty = new GuiButtonGeneral1VM(1, this.guiLeft + 46, this.guiTop + 125 + (16 * 1), 84, 14, empty_name, 0);
+    	GuiVM.buttonLearnedRecordSlot6Empty = new GuiButtonGeneral1VM(1, this.guiLeft + 46, this.guiTop + 161 + (16 * 0), 84, 14, empty_name, 0);
+    	GuiVM.buttonLearnedRecordSlot7Empty = new GuiButtonGeneral1VM(1, this.guiLeft + 46, this.guiTop + 161 + (16 * 1), 84, 14, empty_name, 0);
     	
-    	GuiVM.buttonLearnedRecordSlot1Confirm = new GuiButtonGeneral2VC(81, this.guiLeft + 46, this.guiTop +  69 + (16 * 0), 84, 14, confirm_name, 0);
-    	GuiVM.buttonLearnedRecordSlot2Confirm = new GuiButtonGeneral2VC(82, this.guiLeft + 46, this.guiTop +  89 + (16 * 0), 84, 14, confirm_name, 0);
-    	GuiVM.buttonLearnedRecordSlot3Confirm = new GuiButtonGeneral2VC(83, this.guiLeft + 46, this.guiTop +  89 + (16 * 1), 84, 14, confirm_name, 0);
-    	GuiVM.buttonLearnedRecordSlot4Confirm = new GuiButtonGeneral2VC(84, this.guiLeft + 46, this.guiTop + 125 + (16 * 0), 84, 14, confirm_name, 0);
-    	GuiVM.buttonLearnedRecordSlot5Confirm = new GuiButtonGeneral2VC(85, this.guiLeft + 46, this.guiTop + 125 + (16 * 1), 84, 14, confirm_name, 0);
-    	GuiVM.buttonLearnedRecordSlot6Confirm = new GuiButtonGeneral2VC(86, this.guiLeft + 46, this.guiTop + 161 + (16 * 0), 84, 14, confirm_name, 0);
-    	GuiVM.buttonLearnedRecordSlot7Confirm = new GuiButtonGeneral2VC(87, this.guiLeft + 46, this.guiTop + 161 + (16 * 1), 84, 14, confirm_name, 0);
+    	GuiVM.buttonLearnedRecordSlot1Confirm = new GuiButtonGeneral2VM(81, this.guiLeft + 46, this.guiTop +  69 + (16 * 0), 84, 14, confirm_name, 0);
+    	GuiVM.buttonLearnedRecordSlot2Confirm = new GuiButtonGeneral2VM(82, this.guiLeft + 46, this.guiTop +  89 + (16 * 0), 84, 14, confirm_name, 0);
+    	GuiVM.buttonLearnedRecordSlot3Confirm = new GuiButtonGeneral2VM(83, this.guiLeft + 46, this.guiTop +  89 + (16 * 1), 84, 14, confirm_name, 0);
+    	GuiVM.buttonLearnedRecordSlot4Confirm = new GuiButtonGeneral2VM(84, this.guiLeft + 46, this.guiTop + 125 + (16 * 0), 84, 14, confirm_name, 0);
+    	GuiVM.buttonLearnedRecordSlot5Confirm = new GuiButtonGeneral2VM(85, this.guiLeft + 46, this.guiTop + 125 + (16 * 1), 84, 14, confirm_name, 0);
+    	GuiVM.buttonLearnedRecordSlot6Confirm = new GuiButtonGeneral2VM(86, this.guiLeft + 46, this.guiTop + 161 + (16 * 0), 84, 14, confirm_name, 0);
+    	GuiVM.buttonLearnedRecordSlot7Confirm = new GuiButtonGeneral2VM(87, this.guiLeft + 46, this.guiTop + 161 + (16 * 1), 84, 14, confirm_name, 0);
     	
-    	GuiVM.buttonLearnedRecordSlot1Delete = new GuiButtonGeneral1VC(21, this.guiLeft + 132, this.guiTop +  69 + (16 * 0), 14, 14, References.localNameVC(""), 2);
-    	GuiVM.buttonLearnedRecordSlot2Delete = new GuiButtonGeneral1VC(22, this.guiLeft + 132, this.guiTop +  89 + (16 * 0), 14, 14, References.localNameVC(""), 2);
-    	GuiVM.buttonLearnedRecordSlot3Delete = new GuiButtonGeneral1VC(23, this.guiLeft + 132, this.guiTop +  89 + (16 * 1), 14, 14, References.localNameVC(""), 2);
-    	GuiVM.buttonLearnedRecordSlot4Delete = new GuiButtonGeneral1VC(24, this.guiLeft + 132, this.guiTop + 125 + (16 * 0), 14, 14, References.localNameVC(""), 2);
-    	GuiVM.buttonLearnedRecordSlot5Delete = new GuiButtonGeneral1VC(25, this.guiLeft + 132, this.guiTop + 125 + (16 * 1), 14, 14, References.localNameVC(""), 2);
-    	GuiVM.buttonLearnedRecordSlot6Delete = new GuiButtonGeneral1VC(26, this.guiLeft + 132, this.guiTop + 161 + (16 * 0), 14, 14, References.localNameVC(""), 2);
-    	GuiVM.buttonLearnedRecordSlot7Delete = new GuiButtonGeneral1VC(27, this.guiLeft + 132, this.guiTop + 161 + (16 * 1), 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonLearnedRecordSlot1Delete = new GuiButtonGeneral1VM(21, this.guiLeft + 132, this.guiTop +  69 + (16 * 0), 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonLearnedRecordSlot2Delete = new GuiButtonGeneral1VM(22, this.guiLeft + 132, this.guiTop +  89 + (16 * 0), 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonLearnedRecordSlot3Delete = new GuiButtonGeneral1VM(23, this.guiLeft + 132, this.guiTop +  89 + (16 * 1), 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonLearnedRecordSlot4Delete = new GuiButtonGeneral1VM(24, this.guiLeft + 132, this.guiTop + 125 + (16 * 0), 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonLearnedRecordSlot5Delete = new GuiButtonGeneral1VM(25, this.guiLeft + 132, this.guiTop + 125 + (16 * 1), 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonLearnedRecordSlot6Delete = new GuiButtonGeneral1VM(26, this.guiLeft + 132, this.guiTop + 161 + (16 * 0), 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonLearnedRecordSlot7Delete = new GuiButtonGeneral1VM(27, this.guiLeft + 132, this.guiTop + 161 + (16 * 1), 14, 14, References.localNameVC(""), 2);
     	
-    	GuiVM.buttonLearnedRecordSlot1Cancel = new GuiButtonGeneral1VC(31, this.guiLeft +  30, this.guiTop +  69 + (16 * 0), 14, 14, References.localNameVC(""), 2);
-    	GuiVM.buttonLearnedRecordSlot2Cancel = new GuiButtonGeneral1VC(32, this.guiLeft +  30, this.guiTop +  89 + (16 * 0), 14, 14, References.localNameVC(""), 2);
-    	GuiVM.buttonLearnedRecordSlot3Cancel = new GuiButtonGeneral1VC(33, this.guiLeft +  30, this.guiTop +  89 + (16 * 1), 14, 14, References.localNameVC(""), 2);
-    	GuiVM.buttonLearnedRecordSlot4Cancel = new GuiButtonGeneral1VC(34, this.guiLeft +  30, this.guiTop + 125 + (16 * 0), 14, 14, References.localNameVC(""), 2);
-    	GuiVM.buttonLearnedRecordSlot5Cancel = new GuiButtonGeneral1VC(35, this.guiLeft +  30, this.guiTop + 125 + (16 * 1), 14, 14, References.localNameVC(""), 2);
-    	GuiVM.buttonLearnedRecordSlot6Cancel = new GuiButtonGeneral1VC(36, this.guiLeft +  30, this.guiTop + 161 + (16 * 0), 14, 14, References.localNameVC(""), 2);
-    	GuiVM.buttonLearnedRecordSlot7Cancel = new GuiButtonGeneral1VC(37, this.guiLeft +  30, this.guiTop + 161 + (16 * 1), 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonLearnedRecordSlot1Cancel = new GuiButtonGeneral1VM(31, this.guiLeft +  30, this.guiTop +  69 + (16 * 0), 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonLearnedRecordSlot2Cancel = new GuiButtonGeneral1VM(32, this.guiLeft +  30, this.guiTop +  89 + (16 * 0), 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonLearnedRecordSlot3Cancel = new GuiButtonGeneral1VM(33, this.guiLeft +  30, this.guiTop +  89 + (16 * 1), 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonLearnedRecordSlot4Cancel = new GuiButtonGeneral1VM(34, this.guiLeft +  30, this.guiTop + 125 + (16 * 0), 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonLearnedRecordSlot5Cancel = new GuiButtonGeneral1VM(35, this.guiLeft +  30, this.guiTop + 125 + (16 * 1), 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonLearnedRecordSlot6Cancel = new GuiButtonGeneral1VM(36, this.guiLeft +  30, this.guiTop + 161 + (16 * 0), 14, 14, References.localNameVC(""), 2);
+    	GuiVM.buttonLearnedRecordSlot7Cancel = new GuiButtonGeneral1VM(37, this.guiLeft +  30, this.guiTop + 161 + (16 * 1), 14, 14, References.localNameVC(""), 2);
     	
     	//--------------------------------------------------
     	
@@ -674,31 +679,59 @@ public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
 		
 		
 		
+		// 'Selected Record':
+		GlStateManager.pushMatrix();
+		{
+			GlStateManager.translate(88, 29, 0);
+	        GlStateManager.scale(0.5F, 0.5F, 0.5F);
+	        
+	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.selectsong.0"), 0, 0, Color.BLUE.getRGB());
+		}
+		GlStateManager.popMatrix();
+		
+		
+		//LogHelper.info("1 - " +ForgeModIdHelper.getInstance().getModNameForModId("viesmachines"));
+		
+		
+		
+		
 		
 		
 		if (this.machine.getSelectedRecord() >= 0)
 		{
 			
-			// 'Active Models':
+			for (ModContainer mod : Loader.instance().getModList())
+	        {
+				if (mod.getModId().equals(
+						ClientProxy.musicListRecord
+						.get(this.machine.getSelectedRecord()).getResourceDomain().toString()
+						
+						//"viesmachines"
+						
+						))
+				{
+					this.localizedModName = mod.getName();
+				}
+	        }
+			//LogHelper.info(this.localizedModName);
+			
+			// 'Modid':
 			GlStateManager.pushMatrix();
 			{
-				GlStateManager.translate(88, 11, 0);
+				GlStateManager.translate(88, 38, 0);
 		        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 		        
-		        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.currentsong.2"), 0, 0, Color.BLACK.getRGB());
+		        this.centeredString(fontRenderer, 
+		        	this.stringToFlashGolden(this.localizedModName, 1, false, TextFormatting.GREEN, 0)
+        		, 0, 0, Color.BLACK.getRGB());
 			}
 			GlStateManager.popMatrix();
-			
-			// Current Song label:
-			//this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.currentsong.2"), 88, 10, Color.BLACK.getRGB());
 			
 			// Song:
 			GlStateManager.pushMatrix();
 			{
 				GlStateManager.translate(88, 27.5+24, 0);
 				GlStateManager.scale(0.75F, 0.75F, 0.75F);
-				
-				this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.selectsong.0"), 0, -13, Color.BLACK.getRGB());
 				
 				this.centeredString(fontRenderer, 
 				this.stringToFlashGolden(
@@ -719,10 +752,10 @@ public class GuiMachineMenuMainSelectMusic extends GuiContainerVC {
 			// Song:
 			GlStateManager.pushMatrix();
 			{
-				GlStateManager.translate(88, 27.5+20, 0);
+				GlStateManager.translate(88, 27.5+24, 0);
 				GlStateManager.scale(0.75F, 0.75F, 0.75F);
 				
-				this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.selectsong.0"), 0, -20, Color.BLACK.getRGB());
+				this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.selectsong.0"), 0, -13, Color.BLACK.getRGB());
 				
 				this.centeredString(fontRenderer, 
 						References.localNameVC("--------")	

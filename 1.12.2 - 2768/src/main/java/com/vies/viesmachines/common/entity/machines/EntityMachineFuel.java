@@ -414,15 +414,17 @@ public class EntityMachineFuel extends EntityMachineBase {
             flag1 = true;
         }
         
-        if (!this.world.isRemote
-        && this.isFuelBurning()
-        && !this.getBroken()
-        //&& this.engineOnSoundSpeed > 0 
-        && this.ticksExisted % 20 == 0)
-        {
-        	this.playSound(this.getOnSound(), 0.25F, 1.0F);
-        }
-        
+        if(VMConfiguration.engineSounds)
+    	{
+	        if (!this.world.isRemote
+	        && this.isFuelBurning()
+	        && !this.getBroken()
+	        //&& this.engineOnSoundSpeed > 0 
+	        && this.ticksExisted % 20 == 0)
+	        {
+	        	this.playSound(this.getOnSound(), 0.25F, 1.0F);
+	        }
+    	}
         
         
         if (this.inventory.getStackInSlot(0).isEmpty()

@@ -6,7 +6,7 @@ import com.vies.viesmachines.common.entity.machines.slots.FuelSlot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 
-public class ContainerMachineMenuMain extends ContainerVC {
+public class ContainerMachineMenuMain extends ContainerVM {
 	
 	private EntityMachineBase machine;
     

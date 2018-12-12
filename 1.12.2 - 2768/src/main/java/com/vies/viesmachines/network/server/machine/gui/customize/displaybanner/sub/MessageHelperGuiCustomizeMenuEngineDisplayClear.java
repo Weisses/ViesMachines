@@ -2,7 +2,7 @@ package com.vies.viesmachines.network.server.machine.gui.customize.displaybanner
 
 import com.vies.viesmachines.ViesMachines;
 import com.vies.viesmachines.api.CostsVM;
-import com.vies.viesmachines.api.util.LogHelper;
+import com.vies.viesmachines.api.util.Loghelper;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.GuiHandler;
 import com.vies.viesmachines.network.packet.MessageBase;

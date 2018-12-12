@@ -1,5 +1,7 @@
 package com.vies.viesmachines.api.jei;
 
+import com.vies.viesmachines.api.ItemsVM;
+
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
@@ -8,6 +10,8 @@ import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.ingredients.IModIngredientRegistration;
 import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 @JEIPlugin
 public class JEIPluginVC implements IModPlugin {
@@ -17,6 +21,11 @@ public class JEIPluginVC implements IModPlugin {
 	{
 		//Adds items with no recipes to the black list.
 		IIngredientBlacklist itemBlacklist = registry.getJeiHelpers().getIngredientBlacklist();
+		
+		itemBlacklist.addIngredientToBlacklist(new ItemStack(ItemsVM.PARTICLE_BULLET_NORMAL, 1, OreDictionary.WILDCARD_VALUE));
+		itemBlacklist.addIngredientToBlacklist(new ItemStack(ItemsVM.PARTICLE_BULLET_ELECTRICAL, 1, OreDictionary.WILDCARD_VALUE));
+		itemBlacklist.addIngredientToBlacklist(new ItemStack(ItemsVM.PARTICLE_BULLET_EXPLOSIVE, 1, OreDictionary.WILDCARD_VALUE));
+		itemBlacklist.addIngredientToBlacklist(new ItemStack(ItemsVM.PARTICLE_STATIC_CHARGE, 1, OreDictionary.WILDCARD_VALUE));
 		
 		//itemBlacklist.addIngredientToBlacklist(new ItemStack(ItemsVC.ACHIEVEMENT_AIRSHIP, 1, OreDictionary.WILDCARD_VALUE));
 		//itemBlacklist.addIngredientToBlacklist(new ItemStack(ItemsVC.ITEM_ENTITY_AIRSHIP, 1, OreDictionary.WILDCARD_VALUE));

@@ -4,9 +4,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class SlotOutputVG extends SlotItemHandler {
+public class SlotOutputVM extends SlotItemHandler {
 	
-	public SlotOutputVG(IItemHandler inventoryIn, int index, int xPosition, int yPosition) 
+	public SlotOutputVM(IItemHandler inventoryIn, int index, int xPosition, int yPosition) 
 	{
 		super(inventoryIn, index, xPosition, yPosition);
 	}

@@ -17,6 +17,8 @@ public class MessageConfig extends MessageBase<MessageConfig> {
 		//ViesCraftConfig.v4AirshipSpeed = buf.readInt();
 		//ViesCraftConfig.v5AirshipSpeed = buf.readInt();
 		//ViesCraftConfig.v6AirshipSpeed = buf.readInt();
+
+		VMConfiguration.machineHardmode = buf.readBoolean();
 		
 		VMConfiguration.machinePelletsBurnTime = buf.readInt();
 		VMConfiguration.vanillaFuel = buf.readBoolean();
@@ -32,6 +34,8 @@ public class MessageConfig extends MessageBase<MessageConfig> {
 		//buf.writeInt(ViesCraftConfig.v4AirshipSpeed);
 		//buf.writeInt(ViesCraftConfig.v5AirshipSpeed);
 		//buf.writeInt(ViesCraftConfig.v6AirshipSpeed);
+
+		buf.writeBoolean(VMConfiguration.machineHardmode);
 		
 		buf.writeInt(VMConfiguration.machinePelletsBurnTime);
 		buf.writeBoolean(VMConfiguration.vanillaFuel);

@@ -15,7 +15,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
-public class InitEntityVC {
+public class InitEntityVM {
 	
 	private static int entityID = 1;
 	

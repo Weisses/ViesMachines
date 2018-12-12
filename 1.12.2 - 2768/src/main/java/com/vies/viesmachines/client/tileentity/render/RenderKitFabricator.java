@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.vies.viesmachines.api.ItemsVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.client.InitParticlesVCRender;
+import com.vies.viesmachines.client.InitParticlesVMRender;
 import com.vies.viesmachines.client.tileentity.model.ModelKitFabricator;
 import com.vies.viesmachines.client.tileentity.model.ModelKitFabricatorPowered;
 import com.vies.viesmachines.common.tileentity.TileEntityKitFabricator;

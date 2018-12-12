@@ -12,9 +12,9 @@ import com.vies.viesmachines.api.CostsVM;
 import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.client.gui.GuiContainerVC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VC;
+import com.vies.viesmachines.client.gui.GuiContainerVM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VM;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.entity.machines.containers.ContainerMachineNoSlots;
 import com.vies.viesmachines.network.NetworkHandler;
@@ -32,7 +32,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-public class GuiMachineMenuMainSelectName extends GuiContainerVC {
+public class GuiMachineMenuMainSelectName extends GuiContainerVM {
 	
 	private ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_main_change_name.png");
 	
@@ -60,27 +60,27 @@ public class GuiMachineMenuMainSelectName extends GuiContainerVC {
         this.textName.setText(String.valueOf(this.textNameStorage));
     	this.textName.setFocused(false);
     	
-    	GuiVM.buttonApply = new GuiButtonGeneral1VC(12, this.guiLeft + 8, this.guiTop + 59, 42, 14, References.localNameVC("viesmachines.button.apply"), 1);
-		GuiVM.buttonBack = new GuiButtonGeneral1VC(13, this.guiLeft + 126, this.guiTop + 59, 42, 14, References.localNameVC("viesmachines.button.back"), 2);
-		GuiVM.buttonUndo = new GuiButtonGeneral2VC(20, this.guiLeft + 148, this.guiTop + 37, 14, 14, "", 1);
+    	GuiVM.buttonApply = new GuiButtonGeneral1VM(12, this.guiLeft + 8, this.guiTop + 59, 42, 14, References.localNameVC("viesmachines.button.apply"), 1);
+		GuiVM.buttonBack = new GuiButtonGeneral1VM(13, this.guiLeft + 126, this.guiTop + 59, 42, 14, References.localNameVC("viesmachines.button.back"), 2);
+		GuiVM.buttonUndo = new GuiButtonGeneral2VM(20, this.guiLeft + 148, this.guiTop + 37, 14, 14, "", 1);
 		
-		GuiVM.buttonColorWhite = new GuiButtonGeneral1VC((EnumsVM.SelectColor.WHITE.getMetadata() + 100), this.guiLeft + 11, this.guiTop + 96, 14, 14, "", 1);
-		GuiVM.buttonColorGray = new GuiButtonGeneral1VC((EnumsVM.SelectColor.GRAY.getMetadata() + 100), this.guiLeft + 31, this.guiTop + 96, 14, 14, "", 1);
-		GuiVM.buttonColorBlue = new GuiButtonGeneral1VC((EnumsVM.SelectColor.BLUE.getMetadata() + 100), this.guiLeft + 51, this.guiTop + 96, 14, 14, "", 1);
-		GuiVM.buttonColorGreen = new GuiButtonGeneral1VC((EnumsVM.SelectColor.GREEN.getMetadata() + 100), this.guiLeft + 71, this.guiTop + 96, 14, 14, "", 1);
-		GuiVM.buttonColorAqua = new GuiButtonGeneral1VC((EnumsVM.SelectColor.AQUA.getMetadata() + 100), this.guiLeft + 91, this.guiTop + 96, 14, 14, "", 1);
-		GuiVM.buttonColorRed = new GuiButtonGeneral1VC((EnumsVM.SelectColor.RED.getMetadata() + 100), this.guiLeft + 111, this.guiTop + 96, 14, 14, "", 1);
-		GuiVM.buttonColorLightPurple = new GuiButtonGeneral1VC((EnumsVM.SelectColor.LIGHT_PURPLE.getMetadata() + 100), this.guiLeft + 131, this.guiTop + 96, 14, 14, "", 1);
-		GuiVM.buttonColorYellow = new GuiButtonGeneral1VC((EnumsVM.SelectColor.YELLOW.getMetadata() + 100), this.guiLeft + 151, this.guiTop + 96, 14, 14, "", 1);
+		GuiVM.buttonColorWhite = new GuiButtonGeneral1VM((EnumsVM.SelectColor.WHITE.getMetadata() + 100), this.guiLeft + 11, this.guiTop + 96, 14, 14, "", 1);
+		GuiVM.buttonColorGray = new GuiButtonGeneral1VM((EnumsVM.SelectColor.GRAY.getMetadata() + 100), this.guiLeft + 31, this.guiTop + 96, 14, 14, "", 1);
+		GuiVM.buttonColorBlue = new GuiButtonGeneral1VM((EnumsVM.SelectColor.BLUE.getMetadata() + 100), this.guiLeft + 51, this.guiTop + 96, 14, 14, "", 1);
+		GuiVM.buttonColorGreen = new GuiButtonGeneral1VM((EnumsVM.SelectColor.GREEN.getMetadata() + 100), this.guiLeft + 71, this.guiTop + 96, 14, 14, "", 1);
+		GuiVM.buttonColorAqua = new GuiButtonGeneral1VM((EnumsVM.SelectColor.AQUA.getMetadata() + 100), this.guiLeft + 91, this.guiTop + 96, 14, 14, "", 1);
+		GuiVM.buttonColorRed = new GuiButtonGeneral1VM((EnumsVM.SelectColor.RED.getMetadata() + 100), this.guiLeft + 111, this.guiTop + 96, 14, 14, "", 1);
+		GuiVM.buttonColorLightPurple = new GuiButtonGeneral1VM((EnumsVM.SelectColor.LIGHT_PURPLE.getMetadata() + 100), this.guiLeft + 131, this.guiTop + 96, 14, 14, "", 1);
+		GuiVM.buttonColorYellow = new GuiButtonGeneral1VM((EnumsVM.SelectColor.YELLOW.getMetadata() + 100), this.guiLeft + 151, this.guiTop + 96, 14, 14, "", 1);
 		
-		GuiVM.buttonColorBlack = new GuiButtonGeneral1VC((EnumsVM.SelectColor.BLACK.getMetadata() + 100), this.guiLeft + 11, this.guiTop + 116, 14, 14, "", 1);
-		GuiVM.buttonColorDarkGray = new GuiButtonGeneral1VC((EnumsVM.SelectColor.DARK_GRAY.getMetadata() + 100), this.guiLeft + 31, this.guiTop + 116, 14, 14, "", 1);
-		GuiVM.buttonColorDarkBlue = new GuiButtonGeneral1VC((EnumsVM.SelectColor.DARK_BLUE.getMetadata() + 100), this.guiLeft + 51, this.guiTop + 116, 14, 14, "", 1);
-		GuiVM.buttonColorDarkGreen = new GuiButtonGeneral1VC((EnumsVM.SelectColor.DARK_GREEN.getMetadata() + 100), this.guiLeft + 71, this.guiTop + 116, 14, 14, "", 1);
-		GuiVM.buttonColorDarkAqua = new GuiButtonGeneral1VC((EnumsVM.SelectColor.DARK_AQUA.getMetadata() + 100), this.guiLeft + 91, this.guiTop + 116, 14, 14, "", 1);
-		GuiVM.buttonColorDarkRed = new GuiButtonGeneral1VC((EnumsVM.SelectColor.DARK_RED.getMetadata() + 100), this.guiLeft + 111, this.guiTop + 116, 14, 14, "", 1);
-		GuiVM.buttonColorDarkPurple = new GuiButtonGeneral1VC((EnumsVM.SelectColor.DARK_PURPLE.getMetadata() + 100), this.guiLeft + 131, this.guiTop + 116, 14, 14, "", 1);
-		GuiVM.buttonColorGold = new GuiButtonGeneral1VC((EnumsVM.SelectColor.GOLD.getMetadata() + 100), this.guiLeft + 151, this.guiTop + 116, 14, 14, "", 1);
+		GuiVM.buttonColorBlack = new GuiButtonGeneral1VM((EnumsVM.SelectColor.BLACK.getMetadata() + 100), this.guiLeft + 11, this.guiTop + 116, 14, 14, "", 1);
+		GuiVM.buttonColorDarkGray = new GuiButtonGeneral1VM((EnumsVM.SelectColor.DARK_GRAY.getMetadata() + 100), this.guiLeft + 31, this.guiTop + 116, 14, 14, "", 1);
+		GuiVM.buttonColorDarkBlue = new GuiButtonGeneral1VM((EnumsVM.SelectColor.DARK_BLUE.getMetadata() + 100), this.guiLeft + 51, this.guiTop + 116, 14, 14, "", 1);
+		GuiVM.buttonColorDarkGreen = new GuiButtonGeneral1VM((EnumsVM.SelectColor.DARK_GREEN.getMetadata() + 100), this.guiLeft + 71, this.guiTop + 116, 14, 14, "", 1);
+		GuiVM.buttonColorDarkAqua = new GuiButtonGeneral1VM((EnumsVM.SelectColor.DARK_AQUA.getMetadata() + 100), this.guiLeft + 91, this.guiTop + 116, 14, 14, "", 1);
+		GuiVM.buttonColorDarkRed = new GuiButtonGeneral1VM((EnumsVM.SelectColor.DARK_RED.getMetadata() + 100), this.guiLeft + 111, this.guiTop + 116, 14, 14, "", 1);
+		GuiVM.buttonColorDarkPurple = new GuiButtonGeneral1VM((EnumsVM.SelectColor.DARK_PURPLE.getMetadata() + 100), this.guiLeft + 131, this.guiTop + 116, 14, 14, "", 1);
+		GuiVM.buttonColorGold = new GuiButtonGeneral1VM((EnumsVM.SelectColor.GOLD.getMetadata() + 100), this.guiLeft + 151, this.guiTop + 116, 14, 14, "", 1);
 		
 		//--------------------------------------------------
 

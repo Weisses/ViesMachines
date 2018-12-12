@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.vies.viesmachines.api.ItemsVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.client.InitParticlesVCRender;
+import com.vies.viesmachines.client.InitParticlesVMRender;
 import com.vies.viesmachines.client.tileentity.model.ModelExtractor;
 import com.vies.viesmachines.client.tileentity.model.ModelExtractorPowered;
 import com.vies.viesmachines.common.tileentity.TileEntityExtractor;
@@ -128,7 +128,7 @@ public class RenderExtractor extends TileEntitySpecialRenderer<TileEntityExtract
 			
 			if (d <= 50)
 			{
-				InitParticlesVCRender.generateParticlesExtractor(te);
+				InitParticlesVMRender.generateParticlesExtractor(te);
 			}
 		}
 		

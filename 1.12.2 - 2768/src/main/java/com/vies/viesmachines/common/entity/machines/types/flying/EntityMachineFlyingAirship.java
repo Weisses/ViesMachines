@@ -289,4 +289,10 @@ public class EntityMachineFlyingAirship extends EntityMachineFlying {
 	{
 		return References.Old_I18n.translateToLocalFormatted("viesmachines.enum.machinename.typeflying.0");
 	}
+	
+	/** Returns the string machine type name. (Used in GUI) (Airship, Helicopter, etc.) */
+	public String getTypeName()
+	{
+		return References.Old_I18n.translateToLocalFormatted("viesmachines.enum.machinename.typeflying.0");
+	}
 }

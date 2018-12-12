@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.registries.IForgeRegistry;
 
 @ObjectHolder(References.MOD_ID)
-public class InitItemsVC extends ItemsVM {
+public class InitItemsVM extends ItemsVM {
 	
 	public static void registerItemTEMP()
 	{

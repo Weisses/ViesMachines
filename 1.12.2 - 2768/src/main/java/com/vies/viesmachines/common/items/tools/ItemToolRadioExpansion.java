@@ -63,19 +63,19 @@ public class ItemToolRadioExpansion extends Item {
 			{
 				if(stack.hasTagCompound())
 				{
-					if (!machine.getLearnedRecordSlot1().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")))
-					&& !machine.getLearnedRecordSlot2().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")))
-					&& !machine.getLearnedRecordSlot3().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")))
-					&& !machine.getLearnedRecordSlot4().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")))
-					&& !machine.getLearnedRecordSlot5().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")))
-					&& !machine.getLearnedRecordSlot6().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")))
-					&& !machine.getLearnedRecordSlot7().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd"))))
+					if (!machine.getLearnedRecordSlot1().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)))
+					&& !machine.getLearnedRecordSlot2().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)))
+					&& !machine.getLearnedRecordSlot3().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)))
+					&& !machine.getLearnedRecordSlot4().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)))
+					&& !machine.getLearnedRecordSlot5().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)))
+					&& !machine.getLearnedRecordSlot6().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)))
+					&& !machine.getLearnedRecordSlot7().equals(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG))))
 					{
 						if (machine.getTierComponent() == 0)
 						{
 							if (machine.getLearnedRecordSlot1().equals(""))
 							{
-								machine.setLearnedRecordSlot1(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								machine.setLearnedRecordSlot1(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
 								
 								if(player.world.isRemote)
 								{
@@ -98,7 +98,7 @@ public class ItemToolRadioExpansion extends Item {
 						{
 							if (machine.getLearnedRecordSlot1().equals(""))
 							{
-								machine.setLearnedRecordSlot1(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								machine.setLearnedRecordSlot1(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
 								
 								if(player.world.isRemote)
 								{
@@ -108,7 +108,7 @@ public class ItemToolRadioExpansion extends Item {
 							}
 							else if (machine.getLearnedRecordSlot2().equals(""))
 							{
-								machine.setLearnedRecordSlot2(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								machine.setLearnedRecordSlot2(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
 								
 								if(player.world.isRemote)
 								{
@@ -118,7 +118,7 @@ public class ItemToolRadioExpansion extends Item {
 							}
 							else if (machine.getLearnedRecordSlot3().equals(""))
 							{
-								machine.setLearnedRecordSlot3(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								machine.setLearnedRecordSlot3(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
 								
 								if(player.world.isRemote)
 								{
@@ -142,7 +142,7 @@ public class ItemToolRadioExpansion extends Item {
 						{
 							if (machine.getLearnedRecordSlot1().equals(""))
 							{
-								machine.setLearnedRecordSlot1(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								machine.setLearnedRecordSlot1(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
 								
 								if(player.world.isRemote)
 								{
@@ -152,7 +152,7 @@ public class ItemToolRadioExpansion extends Item {
 							}
 							else if (machine.getLearnedRecordSlot2().equals(""))
 							{
-								machine.setLearnedRecordSlot2(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								machine.setLearnedRecordSlot2(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
 								
 								if(player.world.isRemote)
 								{
@@ -162,7 +162,7 @@ public class ItemToolRadioExpansion extends Item {
 							}
 							else if (machine.getLearnedRecordSlot3().equals(""))
 							{
-								machine.setLearnedRecordSlot3(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								machine.setLearnedRecordSlot3(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
 								
 								if(player.world.isRemote)
 								{
@@ -172,7 +172,7 @@ public class ItemToolRadioExpansion extends Item {
 							}
 							else if (machine.getLearnedRecordSlot4().equals(""))
 							{
-								machine.setLearnedRecordSlot4(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								machine.setLearnedRecordSlot4(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
 								
 								if(player.world.isRemote)
 								{
@@ -182,7 +182,7 @@ public class ItemToolRadioExpansion extends Item {
 							}
 							else if (machine.getLearnedRecordSlot5().equals(""))
 							{
-								machine.setLearnedRecordSlot5(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								machine.setLearnedRecordSlot5(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
 								
 								if(player.world.isRemote)
 								{
@@ -206,7 +206,7 @@ public class ItemToolRadioExpansion extends Item {
 						{
 							if (machine.getLearnedRecordSlot1().equals(""))
 							{
-								machine.setLearnedRecordSlot1(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								machine.setLearnedRecordSlot1(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
 								
 								if(player.world.isRemote)
 								{
@@ -216,7 +216,7 @@ public class ItemToolRadioExpansion extends Item {
 							}
 							else if (machine.getLearnedRecordSlot2().equals(""))
 							{
-								machine.setLearnedRecordSlot2(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								machine.setLearnedRecordSlot2(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
 								
 								if(player.world.isRemote)
 								{
@@ -226,7 +226,7 @@ public class ItemToolRadioExpansion extends Item {
 							}
 							else if (machine.getLearnedRecordSlot3().equals(""))
 							{
-								machine.setLearnedRecordSlot3(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								machine.setLearnedRecordSlot3(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
 								
 								if(player.world.isRemote)
 								{
@@ -236,7 +236,7 @@ public class ItemToolRadioExpansion extends Item {
 							}
 							else if (machine.getLearnedRecordSlot4().equals(""))
 							{
-								machine.setLearnedRecordSlot4(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								machine.setLearnedRecordSlot4(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
 								
 								if(player.world.isRemote)
 								{
@@ -246,7 +246,7 @@ public class ItemToolRadioExpansion extends Item {
 							}
 							else if (machine.getLearnedRecordSlot5().equals(""))
 							{
-								machine.setLearnedRecordSlot5(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								machine.setLearnedRecordSlot5(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
 								
 								if(player.world.isRemote)
 								{
@@ -256,7 +256,7 @@ public class ItemToolRadioExpansion extends Item {
 							}
 							else if (machine.getLearnedRecordSlot6().equals(""))
 							{
-								machine.setLearnedRecordSlot6(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								machine.setLearnedRecordSlot6(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
 								
 								if(player.world.isRemote)
 								{
@@ -266,7 +266,7 @@ public class ItemToolRadioExpansion extends Item {
 							}
 							else if (machine.getLearnedRecordSlot7().equals(""))
 							{
-								machine.setLearnedRecordSlot7(machine.addSongtoRecordList(stack.getTagCompound().getInteger("SongToAdd")));
+								machine.setLearnedRecordSlot7(machine.addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
 								
 								if(player.world.isRemote)
 								{
@@ -347,14 +347,14 @@ public class ItemToolRadioExpansion extends Item {
 		if(stack.hasTagCompound())
 		{
 			tooltip.add(
-					"Record : " + 
+					References.Old_I18n.translateToLocal("viesmachines.gui.currentsong.0") + " : " + 
 					this.stringToFlashGolden(
-					References.localNameVC( "item." + CommonProxy.musicListRecord.get(stack.getTagCompound().getInteger("SongToAdd")).getResourcePath().toString() + ".desc")
+					References.localNameVC( "item." + CommonProxy.musicListRecord.get(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)).getResourcePath().toString() + ".desc")
 					, 1, false, TextFormatting.DARK_AQUA, 0));
 		}
 		else
 		{
-			tooltip.add(TextFormatting.RED + "No Record Programmed.");
+			tooltip.add(TextFormatting.RED + References.Old_I18n.translateToLocal("viesmachines.gui.norecordselected.0") + ".");
 		}
 		
 		tooltip.add("");

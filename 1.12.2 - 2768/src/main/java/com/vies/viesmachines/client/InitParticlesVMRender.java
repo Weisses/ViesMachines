@@ -15,7 +15,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.MathHelper;
 
-public class InitParticlesVCRender {
+public class InitParticlesVMRender {
 	
 	//==================================================
     // TODO             Tile Entities

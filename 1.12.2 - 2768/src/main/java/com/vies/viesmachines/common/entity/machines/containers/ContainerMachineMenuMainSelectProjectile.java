@@ -6,7 +6,7 @@ import com.vies.viesmachines.common.entity.machines.slots.AmmoSlot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 
-public class ContainerMachineMenuMainSelectProjectile extends ContainerVC {
+public class ContainerMachineMenuMainSelectProjectile extends ContainerVM {
 	
 	private EntityMachineBase machine;
     

@@ -12,9 +12,9 @@ import com.vies.viesmachines.api.CostsVM;
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.api.util.Keybinds;
-import com.vies.viesmachines.client.gui.GuiContainerVC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VC;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VC;
+import com.vies.viesmachines.client.gui.GuiContainerVM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VM;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.entity.machines.containers.ContainerMachineNoSlots;
 import com.vies.viesmachines.network.NetworkHandler;
@@ -31,7 +31,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-public class GuiMachineMenuCustomizeSecondarySkinColor extends GuiContainerVC {
+public class GuiMachineMenuCustomizeSecondarySkinColor extends GuiContainerVM {
 	
 	private GuiTextField textRed;
 	private GuiTextField textGreen;
@@ -80,45 +80,45 @@ public class GuiMachineMenuCustomizeSecondarySkinColor extends GuiContainerVC {
     	
         //--------------------------------------------------
         
-    	GuiVM.buttonRotateLeft = new GuiButtonGeneral2VC(10, this.guiLeft + 110, this.guiTop + 68, 6, 6, "", 3);
-    	GuiVM.buttonRotateRight = new GuiButtonGeneral2VC(10, this.guiLeft + 122, this.guiTop + 68, 6, 6, "", 3);
-    	GuiVM.buttonRidingPlayerTrue = new GuiButtonGeneral1VC(12, this.guiLeft + 130, this.guiTop + 66, 10, 10, "", 1);
-    	GuiVM.buttonRidingPlayerFalse = new GuiButtonGeneral1VC(13, this.guiLeft + 140, this.guiTop + 66, 10, 10, "", 2);
-    	GuiVM.buttonUndo = new GuiButtonGeneral2VC(11, this.guiLeft + 158, this.guiTop + 66, 10, 10, "", 1);
+    	GuiVM.buttonRotateLeft = new GuiButtonGeneral2VM(10, this.guiLeft + 110, this.guiTop + 68, 6, 6, "", 3);
+    	GuiVM.buttonRotateRight = new GuiButtonGeneral2VM(10, this.guiLeft + 122, this.guiTop + 68, 6, 6, "", 3);
+    	GuiVM.buttonRidingPlayerTrue = new GuiButtonGeneral1VM(12, this.guiLeft + 130, this.guiTop + 66, 10, 10, "", 1);
+    	GuiVM.buttonRidingPlayerFalse = new GuiButtonGeneral1VM(13, this.guiLeft + 140, this.guiTop + 66, 10, 10, "", 2);
+    	GuiVM.buttonUndo = new GuiButtonGeneral2VM(11, this.guiLeft + 158, this.guiTop + 66, 10, 10, "", 1);
 		
-    	GuiVM.button00 = new GuiButtonGeneral2VC(20, this.guiLeft + 7, this.guiTop + 81, 42, 14, References.localNameVC("viesmachines.button.remove"), 0);
-    	GuiVM.buttonApply = new GuiButtonGeneral1VC(21, this.guiLeft + 7, this.guiTop + 99, 42, 14, References.localNameVC("viesmachines.button.apply"), 1);
-		GuiVM.buttonBack = new GuiButtonGeneral1VC(22, this.guiLeft + 61, this.guiTop + 99, 42, 14, References.localNameVC("viesmachines.button.back"), 2);
+    	GuiVM.button00 = new GuiButtonGeneral2VM(20, this.guiLeft + 7, this.guiTop + 81, 42, 14, References.localNameVC("viesmachines.button.remove"), 0);
+    	GuiVM.buttonApply = new GuiButtonGeneral1VM(21, this.guiLeft + 7, this.guiTop + 99, 42, 14, References.localNameVC("viesmachines.button.apply"), 1);
+		GuiVM.buttonBack = new GuiButtonGeneral1VM(22, this.guiLeft + 61, this.guiTop + 99, 42, 14, References.localNameVC("viesmachines.button.back"), 2);
 		
 		//--------------------------------------------------
     	
 		// Red:
-    	GuiVM.button01 = new GuiButtonGeneral1VC(201, this.guiLeft + 25, this.guiTop + 119, 42, 14, References.localNameVC("viesmachines.item.color.114"), 0);
+    	GuiVM.button01 = new GuiButtonGeneral1VM(201, this.guiLeft + 25, this.guiTop + 119, 42, 14, References.localNameVC("viesmachines.item.color.114"), 0);
     	// Green:
-    	GuiVM.button02 = new GuiButtonGeneral1VC(202, this.guiLeft + 67, this.guiTop + 119, 42, 14, References.localNameVC("viesmachines.item.color.77"), 0);
+    	GuiVM.button02 = new GuiButtonGeneral1VM(202, this.guiLeft + 67, this.guiTop + 119, 42, 14, References.localNameVC("viesmachines.item.color.77"), 0);
     	// Blue:
-    	GuiVM.button03 = new GuiButtonGeneral1VC(203, this.guiLeft + 109, this.guiTop + 119, 42, 14, References.localNameVC("viesmachines.item.color.10"), 0);
+    	GuiVM.button03 = new GuiButtonGeneral1VM(203, this.guiLeft + 109, this.guiTop + 119, 42, 14, References.localNameVC("viesmachines.item.color.10"), 0);
     	
     	// Yellow:
-    	GuiVM.button04 = new GuiButtonGeneral1VC(204, this.guiLeft + 25, this.guiTop + 119 + (14 * 1), 42, 14, References.localNameVC("viesmachines.item.color.139"), 0);
+    	GuiVM.button04 = new GuiButtonGeneral1VM(204, this.guiLeft + 25, this.guiTop + 119 + (14 * 1), 42, 14, References.localNameVC("viesmachines.item.color.139"), 0);
     	// Magenta:
-    	GuiVM.button05 = new GuiButtonGeneral1VC(205, this.guiLeft + 67, this.guiTop + 119 + (14 * 1), 42, 14, References.localNameVC("viesmachines.item.color.46"), 0);
+    	GuiVM.button05 = new GuiButtonGeneral1VM(205, this.guiLeft + 67, this.guiTop + 119 + (14 * 1), 42, 14, References.localNameVC("viesmachines.item.color.46"), 0);
     	// Cyan:
-    	GuiVM.button06 = new GuiButtonGeneral1VC(206, this.guiLeft + 109, this.guiTop + 119 + (14 * 1), 42, 14, References.localNameVC("viesmachines.item.color.3"), 0);
+    	GuiVM.button06 = new GuiButtonGeneral1VM(206, this.guiLeft + 109, this.guiTop + 119 + (14 * 1), 42, 14, References.localNameVC("viesmachines.item.color.3"), 0);
     	
     	// Orange:
-    	GuiVM.button07 = new GuiButtonGeneral1VC(207, this.guiLeft + 25, this.guiTop + 119 + (14 * 2), 42, 14, References.localNameVC("viesmachines.item.color.100"), 0);
+    	GuiVM.button07 = new GuiButtonGeneral1VM(207, this.guiLeft + 25, this.guiTop + 119 + (14 * 2), 42, 14, References.localNameVC("viesmachines.item.color.100"), 0);
     	// Purple:
-    	GuiVM.button08 = new GuiButtonGeneral1VC(208, this.guiLeft + 67, this.guiTop + 119 + (14 * 2), 42, 14, References.localNameVC("viesmachines.item.color.113"), 0);
+    	GuiVM.button08 = new GuiButtonGeneral1VM(208, this.guiLeft + 67, this.guiTop + 119 + (14 * 2), 42, 14, References.localNameVC("viesmachines.item.color.113"), 0);
     	// Teal:
-    	GuiVM.button09 = new GuiButtonGeneral1VC(209, this.guiLeft + 109, this.guiTop + 119 + (14 * 2), 42, 14, References.localNameVC("viesmachines.item.color.131"), 0);
+    	GuiVM.button09 = new GuiButtonGeneral1VM(209, this.guiLeft + 109, this.guiTop + 119 + (14 * 2), 42, 14, References.localNameVC("viesmachines.item.color.131"), 0);
     	
     	// Crimson:
-    	GuiVM.button10 = new GuiButtonGeneral1VC(210, this.guiLeft + 25, this.guiTop + 119 + (14 * 3), 42, 14, References.localNameVC("viesmachines.item.color.20"), 0);
+    	GuiVM.button10 = new GuiButtonGeneral1VM(210, this.guiLeft + 25, this.guiTop + 119 + (14 * 3), 42, 14, References.localNameVC("viesmachines.item.color.20"), 0);
     	// Black:
-    	GuiVM.button11 = new GuiButtonGeneral1VC(211, this.guiLeft + 67, this.guiTop + 119 + (14 * 3), 42, 14, References.localNameVC("viesmachines.item.color.8"), 0);
+    	GuiVM.button11 = new GuiButtonGeneral1VM(211, this.guiLeft + 67, this.guiTop + 119 + (14 * 3), 42, 14, References.localNameVC("viesmachines.item.color.8"), 0);
     	// White:
-    	GuiVM.button12 = new GuiButtonGeneral1VC(212, this.guiLeft + 109, this.guiTop + 119 + (14 * 3), 42, 14, References.localNameVC("viesmachines.item.color.137"), 0);
+    	GuiVM.button12 = new GuiButtonGeneral1VM(212, this.guiLeft + 109, this.guiTop + 119 + (14 * 3), 42, 14, References.localNameVC("viesmachines.item.color.137"), 0);
     	
     	//--------------------------------------------------
 		

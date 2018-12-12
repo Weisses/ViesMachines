@@ -15,7 +15,7 @@ import org.lwjgl.opengl.GL11;
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.client.gui.GuiScrollingListRadioExpansion;
-import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VC;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VM;
 import com.vies.viesmachines.common.items.tools.ContainerToolNoSlots;
 import com.vies.viesmachines.network.NetworkHandler;
 import com.vies.viesmachines.network.server.item.MessageHelperItemToolRadioExpansion;
@@ -43,12 +43,16 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.client.GuiScrollingList;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ModContainer;
 
 public class GuiRadioExpansionSelectMusic extends GuiContainer {
 	
 	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_radio_expansion.png");
 	
 	private NBTTagList tagSong;
+	
+	private String localizedModName = "";
 	
 	//protected int guiLeft;
     //protected int guiTop;
@@ -91,7 +95,7 @@ public class GuiRadioExpansionSelectMusic extends GuiContainer {
         {
             NBTTagCompound nbttagcompound = itemstackIn.getTagCompound();
             
-            this.setSong = nbttagcompound.getInteger("SongToAdd");
+            this.setSong = nbttagcompound.getInteger(References.TOOL_RECORD_TO_ADD_TAG);
             //this.textGreenNumber = nbttagcompound.getInteger("ColorGreen");
             //this.textBlueNumber = nbttagcompound.getInteger("ColorBlue");
         }
@@ -104,7 +108,7 @@ public class GuiRadioExpansionSelectMusic extends GuiContainer {
             //this.textGreenNumber = 0;
             //this.textBlueNumber = 0;
             
-            this.tagSong.appendTag(new NBTTagString("SongToAdd"));
+            this.tagSong.appendTag(new NBTTagString(References.TOOL_RECORD_TO_ADD_TAG));
             //this.tagColor.appendTag(new NBTTagString("ColorGreen"));
             //this.tagColor.appendTag(new NBTTagString("ColorBlue"));
 		}
@@ -112,7 +116,7 @@ public class GuiRadioExpansionSelectMusic extends GuiContainer {
 		if (this.tagSong == null)
         {
             this.tagSong = new NBTTagList();
-            this.tagSong.appendTag(new NBTTagString("SongToAdd"));
+            this.tagSong.appendTag(new NBTTagString(References.TOOL_RECORD_TO_ADD_TAG));
         }
 		
 		/*
@@ -170,7 +174,7 @@ public class GuiRadioExpansionSelectMusic extends GuiContainer {
         
     	this.songList = new GuiScrollingListRadioExpansion(this, this.songs, this.listWidth, slotHeight);
     	
-    	GuiVM.button501 = new GuiButtonGeneral1VC(501, this.guiLeft + 60, this.guiTop + 169, 56, 14, References.localNameVC("gui.done"), 0);
+    	GuiVM.button501 = new GuiButtonGeneral1VM(501, this.guiLeft + 60, this.guiTop + 169, 56, 14, References.localNameVC("gui.done"), 0);
     	this.buttonList.add(GuiVM.button501);
     }
     
@@ -214,22 +218,60 @@ public class GuiRadioExpansionSelectMusic extends GuiContainer {
 	{
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		
-		// Current Song label:
+		// Radio Expansion Tool:
 		this.centeredString(fontRenderer, References.localNameVC(
 				//"viesmachines.gui.currentsong.0"
-				"Radio Expansion Tool"
+				"viesmachines.gui.radioexpansiontoolmenu.0"
 				), 88, -20, Color.BLACK.getRGB());
+		
+		// 'Selected Record':
+		GlStateManager.pushMatrix();
+		{
+			GlStateManager.translate(88, 12, 0);
+	        GlStateManager.scale(0.5F, 0.5F, 0.5F);
+	        
+	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.selectsong.0"), 0, 0, Color.BLUE.getRGB());
+		}
+		GlStateManager.popMatrix();
+		
+		
+		
+		for (ModContainer mod : Loader.instance().getModList())
+        {
+			if (mod.getModId().equals(
+					ClientProxy.musicListRecord
+					.get(this.setSong).getResourceDomain().toString()
+					
+					//"viesmachines"
+					
+					))
+			{
+				this.localizedModName = mod.getName();
+			}
+        }
+		
+		// 'Modid':
+		GlStateManager.pushMatrix();
+		{
+			GlStateManager.translate(88, 21, 0);
+	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
+	        
+	        this.centeredString(fontRenderer, 
+	        	this.stringToFlashGolden(this.localizedModName, 1, false, TextFormatting.GREEN, 0)
+    		, 0, 0, Color.BLACK.getRGB());
+		}
+		GlStateManager.popMatrix();
 		
 		// Song:
 		GlStateManager.pushMatrix();
 		{
-			GlStateManager.translate(88, 30, 0);
-			GlStateManager.scale(0.65F, 0.65F, 0.65F);
+			GlStateManager.translate(88, 35, 0);
+			GlStateManager.scale(0.75F, 0.75F, 0.75F);
 			// Current Song label:
-			this.centeredString(fontRenderer, References.localNameVC(
-					//"viesmachines.gui.currentsong.0"
-					"Selected Record"
-					), 0, -24, Color.BLACK.getRGB());
+			//this.centeredString(fontRenderer, References.localNameVC(
+			//		//"viesmachines.gui.currentsong.0"
+			//		"Selected Record"
+			//		), 0, -24, Color.BLACK.getRGB());
 			
 			this.centeredString(fontRenderer, 
 			this.stringToFlashGolden(
@@ -331,7 +373,7 @@ public class GuiRadioExpansionSelectMusic extends GuiContainer {
         
 		if (this.itemObj.hasTagCompound())
         {
-        	nbttagcompound.setInteger("SongToAdd", this.setSong);
+        	nbttagcompound.setInteger(References.TOOL_RECORD_TO_ADD_TAG, this.setSong);
             //nbttagcompound.setInteger("ColorGreen", this.textGreenNumber);
             //nbttagcompound.setInteger("ColorBlue", this.textBlueNumber);
         }

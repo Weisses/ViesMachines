@@ -247,5 +247,6 @@ public class BlockMachineBeacon extends Block implements ITileEntityProvider {
 	{
 		tooltip.add(TextFormatting.GREEN + References.localNameVC(this.getUnlocalizedName() + ".tt.1"));
 		tooltip.add(TextFormatting.GREEN + References.localNameVC(this.getUnlocalizedName() + ".tt.2"));
+		tooltip.add(TextFormatting.GREEN + References.localNameVC(this.getUnlocalizedName() + ".tt.3"));
 	}
 }

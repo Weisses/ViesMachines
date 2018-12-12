@@ -185,23 +185,25 @@ public class EnumsVM {
 	public static enum FlyingMachineComponentTier
     {
     	// STRING(meta, registry name, localized name, max ammo, ?firing cooldown?, special stat (max elevation)):
-		BASE(0, "tierbase", References.Old_I18n.translateToLocalFormatted("vc.enum.tier.0"), 100, 75),
-		ONE(1, "tier1", References.Old_I18n.translateToLocalFormatted("vc.enum.tier.1"), 200, 125),
-		TWO(2, "tier2", References.Old_I18n.translateToLocalFormatted("vc.enum.tier.2"), 300, 200),
-		THREE(3, "tier3", References.Old_I18n.translateToLocalFormatted("vc.enum.tier.3"), 500, 4096);
+		BASE(0, "tierbase", References.Old_I18n.translateToLocalFormatted("vc.enum.tier.0"), 100, 1, 75),
+		ONE(1, "tier1", References.Old_I18n.translateToLocalFormatted("vc.enum.tier.1"), 200, 3, 125),
+		TWO(2, "tier2", References.Old_I18n.translateToLocalFormatted("vc.enum.tier.2"), 300, 5, 200),
+		THREE(3, "tier3", References.Old_I18n.translateToLocalFormatted("vc.enum.tier.3"), 500, 7, 4096);
 		
 		private final int metadata;
         private final String registryName;
         private final String localizedName;
         private final int maxAmmo;
+        private final int maxRecordSlots;
         private final int maxElevation;
         
-        private FlyingMachineComponentTier(int metadataIn, String registryNameIn, String localizedNameIn, int maxAmmoIn, int maxElevationIn)
+        private FlyingMachineComponentTier(int metadataIn, String registryNameIn, String localizedNameIn, int maxAmmoIn, int maxRecordSlotsIn, int maxElevationIn)
         {
         	this.metadata = metadataIn;
             this.registryName = registryNameIn;
             this.localizedName = localizedNameIn;
             this.maxAmmo = maxAmmoIn;
+            this.maxRecordSlots = maxRecordSlotsIn;
             this.maxElevation = maxElevationIn;
         }
         
@@ -223,6 +225,11 @@ public class EnumsVM {
         public int getMaxAmmoModifier()
         {
             return this.maxAmmo;
+        }
+        
+        public int getMaxRecordSlots()
+        {
+            return this.maxRecordSlots;
         }
         
         public int getMaxElevationModifier()

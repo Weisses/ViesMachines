@@ -23,7 +23,7 @@ public class GuiScrollingListRadioExpansion extends GuiScrollingList {
         		
         		listWidth+2, parent.height, 
         		
-        		parent.getGuiTop()+16+34, parent.getGuiTop() + parent.height-89, 
+        		parent.getGuiTop()+16+34, parent.getGuiTop() + parent.height-90, 
         		
         		parent.getGuiLeft() + 42, 
         		slotHeightIn, parent.width, parent.height);

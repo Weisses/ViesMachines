@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.vies.viesmachines.api.ItemsVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.init.InitItemsVC;
+import com.vies.viesmachines.init.InitItemsVM;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -18,9 +18,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber(value = Side.CLIENT, modid = References.MOD_ID)
-public final class InitItemsVCRender extends ItemsVM {
+public final class InitItemsVMRender extends ItemsVM {
 	
-	public static final InitItemsVCRender INSTANCE = new InitItemsVCRender();
+	public static final InitItemsVMRender INSTANCE = new InitItemsVMRender();
 	
 	/**
 	 * Register this mod's {@link Fluid}, {@link Block} and {@link Item} models.
@@ -38,7 +38,7 @@ public final class InitItemsVCRender extends ItemsVM {
 	
 	private void registerItemRender()
 	{
-		InitItemsVC.RegistrationHandler.ITEMS.stream().filter(item -> !itemsRegistered.contains(item)).forEach(this::registerRender);
+		InitItemsVM.RegistrationHandler.ITEMS.stream().filter(item -> !itemsRegistered.contains(item)).forEach(this::registerRender);
 	}
 	
 	private static void registerItemRenderTEMP()

@@ -1,7 +1,7 @@
 package com.vies.viesmachines.network.server.machine.gui.main;
 
 import com.vies.viesmachines.api.EnumsVM;
-import com.vies.viesmachines.api.util.LogHelper;
+import com.vies.viesmachines.api.util.Loghelper;
 import com.vies.viesmachines.client.gui.machines.main.GuiMachineMenuMain;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.NetworkHandler;

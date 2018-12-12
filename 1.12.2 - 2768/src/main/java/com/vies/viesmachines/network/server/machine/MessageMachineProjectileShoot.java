@@ -1,7 +1,7 @@
 package com.vies.viesmachines.network.server.machine;
 
 import com.vies.viesmachines.api.CostsVM;
-import com.vies.viesmachines.api.util.LogHelper;
+import com.vies.viesmachines.api.util.Loghelper;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.entity.particles.EntityBulletElectrical;
 import com.vies.viesmachines.common.entity.particles.EntityBulletExplosive;

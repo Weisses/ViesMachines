@@ -1,11 +1,11 @@
 package com.vies.viesmachines.common.items.tools;
 
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
-import com.vies.viesmachines.common.entity.machines.containers.ContainerVC;
+import com.vies.viesmachines.common.entity.machines.containers.ContainerVM;
 
 import net.minecraft.inventory.IInventory;
 
-public class ContainerToolNoSlots extends ContainerVC {
+public class ContainerToolNoSlots extends ContainerVM {
 	
 	public ContainerToolNoSlots(IInventory playerInv) 
 	{

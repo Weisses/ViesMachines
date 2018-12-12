@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.client.InitSoundEventsVC;
+import com.vies.viesmachines.client.InitSoundEventsVM;
 import com.vies.viesmachines.common.utils.events.EventHandlerConfig;
 import com.vies.viesmachines.common.utils.events.EventHandlerMachine;
-import com.vies.viesmachines.init.InitEntityVC;
+import com.vies.viesmachines.init.InitEntityVM;
 import com.vies.viesmachines.network.GuiHandler;
 import com.vies.viesmachines.network.NetworkHandler;
 
@@ -33,7 +33,7 @@ public class CommonProxy {
 		//InitItemsVC.registerItem();
 		//InitBlocksVC.registerBlock();
 		//InitTileEntitiesVC.registerTileEntity();
-		InitEntityVC.registerEntity();
+		InitEntityVM.registerEntity();
 		
 		NetworkHandler.preInit();
 		
@@ -49,7 +49,7 @@ public class CommonProxy {
 		//InitAchievementsVC.init();
 		
 		
-		InitSoundEventsVC.registerSounds();
+		InitSoundEventsVM.registerSounds();
 		
 		
 		//MinecraftForge.EVENT_BUS.register(new AchievementTriggersVC());

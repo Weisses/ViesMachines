@@ -1,5 +1,6 @@
 package com.vies.viesmachines.network.server.item;
 
+import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.client.gui.misc.GuiRadioExpansionSelectMusic;
 import com.vies.viesmachines.network.packet.MessageBase;
 
@@ -37,6 +38,6 @@ public class MessageHelperItemToolRadioExpansion extends MessageBase<MessageHelp
         
 		stack.setTagCompound(new NBTTagCompound());
     	
-    	stack.getTagCompound().setInteger("SongToAdd", message.songId);
+    	stack.getTagCompound().setInteger(References.TOOL_RECORD_TO_ADD_TAG, message.songId);
 	}
 }

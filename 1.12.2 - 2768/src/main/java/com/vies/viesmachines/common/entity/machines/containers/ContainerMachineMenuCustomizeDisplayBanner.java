@@ -6,7 +6,7 @@ import com.vies.viesmachines.common.entity.machines.slots.DisplayBlockItemSlot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 
-public class ContainerMachineMenuCustomizeDisplayBanner extends ContainerVC {
+public class ContainerMachineMenuCustomizeDisplayBanner extends ContainerVM {
 	
 	private EntityMachineBase machine;
     

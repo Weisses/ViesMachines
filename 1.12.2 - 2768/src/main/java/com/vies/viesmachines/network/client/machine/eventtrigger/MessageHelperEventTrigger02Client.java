@@ -1,6 +1,6 @@
 package com.vies.viesmachines.network.client.machine.eventtrigger;
 
-import com.vies.viesmachines.api.util.LogHelper;
+import com.vies.viesmachines.api.util.Loghelper;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.packet.MessageBase;
 import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger02Server;

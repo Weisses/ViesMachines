@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
 //@Mod.EventBusSubscriber(value = Side.CLIENT, modid = References.MOD_ID)
-public class InitSoundEventsVC extends SoundsVM {
+public class InitSoundEventsVM extends SoundsVM {
 	
 	@SubscribeEvent
 	public static void registerSoundEvents(RegistryEvent.Register<SoundEvent> event) 

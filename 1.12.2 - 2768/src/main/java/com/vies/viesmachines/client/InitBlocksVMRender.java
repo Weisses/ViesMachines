@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.vies.viesmachines.api.BlocksVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.init.InitBlocksVC;
+import com.vies.viesmachines.init.InitBlocksVM;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -21,9 +21,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber(value = Side.CLIENT, modid = References.MOD_ID)
-public final class InitBlocksVCRender extends BlocksVM {
+public final class InitBlocksVMRender extends BlocksVM {
 	
-	public static final InitBlocksVCRender INSTANCE = new InitBlocksVCRender();
+	public static final InitBlocksVMRender INSTANCE = new InitBlocksVMRender();
 	
 	/**
 	 * Register this mod's {@link Fluid}, {@link Block} and {@link Item} models.
@@ -43,13 +43,13 @@ public final class InitBlocksVCRender extends BlocksVM {
 	/** Register this mod's {@link Block} models. */
 	private void registerBlockModels() 
 	{
-		InitBlocksVC.RegistrationHandler.ITEM_BLOCKS.stream().filter(item -> !itemsRegistered.contains(item)).forEach(this::registerItemModel);
+		InitBlocksVM.RegistrationHandler.ITEM_BLOCKS.stream().filter(item -> !itemsRegistered.contains(item)).forEach(this::registerItemModel);
 	}
 	
 	/** Register this mod's {@link Item} models. */
 	private void registerItemModels() 
 	{
-		InitBlocksVC.RegistrationHandler.ITEM_BLOCKS.stream().filter(item -> !itemsRegistered.contains(item)).forEach(this::registerItemModel);
+		InitBlocksVM.RegistrationHandler.ITEM_BLOCKS.stream().filter(item -> !itemsRegistered.contains(item)).forEach(this::registerItemModel);
 	}
 
 	/**

@@ -62,6 +62,12 @@ item.viesmachines:item_xegonite_ender.name=Ender-Infused Xegonite
 
 item.viesmachines:item_circuit_adaptive.name=Adaptive Circuit
 
+
+item.viesmachines:particles/item_particle_bullet_normal.name=Particle Bullet (Normal)
+item.viesmachines:particles/item_particle_bullet_electrical.name=Particle Bullet (Electrical)
+item.viesmachines:particles/item_particle_bullet_explosive.name=Particle Bullet (Explosive)
+item.viesmachines:particles/item_particle_static_charge.name=Static Charge
+
 //-----Item ToolTips-----
 item.viesmachines:item_xegonite.tt.1=This material seems to react
 item.viesmachines:item_xegonite.tt.2=to an electrical charge.
@@ -135,8 +141,8 @@ item.viesmachines:kits/item_admin_machine_max.tt.3=[Left-Click] on a machine to 
 
 
 
-item.viesmachines:item_tool_dismounter.tt.1=[Left-Click]
-item.viesmachines:item_tool_dismounter.tt.2=on a mounted entity to
+item.viesmachines:item_tool_dismounter.tt.1=
+item.viesmachines:item_tool_dismounter.tt.2=Click on a mounted entity to
 item.viesmachines:item_tool_dismounter.tt.3=safely dismount it.
 item.viesmachines:item_tool_dismounter.tt.4=Does no damage, may cause laughter.
 
@@ -160,6 +166,17 @@ item.viesmachines:item_circuit_adaptive.tt.1=A complex circuit used in various
 item.viesmachines:item_circuit_adaptive.tt.2=machine enhancements.
 
 
+item.viesmachines:particles/item_particle_bullet_normal.tt.1=
+item.viesmachines:particles/item_particle_bullet_normal.tt.2=
+item.viesmachines:particles/item_particle_bullet_electrical.tt.1=
+item.viesmachines:particles/item_particle_bullet_electrical.tt.2=
+item.viesmachines:particles/item_particle_bullet_explosive.tt.1=
+item.viesmachines:particles/item_particle_bullet_explosive.tt.2=
+item.viesmachines:particles/item_particle_static_charge.tt.1=
+item.viesmachines:particles/item_particle_static_charge.tt.2=
+
+
+
 //-----Tile Entities-----
 tile.viesmachines:appliance/extractor.name=Extractor
 tile.viesmachines:appliance/kit_fabricator.name=Kit Fabricator
@@ -178,14 +195,18 @@ tile.viesmachines:decoration/item_display.name=Item Display
 
 
 //-----Tile Entity ToolTips-----
-tile.viesmachines:appliance/extractor.tt.1=Here1
-tile.viesmachines:appliance/extractor.tt.2=Here2
-tile.viesmachines:appliance/kit_fabricator.tt.1=Here1
-tile.viesmachines:appliance/kit_fabricator.tt.2=Here2
+tile.viesmachines:appliance/extractor.tt.1=This block breaks down anything
+tile.viesmachines:appliance/extractor.tt.2=placed in it and attempts to
+tile.viesmachines:appliance/extractor.tt.3=extract Xegonite.
+tile.viesmachines:appliance/kit_fabricator.tt.1=This block can create useful
+tile.viesmachines:appliance/kit_fabricator.tt.2=machine kits for Health,
+tile.viesmachines:appliance/kit_fabricator.tt.3=Energy, and Durability.
 tile.viesmachines:appliance/machine_transmogrifier.tt.1=Here1
 tile.viesmachines:appliance/machine_transmogrifier.tt.2=Here2
+tile.viesmachines:appliance/machine_transmogrifier.tt.3=Here3
 tile.viesmachines:appliance/machine_beacon.tt.1=Here1
 tile.viesmachines:appliance/machine_beacon.tt.2=Here2
+tile.viesmachines:appliance/machine_beacon.tt.3=Here3
 
 tile.viesmachines:decoration/item_display.tt.1=Here1
 tile.viesmachines:decoration/item_display.tt.2=Here2
@@ -268,6 +289,7 @@ viesmachines.gui.norecordselected.0=No record selected
 viesmachines.gui.currentsong.2=Music Menu
 viesmachines.gui.selectprojectile.0=Select Projectile
 viesmachines.gui.selectcolor.0=Select Color
+viesmachines.gui.radioexpansiontoolmenu.0=Radio Expansion Tool Menu
 viesmachines.gui.weaponmenu.0=Weapon Menu
 viesmachines.gui.ammoinfo.0=Ammo Info
 viesmachines.gui.bullets.0=Bullets
@@ -275,6 +297,9 @@ viesmachines.gui.selected.0=Selected
 
 viesmachines.gui.tt.compress.1=Convert this machine
 viesmachines.gui.tt.compress.2=back into an item.
+viesmachines.gui.tt.compress.3=Hardmode enabled
+viesmachines.gui.tt.compress.4=Broken machines can NOT be
+viesmachines.gui.tt.compress.5=converted back into items.
 viesmachines.gui.tt.changename.1=Click to rename
 viesmachines.gui.tt.changename.2=this machine.
 viesmachines.gui.tt.armed.1=Turn weapon systems
@@ -291,6 +316,9 @@ viesmachines.gui.tt.autorun.2=on or off.
 viesmachines.gui.tt.fuel.1=Insert fuel here to
 viesmachines.gui.tt.fuel.2=power this machine!
 
+viesmachines.gui.tt.fuel.3=No fuel needed for
+viesmachines.gui.tt.fuel.4=creative players!
+
 viesmachines.gui.tt.nameundo.1=Sets the name back to default.
 viesmachines.gui.tt.nameundo.2=Costs no energy.
 viesmachines.gui.tt.namecolor.0=Costs 5 energy to change.
@@ -299,7 +327,8 @@ viesmachines.gui.tt.namechange.0=Costs 10 energy to apply.
 
 viesmachines.gui.tt.main.musicstop.0=Stop song.
 viesmachines.gui.tt.main.musicplay.0=Play selected song.
-viesmachines.gui.tt.main.musicrandom.0=Pick a random song.
+viesmachines.gui.tt.main.musicrandom.0=Pick a random song!
+viesmachines.gui.tt.main.musicrandom.1=Requires : Component Tier 3!
 
 
 
@@ -320,6 +349,7 @@ viesmachines.gui.tt.main.weapon.explosivebullet.2=Explosions
 viesmachines.gui.tt.main.weapon.explosivebullet.3=Slow Fire
 viesmachines.gui.tt.main.weapon.explosivebullet.4=5 Energy per bullet.
 
+viesmachines.gui.norecordselected.0=No record selected
 
 
 
@@ -344,6 +374,7 @@ viesmachines.gui.tt.stats.durabilityloss.0=Durability Loss
 
 viesmachines.gui.tt.stats.component.0=Component
 viesmachines.gui.tt.stats.ammo.0=Weapon Ammo
+viesmachines.gui.tt.stats.record.0=Record Slots
 viesmachines.gui.tt.stats.specialflying.0=Max Elevation
 
 

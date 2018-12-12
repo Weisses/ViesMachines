@@ -1,6 +1,6 @@
 package com.vies.viesmachines.common.entity.thrown;
 
-import com.vies.viesmachines.client.InitParticlesVCRender;
+import com.vies.viesmachines.client.InitParticlesVMRender;
 import com.vies.viesmachines.common.entity.machines.types.flying.EntityMachineFlyingAirship;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -150,7 +150,7 @@ public class EntityThrownMachineFlyingAirship extends EntityThrownMachineBase {
         }
         else
     	{
-        	InitParticlesVCRender.generateParticlesExplosions(this);
+        	InitParticlesVMRender.generateParticlesExplosions(this);
     	}
     }
 }

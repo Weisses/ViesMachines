@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 
-public final class InitTileEntityVCRender {
+public final class InitTileEntityVMRender {
 	
 	public static void registerTileEntityRender()
 	{

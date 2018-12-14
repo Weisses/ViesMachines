@@ -1,22 +1,15 @@
 package com.vies.viesmachines.common.entity.machines;
 
-import com.vies.viesmachines.api.util.Loghelper;
 import com.vies.viesmachines.init.LootTableHandler;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.attributes.IAttribute;
-import net.minecraft.entity.ai.attributes.RangedAttribute;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.items.ItemStackHandler;
 
 public class EntityMachineWater extends EntityMachineFuel {
 	
@@ -92,50 +85,6 @@ public class EntityMachineWater extends EntityMachineFuel {
         this.prevPosX = x;
         this.prevPosY = y;
         this.prevPosZ = z;
-		/**
-		this.frameTier = frameTierIn;
-		this.engineTier = engineTierIn;
-		this.componentTier = componentTierIn;
-		this.setHealth(currentHPIn);
-		this.storedEnergy = currentEPIn;
-		this.storedFuel = currentFuelIn;
-		this.storedFuelTotal = totalFuelIn;
-		this.itemstackFuelItem = itemstackFuelItemIn;
-		this.itemstackFuelSize = itemstackFuelSizeIn;
-		this.broken = brokenIn;
-		this.machineEnhancement1 = machineEnhancement1In;
-		
-		this.visualTypeModel = visualTypeModelIn;
-		this.visualVariantModel = visualVariantModelIn;
-		
-		this.visualFrameTexture = visualFrameTextureIn;
-		this.visualFrameTransparent = visualFrameTransparentIn;
-		this.visualFrameColor = visualFrameColorIn;
-		this.visualFrameColorRed = visualFrameColorRedIn;
-		this.visualFrameColorGreen = visualFrameColorGreenIn;
-		this.visualFrameColorBlue = visualFrameColorBlueIn;
-		
-		this.visualEngineParticle = visualEngineParticleIn;
-		this.visualEngineDisplayType = visualEngineDisplayTypeIn;
-		this.visualEngineDisplayItemstack = visualEngineDisplayItemstackIn;
-		this.visualEngineDisplayItemstackMeta = visualEngineDisplayItemstackMetaIn;
-		this.visualEngineDisplayHead = visualEngineDisplayHeadIn;
-		this.visualEngineDisplaySupporterHead = visualEngineDisplaySupporterHeadIn;
-		this.visualEngineDisplayHoliday = visualEngineDisplayHolidayIn;
-		
-		this.visualComponentTexture = visualComponentTextureIn;
-		this.visualComponentTransparent = visualComponentTransparentIn;
-		this.visualComponentColor = visualComponentColorIn;
-		this.visualComponentColorRed = visualComponentColorRedIn;
-		this.visualComponentColorGreen = visualComponentColorGreenIn;
-		this.visualComponentColorBlue = visualComponentColorBlueIn;
-		
-        this.inventory = new ItemStackHandler(size);
-        this.inventory.deserializeNBT(compoundIn);
-        
-        this.setCustomNameTag(customNameIn);
-		this.visualNameColor = visualNameColorIn;
-		*/
 	}
 	
 	
@@ -413,7 +362,7 @@ public class EntityMachineWater extends EntityMachineFuel {
 	
 	public PotionEffect passiveAbility()
 	{
-		Loghelper.info("here0");
+		//Loghelper.info("here0");
 		/**
 		if (this.getRidingEntity() instanceof Entity)
 		{

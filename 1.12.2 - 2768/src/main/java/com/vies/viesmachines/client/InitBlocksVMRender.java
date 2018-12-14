@@ -25,20 +25,18 @@ public final class InitBlocksVMRender extends BlocksVM {
 	
 	public static final InitBlocksVMRender INSTANCE = new InitBlocksVMRender();
 	
-	/**
-	 * Register this mod's {@link Fluid}, {@link Block} and {@link Item} models.
-	 *
-	 * @param event The event
-	 */
+	/** The {@link Item}s that have had models registered so far. */
+	private final Set<Item> itemsRegistered = new HashSet<>();
+	
+	
+	
+	/** Register this mod's {@link Fluid}, {@link Block} and {@link Item} models. */
 	@SubscribeEvent
 	public static void registerAllModels(final ModelRegistryEvent event) 
 	{
 		INSTANCE.registerBlockModels();
 		INSTANCE.registerItemModels();
 	}
-	
-	/** The {@link Item}s that have had models registered so far. */
-	private final Set<Item> itemsRegistered = new HashSet<>();
 	
 	/** Register this mod's {@link Block} models. */
 	private void registerBlockModels() 
@@ -52,13 +50,20 @@ public final class InitBlocksVMRender extends BlocksVM {
 		InitBlocksVM.RegistrationHandler.ITEM_BLOCKS.stream().filter(item -> !itemsRegistered.contains(item)).forEach(this::registerItemModel);
 	}
 
-	/**
-	 * Register a single model for an {@link Item}.
-	 * <p>
-	 * Uses the registry name as the domain/path and {@code "inventory"} as the variant.
-	 *
-	 * @param item The Item
-	 */
+	//--------------------------------------------------
+	
+	/** Register a single model for an {@link Block}. */
+	public void registerRender(Block block)
+	{
+		Item item = Item.getItemFromBlock(block);
+		itemsRegistered.add(item);
+		
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName().toString(), "inventory"));
+	}
+
+	//--------------------------------------------------
+	
+	/** Register a single model for an {@link Item}. */
 	private void registerItemModel(final Item item) 
 	{
 		registerItemModel(item, item.getRegistryName().toString());
@@ -72,30 +77,9 @@ public final class InitBlocksVMRender extends BlocksVM {
 	
 	private void registerItemModel(final Item item, final ModelResourceLocation fullModelLocation) 
 	{
-		ModelBakery.registerItemVariants(item, fullModelLocation); // Ensure the custom model is loaded and prevent the default model from being loaded
+		// Ensure the custom model is loaded and prevent the default model from being loaded:
+		ModelBakery.registerItemVariants(item, fullModelLocation); 
 		registerItemModel(item, MeshDefinitionFix.create(stack -> fullModelLocation));
-	}
-	
-	public void registerRender(Block block)
-	{
-		Item item = Item.getItemFromBlock(block);
-		itemsRegistered.add(item);
-		//ForgeHooksClient.registerTESRItemStack(item, 0, TileEntityExtractor.class);
-		//BlocksVM.EXTRACTOR.setTileEntityItemStackRenderer(new TileEntityExtractor());
-		//TEItemTest.instance.renderByItem(new ItemStack(item));
-		
-		//Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(item.getRegistryName().toString(), "inventory"));
-		//ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(block), 0, TileEntityExtractor.class);
-
-		
-		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName().toString(), "inventory"));
-	}
-	
-	public void registerRender(Block block, int meta, String file) 
-	{
-		Item item = Item.getItemFromBlock(block);
-		itemsRegistered.add(item);
-		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName().toString(), "inventory"));
 	}
 	
 	interface MeshDefinitionFix extends ItemMeshDefinition 

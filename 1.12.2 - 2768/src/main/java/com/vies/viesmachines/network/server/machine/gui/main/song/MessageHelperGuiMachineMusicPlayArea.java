@@ -39,10 +39,7 @@ public class MessageHelperGuiMachineMusicPlayArea extends MessageBase<MessageHel
 		SoundHandler soundHandler = Minecraft.getMinecraft().getSoundHandler();
 		soundHandler.stopSounds();
 		
-		soundHandler.playSound(new JukeboxMovingSoundVM(this.machine, ForgeRegistries.SOUND_EVENTS.getValue(
-				//TODO this.machine.currentMusicListRecord
-				ClientProxy.musicListRecord
-				.get(this.machine.getSelectedRecord()))));
+		soundHandler.playSound(new JukeboxMovingSoundVM(this.machine, ForgeRegistries.SOUND_EVENTS.getValue(ClientProxy.musicListRecord.get(this.machine.getSelectedRecord()))));
 	}
 	
 	@SideOnly(Side.CLIENT)

@@ -1,4 +1,4 @@
-package com.vies.viesmachines.client.gui.machines.visual.display;
+package com.vies.viesmachines.client.gui.machines.customize.display;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -19,7 +19,7 @@ import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.entity.machines.containers.ContainerMachineNoSlots;
 import com.vies.viesmachines.network.NetworkHandler;
 import com.vies.viesmachines.network.server.machine.gui.customize.displaybanner.MessageGuiMachineMenuCustomizeDisplayBanner;
-import com.vies.viesmachines.network.server.machine.gui.customize.displaybanner.sub.MessageHelperGuiCustomizeMenuEngineDisplaySymbol;
+import com.vies.viesmachines.network.server.machine.gui.customize.displaybanner.sub.MessageHelperGuiCustomizeMenuEngineDisplayHead;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
@@ -30,11 +30,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVM {
+public class GuiMachineMenuCustomizeDisplayEntityHeadPg1 extends GuiContainerVM {
 	
-	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize_display_symbol.png");
+	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize_display_head.png");
 	
-	public GuiMachineMenuCustomizeDisplaySymbolPg1(IInventory playerInv, EntityMachineBase airshipIn)
+	public GuiMachineMenuCustomizeDisplayEntityHeadPg1(IInventory playerInv, EntityMachineBase airshipIn)
 	{
 		super(new ContainerMachineNoSlots(playerInv, airshipIn), playerInv, airshipIn);
 		
@@ -57,42 +57,38 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVM {
     	GuiVM.buttonApply = new GuiButtonGeneral1VM(21, this.guiLeft + 7, this.guiTop + 63, 42, 14, References.localNameVC("viesmachines.button.apply"), 1);
 		GuiVM.buttonBack = new GuiButtonGeneral1VM(22, this.guiLeft + 61, this.guiTop + 63, 42, 14, References.localNameVC("viesmachines.button.back"), 2);
 		
-		//--------------------------------------------------
-		
-		GuiVM.buttonTexture00 = new GuiButtonGeneral1VM(110, this.guiLeft + 32-14 + (14 * 0), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture01 = new GuiButtonGeneral1VM(111, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture00 = new GuiButtonGeneral1VM(101, this.guiLeft + 32-14 + (14 * 0), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture01 = new GuiButtonGeneral1VM(102, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7, 14, 14, "", 3);
 		GuiVM.buttonTexture02 = new GuiButtonGeneral1VM(112, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture03 = new GuiButtonGeneral1VM(113, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture04 = new GuiButtonGeneral1VM(114, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture05 = new GuiButtonGeneral1VM(115, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture06 = new GuiButtonGeneral1VM(116, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture07 = new GuiButtonGeneral1VM(117, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture08 = new GuiButtonGeneral1VM(118, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7, 14, 14, "", 3);
-		GuiVM.buttonTexture09 = new GuiButtonGeneral1VM(119, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture03 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture04 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture05 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture06 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture07 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture08 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7, 14, 14, "", 3);
+		GuiVM.buttonTexture09 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7, 14, 14, "", 3);
 		
-		/*
-		GuiVM.buttonTexture11 = new GuiButtonGeneral1VC(105, this.guiLeft + 32-14 + (14 * 0), this.guiTop + 102-7+33, 14, 14, "", 3);
-		GuiVM.buttonTexture12 = new GuiButtonGeneral1VC(105, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33, 14, 14, "", 3);
-		GuiVM.buttonTexture13 = new GuiButtonGeneral1VC(105, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7+33, 14, 14, "", 3);
-		GuiVM.buttonTexture14 = new GuiButtonGeneral1VC(105, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7+33, 14, 14, "", 3);
-		GuiVM.buttonTexture15 = new GuiButtonGeneral1VC(105, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7+33, 14, 14, "", 3);
-		GuiVM.buttonTexture16 = new GuiButtonGeneral1VC(106, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7+33, 14, 14, "", 3);
-		GuiVM.buttonTexture17 = new GuiButtonGeneral1VC(107, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33, 14, 14, "", 3);
-		GuiVM.buttonTexture18 = new GuiButtonGeneral1VC(108, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33, 14, 14, "", 3);
-		GuiVM.buttonTexture19 = new GuiButtonGeneral1VC(109, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33, 14, 14, "", 3);
-		GuiVM.buttonTexture20 = new GuiButtonGeneral1VC(115, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture11 = new GuiButtonGeneral1VM(103, this.guiLeft + 32-14 + (14 * 0), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture12 = new GuiButtonGeneral1VM(104, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture13 = new GuiButtonGeneral1VM(105, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture14 = new GuiButtonGeneral1VM(106, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture15 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture16 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture17 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture18 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture19 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33, 14, 14, "", 3);
+		GuiVM.buttonTexture20 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33, 14, 14, "", 3);
 		
-		GuiVM.buttonTexture21 = new GuiButtonGeneral1VC(105, this.guiLeft + 32-14 + (14 * 0), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture22 = new GuiButtonGeneral1VC(105, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture23 = new GuiButtonGeneral1VC(105, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture24 = new GuiButtonGeneral1VC(105, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture25 = new GuiButtonGeneral1VC(105, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture26 = new GuiButtonGeneral1VC(106, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture27 = new GuiButtonGeneral1VC(107, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture28 = new GuiButtonGeneral1VC(108, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture29 = new GuiButtonGeneral1VC(109, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture30 = new GuiButtonGeneral1VC(115, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		*/
+		GuiVM.buttonTexture21 = new GuiButtonGeneral1VM(106, this.guiLeft + 32-14 + (14 * 0), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture22 = new GuiButtonGeneral1VM(107, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture23 = new GuiButtonGeneral1VM(108, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture24 = new GuiButtonGeneral1VM(109, this.guiLeft + 32-14 + (14 * 3), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture25 = new GuiButtonGeneral1VM(110, this.guiLeft + 32-14 + (14 * 4), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture26 = new GuiButtonGeneral1VM(111, this.guiLeft + 32-14 + (14 * 5), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture27 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture28 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture29 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		GuiVM.buttonTexture30 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		
 		//--------------------------------------------------
 		
@@ -102,25 +98,24 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVM {
 		this.buttonList.add(GuiVM.buttonTexture00);
 		this.buttonList.add(GuiVM.buttonTexture01);
 		this.buttonList.add(GuiVM.buttonTexture02);
-		this.buttonList.add(GuiVM.buttonTexture03);
-		this.buttonList.add(GuiVM.buttonTexture04);
-		this.buttonList.add(GuiVM.buttonTexture05);
-		this.buttonList.add(GuiVM.buttonTexture06);
-		this.buttonList.add(GuiVM.buttonTexture07);
-		this.buttonList.add(GuiVM.buttonTexture08);
-		this.buttonList.add(GuiVM.buttonTexture09);
-		
-		/*
+		//this.buttonList.add(GuiVM.buttonTexture03);
+		//this.buttonList.add(GuiVM.buttonTexture04);
+		//this.buttonList.add(GuiVM.buttonTexture05);
+		//this.buttonList.add(GuiVM.buttonTexture06);
+		//this.buttonList.add(GuiVM.buttonTexture07);
+		//this.buttonList.add(GuiVM.buttonTexture08);
+		//this.buttonList.add(GuiVM.buttonTexture09);
+
 		this.buttonList.add(GuiVM.buttonTexture11);
 		this.buttonList.add(GuiVM.buttonTexture12);
 		this.buttonList.add(GuiVM.buttonTexture13);
-		this.buttonList.add(GuiVM.buttonTexture14);
-		this.buttonList.add(GuiVM.buttonTexture15);
-		this.buttonList.add(GuiVM.buttonTexture16);
-		this.buttonList.add(GuiVM.buttonTexture17);
-		this.buttonList.add(GuiVM.buttonTexture18);
-		this.buttonList.add(GuiVM.buttonTexture19);
-		this.buttonList.add(GuiVM.buttonTexture20);
+		//this.buttonList.add(GuiVM.buttonTexture14);
+		//this.buttonList.add(GuiVM.buttonTexture15);
+		//this.buttonList.add(GuiVM.buttonTexture16);
+		//this.buttonList.add(GuiVM.buttonTexture17);
+		//this.buttonList.add(GuiVM.buttonTexture18);
+		//this.buttonList.add(GuiVM.buttonTexture19);
+		//this.buttonList.add(GuiVM.buttonTexture20);
 
 		this.buttonList.add(GuiVM.buttonTexture21);
 		this.buttonList.add(GuiVM.buttonTexture22);
@@ -128,11 +123,10 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVM {
 		this.buttonList.add(GuiVM.buttonTexture24);
 		this.buttonList.add(GuiVM.buttonTexture25);
 		this.buttonList.add(GuiVM.buttonTexture26);
-		this.buttonList.add(GuiVM.buttonTexture27);
-		this.buttonList.add(GuiVM.buttonTexture28);
-		this.buttonList.add(GuiVM.buttonTexture29);
-		this.buttonList.add(GuiVM.buttonTexture30);
-		*/
+		//this.buttonList.add(GuiVM.buttonTexture27);
+		//this.buttonList.add(GuiVM.buttonTexture28);
+		//this.buttonList.add(GuiVM.buttonTexture29);
+		//this.buttonList.add(GuiVM.buttonTexture30);
 		
     	this.buttonList.add(GuiVM.buttonMM1);
 		this.buttonList.add(GuiVM.buttonMM2);
@@ -149,9 +143,8 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVM {
 		// Apply:
 		if (parButton.id == 21)
 		{
-			NetworkHandler.sendToServer(new MessageHelperGuiCustomizeMenuEngineDisplaySymbol());
+			NetworkHandler.sendToServer(new MessageHelperGuiCustomizeMenuEngineDisplayHead());
 		}
-		
 		// Back:
 		if (parButton.id == 22)
 		{
@@ -163,7 +156,8 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVM {
 	    {
 			int fixedNumber = parButton.id - 100;
 			
-			this.metaInfo = fixedNumber;
+			this.headInfo = fixedNumber;
+			this.metaInfo = 2;
 	    }
 		
         this.buttonList.clear();
@@ -241,13 +235,13 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVM {
 		}
 		
 		// Renders the selected Display Banner for the current machine:
-		if (this.metaInfo >= 10)
+		if (this.headInfo >= 0)
 		{
 			GlStateManager.pushMatrix();
 			{
-				GlStateManager.translate(138, 43, 0);
+				GlStateManager.translate(86, -37, 0);
 				
-				this.drawRotatingItemStack(EnumsVM.VisualDisplaySymbol.byId(this.metaInfo-10).getItemStack(), this.guiLeft , this.guiTop);
+				this.drawEntityHead(0, 0, this.headInfo);
 			}
 			GlStateManager.popMatrix();
 		}
@@ -258,13 +252,13 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVM {
 	{
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		
-		// 'Symbol Options':
+		// 'Entity Head Options':
 		GlStateManager.pushMatrix();
 		{
 			GlStateManager.translate(55.5, 11, 0);
 	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 	        
-	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.displaybanner.symboloptions.0"), 0, 0, Color.BLACK.getRGB());
+	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.displaybanner.entityheadoptions.0"), 0, 0, Color.BLACK.getRGB());
 		}
 		GlStateManager.popMatrix();
 		
@@ -288,57 +282,64 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVM {
 		}
 		GlStateManager.popMatrix();
 		
-		// 'General':
+		// 'Characters':
 		GlStateManager.pushMatrix();
 		{
 			GlStateManager.translate(39, 83, 0);
 	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 	        
-	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.displaybanner.general.0"), 0, 0, Color.CYAN.getRGB());
+	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.displaybanner.characters.0"), 0, 0, Color.CYAN.getRGB());
 		}
 		GlStateManager.popMatrix();
 		
-		// 'Elemental':
+		// 'Animals':
 		GlStateManager.pushMatrix();
 		{
 			GlStateManager.translate(39, 83+33, 0);
 	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 	        
-	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.displaybanner.elemental.0"), 0, 0, Color.CYAN.getRGB());
+	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.displaybanner.animals.0"), 0, 0, Color.CYAN.getRGB());
 		}
 		GlStateManager.popMatrix();
 		
-		// 'Animal':
+		// 'Monsters':
 		GlStateManager.pushMatrix();
 		{
 			GlStateManager.translate(39, 83+33+33, 0);
 	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 	        
-	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.displaybanner.animal.0"), 0, 0, Color.CYAN.getRGB());
+	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.displaybanner.monsters.0"), 0, 0, Color.CYAN.getRGB());
 		}
 		GlStateManager.popMatrix();
 		
 		// Draws a black box over the preview buttons:
 		this.drawRect(108, 66, 130, 76, Color.BLACK.getRGB());
 		
-		// General Row item over button:
+		// Characters Row item over button:
 		GlStateManager.pushMatrix();
 		{
 			GL11.glColor4f(1F, 1F, 1F, 1F);
 			
-	    	GlStateManager.translate(39-14, 87+11.75+5.75, 0);
-			GlStateManager.scale(0.389F, 0.389F, 0.389F);
+	    	GlStateManager.translate(-0.5, 65.5, 0);
+			GlStateManager.scale(0.5F, 0.5F, 0.5F);
 			
-			this.drawItemStack(EnumsVM.VisualDisplaySymbol.SYMBOL_LOGOFORGE.getItemStack(), ((18 * 0) * 2), 0, "");
-			this.drawItemStack(EnumsVM.VisualDisplaySymbol.SYMBOL_COINSTACK.getItemStack(), ((18 * 1) * 2), 0, "");
-			this.drawItemStack(EnumsVM.VisualDisplaySymbol.SYMBOL_SCROLL.getItemStack(), ((18 * 2) * 2), 0, "");
-			this.drawItemStack(EnumsVM.VisualDisplaySymbol.SYMBOL_WRENCH.getItemStack(), ((18 * 3) * 2), 0, "");
-			this.drawItemStack(EnumsVM.VisualDisplaySymbol.SYMBOL_KEY.getItemStack(), ((18 * 4) * 2), 0, "");
-			this.drawItemStack(EnumsVM.VisualDisplaySymbol.SYMBOL_PADLOCK.getItemStack(), ((18 * 5) * 2), 0, "");
-			this.drawItemStack(EnumsVM.VisualDisplaySymbol.SYMBOL_BELL.getItemStack(), ((18 * 6) * 2), 0, "");
-			this.drawItemStack(EnumsVM.VisualDisplaySymbol.SYMBOL_ANCHOR.getItemStack(), ((18 * 7) * 2), 0, "");
-			this.drawItemStack(EnumsVM.VisualDisplaySymbol.SYMBOL_BARREL.getItemStack(), ((18 * 8) * 2), 0, "");
-			this.drawItemStack(EnumsVM.VisualDisplaySymbol.SYMBOL_GEARS.getItemStack(), ((18 * 9) * 2), 0, "");
+			// Characters:
+			this.drawEntityHeadForground((28 * 0), 0, EnumsVM.EntityHead.STEVE.getMetadata());
+			this.drawEntityHeadForground((28 * 1), 0, EnumsVM.EntityHead.ALEX.getMetadata());
+			this.drawEntityHeadForground((28 * 2), 0, EnumsVM.EntityHead.HEROBRINE.getMetadata());
+			
+			// Animals:
+			this.drawEntityHeadForground((28 * 0), 66, EnumsVM.EntityHead.CHICKEN.getMetadata());
+			this.drawEntityHeadForground((28 * 1), 66, EnumsVM.EntityHead.PIG.getMetadata());
+			this.drawEntityHeadForground((28 * 2), 66, EnumsVM.EntityHead.COW.getMetadata());
+			
+			// Monsters:
+			this.drawEntityHeadForground((28 * 0), 132, EnumsVM.EntityHead.ZOMBIE.getMetadata());
+			this.drawEntityHeadForground((28 * 1), 132, EnumsVM.EntityHead.SKELETON.getMetadata());
+			this.drawEntityHeadForground((28 * 2), 132, EnumsVM.EntityHead.SPIDER.getMetadata());
+			this.drawEntityHeadForground((28 * 3), 132, EnumsVM.EntityHead.CREEPER.getMetadata());
+			this.drawEntityHeadForground((28 * 4), 132, EnumsVM.EntityHead.WITHERSKELETON.getMetadata());
+			this.drawEntityHeadForground((28 * 5), 132, EnumsVM.EntityHead.DRAGON.getMetadata());
 		}
 		GlStateManager.popMatrix();
 		
@@ -406,17 +407,13 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVM {
         super.updateScreen();
         
         // Handles when the 'Apply' button is enabled:
-        if (this.metaInfo < 10)
-        {
-        	GuiVM.buttonApply.enabled = false;
-        }
-        else
+        if (this.headInfo != 0)
         {
         	if (this.machine.getControllingPassenger() instanceof EntityPlayer)
         	{
         		EntityPlayer player = (EntityPlayer) this.machine.getControllingPassenger();
         		
-        		if (this.metaInfo == this.machine.getVisualEngineDisplayType())
+        		if (this.headInfo == this.machine.getVisualEngineDisplayHead())
         		{
         			GuiVM.buttonApply.enabled = false;
         		}
@@ -434,10 +431,14 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVM {
         		}
         	}
         }
+        else
+        {
+        	GuiVM.buttonApply.enabled = false;
+        }
         
         //--------------------------------------------------
-        
- 		if (this.machine.getVisualEngineDisplayType() == EnumsVM.VisualDisplaySymbol.SYMBOL_LOGOFORGE.getMetadata()+10)
+ 		
+ 		if (this.machine.getVisualEngineDisplayHead() == EnumsVM.EntityHead.STEVE.getMetadata())
  		{
  			GuiVM.buttonTexture00.enabled = false;
  		}
@@ -445,7 +446,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVM {
  		{
  			GuiVM.buttonTexture00.enabled = true;
  		}
- 		if (this.machine.getVisualEngineDisplayType() == EnumsVM.VisualDisplaySymbol.SYMBOL_COINSTACK.getMetadata()+10)
+ 		if (this.machine.getVisualEngineDisplayHead() == EnumsVM.EntityHead.ALEX.getMetadata())
  		{
  			GuiVM.buttonTexture01.enabled = false;
  		}
@@ -453,7 +454,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVM {
  		{
  			GuiVM.buttonTexture01.enabled = true;
  		}
- 		if (this.machine.getVisualEngineDisplayType() == EnumsVM.VisualDisplaySymbol.SYMBOL_SCROLL.getMetadata()+10)
+ 		if (this.machine.getVisualEngineDisplayHead() == EnumsVM.EntityHead.HEROBRINE.getMetadata())
  		{
  			GuiVM.buttonTexture02.enabled = false;
  		}
@@ -461,61 +462,79 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVM {
  		{
  			GuiVM.buttonTexture02.enabled = true;
  		}
- 		if (this.machine.getVisualEngineDisplayType() == EnumsVM.VisualDisplaySymbol.SYMBOL_WRENCH.getMetadata()+10)
+ 		
+ 		if (this.machine.getVisualEngineDisplayHead() == EnumsVM.EntityHead.CHICKEN.getMetadata())
  		{
- 			GuiVM.buttonTexture03.enabled = false;
+ 			GuiVM.buttonTexture11.enabled = false;
  		}
  		else
  		{
- 			GuiVM.buttonTexture03.enabled = true;
+ 			GuiVM.buttonTexture11.enabled = true;
  		}
- 		if (this.machine.getVisualEngineDisplayType() == EnumsVM.VisualDisplaySymbol.SYMBOL_KEY.getMetadata()+10)
+ 		if (this.machine.getVisualEngineDisplayHead() == EnumsVM.EntityHead.PIG.getMetadata())
  		{
- 			GuiVM.buttonTexture04.enabled = false;
- 		}
- 		else
- 		{
- 			GuiVM.buttonTexture04.enabled = true;
- 		}
- 		if (this.machine.getVisualEngineDisplayType() == EnumsVM.VisualDisplaySymbol.SYMBOL_PADLOCK.getMetadata()+10)
- 		{
- 			GuiVM.buttonTexture05.enabled = false;
+ 			GuiVM.buttonTexture12.enabled = false;
  		}
  		else
  		{
- 			GuiVM.buttonTexture05.enabled = true;
+ 			GuiVM.buttonTexture12.enabled = true;
  		}
- 		if (this.machine.getVisualEngineDisplayType() == EnumsVM.VisualDisplaySymbol.SYMBOL_BELL.getMetadata()+10)
+ 		if (this.machine.getVisualEngineDisplayHead() == EnumsVM.EntityHead.COW.getMetadata())
  		{
- 			GuiVM.buttonTexture06.enabled = false;
- 		}
- 		else
- 		{
- 			GuiVM.buttonTexture06.enabled = true;
- 		}
- 		if (this.machine.getVisualEngineDisplayType() == EnumsVM.VisualDisplaySymbol.SYMBOL_ANCHOR.getMetadata()+10)
- 		{
- 			GuiVM.buttonTexture07.enabled = false;
+ 			GuiVM.buttonTexture13.enabled = false;
  		}
  		else
  		{
- 			GuiVM.buttonTexture07.enabled = true;
+ 			GuiVM.buttonTexture13.enabled = true;
  		}
- 		if (this.machine.getVisualEngineDisplayType() == EnumsVM.VisualDisplaySymbol.SYMBOL_BARREL.getMetadata()+10)
+ 		
+ 		if (this.machine.getVisualEngineDisplayHead() == EnumsVM.EntityHead.ZOMBIE.getMetadata())
  		{
- 			GuiVM.buttonTexture08.enabled = false;
- 		}
- 		else
- 		{
- 			GuiVM.buttonTexture08.enabled = true;
- 		}
- 		if (this.machine.getVisualEngineDisplayType() == EnumsVM.VisualDisplaySymbol.SYMBOL_GEARS.getMetadata()+10)
- 		{
- 			GuiVM.buttonTexture09.enabled = false;
+ 			GuiVM.buttonTexture21.enabled = false;
  		}
  		else
  		{
- 			GuiVM.buttonTexture09.enabled = true;
+ 			GuiVM.buttonTexture21.enabled = true;
+ 		}
+ 		if (this.machine.getVisualEngineDisplayHead() == EnumsVM.EntityHead.SKELETON.getMetadata())
+ 		{
+ 			GuiVM.buttonTexture22.enabled = false;
+ 		}
+ 		else
+ 		{
+ 			GuiVM.buttonTexture22.enabled = true;
+ 		}
+ 		if (this.machine.getVisualEngineDisplayHead() == EnumsVM.EntityHead.SPIDER.getMetadata())
+ 		{
+ 			GuiVM.buttonTexture23.enabled = false;
+ 		}
+ 		else
+ 		{
+ 			GuiVM.buttonTexture23.enabled = true;
+ 		}
+ 		if (this.machine.getVisualEngineDisplayHead() == EnumsVM.EntityHead.CREEPER.getMetadata())
+ 		{
+ 			GuiVM.buttonTexture24.enabled = false;
+ 		}
+ 		else
+ 		{
+ 			GuiVM.buttonTexture24.enabled = true;
+ 		}
+ 		if (this.machine.getVisualEngineDisplayHead() == EnumsVM.EntityHead.WITHERSKELETON.getMetadata())
+ 		{
+ 			GuiVM.buttonTexture25.enabled = false;
+ 		}
+ 		else
+ 		{
+ 			GuiVM.buttonTexture25.enabled = true;
+ 		}
+ 		if (this.machine.getVisualEngineDisplayHead() == EnumsVM.EntityHead.DRAGON.getMetadata())
+ 		{
+ 			GuiVM.buttonTexture26.enabled = false;
+ 		}
+ 		else
+ 		{
+ 			GuiVM.buttonTexture26.enabled = true;
  		}
     }
 	
@@ -533,7 +552,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVM {
 		&& mouseY >= this.guiTop + yIn && mouseY <= this.guiTop + yIn + 13)
 		{
 			List<String> text = new ArrayList<String>();
-			text.add(TextFormatting.GREEN + "" + TextFormatting.BOLD + References.Old_I18n.translateToLocal(EnumsVM.VisualDisplaySymbol.byId(enumIn).getLocalizedName()));
+			text.add(TextFormatting.GREEN + "" + TextFormatting.BOLD + References.Old_I18n.translateToLocal(EnumsVM.EntityHead.byId(enumIn).getLocalizedName()));
 			
 			GlStateManager.pushMatrix();
 			{
@@ -551,15 +570,19 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1 extends GuiContainerVM {
 	/** Deals with visibility and enabled texture buttons. */
 	protected void mouseOverTooltipHandler(int mouseX, int mouseY) 
 	{
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 0) * 1), 102-7, EnumsVM.VisualDisplaySymbol.SYMBOL_LOGOFORGE.getMetadata());
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 1) * 1), 102-7, EnumsVM.VisualDisplaySymbol.SYMBOL_COINSTACK.getMetadata());
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 2) * 1), 102-7, EnumsVM.VisualDisplaySymbol.SYMBOL_SCROLL.getMetadata());
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 3) * 1), 102-7, EnumsVM.VisualDisplaySymbol.SYMBOL_WRENCH.getMetadata());
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 4) * 1), 102-7, EnumsVM.VisualDisplaySymbol.SYMBOL_KEY.getMetadata());
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 5) * 1), 102-7, EnumsVM.VisualDisplaySymbol.SYMBOL_PADLOCK.getMetadata());
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 6) * 1), 102-7, EnumsVM.VisualDisplaySymbol.SYMBOL_BELL.getMetadata());
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 7) * 1), 102-7, EnumsVM.VisualDisplaySymbol.SYMBOL_ANCHOR.getMetadata());
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 8) * 1), 102-7, EnumsVM.VisualDisplaySymbol.SYMBOL_BARREL.getMetadata());
-		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 9) * 1), 102-7, EnumsVM.VisualDisplaySymbol.SYMBOL_GEARS.getMetadata());
+		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 0) * 1), 102-7, EnumsVM.EntityHead.STEVE.getMetadata());
+		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 1) * 1), 102-7, EnumsVM.EntityHead.ALEX.getMetadata());
+		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 2) * 1), 102-7, EnumsVM.EntityHead.HEROBRINE.getMetadata());
+		
+		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 0) * 1), 102-7 +33, EnumsVM.EntityHead.CHICKEN.getMetadata());
+		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 1) * 1), 102-7 +33, EnumsVM.EntityHead.PIG.getMetadata());
+		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 2) * 1), 102-7 +33, EnumsVM.EntityHead.COW.getMetadata());
+
+		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 0) * 1), 102-7 +66, EnumsVM.EntityHead.ZOMBIE.getMetadata());
+		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 1) * 1), 102-7 +66, EnumsVM.EntityHead.SKELETON.getMetadata());
+		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 2) * 1), 102-7 +66, EnumsVM.EntityHead.SPIDER.getMetadata());
+		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 3) * 1), 102-7 +66, EnumsVM.EntityHead.CREEPER.getMetadata());
+		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 4) * 1), 102-7 +66, EnumsVM.EntityHead.WITHERSKELETON.getMetadata());
+		this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 5) * 1), 102-7 +66, EnumsVM.EntityHead.DRAGON.getMetadata());
 	}
 }

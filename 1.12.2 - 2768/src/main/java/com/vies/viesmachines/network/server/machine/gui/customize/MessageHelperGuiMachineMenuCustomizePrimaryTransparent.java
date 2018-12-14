@@ -32,7 +32,11 @@ public class MessageHelperGuiMachineMenuCustomizePrimaryTransparent extends Mess
 	{
 		EntityMachineBase machineIn = (EntityMachineBase) player.getRidingEntity();
 		
-		if (!machineIn.getVisualFrameTransparent()
+		if (player.isCreative())
+		{
+			machineIn.setVisualFrameTransparent(!machineIn.getVisualFrameTransparent());
+		}
+		else if (!machineIn.getVisualFrameTransparent()
 		&& machineIn.getEnergy() >= CostsVM.COST_FRAME_TRANSPARENCY)
 		{
 			machineIn.setVisualFrameTransparent(true);
@@ -41,8 +45,6 @@ public class MessageHelperGuiMachineMenuCustomizePrimaryTransparent extends Mess
 		else
 		{
 			machineIn.setVisualFrameTransparent(false);
-			//machineIn.setVisualFrameTransparent(!machineIn.getVisualFrameTransparent());
 		}
-		
 	}
 }

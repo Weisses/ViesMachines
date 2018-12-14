@@ -1,15 +1,10 @@
 package com.vies.viesmachines.network.server.machine.gui.customize.activemodels;
 
-import com.vies.viesmachines.api.CostsVM;
-import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.client.gui.machines.visual.GuiMachineMenuCustomizeActiveModels;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.packet.MessageBase;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
 
 public class MessageHelperGuiMachineMenuCustomizeActiveModelDefault extends MessageBase<MessageHelperGuiMachineMenuCustomizeActiveModelDefault> {
 	

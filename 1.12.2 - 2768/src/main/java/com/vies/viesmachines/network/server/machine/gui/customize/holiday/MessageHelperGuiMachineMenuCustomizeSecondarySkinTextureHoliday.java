@@ -1,7 +1,7 @@
 package com.vies.viesmachines.network.server.machine.gui.customize.holiday;
 
 import com.vies.viesmachines.api.CostsVM;
-import com.vies.viesmachines.client.gui.machines.visual.GuiMachineMenuCustomizeSecondarySkinTexture;
+import com.vies.viesmachines.client.gui.machines.customize.GuiMachineMenuCustomizeSecondarySkinTexture;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.packet.MessageBase;
 
@@ -48,10 +48,5 @@ public class MessageHelperGuiMachineMenuCustomizeSecondarySkinTextureHoliday ext
 			machineIn.setVisualComponentTexture(message.textureID);
 			machineIn.setEnergy(machineIn.getEnergy() - CostsVM.COST_COMPONENT_TEXTURE);
 		}
-		
-		
-		//machineIn.setVisualFrameTexture(intIn);.setVisualModelFrame(0);
-		//machineIn.setVisualModelEngine(0);
-		//machineIn.setVisualModelComponent(0);
 	}
 }

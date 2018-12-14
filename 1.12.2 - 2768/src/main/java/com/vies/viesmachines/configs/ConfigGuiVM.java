@@ -1,10 +1,9 @@
-package com.vies.viesmachines.client.gui;
+package com.vies.viesmachines.configs;
 
 import org.lwjgl.input.Keyboard;
 
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.api.util.Loghelper;
-import com.vies.viesmachines.configs.VMConfiguration;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;

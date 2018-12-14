@@ -1,4 +1,4 @@
-package com.vies.viesmachines.client.gui.machines.visual.display;
+package com.vies.viesmachines.client.gui.machines.customize.display;
 
 import java.awt.Color;
 import java.io.IOException;

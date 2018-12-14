@@ -838,4 +838,21 @@ public class GuiContainerVM extends GuiContainer {
         //GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         
     }
+    
+    public String whitespaceCentering(String main, String toadjust)
+    {
+    	String frontString = "";
+    	int a = main.toString().length();
+    	int b = toadjust.toString().length();
+    	int spacetoadd = ((a - b) / 2) + 1;
+    	
+    	
+    	for (int i = 0; i < spacetoadd; i++)
+    	{
+    		frontString = frontString + " ";
+    	}
+    	
+    	
+    	return frontString;
+    }
 }

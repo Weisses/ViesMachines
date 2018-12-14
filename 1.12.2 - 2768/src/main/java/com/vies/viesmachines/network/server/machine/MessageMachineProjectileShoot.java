@@ -1,16 +1,10 @@
 package com.vies.viesmachines.network.server.machine;
 
-import com.vies.viesmachines.api.CostsVM;
-import com.vies.viesmachines.api.util.Loghelper;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
-import com.vies.viesmachines.common.entity.particles.EntityBulletElectrical;
-import com.vies.viesmachines.common.entity.particles.EntityBulletExplosive;
-import com.vies.viesmachines.common.entity.particles.EntityBulletNormal;
 import com.vies.viesmachines.network.packet.MessageBase;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.math.MathHelper;
 
 public class MessageMachineProjectileShoot extends MessageBase<MessageMachineProjectileShoot> {
 	

@@ -1,6 +1,6 @@
 package com.vies.viesmachines.network.server.machine.gui.customize.holiday;
 
-import com.vies.viesmachines.client.gui.machines.visual.holiday.GuiMachineMenuCustomizePrimarySkinTextureHoliday;
+import com.vies.viesmachines.client.gui.machines.customize.holiday.GuiMachineMenuCustomizePrimarySkinTextureHoliday;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.packet.MessageBase;
 

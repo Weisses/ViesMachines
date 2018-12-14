@@ -5,7 +5,6 @@ import java.util.Set;
 
 import com.vies.viesmachines.api.ItemsVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.common.items.ItemGenericSymbol;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -17,35 +16,18 @@ import net.minecraftforge.registries.IForgeRegistry;
 @ObjectHolder(References.MOD_ID)
 public class InitItemsVM extends ItemsVM {
 	
-	public static void registerItemTEMP()
-	{
-		//========================
-		//    To be deleted
-		//========================
-		
-		
-		
-	}
-	
 	@Mod.EventBusSubscriber(modid = References.MOD_ID)
 	public static class RegistrationHandler 
 	{
 		public static final Set<Item> ITEMS = new HashSet<>();
 		
-		/**
-		 * Register this mod's {@link Item}s.
-		 *
-		 * @param event The event
-		 */
+		/** Register this mod's {@link Item}s. */
 		@SubscribeEvent
 		public static void registerItems(final RegistryEvent.Register<Item> event) 
 		{
-			final Item[] items = {
-					//GUIDEBOOK,
-					//ADAPTIVE_CIRCUIT,
-					//ENERGIZED_CORE,
-					
- 					XEGONITE,
+			final Item[] items = 
+			{
+					XEGONITE,
 					MACHINE_PELLETS,
 					MACHINE_AMMO,
 					
@@ -153,35 +135,6 @@ public class InitItemsVM extends ItemsVM {
 					PARTICLE_BULLET_EXPLOSIVE,
 					
 					PARTICLE_STATIC_CHARGE,
-					
-					/**
-					
-					
-					AIRSHIP_IGNITION,
-					AIRSHIP_FRAME,
-					AIRSHIP_ENGINE,
-					AIRSHIP_BALLOON,
-					
-					UPGRADE_CORE,
-					UPGRADE_FRAME,
-					UPGRADE_ENGINE,
-					UPGRADE_BALLOON,
-					
-					BOMB,
-					
-					MODULE_TYPE,
-					MODULE_CREATIVE,
-					
-					MACHINE_REPAIR_TOOL,
-					
-					ITEM_AIRSHIP,
-					ITEM_AIRSHIP_CREATIVE,
-					
-					ACHIEVEMENT_AIRSHIP,
-					ITEM_ENTITY_AIRSHIP,
-					
-					ITEM_DISPLAY_SYMBOL*/
-					//================================
 			};
 
 			final IForgeRegistry<Item> registry = event.getRegistry();

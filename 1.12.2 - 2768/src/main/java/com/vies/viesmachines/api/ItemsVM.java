@@ -89,10 +89,7 @@ public class ItemsVM {
 	public static final Item XEGONITE_LAVA = new ItemGeneric("item_xegonite_lava", EnumRarity.COMMON);
 	public static final Item XEGONITE_ENDER = new ItemGeneric("item_xegonite_ender", EnumRarity.COMMON);
 	
-	
-	
 	public static final Item KIT_RAW = new ItemGeneric("kits/item_kit_raw", EnumRarity.COMMON);
-	
 	public static final Item KIT_UPGRADE_MAX = new ItemKitAdmin("kits/item_admin_upgrade_max", EnumRarity.EPIC, 0);
 	public static final Item KIT_MACHINE_MAX = new ItemKitAdmin("kits/item_admin_machine_max", EnumRarity.EPIC, 1);
 	
@@ -116,6 +113,41 @@ public class ItemsVM {
 	public static final Item SYMBOL_BARREL = new ItemGenericSymbol("symbols/item_symbol_barrel");
 	public static final Item SYMBOL_GEARS = new ItemGenericSymbol("symbols/item_symbol_gears");
 	
+	// Elemental:
+	public static final Item SYMBOL_ELEMENTAL_EARTH = new ItemGenericSymbol("symbols/item_symbol_elemental_earth");
+	public static final Item SYMBOL_ELEMENTAL_WIND = new ItemGenericSymbol("symbols/item_symbol_elemental_wind");
+	public static final Item SYMBOL_ELEMENTAL_WATER = new ItemGenericSymbol("symbols/item_symbol_elemental_water");
+	public static final Item SYMBOL_ELEMENTAL_FIRE = new ItemGenericSymbol("symbols/item_symbol_elemental_fire");
+	public static final Item SYMBOL_ELEMENTAL_NATURE = new ItemGenericSymbol("symbols/item_symbol_elemental_nature");
+	public static final Item SYMBOL_ELEMENTAL_LIGHTNING = new ItemGenericSymbol("symbols/item_symbol_elemental_lightning");
+	public static final Item SYMBOL_ELEMENTAL_ICE = new ItemGenericSymbol("symbols/item_symbol_elemental_ice");
+	public static final Item SYMBOL_ELEMENTAL_LIFE = new ItemGenericSymbol("symbols/item_symbol_elemental_life");
+	public static final Item SYMBOL_ELEMENTAL_DEATH = new ItemGenericSymbol("symbols/item_symbol_elemental_death");
+	public static final Item SYMBOL_ELEMENTAL_VOID = new ItemGenericSymbol("symbols/item_symbol_elemental_void");
+	
+	// Animal:
+	public static final Item SYMBOL_ANIMAL_DOG = new ItemGenericSymbol("symbols/item_symbol_animal_dog");
+	public static final Item SYMBOL_ANIMAL_CAT = new ItemGenericSymbol("symbols/item_symbol_animal_cat");
+	public static final Item SYMBOL_ANIMAL_FOX = new ItemGenericSymbol("symbols/item_symbol_animal_fox");
+	public static final Item SYMBOL_ANIMAL_OWL = new ItemGenericSymbol("symbols/item_symbol_animal_owl");
+	public static final Item SYMBOL_ANIMAL_BEAR = new ItemGenericSymbol("symbols/item_symbol_animal_bear");
+	public static final Item SYMBOL_ANIMAL_LION = new ItemGenericSymbol("symbols/item_symbol_animal_lion");
+	public static final Item SYMBOL_ANIMAL_WOLF = new ItemGenericSymbol("symbols/item_symbol_animal_wolf");
+	public static final Item SYMBOL_ANIMAL_FISH = new ItemGenericSymbol("symbols/item_symbol_animal_fish");
+	public static final Item SYMBOL_ANIMAL_SHARK = new ItemGenericSymbol("symbols/item_symbol_animal_shark");
+	public static final Item SYMBOL_ANIMAL_OCTOPUS = new ItemGenericSymbol("symbols/item_symbol_animal_octopus");
+	
+	// Mythical creature:
+	//Griffin
+	//chimera
+	//minotaur
+	//jackalope
+	//basilisk
+	//public static final Item SYMBOL_MYTHICAL_Pegasis = new ItemGenericSymbol("symbols/item_symbol_mythical_phoenix");
+	//public static final Item SYMBOL_MYTHICAL_UNICORN = new ItemGenericSymbol("symbols/item_symbol_mythical_phoenix");
+	//public static final Item SYMBOL_MYTHICAL_CERBERUS = new ItemGenericSymbol("symbols/item_symbol_mythical_phoenix");
+	//public static final Item SYMBOL_MYTHICAL_PHOENIX = new ItemGenericSymbol("symbols/item_symbol_mythical_phoenix");
+	//public static final Item SYMBOL_MYTHICAL_DRAGON = new ItemGenericSymbol("symbols/item_symbol_mythical_dragon");
 	
 	
 	// Holidays:
@@ -149,13 +181,6 @@ public class ItemsVM {
 	
 	//Unused
 	//public static final Item GUIDEBOOK = new ItemGuidebook();
-	//public static final Item CHARGED_SHARDS = new ItemGeneric("item_charged_shards", EnumRarity.COMMON);
-	//public static final Item ADAPTIVE_CIRCUIT = new ItemGeneric("item_adaptive_circuit", EnumRarity.COMMON);
-	//public static final Item ENERGIZED_CORE = new ItemGeneric("item_energized_core", EnumRarity.UNCOMMON);
-	//public static final Item POWDER_ENERGETIC = new ItemGeneric("item_powder_energetic", EnumRarity.COMMON);
-	//public static final Item KIT_RAW = new ItemGeneric("item_kit_raw", EnumRarity.COMMON);
-	//public static final Item TOOL_REPAIRING = new ItemToolRepairing();
-	//public static final Item TOOL_COMPRESSING = new ItemToolCompressing();
 	//public static final Item TOOL_UNIVERSAL = new ItemToolRepairing();
 	
 	/*                              Display banner ideas:
@@ -163,32 +188,8 @@ public class ItemsVM {
 	//public static final Item SYMBOL_LOGOVIESMACHINES = new ItemGenericSymbol("symbols/item_symbol_logoviesmachines");
 	//public static final Item SYMBOL_LOGOMINECRAFT = new ItemGenericSymbol("symbols/item_symbol_logominecraft");
 	
-	DOG(9, "animal_dog", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.9")),
-	CAT(10, "animal_cat", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.10")),
-	FOX(11, "animal_squirrel", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.11")),
-	BEAR(12, "animal_bear", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.12")),
-	LION(13, "animal_lion", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.13")),
-    WOLF(14, "animal_fox", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.14")),
-    SHARK(15, "animal_wolf", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.15")),
-	FISH(9, "animal_dog", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.9")),
-	OCTOPUS(9, "animal_dog", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.9")),
-	PHOENIX(16, "animal_phoenix", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.16")),
-    DRAGON(17, "animal_dragon", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.17"));
-	
-	
-	EARTH(18, "element_earth", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.18")),
-    WIND(19, "element_wind", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.19")),
-    WATER(20, "element_water", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.20")),
-    FIRE(21, "element_fire", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.21")),
-    NATURE(22, "element_nature", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.22")),
-    LIGHTNING(23, "element_lightning", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.23")),
-    ICE(24, "element_ice", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.24")),
-    POISON(25, "element_poison", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.25")),
+	POISON(25, "element_poison", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.25")),
     ARCANE(26, "element_arcane", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.26")),
-    VOID(27, "element_void", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.27")),
-    HOLY(28, "element_holy", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.28")),
-    UNHOLY(29, "element_unholy", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.29")),
-    
     
     
     SHIELD(7, "lava", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.0")),
@@ -196,8 +197,6 @@ public class ItemsVM {
     FIST(7, "lava", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.0")),
     SUN(7, "lava", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.0")),
     MOON(7, "lava", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.0")),
-    
-    
     
     CELTIC(7, "lava", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.0")),
     YGGDRASIL(7, "lava", References.Old_I18n.translateToLocalFormatted("vc.enum.displaysymbol.0")),

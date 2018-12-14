@@ -6,7 +6,6 @@ import java.io.IOException;
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.ItemsVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.api.util.Loghelper;
 import com.vies.viesmachines.client.gui.GuiContainerVM;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VM;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VM;
@@ -31,14 +30,12 @@ import com.vies.viesmachines.network.server.machine.gui.main.song.select.Message
 import com.vies.viesmachines.network.server.machine.gui.navigation.MessageGuiMachineMenuMain;
 import com.vies.viesmachines.proxy.ClientProxy;
 
-import mezz.jei.startup.ForgeModIdHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModContainer;
 

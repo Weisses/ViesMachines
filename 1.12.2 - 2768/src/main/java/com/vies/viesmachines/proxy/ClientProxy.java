@@ -17,9 +17,6 @@ public class ClientProxy extends CommonProxy {
 	{
 		super.preInit(event);
 		
-		// Allows the loading of .obj files:
-		//OBJLoader.INSTANCE.addDomain(References.MOD_ID.toLowerCase());
-		
 		InitEntityVMRender.registerEntityRender();
 		InitTileEntityVMRender.registerTileEntityRender();
 		

@@ -22,20 +22,19 @@ public final class InitItemsVMRender extends ItemsVM {
 	
 	public static final InitItemsVMRender INSTANCE = new InitItemsVMRender();
 	
-	/**
-	 * Register this mod's {@link Fluid}, {@link Block} and {@link Item} models.
-	 *
-	 * @param event The event
-	 */
+	
+	
+	/** The {@link Item}s that have had models registered so far. */
+	private final Set<Item> itemsRegistered = new HashSet<>();
+	
+	
+	/** Register this mod's {@link Fluid}, {@link Block} and {@link Item} models. */
 	@SubscribeEvent
 	public static void registerAllModels(final ModelRegistryEvent event) 
 	{
 		INSTANCE.registerItemRender();
 	}
 
-	/** The {@link Item}s that have had models registered so far. */
-	private final Set<Item> itemsRegistered = new HashSet<>();
-	
 	private void registerItemRender()
 	{
 		InitItemsVM.RegistrationHandler.ITEMS.stream().filter(item -> !itemsRegistered.contains(item)).forEach(this::registerRender);

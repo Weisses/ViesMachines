@@ -1,4 +1,4 @@
-package com.vies.viesmachines.client.gui.machines.visual;
+package com.vies.viesmachines.client.gui.machines.customize;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -21,9 +21,9 @@ import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VM;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.entity.machines.containers.ContainerMachineNoSlots;
 import com.vies.viesmachines.network.NetworkHandler;
-import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeSecondarySkinTextureHoliday;
-import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeSecondarySkinTextureHolidayCreative;
-import com.vies.viesmachines.network.server.machine.gui.customize.secondaryskin.MessageHelperGuiMachineMenuCustomizeSecondarySkinTexture;
+import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizePrimarySkinTextureHoliday;
+import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizePrimarySkinTextureHolidayCreative;
+import com.vies.viesmachines.network.server.machine.gui.customize.primaryskin.MessageHelperGuiMachineMenuCustomizePrimarySkinTexture;
 import com.vies.viesmachines.network.server.machine.gui.navigation.MessageGuiMachineMenuCustomize;
 
 import net.minecraft.client.Minecraft;
@@ -35,16 +35,16 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM {
+public class GuiMachineMenuCustomizePrimarySkinTexture extends GuiContainerVM {
 	
 	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize_texture.png");
 	private final ResourceLocation ICON_TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize_display_holiday_icons.png");
 	
-	public GuiMachineMenuCustomizeSecondarySkinTexture(IInventory playerInv, EntityMachineBase airshipIn)
+	public GuiMachineMenuCustomizePrimarySkinTexture(IInventory playerInv, EntityMachineBase airshipIn)
 	{
 		super(new ContainerMachineNoSlots(playerInv, airshipIn), playerInv, airshipIn);
 		
-		this.machineTexture = this.machine.getVisualComponentTexture();
+		this.machineTexture = this.machine.getVisualFrameTexture();
 		this.modelRotationHorizontal = 160;
 		this.modelRidingEntity = false;
 	}
@@ -269,7 +269,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		// Apply:
 		if (parButton.id == 21)
 		{
-			NetworkHandler.sendToServer(new MessageHelperGuiMachineMenuCustomizeSecondarySkinTexture());
+			NetworkHandler.sendToServer(new MessageHelperGuiMachineMenuCustomizePrimarySkinTexture());
 		}
 		
 		// Back:
@@ -288,12 +288,12 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		// Holiday Normal:
 		if (parButton.id == 1111)
 	    {
-			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeSecondarySkinTextureHoliday());
+			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizePrimarySkinTextureHoliday());
 	    }
 		// Holiday Creative:
 		if (parButton.id == 1101)
 	    {
-			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeSecondarySkinTextureHolidayCreative());
+			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizePrimarySkinTextureHolidayCreative());
 	    }
 		
         this.buttonList.clear();
@@ -310,13 +310,13 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		this.drawRect(this.guiLeft +8, this.guiTop + 6, this.guiLeft +168, this.guiTop + 64, Color.GRAY.getRGB());
 		
 		// Current texture:
-		if (this.machine.getVisualComponentTexture() < 1000)
+		if (this.machine.getVisualFrameTexture() < 1000)
 		{
 			GlStateManager.pushMatrix();
 			{
 				GlStateManager.translate(55, 43, 0);
 				
-				this.drawStillItemStack(EnumsVM.VisualMachineTexture.byId(this.machine.getVisualComponentTexture()).getBlock(), this.guiLeft , this.guiTop);
+				this.drawStillItemStack(EnumsVM.VisualMachineTexture.byId(this.machine.getVisualFrameTexture()).getBlock(), this.guiLeft , this.guiTop);
 			}
 			GlStateManager.popMatrix();
 		}
@@ -336,7 +336,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		
 		// Current Texture:
-		if (this.machine.getVisualComponentTexture() >= 1000)
+		if (this.machine.getVisualFrameTexture() >= 1000)
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -352,35 +352,35 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 				// Christmas:
 				if(References.isDateAroundChristmas(Calendar.getInstance()))
 				{
-					if (this.machine.getVisualComponentTexture() == 1060)
+					if (this.machine.getVisualFrameTexture() == 1060)
 					{
 						this.drawTexturedModalRect((56 * 0), 0, (32 * 0), 0, 32, 32);
 					}
-					if (this.machine.getVisualComponentTexture() == 1061)
+					if (this.machine.getVisualFrameTexture() == 1061)
 					{
 						this.drawTexturedModalRect((56 * 0), 0, (32 * 1), 0, 32, 32);
 					}
-					if (this.machine.getVisualComponentTexture() == 1062)
+					if (this.machine.getVisualFrameTexture() == 1062)
 					{
 						this.drawTexturedModalRect((56 * 0), 0, (32 * 2), 0, 32, 32);
 					}
-					if (this.machine.getVisualComponentTexture() == 1063)
+					if (this.machine.getVisualFrameTexture() == 1063)
 					{
 						this.drawTexturedModalRect((56 * 0), 0, (32 * 3), 0, 32, 32);
 					}
-					if (this.machine.getVisualComponentTexture() == 1064)
+					if (this.machine.getVisualFrameTexture() == 1064)
 					{
 						this.drawTexturedModalRect((56 * 0), 0, (32 * 4), 0, 32, 32);
 					}
-					if (this.machine.getVisualComponentTexture() == 1065)
+					if (this.machine.getVisualFrameTexture() == 1065)
 					{
 						this.drawTexturedModalRect((56 * 0), 0, (32 * 5), 0, 32, 32);
 					}
-					if (this.machine.getVisualComponentTexture() == 1066)
+					if (this.machine.getVisualFrameTexture() == 1066)
 					{
 						this.drawTexturedModalRect((56 * 0), 0, (32 * 6), 0, 32, 32);
 					}
-					if (this.machine.getVisualComponentTexture() == 1067)
+					if (this.machine.getVisualFrameTexture() == 1067)
 					{
 						this.drawTexturedModalRect((56 * 0), 0, (32 * 7), 0, 32, 32);
 					}
@@ -389,13 +389,13 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 			GlStateManager.popMatrix();
 		}
 		
-		// 'Secondary Texture':
+		// 'Primary Texture':
 		GlStateManager.pushMatrix();
 		{
 			GlStateManager.translate(55.5, 11, 0);
 	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
 	        
-	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.secondarycolor.secondarytexture.0"), 0, 0, Color.BLACK.getRGB());
+	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.customize.primarycolor.primarytexture.0"), 0, 0, Color.BLACK.getRGB());
 		}
 		GlStateManager.popMatrix();
 		
@@ -438,7 +438,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		GlStateManager.popMatrix();
 		
 		// Renders the Tier 1 row blocks over buttons:
-		if (this.machine.getTierComponent() >= 1)
+		if (this.machine.getTierFrame() >= 1)
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -476,19 +476,19 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		        this.centeredString(fontRenderer, TextFormatting.BOLD + References.localNameVC("viesmachines.main.requires") + ":", 0, 0, Color.RED.getRGB());
 			}
 			GlStateManager.popMatrix();
-			// 'Component Tier Item':
+			// 'Frame Tier Item':
 			GlStateManager.pushMatrix();
 			{
 				GlStateManager.translate(55.5, 118, 0);
 		        GlStateManager.scale(0.5F, 0.5F, 0.5F);
 		        
-		        this.centeredString(fontRenderer, References.localNameVC(ItemsVM.UPGRADE_COMPONENT_TIER1.getUnlocalizedName() + ".name"), 0, 8, Color.YELLOW.getRGB());
+		        this.centeredString(fontRenderer, References.localNameVC(ItemsVM.UPGRADE_FRAME_TIER1.getUnlocalizedName() + ".name"), 0, 8, Color.YELLOW.getRGB());
 			}
 			GlStateManager.popMatrix();
 		}
 		
 		// Renders the Tier 2 row blocks over buttons:
-		if (this.machine.getTierComponent() >= 2)
+		if (this.machine.getTierFrame() >= 2)
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -526,19 +526,19 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		        this.centeredString(fontRenderer, TextFormatting.BOLD + References.localNameVC("viesmachines.main.requires") + ":", 0, 0, Color.RED.getRGB());
 			}
 			GlStateManager.popMatrix();
-			// 'Component Tier Item':
+			// 'Frame Tier Item':
 			GlStateManager.pushMatrix();
 			{
 				GlStateManager.translate(55.5, 118+30, 0);
 		        GlStateManager.scale(0.5F, 0.5F, 0.5F);
 		        
-		        this.centeredString(fontRenderer, References.localNameVC(ItemsVM.UPGRADE_COMPONENT_TIER2.getUnlocalizedName() + ".name"), 0, 8, Color.CYAN.getRGB());
+		        this.centeredString(fontRenderer, References.localNameVC(ItemsVM.UPGRADE_FRAME_TIER2.getUnlocalizedName() + ".name"), 0, 8, Color.CYAN.getRGB());
 			}
 			GlStateManager.popMatrix();
 		}
 		
 		// Renders the Tier 3 row blocks over buttons:
-		if (this.machine.getTierComponent() >= 3)
+		if (this.machine.getTierFrame() >= 3)
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -576,13 +576,13 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		        this.centeredString(fontRenderer, TextFormatting.BOLD + References.localNameVC("viesmachines.main.requires") + ":", 0, 0, Color.RED.getRGB());
 			}
 			GlStateManager.popMatrix();
-			// 'Component Tier Item':
+			// 'Frame Tier Item':
 			GlStateManager.pushMatrix();
 			{
 				GlStateManager.translate(55.5, 118+60, 0);
 		        GlStateManager.scale(0.5F, 0.5F, 0.5F);
 		        
-		        this.centeredString(fontRenderer, References.localNameVC(ItemsVM.UPGRADE_COMPONENT_TIER3.getUnlocalizedName() + ".name"), 0, 8, Color.MAGENTA.getRGB());
+		        this.centeredString(fontRenderer, References.localNameVC(ItemsVM.UPGRADE_FRAME_TIER3.getUnlocalizedName() + ".name"), 0, 8, Color.MAGENTA.getRGB());
 			}
 			GlStateManager.popMatrix();
 		}
@@ -745,7 +745,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 					text.add(TextFormatting.GREEN + References.localNameVC("viesmachines.gui.tt.customize.color.cost.5"));
 				}
         		else if (this.machineTexture == 0
-        		&& this.machineTexture != this.machine.getVisualComponentTexture())
+        		&& this.machineTexture != this.machine.getVisualFrameTexture())
 				{
         			text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.color.cost.3"));
 				}
@@ -789,7 +789,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
     	{
     		EntityPlayer player = (EntityPlayer) this.machine.getControllingPassenger();
     		
-    		if (this.machineTexture == this.machine.getVisualComponentTexture())
+    		if (this.machineTexture == this.machine.getVisualFrameTexture())
     		{
     			GuiVM.buttonApply.enabled = false;
     		}
@@ -874,7 +874,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 	protected void buttonHandler()
 	{
 		// Tier 1:
-		if (this.machine.getTierComponent() >= 1)
+		if (this.machine.getTierFrame() >= 1)
 		{
 			GuiVM.buttonTexture05.visible = true;
 			GuiVM.buttonTexture06.visible = true;
@@ -912,7 +912,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		}
 		
 		// Tier 2:
-		if (this.machine.getTierComponent() >= 2)
+		if (this.machine.getTierFrame() >= 2)
 		{
 			GuiVM.buttonTexture19.visible = true;
 			GuiVM.buttonTexture20.visible = true;
@@ -950,7 +950,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		}
 		
 		// Tier 3:
-		if (this.machine.getTierComponent() >= 3)
+		if (this.machine.getTierFrame() >= 3)
 		{
 			GuiVM.buttonTexture33.visible = true;
 			GuiVM.buttonTexture34.visible = true;
@@ -989,7 +989,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		
 		//==================================================
 		
-		if(this.machine.getVisualComponentTexture() == 0)
+		if(this.machine.getVisualFrameTexture() == 0)
 		{
 			GuiVM.buttonTexture00.enabled = false;
 		}
@@ -997,7 +997,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture00.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 1)
+		if(this.machine.getVisualFrameTexture() == 1)
 		{
 			GuiVM.buttonTexture01.enabled = false;
 		}
@@ -1005,7 +1005,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture01.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 2)
+		if(this.machine.getVisualFrameTexture() == 2)
 		{
 			GuiVM.buttonTexture02.enabled = false;
 		}
@@ -1013,7 +1013,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture02.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 3)
+		if(this.machine.getVisualFrameTexture() == 3)
 		{
 			GuiVM.buttonTexture03.enabled = false;
 		}
@@ -1021,7 +1021,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture03.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 4)
+		if(this.machine.getVisualFrameTexture() == 4)
 		{
 			GuiVM.buttonTexture04.enabled = false;
 		}
@@ -1032,7 +1032,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		
 		//--------------------------------------------------
 		
-		if(this.machine.getVisualComponentTexture() == 5)
+		if(this.machine.getVisualFrameTexture() == 5)
 		{
 			GuiVM.buttonTexture05.enabled = false;
 		}
@@ -1040,7 +1040,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture05.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 6)
+		if(this.machine.getVisualFrameTexture() == 6)
 		{
 			GuiVM.buttonTexture06.enabled = false;
 		}
@@ -1048,7 +1048,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture06.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 7)
+		if(this.machine.getVisualFrameTexture() == 7)
 		{
 			GuiVM.buttonTexture07.enabled = false;
 		}
@@ -1056,7 +1056,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture07.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 8)
+		if(this.machine.getVisualFrameTexture() == 8)
 		{
 			GuiVM.buttonTexture08.enabled = false;
 		}
@@ -1064,7 +1064,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture08.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 9)
+		if(this.machine.getVisualFrameTexture() == 9)
 		{
 			GuiVM.buttonTexture09.enabled = false;
 		}
@@ -1072,7 +1072,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture09.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 10)
+		if(this.machine.getVisualFrameTexture() == 10)
 		{
 			GuiVM.buttonTexture10.enabled = false;
 		}
@@ -1080,7 +1080,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture10.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 11)
+		if(this.machine.getVisualFrameTexture() == 11)
 		{
 			GuiVM.buttonTexture11.enabled = false;
 		}
@@ -1089,7 +1089,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 			GuiVM.buttonTexture11.enabled = true;
 		}
 		
-		if(this.machine.getVisualComponentTexture() == 12)
+		if(this.machine.getVisualFrameTexture() == 12)
 		{
 			GuiVM.buttonTexture12.enabled = false;
 		}
@@ -1097,7 +1097,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture12.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 13)
+		if(this.machine.getVisualFrameTexture() == 13)
 		{
 			GuiVM.buttonTexture13.enabled = false;
 		}
@@ -1105,7 +1105,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture13.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 14)
+		if(this.machine.getVisualFrameTexture() == 14)
 		{
 			GuiVM.buttonTexture14.enabled = false;
 		}
@@ -1113,7 +1113,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture14.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 15)
+		if(this.machine.getVisualFrameTexture() == 15)
 		{
 			GuiVM.buttonTexture15.enabled = false;
 		}
@@ -1121,7 +1121,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture15.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 16)
+		if(this.machine.getVisualFrameTexture() == 16)
 		{
 			GuiVM.buttonTexture16.enabled = false;
 		}
@@ -1129,7 +1129,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture16.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 17)
+		if(this.machine.getVisualFrameTexture() == 17)
 		{
 			GuiVM.buttonTexture17.enabled = false;
 		}
@@ -1137,7 +1137,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture17.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 18)
+		if(this.machine.getVisualFrameTexture() == 18)
 		{
 			GuiVM.buttonTexture18.enabled = false;
 		}
@@ -1148,7 +1148,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		
 		//--------------------------------------------------
 		
-		if(this.machine.getVisualComponentTexture() == 19)
+		if(this.machine.getVisualFrameTexture() == 19)
 		{
 			GuiVM.buttonTexture19.enabled = false;
 		}
@@ -1156,7 +1156,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture19.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 20)
+		if(this.machine.getVisualFrameTexture() == 20)
 		{
 			GuiVM.buttonTexture20.enabled = false;
 		}
@@ -1164,7 +1164,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture20.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 21)
+		if(this.machine.getVisualFrameTexture() == 21)
 		{
 			GuiVM.buttonTexture21.enabled = false;
 		}
@@ -1172,7 +1172,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture21.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 22)
+		if(this.machine.getVisualFrameTexture() == 22)
 		{
 			GuiVM.buttonTexture22.enabled = false;
 		}
@@ -1180,7 +1180,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture22.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 23)
+		if(this.machine.getVisualFrameTexture() == 23)
 		{
 			GuiVM.buttonTexture23.enabled = false;
 		}
@@ -1188,7 +1188,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture23.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 24)
+		if(this.machine.getVisualFrameTexture() == 24)
 		{
 			GuiVM.buttonTexture24.enabled = false;
 		}
@@ -1196,7 +1196,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture24.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 25)
+		if(this.machine.getVisualFrameTexture() == 25)
 		{
 			GuiVM.buttonTexture25.enabled = false;
 		}
@@ -1205,7 +1205,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 			GuiVM.buttonTexture25.enabled = true;
 		}
 		
-		if(this.machine.getVisualComponentTexture() == 26)
+		if(this.machine.getVisualFrameTexture() == 26)
 		{
 			GuiVM.buttonTexture26.enabled = false;
 		}
@@ -1213,7 +1213,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture26.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 27)
+		if(this.machine.getVisualFrameTexture() == 27)
 		{
 			GuiVM.buttonTexture27.enabled = false;
 		}
@@ -1221,7 +1221,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture27.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 28)
+		if(this.machine.getVisualFrameTexture() == 28)
 		{
 			GuiVM.buttonTexture28.enabled = false;
 		}
@@ -1229,7 +1229,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture28.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 29)
+		if(this.machine.getVisualFrameTexture() == 29)
 		{
 			GuiVM.buttonTexture29.enabled = false;
 		}
@@ -1237,7 +1237,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture29.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 30)
+		if(this.machine.getVisualFrameTexture() == 30)
 		{
 			GuiVM.buttonTexture30.enabled = false;
 		}
@@ -1245,7 +1245,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture30.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 31)
+		if(this.machine.getVisualFrameTexture() == 31)
 		{
 			GuiVM.buttonTexture31.enabled = false;
 		}
@@ -1253,7 +1253,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture31.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 32)
+		if(this.machine.getVisualFrameTexture() == 32)
 		{
 			GuiVM.buttonTexture32.enabled = false;
 		}
@@ -1264,7 +1264,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		
 		//--------------------------------------------------
 		
-		if(this.machine.getVisualComponentTexture() == 33)
+		if(this.machine.getVisualFrameTexture() == 33)
 		{
 			GuiVM.buttonTexture33.enabled = false;
 		}
@@ -1272,7 +1272,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture33.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 34)
+		if(this.machine.getVisualFrameTexture() == 34)
 		{
 			GuiVM.buttonTexture34.enabled = false;
 		}
@@ -1280,7 +1280,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture34.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 35)
+		if(this.machine.getVisualFrameTexture() == 35)
 		{
 			GuiVM.buttonTexture35.enabled = false;
 		}
@@ -1288,7 +1288,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture35.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 36)
+		if(this.machine.getVisualFrameTexture() == 36)
 		{
 			GuiVM.buttonTexture36.enabled = false;
 		}
@@ -1296,7 +1296,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture36.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 37)
+		if(this.machine.getVisualFrameTexture() == 37)
 		{
 			GuiVM.buttonTexture37.enabled = false;
 		}
@@ -1304,7 +1304,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture37.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 38)
+		if(this.machine.getVisualFrameTexture() == 38)
 		{
 			GuiVM.buttonTexture38.enabled = false;
 		}
@@ -1312,7 +1312,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture38.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 39)
+		if(this.machine.getVisualFrameTexture() == 39)
 		{
 			GuiVM.buttonTexture39.enabled = false;
 		}
@@ -1321,7 +1321,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 			GuiVM.buttonTexture39.enabled = true;
 		}
 		
-		if(this.machine.getVisualComponentTexture() == 40)
+		if(this.machine.getVisualFrameTexture() == 40)
 		{
 			GuiVM.buttonTexture40.enabled = false;
 		}
@@ -1329,7 +1329,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture40.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 41)
+		if(this.machine.getVisualFrameTexture() == 41)
 		{
 			GuiVM.buttonTexture41.enabled = false;
 		}
@@ -1337,7 +1337,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture41.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 42)
+		if(this.machine.getVisualFrameTexture() == 42)
 		{
 			GuiVM.buttonTexture42.enabled = false;
 		}
@@ -1345,7 +1345,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture42.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 43)
+		if(this.machine.getVisualFrameTexture() == 43)
 		{
 			GuiVM.buttonTexture43.enabled = false;
 		}
@@ -1353,7 +1353,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture43.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 44)
+		if(this.machine.getVisualFrameTexture() == 44)
 		{
 			GuiVM.buttonTexture44.enabled = false;
 		}
@@ -1361,7 +1361,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture44.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 45)
+		if(this.machine.getVisualFrameTexture() == 45)
 		{
 			GuiVM.buttonTexture45.enabled = false;
 		}
@@ -1369,7 +1369,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		{
 			GuiVM.buttonTexture45.enabled = true;
 		}
-		if(this.machine.getVisualComponentTexture() == 46)
+		if(this.machine.getVisualFrameTexture() == 46)
 		{
 			GuiVM.buttonTexture46.enabled = false;
 		}
@@ -1392,7 +1392,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		//--------------------------------------------------
 		
 		// Tier 1 Row:
-		if (this.machine.getTierComponent() >= 1)
+		if (this.machine.getTierFrame() >= 1)
 		{
 			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 106, EnumsVM.VisualMachineTexture.PLANK_OAK.getMetadata());
 			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 106, EnumsVM.VisualMachineTexture.PLANK_SPRUCE.getMetadata());
@@ -1414,7 +1414,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		//--------------------------------------------------
 		
 		// Tier 2 Row:
-		if (this.machine.getTierComponent() >= 2)
+		if (this.machine.getTierFrame() >= 2)
 		{
 			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 136, EnumsVM.VisualMachineTexture.ORE_QUARTZ.getMetadata());
 			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 136, EnumsVM.VisualMachineTexture.ORE_IRON.getMetadata());
@@ -1436,7 +1436,7 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 		//--------------------------------------------------
 		
 		// Tier 3 Row:
-		if (this.machine.getTierComponent() >= 3)
+		if (this.machine.getTierFrame() >= 3)
 		{
 			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 0), 166, EnumsVM.VisualMachineTexture.ICE.getMetadata());
 			this.mouseOverTooltipNames(mouseX, mouseY, 32-26 + (14 * 1), 166, EnumsVM.VisualMachineTexture.SLIME.getMetadata());
@@ -1459,12 +1459,12 @@ public class GuiMachineMenuCustomizeSecondarySkinTexture extends GuiContainerVM 
 	@Override
 	protected void drawEntityOnScreen(int posX, int posY, int horizontalIn, int scale, Entity entityIn, boolean ridingEntityIn)
     {
-		int oldTexture = this.machine.getVisualComponentTexture();
+		int oldTexture = this.machine.getVisualFrameTexture();
 		
-		this.machine.setVisualComponentTexture(this.machineTexture);
+		this.machine.setVisualFrameTexture(this.machineTexture);
 		
 		super.drawEntityOnScreen(posX, posY, horizontalIn, scale, entityIn, ridingEntityIn);
 		
-		this.machine.setVisualComponentTexture(oldTexture);
+		this.machine.setVisualFrameTexture(oldTexture);
     }
 }

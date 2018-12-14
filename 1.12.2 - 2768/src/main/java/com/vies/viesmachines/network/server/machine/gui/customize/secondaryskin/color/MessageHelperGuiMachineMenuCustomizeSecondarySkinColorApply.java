@@ -1,7 +1,7 @@
 package com.vies.viesmachines.network.server.machine.gui.customize.secondaryskin.color;
 
 import com.vies.viesmachines.api.CostsVM;
-import com.vies.viesmachines.client.gui.machines.visual.GuiMachineMenuCustomizeSecondarySkinColor;
+import com.vies.viesmachines.client.gui.machines.customize.GuiMachineMenuCustomizeSecondarySkinColor;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.packet.MessageBase;
 

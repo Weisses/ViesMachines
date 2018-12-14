@@ -1,7 +1,6 @@
 package com.vies.viesmachines.network.server.world;
 
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.packet.MessageBase;
 
 import io.netty.buffer.ByteBuf;

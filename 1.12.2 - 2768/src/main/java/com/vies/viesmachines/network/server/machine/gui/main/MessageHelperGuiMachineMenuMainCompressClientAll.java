@@ -1,9 +1,6 @@
 package com.vies.viesmachines.network.server.machine.gui.main;
 
 import com.vies.viesmachines.api.EnumsVM;
-import com.vies.viesmachines.api.util.Loghelper;
-import com.vies.viesmachines.client.gui.GuiContainerVM;
-import com.vies.viesmachines.client.gui.machines.main.GuiMachineMenuMain;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.packet.MessageBase;
 
@@ -32,9 +29,6 @@ public class MessageHelperGuiMachineMenuMainCompressClientAll extends MessageBas
 	public void handleClientSide(MessageHelperGuiMachineMenuMainCompressClientAll message, EntityPlayer player) 
 	{
 		message.machine = (EntityMachineBase) Minecraft.getMinecraft().world.getEntityByID(message.machineID);
-		
-		//LogHelper.info(message.machine);
-		
 		
 		message.machine.setEventTrigger(EnumsVM.EventTrigger.DESTRUCTION.getMetadata());
 		message.machine.isDead = true;

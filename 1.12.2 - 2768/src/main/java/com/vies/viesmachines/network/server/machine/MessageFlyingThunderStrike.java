@@ -1,15 +1,12 @@
 package com.vies.viesmachines.network.server.machine;
 
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
-import com.vies.viesmachines.network.NetworkHandler;
-import com.vies.viesmachines.network.client.machine.eventtrigger.MessageHelperEventTrigger04Client;
 import com.vies.viesmachines.network.packet.MessageBase;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 public class MessageFlyingThunderStrike extends MessageBase<MessageFlyingThunderStrike> implements IMessage {

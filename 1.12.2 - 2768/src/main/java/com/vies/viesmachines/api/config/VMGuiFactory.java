@@ -1,8 +1,8 @@
-package com.vies.viesmachines.api.gui;
+package com.vies.viesmachines.api.config;
 
 import java.util.Set;
 
-import com.vies.viesmachines.client.gui.ConfigGuiVM;
+import com.vies.viesmachines.configs.ConfigGuiVM;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -11,10 +11,7 @@ import net.minecraftforge.fml.client.IModGuiFactory;
 public class VMGuiFactory implements IModGuiFactory {
 
 	@Override
-	public void initialize(Minecraft minecraftInstance) 
-	{
-		
-	}
+	public void initialize(Minecraft minecraftInstance) {}
 
 	@Override
 	public boolean hasConfigGui() 

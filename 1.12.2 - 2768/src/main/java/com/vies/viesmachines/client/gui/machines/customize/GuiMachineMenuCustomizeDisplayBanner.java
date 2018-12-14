@@ -1,4 +1,4 @@
-package com.vies.viesmachines.client.gui.machines.visual;
+package com.vies.viesmachines.client.gui.machines.customize;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -12,7 +12,6 @@ import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.api.util.Keybinds;
-import com.vies.viesmachines.api.util.Loghelper;
 import com.vies.viesmachines.client.gui.GuiContainerVM;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VM;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VM;
@@ -28,7 +27,6 @@ import com.vies.viesmachines.network.server.machine.gui.customize.holiday.Messag
 import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageGuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative;
 import com.vies.viesmachines.network.server.machine.gui.navigation.MessageGuiMachineMenuCustomize;
 
-import mezz.jei.startup.ForgeModIdHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
@@ -37,9 +35,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.common.ForgeModContainer;
-import net.minecraftforge.fml.common.ModContainer;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class GuiMachineMenuCustomizeDisplayBanner extends GuiContainerVM {
 	

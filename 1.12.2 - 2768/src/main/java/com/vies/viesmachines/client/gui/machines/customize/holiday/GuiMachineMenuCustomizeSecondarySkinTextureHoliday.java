@@ -1,4 +1,4 @@
-package com.vies.viesmachines.client.gui.machines.visual.holiday;
+package com.vies.viesmachines.client.gui.machines.customize.holiday;
 
 import java.awt.Color;
 import java.io.IOException;

@@ -41,6 +41,7 @@ public class ViesMachines {
 		VMConfiguration.load(event);
 		
 		this.proxy.preInit(event);
+		
 		Loghelper.info("<<==============================>>");
 		Loghelper.info("        Pre-Init Complete.        ");
 		Loghelper.info("<<==============================>>");
@@ -50,6 +51,7 @@ public class ViesMachines {
 	public void init(FMLInitializationEvent event)
 	{
 		this.proxy.init(event);
+		
 		Loghelper.info("<<==============================>>");
 		Loghelper.info("          Init Complete.          ");
 		Loghelper.info("<<==============================>>");
@@ -59,6 +61,7 @@ public class ViesMachines {
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		this.proxy.postInit(event);
+		
 		Loghelper.info("<<==============================>>");
 		Loghelper.info("   Enforcing Brannigan's Law...   ");
 		Loghelper.info("<<==============================>>");

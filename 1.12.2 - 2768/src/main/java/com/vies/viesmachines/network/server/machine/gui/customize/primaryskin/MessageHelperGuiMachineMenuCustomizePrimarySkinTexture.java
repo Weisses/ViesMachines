@@ -1,7 +1,7 @@
 package com.vies.viesmachines.network.server.machine.gui.customize.primaryskin;
 
 import com.vies.viesmachines.api.CostsVM;
-import com.vies.viesmachines.client.gui.machines.visual.GuiMachineMenuCustomizePrimarySkinTexture;
+import com.vies.viesmachines.client.gui.machines.customize.GuiMachineMenuCustomizePrimarySkinTexture;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.packet.MessageBase;
 
@@ -48,10 +48,5 @@ public class MessageHelperGuiMachineMenuCustomizePrimarySkinTexture extends Mess
 			machineIn.setVisualFrameTexture(message.textureID);
 			machineIn.setEnergy(machineIn.getEnergy() - CostsVM.COST_FRAME_TEXTURE);
 		}
-		
-		
-		//machineIn.setVisualFrameTexture(intIn);.setVisualModelFrame(0);
-		//machineIn.setVisualModelEngine(0);
-		//machineIn.setVisualModelComponent(0);
 	}
 }

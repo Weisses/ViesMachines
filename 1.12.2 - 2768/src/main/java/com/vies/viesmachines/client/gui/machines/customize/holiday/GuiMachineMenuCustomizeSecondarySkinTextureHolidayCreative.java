@@ -1,9 +1,8 @@
-package com.vies.viesmachines.client.gui.machines.visual.holiday;
+package com.vies.viesmachines.client.gui.machines.customize.holiday;
 
 import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import org.lwjgl.input.Keyboard;
@@ -15,11 +14,12 @@ import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.api.util.Keybinds;
 import com.vies.viesmachines.client.gui.GuiContainerVM;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VM;
+import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VM;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.entity.machines.containers.ContainerMachineNoSlots;
 import com.vies.viesmachines.network.NetworkHandler;
-import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageHelperGuiMachineMenuCustomizePrimarySkinTextureHoliday;
-import com.vies.viesmachines.network.server.machine.gui.customize.primaryskin.MessageGuiMachineMenuCustomizePrimarySkinTexture;
+import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageHelperGuiMachineMenuCustomizeSecondarySkinTextureHoliday;
+import com.vies.viesmachines.network.server.machine.gui.customize.secondaryskin.MessageGuiMachineMenuCustomizeSecondarySkinTexture;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
@@ -28,16 +28,19 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContainerVM {
+public class GuiMachineMenuCustomizeSecondarySkinTextureHolidayCreative extends GuiContainerVM {
 	
 	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize_display_holiday.png");
 	private final ResourceLocation ICON_TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize_display_holiday_icons.png");
+	private int previewPart;
 	
-	public GuiMachineMenuCustomizePrimarySkinTextureHoliday(IInventory playerInv, EntityMachineBase airshipIn)
+	public GuiMachineMenuCustomizeSecondarySkinTextureHolidayCreative(IInventory playerInv, EntityMachineBase airshipIn)
 	{
 		super(new ContainerMachineNoSlots(playerInv, airshipIn), playerInv, airshipIn);
 		
-		this.machineTexture = this.machine.getVisualFrameTexture();
+		this.previewPart = 0;
+		
+		this.machineTexture = this.machine.getVisualComponentTexture();
 		this.modelRotationHorizontal = 160;
 		this.modelRidingEntity = false;
 	}
@@ -55,8 +58,6 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 		
 		//--------------------------------------------------
 		
-
-		
 		// New Years:
 		GuiVM.buttonTexture00 = new GuiButtonGeneral1VM(100, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		GuiVM.buttonTexture01 = new GuiButtonGeneral1VM(101, this.guiLeft + 32-14 + (14 * 2), this.guiTop + 102-7+33+33, 14, 14, "", 3);
@@ -66,8 +67,8 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 		GuiVM.buttonTexture05 = new GuiButtonGeneral1VM(105, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		GuiVM.buttonTexture06 = new GuiButtonGeneral1VM(106, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		GuiVM.buttonTexture07 = new GuiButtonGeneral1VM(107, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture08 = new GuiButtonGeneral1VM(108, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture09 = new GuiButtonGeneral1VM(109, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture08 = new GuiButtonGeneral1VC(108, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture09 = new GuiButtonGeneral1VC(109, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		
 		// Valentines Day:
 		GuiVM.buttonTexture10 = new GuiButtonGeneral1VM(110, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
@@ -78,8 +79,8 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 		GuiVM.buttonTexture15 = new GuiButtonGeneral1VM(115, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		GuiVM.buttonTexture16 = new GuiButtonGeneral1VM(116, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		GuiVM.buttonTexture17 = new GuiButtonGeneral1VM(117, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture18 = new GuiButtonGeneral1VM(118, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture19 = new GuiButtonGeneral1VM(119, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture18 = new GuiButtonGeneral1VC(118, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture19 = new GuiButtonGeneral1VC(119, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		
 		// Easter:
 		GuiVM.buttonTexture20 = new GuiButtonGeneral1VM(120, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
@@ -90,8 +91,8 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 		GuiVM.buttonTexture25 = new GuiButtonGeneral1VM(125, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		GuiVM.buttonTexture26 = new GuiButtonGeneral1VM(126, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		GuiVM.buttonTexture27 = new GuiButtonGeneral1VM(127, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture28 = new GuiButtonGeneral1VM(128, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture29 = new GuiButtonGeneral1VM(129, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture28 = new GuiButtonGeneral1VC(128, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture29 = new GuiButtonGeneral1VC(129, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		
 		// 4th of July:
 		GuiVM.buttonTexture30 = new GuiButtonGeneral1VM(130, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
@@ -102,8 +103,8 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 		GuiVM.buttonTexture35 = new GuiButtonGeneral1VM(135, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		GuiVM.buttonTexture36 = new GuiButtonGeneral1VM(136, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		GuiVM.buttonTexture37 = new GuiButtonGeneral1VM(137, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture38 = new GuiButtonGeneral1VM(138, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture39 = new GuiButtonGeneral1VM(139, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture38 = new GuiButtonGeneral1VC(138, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture39 = new GuiButtonGeneral1VC(139, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		
 		// Halloween:
 		GuiVM.buttonTexture40 = new GuiButtonGeneral1VM(140, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
@@ -114,8 +115,8 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 		GuiVM.buttonTexture45 = new GuiButtonGeneral1VM(145, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		GuiVM.buttonTexture46 = new GuiButtonGeneral1VM(146, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		GuiVM.buttonTexture47 = new GuiButtonGeneral1VM(147, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture48 = new GuiButtonGeneral1VM(148, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture49 = new GuiButtonGeneral1VM(149, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture48 = new GuiButtonGeneral1VC(148, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture49 = new GuiButtonGeneral1VC(149, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		
 		// Thanksgiving:
 		GuiVM.buttonTexture50 = new GuiButtonGeneral1VM(150, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
@@ -126,8 +127,8 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 		GuiVM.buttonTexture55 = new GuiButtonGeneral1VM(155, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		GuiVM.buttonTexture56 = new GuiButtonGeneral1VM(156, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		GuiVM.buttonTexture57 = new GuiButtonGeneral1VM(157, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture58 = new GuiButtonGeneral1VM(158, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture59 = new GuiButtonGeneral1VM(159, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture58 = new GuiButtonGeneral1VC(158, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture59 = new GuiButtonGeneral1VC(159, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		
 		// Christmas:
 		GuiVM.buttonTexture60 = new GuiButtonGeneral1VM(160, this.guiLeft + 32-14 + (14 * 1), this.guiTop + 102-7+33+33, 14, 14, "", 3);
@@ -138,8 +139,17 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 		GuiVM.buttonTexture65 = new GuiButtonGeneral1VM(165, this.guiLeft + 32-14 + (14 * 6), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		GuiVM.buttonTexture66 = new GuiButtonGeneral1VM(166, this.guiLeft + 32-14 + (14 * 7), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		GuiVM.buttonTexture67 = new GuiButtonGeneral1VM(167, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture68 = new GuiButtonGeneral1VM(168, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
-		GuiVM.buttonTexture69 = new GuiButtonGeneral1VM(169, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture68 = new GuiButtonGeneral1VC(168, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		//GuiVM.buttonTexture69 = new GuiButtonGeneral1VC(169, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
+		
+		// Holidays:
+		GuiVM.button11 = new GuiButtonGeneral2VM(51, this.guiLeft + 22 + (70 * 0), this.guiTop + 98 - 14 + (14 * 0), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.newyears"), false), 2);
+		GuiVM.button12 = new GuiButtonGeneral2VM(52, this.guiLeft + 22 + (70 * 1), this.guiTop + 98 - 14 + (14 * 0), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.valentinesday"), false), 2);
+		GuiVM.button13 = new GuiButtonGeneral2VM(53, this.guiLeft + 22 + (70 * 0), this.guiTop + 98 - 14 + (14 * 1), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.easter"), false), 2);
+		GuiVM.button14 = new GuiButtonGeneral2VM(54, this.guiLeft + 22 + (70 * 1), this.guiTop + 98 - 14 + (14 * 1), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.4thofjuly"), false), 2);
+		GuiVM.button15 = new GuiButtonGeneral2VM(55, this.guiLeft + 22 + (70 * 0), this.guiTop + 98 - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.halloween"), false), 2);
+		GuiVM.button16 = new GuiButtonGeneral2VM(56, this.guiLeft + 22 + (70 * 1), this.guiTop + 98 - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.thanksgiving"), false), 2);
+		GuiVM.button17 = new GuiButtonGeneral2VM(57, this.guiLeft + 22 + (70 * 0), this.guiTop + 98 - 14 + (14 * 3), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.christmas"), false), 2);
 		
 		//--------------------------------------------------
 		
@@ -223,6 +233,14 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 		//this.buttonList.add(GuiVM.buttonTexture68);
 		//this.buttonList.add(GuiVM.buttonTexture69);
 		
+		this.buttonList.add(GuiVM.button11);
+		this.buttonList.add(GuiVM.button12);
+		this.buttonList.add(GuiVM.button13);
+		this.buttonList.add(GuiVM.button14);
+		this.buttonList.add(GuiVM.button15);
+		this.buttonList.add(GuiVM.button16);
+		this.buttonList.add(GuiVM.button17);
+		
     	this.buttonList.add(GuiVM.buttonMM1);
 		this.buttonList.add(GuiVM.buttonMM2);
 		this.buttonList.add(GuiVM.buttonMM3);
@@ -238,14 +256,23 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 		// Apply:
 		if (parButton.id == 21)
 		{
-			NetworkHandler.sendToServer(new MessageHelperGuiMachineMenuCustomizePrimarySkinTextureHoliday());
+			NetworkHandler.sendToServer(new MessageHelperGuiMachineMenuCustomizeSecondarySkinTextureHoliday());
 		}
 		
 		// Back:
 		if (parButton.id == 22)
 		{
-			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizePrimarySkinTexture());
+			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeSecondarySkinTexture());
 		}
+		
+		// Symbol Holiday Buttons:
+		if (parButton.id >= 51
+		 && parButton.id <= 60)
+	    {
+			int fixedNumber = parButton.id - 50;
+			
+			this.previewPart = fixedNumber;
+	    }
 		
 		// Symbol Holiday Buttons:
 		if (parButton.id >= 100)
@@ -274,13 +301,13 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 
 		// Current texture:
-		if (this.machine.getVisualFrameTexture() < 1000)
+		if (this.machine.getVisualComponentTexture() < 1000)
 		{
 			GlStateManager.pushMatrix();
 			{
 				GlStateManager.translate(55, 43, 0);
 				
-				this.drawStillItemStack(EnumsVM.VisualMachineTexture.byId(this.machine.getVisualFrameTexture()).getBlock(), this.guiLeft , this.guiTop);
+				this.drawStillItemStack(EnumsVM.VisualMachineTexture.byId(this.machine.getVisualComponentTexture()).getBlock(), this.guiLeft , this.guiTop);
 			}
 			GlStateManager.popMatrix();
 		}
@@ -292,7 +319,7 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		
 		// Current Texture:
-		if (this.machine.getVisualFrameTexture() >= 1000)
+		if (this.machine.getVisualComponentTexture() >= 1000)
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -307,35 +334,35 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 				
 				// Christmas:
 				{
-					if (this.machine.getVisualFrameTexture() == 1060)
+					if (this.machine.getVisualComponentTexture() == 1060)
 					{
 						this.drawTexturedModalRect((56 * 0), 0, (32 * 0), 0, 32, 32);
 					}
-					if (this.machine.getVisualFrameTexture() == 1061)
+					if (this.machine.getVisualComponentTexture() == 1061)
 					{
 						this.drawTexturedModalRect((56 * 0), 0, (32 * 1), 0, 32, 32);
 					}
-					if (this.machine.getVisualFrameTexture() == 1062)
+					if (this.machine.getVisualComponentTexture() == 1062)
 					{
 						this.drawTexturedModalRect((56 * 0), 0, (32 * 2), 0, 32, 32);
 					}
-					if (this.machine.getVisualFrameTexture() == 1063)
+					if (this.machine.getVisualComponentTexture() == 1063)
 					{
 						this.drawTexturedModalRect((56 * 0), 0, (32 * 3), 0, 32, 32);
 					}
-					if (this.machine.getVisualFrameTexture() == 1064)
+					if (this.machine.getVisualComponentTexture() == 1064)
 					{
 						this.drawTexturedModalRect((56 * 0), 0, (32 * 4), 0, 32, 32);
 					}
-					if (this.machine.getVisualFrameTexture() == 1065)
+					if (this.machine.getVisualComponentTexture() == 1065)
 					{
 						this.drawTexturedModalRect((56 * 0), 0, (32 * 5), 0, 32, 32);
 					}
-					if (this.machine.getVisualFrameTexture() == 1066)
+					if (this.machine.getVisualComponentTexture() == 1066)
 					{
 						this.drawTexturedModalRect((56 * 0), 0, (32 * 6), 0, 32, 32);
 					}
-					if (this.machine.getVisualFrameTexture() == 1067)
+					if (this.machine.getVisualComponentTexture() == 1067)
 					{
 						this.drawTexturedModalRect((56 * 0), 0, (32 * 7), 0, 32, 32);
 					}
@@ -357,7 +384,7 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 			this.mc.getTextureManager().bindTexture(ICON_TEXTURE);
 			
 			// Christmas:
-			if(References.isDateAroundChristmas(Calendar.getInstance()))
+			if(this.previewPart == 7)
 			{
 				if (this.machineTexture == 1060)
 				{
@@ -396,7 +423,7 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 		GlStateManager.popMatrix();
 		
 		// 'New Years':
-		if (References.isDateAroundNewYears(Calendar.getInstance()))
+		if(this.previewPart == 1)
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -408,7 +435,7 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 			GlStateManager.popMatrix();
 		}
 		// 'Valentines Day':
-		if (References.isDateAroundValentinesDay(Calendar.getInstance()))
+		if(this.previewPart == 2)
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -420,7 +447,7 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 			GlStateManager.popMatrix();
 		}
 		// 'Easter':
-		if(References.isDateAroundEaster(Calendar.getInstance()))
+		if(this.previewPart == 3)
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -432,7 +459,7 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 			GlStateManager.popMatrix();
 		}
 		// '4th of July':
-		if(References.isDateAroundIndependenceDay(Calendar.getInstance()))
+		if(this.previewPart == 4)
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -444,7 +471,7 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 			GlStateManager.popMatrix();
 		}
 		// 'Halloween':
-		if(References.isDateAroundHalloween(Calendar.getInstance()))
+		if(this.previewPart == 5)
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -456,7 +483,7 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 			GlStateManager.popMatrix();
 		}
 		// 'Thanksgiving':
-		if(References.isDateAroundThanksgiving(Calendar.getInstance()))
+		if(this.previewPart == 6)
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -468,7 +495,7 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 			GlStateManager.popMatrix();
 		}
 		// 'Christmas':
-		if(References.isDateAroundChristmas(Calendar.getInstance()))
+		if(this.previewPart == 7)
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -479,7 +506,6 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 			}
 			GlStateManager.popMatrix();
 		}
-		
 		
 		// 'Holiday':
 		GlStateManager.pushMatrix();
@@ -511,101 +537,6 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 		}
 		GlStateManager.popMatrix();
 		
-		
-		
-		// 'Happy holidays!!!':
-		GlStateManager.pushMatrix();
-		{
-			GlStateManager.translate(88.5, 86.5, 0);
-	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
-	        
-	        // 'New Years':
-			if (References.isDateAroundNewYears(Calendar.getInstance()))
-			{
-				this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.newyears"), false), 0, 0, Color.BLACK.getRGB());
-			}
-			// 'Valentines Day':
-			if (References.isDateAroundValentinesDay(Calendar.getInstance()))
-			{
-				this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.valentinesday"), false), 0, 0, Color.BLACK.getRGB());
-			}
-			// 'Easter':
-			if(References.isDateAroundEaster(Calendar.getInstance()))
-			{
-				this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.easter"), false), 0, 0, Color.BLACK.getRGB());
-			}
-			// '4th of July':
-			if(References.isDateAroundIndependenceDay(Calendar.getInstance()))
-			{
-				this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.4thofjuly"), false), 0, 0, Color.BLACK.getRGB());
-			}
-			// 'Halloween':
-			if(References.isDateAroundHalloween(Calendar.getInstance()))
-			{
-				this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.halloween"), false), 0, 0, Color.BLACK.getRGB());
-			}
-			// 'Thanksgiving':
-			if(References.isDateAroundThanksgiving(Calendar.getInstance()))
-			{
-				this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.thanksgiving"), false), 0, 0, Color.BLACK.getRGB());
-			}
-			// 'Christmas':
-			if(References.isDateAroundChristmas(Calendar.getInstance()))
-			{
-				this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.christmas"), false), 0, 0, Color.BLACK.getRGB());
-			}
-	        
-	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.1"), 0, (10 * 1), Color.WHITE.getRGB());
-	        
-	        // 'New Years':
-			if (References.isDateAroundNewYears(Calendar.getInstance()))
-			{
-				this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.2") + TextFormatting.WHITE + " : " + TextFormatting.GOLD + References.startDateNewYears(), 0, (10 * 2), Color.GREEN.getRGB());
-		        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.3") + TextFormatting.WHITE + " : " + TextFormatting.GOLD + References.endDateNewYears(), 0, (10 * 3), Color.RED.getRGB());
-			}
-			// 'Valentines Day':
-			if (References.isDateAroundValentinesDay(Calendar.getInstance()))
-			{
-				this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.2") + TextFormatting.WHITE + " : " + TextFormatting.GOLD + References.startDateValentinesDay(), 0, (10 * 2), Color.GREEN.getRGB());
-		        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.3") + TextFormatting.WHITE + " : " + TextFormatting.GOLD + References.endDateValentinesDay(), 0, (10 * 3), Color.RED.getRGB());
-			}
-			// 'Easter':
-			if(References.isDateAroundEaster(Calendar.getInstance()))
-			{
-				this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.2") + TextFormatting.WHITE + " : " + TextFormatting.GOLD + References.startDateEaster(), 0, (10 * 2), Color.GREEN.getRGB());
-		        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.3") + TextFormatting.WHITE + " : " + TextFormatting.GOLD + References.endDateEaster(), 0, (10 * 3), Color.RED.getRGB());
-			}
-			// '4th of July':
-			if(References.isDateAroundIndependenceDay(Calendar.getInstance()))
-			{
-				this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.2") + TextFormatting.WHITE + " : " + TextFormatting.GOLD + References.startDateIndependenceDay(), 0, (10 * 2), Color.GREEN.getRGB());
-		        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.3") + TextFormatting.WHITE + " : " + TextFormatting.GOLD + References.endDateIndependenceDay(), 0, (10 * 3), Color.RED.getRGB());
-			}
-			// 'Halloween':
-			if(References.isDateAroundHalloween(Calendar.getInstance()))
-			{
-				this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.2") + TextFormatting.WHITE + " : " + TextFormatting.GOLD + References.startDateHalloween(), 0, (10 * 2), Color.GREEN.getRGB());
-		        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.3") + TextFormatting.WHITE + " : " + TextFormatting.GOLD + References.endDateHalloween(), 0, (10 * 3), Color.RED.getRGB());
-			}
-			// 'Thanksgiving':
-			if(References.isDateAroundThanksgiving(Calendar.getInstance()))
-			{
-				this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.2") + TextFormatting.WHITE + " : " + TextFormatting.GOLD + References.startDateThanksgiving(), 0, (10 * 2), Color.GREEN.getRGB());
-		        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.3") + TextFormatting.WHITE + " : " + TextFormatting.GOLD + References.endDateThanksgiving(), 0, (10 * 3), Color.RED.getRGB());
-			}
-			// 'Christmas':
-			if(References.isDateAroundChristmas(Calendar.getInstance()))
-			{
-				this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.2") + TextFormatting.WHITE + " : " + TextFormatting.GOLD + References.startDateChristmas(), 0, (10 * 2), Color.GREEN.getRGB());
-		        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.3") + TextFormatting.WHITE + " : " + TextFormatting.GOLD + References.endDateChristmas(), 0, (10 * 3), Color.RED.getRGB());
-			}
-	        
-	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.4"), 0, (10 * 4), Color.WHITE.getRGB());
-	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.5"), 0, (10 * 5), Color.WHITE.getRGB());
-	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.6"), 0, (10 * 6), Color.WHITE.getRGB());
-		}
-		GlStateManager.popMatrix();
-		
 		// Draws a black box over the preview buttons:
 		this.drawRect(108, 66, 130, 76, Color.BLACK.getRGB());
 		
@@ -622,7 +553,7 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 			this.mc.getTextureManager().bindTexture(ICON_TEXTURE);
 			
 			// Christmas:
-			if(References.isDateAroundChristmas(Calendar.getInstance()))
+			if(this.previewPart == 7)
 			{
 				this.drawTexturedModalRect((56 * 0), 0, (32 * 0), 0, 32, 32);
 				this.drawTexturedModalRect((56 * 1), 0, (32 * 1), 0, 32, 32);
@@ -632,6 +563,7 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 				this.drawTexturedModalRect((56 * 5), 0, (32 * 5), 0, 32, 32);
 				this.drawTexturedModalRect((56 * 6), 0, (32 * 6), 0, 32, 32);
 				this.drawTexturedModalRect((56 * 7), 0, (32 * 7), 0, 32, 32);
+				
 			}
 		}
 		GlStateManager.popMatrix();
@@ -695,7 +627,7 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
         	{
         		EntityPlayer player = (EntityPlayer) this.machine.getControllingPassenger();
         		
-        		if (this.machineTexture == this.machine.getVisualFrameTexture())
+        		if (this.machineTexture == this.machine.getVisualComponentTexture())
         		{
         			GuiVM.buttonApply.enabled = false;
         		}
@@ -709,8 +641,10 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
         this.hideAllButtons();
         
  		// Handles the buttons for Previewing New Years:
- 		if(References.isDateAroundNewYears(Calendar.getInstance()))
+ 		if(this.previewPart == 1)
 		{
+ 			GuiVM.button11.enabled = false;
+ 			
 			GuiVM.buttonTexture00.visible = true;
 	    	GuiVM.buttonTexture01.visible = true;
 	    	GuiVM.buttonTexture02.visible = true;
@@ -722,10 +656,16 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 			//GuiVM.buttonTexture08.visible = true;
 			//GuiVM.buttonTexture09.visible = true;
 		}
+ 		else
+ 		{
+ 			GuiVM.button11.enabled = true;
+ 		}
         
  		// Handles the buttons for Previewing Valentines Day:
- 		if(References.isDateAroundValentinesDay(Calendar.getInstance()))
+ 		if(this.previewPart == 2)
 		{
+ 			GuiVM.button12.enabled = false;
+ 			
 			GuiVM.buttonTexture10.visible = true;
 	    	GuiVM.buttonTexture11.visible = true;
 	    	GuiVM.buttonTexture12.visible = true;
@@ -737,10 +677,16 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 			//GuiVM.buttonTexture18.visible = true;
 			//GuiVM.buttonTexture19.visible = true;
 		}
+ 		else
+ 		{
+ 			GuiVM.button12.enabled = true;
+ 		}
         
  		// Handles the buttons for Previewing Easter:
- 		if(References.isDateAroundEaster(Calendar.getInstance()))
+ 		if(this.previewPart == 3)
 		{
+ 			GuiVM.button13.enabled = false;
+ 			
 			GuiVM.buttonTexture20.visible = true;
 	    	GuiVM.buttonTexture21.visible = true;
 	    	GuiVM.buttonTexture22.visible = true;
@@ -752,10 +698,16 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 			//GuiVM.buttonTexture28.visible = true;
 			//GuiVM.buttonTexture29.visible = true;
 		}
+ 		else
+ 		{
+ 			GuiVM.button13.enabled = true;
+ 		}
         
  		// Handles the buttons for Previewing 4th of July:
- 		if(References.isDateAroundIndependenceDay(Calendar.getInstance()))
+ 		if(this.previewPart == 4)
 		{
+ 			GuiVM.button14.enabled = false;
+ 			
 			GuiVM.buttonTexture30.visible = true;
 	    	GuiVM.buttonTexture31.visible = true;
 	    	GuiVM.buttonTexture32.visible = true;
@@ -767,10 +719,16 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 			//GuiVM.buttonTexture38.visible = true;
 			//GuiVM.buttonTexture39.visible = true;
 		}
+ 		else
+ 		{
+ 			GuiVM.button14.enabled = true;
+ 		}
         
  		// Handles the buttons for Previewing Halloween:
- 		if(References.isDateAroundHalloween(Calendar.getInstance()))
+ 		if(this.previewPart == 5)
 		{
+ 			GuiVM.button15.enabled = false;
+ 			
 			GuiVM.buttonTexture40.visible = true;
 	    	GuiVM.buttonTexture41.visible = true;
 	    	GuiVM.buttonTexture42.visible = true;
@@ -782,10 +740,16 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 			//GuiVM.buttonTexture48.visible = true;
 			//GuiVM.buttonTexture49.visible = true;
 		}
+ 		else
+ 		{
+ 			GuiVM.button15.enabled = true;
+ 		}
         
  		// Handles the buttons for Previewing Thanksgiving:
- 		if(References.isDateAroundThanksgiving(Calendar.getInstance()))
+ 		if(this.previewPart == 6)
 		{
+ 			GuiVM.button16.enabled = false;
+ 			
 			GuiVM.buttonTexture50.visible = true;
 	    	GuiVM.buttonTexture51.visible = true;
 	    	GuiVM.buttonTexture52.visible = true;
@@ -797,10 +761,16 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 			//GuiVM.buttonTexture58.visible = true;
 			//GuiVM.buttonTexture59.visible = true;
 		}
+ 		else
+ 		{
+ 			GuiVM.button16.enabled = true;
+ 		}
         
  		// Handles the buttons for Previewing Christmas:
- 		if(References.isDateAroundChristmas(Calendar.getInstance()))
+ 		if(this.previewPart == 7)
 		{
+ 			GuiVM.button17.enabled = false;
+ 			
 			GuiVM.buttonTexture60.visible = true;
 	    	GuiVM.buttonTexture61.visible = true;
 	    	GuiVM.buttonTexture62.visible = true;
@@ -812,6 +782,18 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 			//GuiVM.buttonTexture68.visible = true;
 			//GuiVM.buttonTexture69.visible = true;
 		}
+ 		else
+ 		{
+ 			GuiVM.button17.enabled = true;
+ 		}
+ 		
+ 		//TODO Placed to block unfinished holidays
+ 		GuiVM.button11.enabled = false;
+ 		GuiVM.button12.enabled = false;
+ 		GuiVM.button13.enabled = false;
+ 		GuiVM.button14.enabled = false;
+ 		GuiVM.button15.enabled = false;
+ 		GuiVM.button16.enabled = false;
     }
 	
 	@Override
@@ -847,7 +829,7 @@ public class GuiMachineMenuCustomizePrimarySkinTextureHoliday extends GuiContain
 	protected void mouseOverTooltipHandler(int mouseX, int mouseY) 
 	{
 		// Christmas:
-		if(References.isDateAroundChristmas(Calendar.getInstance()))
+		if(this.previewPart == 7)
 		{
 			this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 1) * 1), 102-7+33+33, EnumsVM.VisualDisplaySymbolHoliday.SYMBOL_CHRISTMAS_TREE.getMetadata());
 			this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 2) * 1), 102-7+33+33, EnumsVM.VisualDisplaySymbolHoliday.SYMBOL_CHRISTMAS_WREATH.getMetadata());

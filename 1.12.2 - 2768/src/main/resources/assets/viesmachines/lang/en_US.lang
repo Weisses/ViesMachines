@@ -396,7 +396,7 @@ viesmachines.gui.tt.customize.color.cost.5=No cost for creative players!
 viesmachines.gui.tt.customize.primarytransparency.0=Toggles Primary texture transparency.
 viesmachines.gui.tt.customize.secondarytransparency.0=Toggles Secondary texture transparency.
 
-viesmachines.gui.tt.customize.transparency.0=Energy to turn on, free to remove!
+viesmachines.gui.tt.customize.transparency.0=Free to remove!
 
 viesmachines.gui.tt.customize.activemodels.activemodels.0=Active Models
 

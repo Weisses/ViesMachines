@@ -1,8 +1,7 @@
 package com.vies.viesmachines.network.server.machine.gui.customize.primaryskin.color;
 
 import com.vies.viesmachines.api.CostsVM;
-import com.vies.viesmachines.client.gui.machines.visual.GuiMachineMenuCustomizeActiveModels;
-import com.vies.viesmachines.client.gui.machines.visual.GuiMachineMenuCustomizePrimarySkinColor;
+import com.vies.viesmachines.client.gui.machines.customize.GuiMachineMenuCustomizePrimarySkinColor;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.packet.MessageBase;
 

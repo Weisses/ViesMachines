@@ -1,7 +1,5 @@
 package com.vies.viesmachines.configs;
 
-import java.io.File;
-
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.api.util.Loghelper;
 
@@ -86,8 +84,6 @@ public class VMConfiguration {
 		machineHardmode = config.getBoolean(TextFormatting.WHITE + MACHINEHARDMODE_NAME, category1, MACHINEHARDMODE_DEFAULT, MACHINEHARDMODE_COMMENT);
 		toolDismounterPlayer = config.getBoolean(TextFormatting.WHITE + TOOLDISMOUNTERPLAYER_NAME, category1, TOOLDISMOUNTERPLAYER_DEFAULT, TOOLDISMOUNTERPLAYER_COMMENT);
 		
-		
-		
 		// Fuel options:
 		final String category2 = CATEGORY_VM + config.CATEGORY_SPLITTER + TextFormatting.GOLD + "Fuel";
 		config.addCustomCategoryComment(category2, "Fuel options.");
@@ -95,8 +91,6 @@ public class VMConfiguration {
 		vanillaFuel = config.getBoolean(TextFormatting.WHITE + VANILLAFUEL_NAME, category2, VANILLAFUEL_DEFAULT, VANILLAFUEL_COMMENT);
 		outsideModFuel = config.getBoolean(TextFormatting.WHITE + OUTSIDEMODFUEL_NAME, category2, OUTSIDEMODFUEL_DEFAULT, OUTSIDEMODFUEL_COMMENT);
 		machinePelletsBurnTime = config.getInt(TextFormatting.WHITE + MACHINEPELLETSBURNTIME_NAME, category2, MACHINEPELLETSBURNTIME_DEFAULT, 1, 500, MACHINEPELLETSBURNTIME_COMMENT);
-		
-		
 		
 		// Client only options:
 		final String category3 = CATEGORY_VM + config.CATEGORY_SPLITTER + TextFormatting.AQUA + "Client only";

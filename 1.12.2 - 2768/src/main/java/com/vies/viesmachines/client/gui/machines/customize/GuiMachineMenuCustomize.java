@@ -1,4 +1,4 @@
-package com.vies.viesmachines.client.gui.machines.visual;
+package com.vies.viesmachines.client.gui.machines.customize;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -9,6 +9,7 @@ import org.lwjgl.input.Keyboard;
 import com.vies.viesmachines.api.CostsVM;
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.References;
+import com.vies.viesmachines.api.util.Loghelper;
 import com.vies.viesmachines.client.gui.GuiContainerVM;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VM;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VM;
@@ -32,6 +33,7 @@ import com.vies.viesmachines.network.server.world.PlayerMessageVisualSecondaryTr
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
@@ -426,12 +428,36 @@ public class GuiMachineMenuCustomize extends GuiContainerVM {
 		&& mouseY >= this.guiTop + 179 && mouseY <= this.guiTop + 179+13)
 		{
 			List<String> text = new ArrayList<String>();
-			text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.primarytransparency.0"));
-			text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.color.cost.1") + " " + CostsVM.COST_FRAME_TRANSPARENCY + " " + References.localNameVC("viesmachines.gui.tt.customize.transparency.0"));//References.localNameVC("viesmachines.gui.tt.customize.color.cost.2"));
+			
+			if (this.machine.getControllingPassenger() instanceof EntityPlayer)
+	 		{
+	        	EntityPlayer player = (EntityPlayer) this.machine.getControllingPassenger();
+				
+	        	if (player.isCreative())
+	        	{
+	        		text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.customize.primarytransparency.0"));
+					text.add(TextFormatting.GREEN + References.localNameVC("viesmachines.gui.tt.customize.color.cost.5"));
+	        	}
+	        	else if (this.machine.getVisualFrameTransparent())
+	        	{
+	        		text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.customize.primarytransparency.0"));
+					text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.transparency.0"));
+	        	}
+	        	else if (this.machine.getEnergy() >= CostsVM.COST_FRAME_TRANSPARENCY)
+	        	{
+	        		text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.customize.primarytransparency.0"));
+					text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.color.cost.1") + " " + CostsVM.COST_FRAME_TRANSPARENCY + " " + References.localNameVC("viesmachines.gui.tt.customize.color.cost.2"));
+	        	}
+	        	else
+	        	{
+	        		text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.customize.primarytransparency.0"));
+					text.add(whitespaceCentering(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.customize.primarytransparency.0"), TextFormatting.DARK_RED + "" + CostsVM.COST_FRAME_TRANSPARENCY + " " + References.localNameVC("viesmachines.gui.tt.customize.color.cost.4")) + TextFormatting.DARK_RED + "" + CostsVM.COST_FRAME_TRANSPARENCY + " " + References.localNameVC("viesmachines.gui.tt.customize.color.cost.4"));
+	        	}
+			}
 			
 			GlStateManager.pushMatrix();
 			{
-				int textNumber = (TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.color.cost.1") + " " + CostsVM.COST_FRAME_TRANSPARENCY + " " + References.localNameVC("viesmachines.gui.tt.customize.color.cost.2")).length();
+				int textNumber = (TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.customize.primarytransparency.0")).length();
 				
 				GlStateManager.translate(mouseX - this.guiLeft - 6 - textNumber - (textNumber / 2), mouseY - this.guiTop + 6, 0);
 				GlStateManager.scale(0.5, 0.5, 0.5);
@@ -446,12 +472,36 @@ public class GuiMachineMenuCustomize extends GuiContainerVM {
 		&& mouseY >= this.guiTop + 179 && mouseY <= this.guiTop + 179+13)
 		{
 			List<String> text = new ArrayList<String>();
-			text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.secondarytransparency.0"));
-			text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.color.cost.1") + " " + CostsVM.COST_COMPONENT_TRANSPARENCY + " " + References.localNameVC("viesmachines.gui.tt.customize.transparency.0"));//References.localNameVC("viesmachines.gui.tt.customize.color.cost.2"));
+			
+			if (this.machine.getControllingPassenger() instanceof EntityPlayer)
+	 		{
+	        	EntityPlayer player = (EntityPlayer) this.machine.getControllingPassenger();
+				
+	        	if (player.isCreative())
+	        	{
+	        		text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.customize.secondarytransparency.0"));
+					text.add(TextFormatting.GREEN + References.localNameVC("viesmachines.gui.tt.customize.color.cost.5"));
+	        	}
+	        	else if (this.machine.getVisualComponentTransparent())
+	        	{
+	        		text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.customize.secondarytransparency.0"));
+					text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.transparency.0"));
+	        	}
+	        	else if (this.machine.getEnergy() >= CostsVM.COST_COMPONENT_TRANSPARENCY)
+	        	{
+	        		text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.customize.secondarytransparency.0"));
+					text.add(TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.color.cost.1") + " " + CostsVM.COST_COMPONENT_TRANSPARENCY + " " + References.localNameVC("viesmachines.gui.tt.customize.color.cost.2"));
+	        	}
+	        	else
+	        	{
+	        		text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.customize.secondarytransparency.0"));
+					text.add(TextFormatting.DARK_RED + "" + CostsVM.COST_COMPONENT_TRANSPARENCY + " " + References.localNameVC("viesmachines.gui.tt.customize.color.cost.4"));
+	        	}
+			}
 			
 			GlStateManager.pushMatrix();
 			{
-				int textNumber = (TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.color.cost.1") + " " + CostsVM.COST_FRAME_TRANSPARENCY + " " + References.localNameVC("viesmachines.gui.tt.customize.color.cost.2")).length();
+				int textNumber = (TextFormatting.YELLOW + References.localNameVC("viesmachines.gui.tt.customize.color.cost.1") + " " + CostsVM.COST_COMPONENT_TRANSPARENCY + " " + References.localNameVC("viesmachines.gui.tt.customize.color.cost.2")).length();
 				
 				GlStateManager.translate(mouseX - this.guiLeft - 6 - textNumber - (textNumber / 2), mouseY - this.guiTop + 6, 0);
 				GlStateManager.scale(0.5, 0.5, 0.5);
@@ -480,44 +530,69 @@ public class GuiMachineMenuCustomize extends GuiContainerVM {
 		}
         
         // Deals with the Primary Transparent toggle:
-        if(this.machine.getVisualFrameTransparent())
-		{
-        	
-			GuiVM.buttonCustomizePrimaryTransparentTrue.visible = true;
-			GuiVM.buttonCustomizePrimaryTransparentFalse.visible = false;
-		}
-		else
-		{
-			if (this.machine.getEnergy() < CostsVM.COST_FRAME_TRANSPARENCY)
-	 		{
-				GuiVM.buttonCustomizePrimaryTransparentFalse.enabled = false;
-				GuiVM.buttonCustomizePrimaryTransparentTrue.enabled = false;
-	 		}
+        if (this.machine.getControllingPassenger() instanceof EntityPlayer)
+ 		{
+        	EntityPlayer player = (EntityPlayer) this.machine.getControllingPassenger();
+			
+        	if(this.machine.getVisualFrameTransparent())
+        	{
+				GuiVM.buttonCustomizePrimaryTransparentFalse.visible = false;
+				GuiVM.buttonCustomizePrimaryTransparentTrue.visible = true;
+			}
 			else
 			{
-				GuiVM.buttonCustomizePrimaryTransparentTrue.visible = false;
-				GuiVM.buttonCustomizePrimaryTransparentFalse.visible = true;
-			}
+				if (player.isCreative())
+				{
+					GuiVM.buttonCustomizePrimaryTransparentFalse.enabled = true;
+					GuiVM.buttonCustomizePrimaryTransparentTrue.visible = false;
+					GuiVM.buttonCustomizePrimaryTransparentFalse.visible = true;
+				}
+				else if (this.machine.getEnergy() >= CostsVM.COST_FRAME_TRANSPARENCY)
+		 		{
+					GuiVM.buttonCustomizePrimaryTransparentFalse.enabled = true;
+					GuiVM.buttonCustomizePrimaryTransparentTrue.visible = false;
+					GuiVM.buttonCustomizePrimaryTransparentFalse.visible = true;
+		 		}
+				else
+				{
+					GuiVM.buttonCustomizePrimaryTransparentFalse.enabled = false;
+					GuiVM.buttonCustomizePrimaryTransparentTrue.visible = false;
+					GuiVM.buttonCustomizePrimaryTransparentFalse.visible = false;
+				}
+	 		}
 		}
         
         // Deals with the Secondary Transparent toggle:
-        if(this.machine.getVisualComponentTransparent())
-		{
-			GuiVM.buttonCustomizeSecondaryTransparentTrue.visible = true;
-			GuiVM.buttonCustomizeSecondaryTransparentFalse.visible = false;
-		}
-		else
-		{
-			if (this.machine.getEnergy() < CostsVM.COST_COMPONENT_TRANSPARENCY)
-	 		{
-				GuiVM.buttonCustomizeSecondaryTransparentFalse.enabled = false;
-				GuiVM.buttonCustomizeSecondaryTransparentTrue.enabled = false;
-	 		}
+        if (this.machine.getControllingPassenger() instanceof EntityPlayer)
+ 		{
+        	EntityPlayer player = (EntityPlayer) this.machine.getControllingPassenger();
+			
+        	if(this.machine.getVisualComponentTransparent())
+        	{
+				GuiVM.buttonCustomizeSecondaryTransparentFalse.visible = false;
+				GuiVM.buttonCustomizeSecondaryTransparentTrue.visible = true;
+			}
 			else
 			{
-				GuiVM.buttonCustomizeSecondaryTransparentTrue.visible = false;
-				GuiVM.buttonCustomizeSecondaryTransparentFalse.visible = true;
-			}
+				if (player.isCreative())
+				{
+					GuiVM.buttonCustomizeSecondaryTransparentFalse.enabled = true;
+					GuiVM.buttonCustomizeSecondaryTransparentTrue.visible = false;
+					GuiVM.buttonCustomizeSecondaryTransparentFalse.visible = true;
+				}
+				else if (this.machine.getEnergy() >= CostsVM.COST_COMPONENT_TRANSPARENCY)
+		 		{
+					GuiVM.buttonCustomizeSecondaryTransparentFalse.enabled = true;
+					GuiVM.buttonCustomizeSecondaryTransparentTrue.visible = false;
+					GuiVM.buttonCustomizeSecondaryTransparentFalse.visible = true;
+		 		}
+				else
+				{
+					GuiVM.buttonCustomizeSecondaryTransparentFalse.enabled = false;
+					GuiVM.buttonCustomizeSecondaryTransparentTrue.visible = false;
+					GuiVM.buttonCustomizeSecondaryTransparentFalse.visible = false;
+				}
+	 		}
 		}
         
         // Turn machine preview left with shift down:

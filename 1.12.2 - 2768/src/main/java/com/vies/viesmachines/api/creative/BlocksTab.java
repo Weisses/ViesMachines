@@ -20,8 +20,6 @@ public class BlocksTab extends CreativeTabs {
 	@Override
 	public ItemStack getTabIconItem() 
 	{
-		return new ItemStack(Item.getItemFromBlock(BlocksVM.EXTRACTOR
-				//.CHARGED_STONE_BASIC
-				));
+		return new ItemStack(Item.getItemFromBlock(BlocksVM.EXTRACTOR));
 	}
 }

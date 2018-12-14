@@ -146,14 +146,4 @@ public class EventHandlerConfig {
 	{
 		
 	}
-	
-	private List<IRecipe> getRecipes()
-    {
-		return Lists.newArrayList(CraftingManager.REGISTRY);
-    }
-	
-	public static final ResourceLocation[] VC_RECIPES = new ResourceLocation[] 
-	{
-		new ResourceLocation(References.MOD_ID, "recipes/airship_balloon.json"),
-	};
 }

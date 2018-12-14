@@ -35,7 +35,5 @@ public class MessageHelperGuiMachineMenuCustomizePrimarySkinColorDefault extends
 		machineIn.setVisualFrameColorRed(0);
 		machineIn.setVisualFrameColorGreen(0);
 		machineIn.setVisualFrameColorBlue(0);
-		
-		
 	}
 }

@@ -647,7 +647,7 @@ public class EnumsVM {
 	public static enum VisualDisplaySymbolHoliday
     {
 		// STRING(meta, localized name, item):
-		// Christmas:
+		// New Years:
 		SYMBOL_NEWYEARS_0(0, "newyears_0", ItemsVM.SYMBOL_CHRISTMAS_TREE),
 		SYMBOL_NEWYEARS_1(1, "newyears_1", ItemsVM.SYMBOL_CHRISTMAS_WREATH),
 		SYMBOL_NEWYEARS_2(2, "newyears_2", ItemsVM.SYMBOL_CHRISTMAS_ORNAMENT),
@@ -659,7 +659,7 @@ public class EnumsVM {
 		SYMBOL_NEWYEARS_8(8, "newyears_8", ItemsVM.SYMBOL_CHRISTMAS_PEANUTS),
 		SYMBOL_NEWYEARS_9(9, "newyears_9", ItemsVM.SYMBOL_CHRISTMAS_POKEMON),
 		
-		// Christmas:
+		// Valentine's Day:
 		SYMBOL_VALENTINESDAY_0(10, "valentinesday_0", ItemsVM.SYMBOL_CHRISTMAS_TREE),
 		SYMBOL_VALENTINESDAY_1(11, "valentinesday_1", ItemsVM.SYMBOL_CHRISTMAS_WREATH),
 		SYMBOL_VALENTINESDAY_2(12, "valentinesday_2", ItemsVM.SYMBOL_CHRISTMAS_ORNAMENT),
@@ -671,7 +671,7 @@ public class EnumsVM {
 		SYMBOL_VALENTINESDAY_8(18, "valentinesday_8", ItemsVM.SYMBOL_CHRISTMAS_PEANUTS),
 		SYMBOL_VALENTINESDAY_9(19, "valentinesday_9", ItemsVM.SYMBOL_CHRISTMAS_POKEMON),
 		
-		// Christmas:
+		// Easter:
 		SYMBOL_EASTER_0(20, "easter_0", ItemsVM.SYMBOL_CHRISTMAS_TREE),
 		SYMBOL_EASTER_1(21, "easter_1", ItemsVM.SYMBOL_CHRISTMAS_WREATH),
 		SYMBOL_EASTER_2(22, "easter_2", ItemsVM.SYMBOL_CHRISTMAS_ORNAMENT),

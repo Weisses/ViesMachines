@@ -1,7 +1,6 @@
 package com.vies.viesmachines.network.server.world;
 
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.packet.MessageBase;
 
 import io.netty.buffer.ByteBuf;
@@ -32,8 +31,6 @@ public class PlayerMessageVisualPrimaryColorSelected extends MessageBase<PlayerM
 	@Override
 	public void handleServerSide(PlayerMessageVisualPrimaryColorSelected message, EntityPlayer player) 
 	{
-		EntityMachineBase machineIn = (EntityMachineBase) player.getRidingEntity();
-		
 		player.sendMessage(new TextComponentString(TextFormatting.RED + References.Old_I18n.translateToLocalFormatted("viesmachines.message.visual.primary.color.0")));
 	}
 }

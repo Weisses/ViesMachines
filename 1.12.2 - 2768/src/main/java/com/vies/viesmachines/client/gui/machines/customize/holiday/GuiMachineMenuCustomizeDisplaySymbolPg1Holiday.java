@@ -1,4 +1,4 @@
-package com.vies.viesmachines.client.gui.machines.visual.holiday;
+package com.vies.viesmachines.client.gui.machines.customize.holiday;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -9,12 +9,10 @@ import java.util.List;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
-import com.vies.viesmachines.api.CostsVM;
 import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.GuiVM;
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.api.util.Keybinds;
-import com.vies.viesmachines.api.util.Loghelper;
 import com.vies.viesmachines.client.gui.GuiContainerVM;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral1VM;
 import com.vies.viesmachines.client.gui.buttons.GuiButtonGeneral2VM;
@@ -22,7 +20,6 @@ import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.entity.machines.containers.ContainerMachineNoSlots;
 import com.vies.viesmachines.network.NetworkHandler;
 import com.vies.viesmachines.network.server.machine.gui.customize.displaybanner.MessageGuiMachineMenuCustomizeDisplayBanner;
-import com.vies.viesmachines.network.server.machine.gui.customize.displaybanner.sub.MessageHelperGuiCustomizeMenuEngineDisplaySymbol;
 import com.vies.viesmachines.network.server.machine.gui.customize.holiday.MessageHelperGuiCustomizeMenuEngineDisplaySymbolHoliday;
 
 import net.minecraft.client.gui.GuiButton;
@@ -34,16 +31,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiContainerVM {
+public class GuiMachineMenuCustomizeDisplaySymbolPg1Holiday extends GuiContainerVM {
 	
 	private final ResourceLocation TEXTURE = new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_machine_menu_customize_display_holiday.png");
-	private int previewPart;
 	
-	public GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative(IInventory playerInv, EntityMachineBase airshipIn)
+	public GuiMachineMenuCustomizeDisplaySymbolPg1Holiday(IInventory playerInv, EntityMachineBase airshipIn)
 	{
 		super(new ContainerMachineNoSlots(playerInv, airshipIn), playerInv, airshipIn);
-		
-		this.previewPart = 0;
 		
 		this.metaInfo = this.machine.getVisualEngineDisplayType();
 		this.itemstackInfo = this.machine.getVisualEngineDisplayItemstack();
@@ -150,15 +144,6 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 		GuiVM.buttonTexture68 = new GuiButtonGeneral1VM(168, this.guiLeft + 32-14 + (14 * 8), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		GuiVM.buttonTexture69 = new GuiButtonGeneral1VM(169, this.guiLeft + 32-14 + (14 * 9), this.guiTop + 102-7+33+33, 14, 14, "", 3);
 		
-		// Holidays:
-		GuiVM.button11 = new GuiButtonGeneral2VM(51, this.guiLeft + 22 + (70 * 0), this.guiTop + 98 - 14 + (14 * 0), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.newyears"), false), 2);
-		GuiVM.button12 = new GuiButtonGeneral2VM(52, this.guiLeft + 22 + (70 * 1), this.guiTop + 98 - 14 + (14 * 0), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.valentinesday"), false), 2);
-		GuiVM.button13 = new GuiButtonGeneral2VM(53, this.guiLeft + 22 + (70 * 0), this.guiTop + 98 - 14 + (14 * 1), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.easter"), false), 2);
-		GuiVM.button14 = new GuiButtonGeneral2VM(54, this.guiLeft + 22 + (70 * 1), this.guiTop + 98 - 14 + (14 * 1), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.4thofjuly"), false), 2);
-		GuiVM.button15 = new GuiButtonGeneral2VM(55, this.guiLeft + 22 + (70 * 0), this.guiTop + 98 - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.halloween"), false), 2);
-		GuiVM.button16 = new GuiButtonGeneral2VM(56, this.guiLeft + 22 + (70 * 1), this.guiTop + 98 - 14 + (14 * 2), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.thanksgiving"), false), 2);
-		GuiVM.button17 = new GuiButtonGeneral2VM(57, this.guiLeft + 22 + (70 * 0), this.guiTop + 98 - 14 + (14 * 3), 62, 14, this.stringToRainbow(References.localNameVC("viesmachines.button.christmas"), false), 2);
-		
 		//--------------------------------------------------
 		
 		this.buttonList.add(GuiVM.buttonApply);
@@ -241,14 +226,6 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 		this.buttonList.add(GuiVM.buttonTexture68);
 		this.buttonList.add(GuiVM.buttonTexture69);
 		
-		this.buttonList.add(GuiVM.button11);
-		this.buttonList.add(GuiVM.button12);
-		this.buttonList.add(GuiVM.button13);
-		this.buttonList.add(GuiVM.button14);
-		this.buttonList.add(GuiVM.button15);
-		this.buttonList.add(GuiVM.button16);
-		this.buttonList.add(GuiVM.button17);
-		
     	this.buttonList.add(GuiVM.buttonMM1);
 		this.buttonList.add(GuiVM.buttonMM2);
 		this.buttonList.add(GuiVM.buttonMM3);
@@ -272,15 +249,6 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 		{
 			NetworkHandler.sendToServer(new MessageGuiMachineMenuCustomizeDisplayBanner());
 		}
-		
-		// Symbol Holiday Buttons:
-		if (parButton.id >= 51
-		 && parButton.id <= 60)
-	    {
-			int fixedNumber = parButton.id - 50;
-			
-			this.previewPart = fixedNumber;
-	    }
 		
 		// Symbol Holiday Buttons:
 		if (parButton.id >= 100)
@@ -383,7 +351,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		
 		// 'New Years':
-		if(this.previewPart == 1)
+		if (References.isDateAroundNewYears(Calendar.getInstance()))
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -395,7 +363,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 			GlStateManager.popMatrix();
 		}
 		// 'Valentines Day':
-		if(this.previewPart == 2)
+		if (References.isDateAroundValentinesDay(Calendar.getInstance()))
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -407,7 +375,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 			GlStateManager.popMatrix();
 		}
 		// 'Easter':
-		if(this.previewPart == 3)
+		if(References.isDateAroundEaster(Calendar.getInstance()))
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -419,7 +387,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 			GlStateManager.popMatrix();
 		}
 		// '4th of July':
-		if(this.previewPart == 4)
+		if(References.isDateAroundIndependenceDay(Calendar.getInstance()))
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -431,7 +399,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 			GlStateManager.popMatrix();
 		}
 		// 'Halloween':
-		if(this.previewPart == 5)
+		if(References.isDateAroundHalloween(Calendar.getInstance()))
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -443,7 +411,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 			GlStateManager.popMatrix();
 		}
 		// 'Thanksgiving':
-		if(this.previewPart == 6)
+		if(References.isDateAroundThanksgiving(Calendar.getInstance()))
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -455,7 +423,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 			GlStateManager.popMatrix();
 		}
 		// 'Christmas':
-		if(this.previewPart == 7)
+		if(References.isDateAroundChristmas(Calendar.getInstance()))
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -498,6 +466,72 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 		}
 		GlStateManager.popMatrix();
 		
+		
+		
+		
+		
+
+		
+		// 'Happy holidays!!!':
+		GlStateManager.pushMatrix();
+		{
+			GlStateManager.translate(88.5, 86.5, 0);
+	        GlStateManager.scale(0.75F, 0.75F, 0.75F);
+	        
+	        //this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.0"), 0, (10 * 0), Color.BLUE.getRGB());
+	        
+	        // 'New Years':
+			if (References.isDateAroundNewYears(Calendar.getInstance()))
+			{
+				this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.newyears"), false), 0, 0, Color.BLACK.getRGB());
+			}
+			// 'Valentines Day':
+			if (References.isDateAroundValentinesDay(Calendar.getInstance()))
+			{
+				this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.valentinesday"), false), 0, 0, Color.BLACK.getRGB());
+			}
+			// 'Easter':
+			if(References.isDateAroundEaster(Calendar.getInstance()))
+			{
+				this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.easter"), false), 0, 0, Color.BLACK.getRGB());
+			}
+			// '4th of July':
+			if(References.isDateAroundIndependenceDay(Calendar.getInstance()))
+			{
+				this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.4thofjuly"), false), 0, 0, Color.BLACK.getRGB());
+			}
+			// 'Halloween':
+			if(References.isDateAroundHalloween(Calendar.getInstance()))
+			{
+				this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.halloween"), false), 0, 0, Color.BLACK.getRGB());
+			}
+			// 'Thanksgiving':
+			if(References.isDateAroundThanksgiving(Calendar.getInstance()))
+			{
+				this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.thanksgiving"), false), 0, 0, Color.BLACK.getRGB());
+			}
+			// 'Christmas':
+			if(References.isDateAroundChristmas(Calendar.getInstance()))
+			{
+				this.centeredString(fontRenderer, this.stringToRainbow(References.localNameVC("viesmachines.button.christmas"), false), 0, 0, Color.BLACK.getRGB());
+			}
+	        
+	        
+	        
+	        
+	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.1"), 0, (10 * 1), Color.WHITE.getRGB());
+	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.2") + TextFormatting.WHITE + " : " + TextFormatting.GOLD + References.startDateChristmas(), 0, (10 * 2), Color.GREEN.getRGB());
+	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.3") + TextFormatting.WHITE + " : " + TextFormatting.GOLD + References.endDateChristmas(), 0, (10 * 3), Color.RED.getRGB());
+	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.4"), 0, (10 * 4), Color.WHITE.getRGB());
+	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.5"), 0, (10 * 5), Color.WHITE.getRGB());
+	        this.centeredString(fontRenderer, References.localNameVC("viesmachines.gui.tt.holiday.6"), 0, (10 * 6), Color.WHITE.getRGB());
+		}
+		GlStateManager.popMatrix();
+		
+		
+		
+		
+		
 		// Draws a black box over the preview buttons:
 		this.drawRect(108, 66, 130, 76, Color.BLACK.getRGB());
 		
@@ -510,7 +544,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 			GlStateManager.scale(0.389F, 0.389F, 0.389F);
 			
 			// Christmas:
-			if(this.previewPart == 7)
+			if(References.isDateAroundChristmas(Calendar.getInstance()))
 			{
 				this.drawItemStack(EnumsVM.VisualDisplaySymbolHoliday.SYMBOL_CHRISTMAS_TREE.getItemStack(), ((18 * 0) * 2), 170, "");
 				this.drawItemStack(EnumsVM.VisualDisplaySymbolHoliday.SYMBOL_CHRISTMAS_WREATH.getItemStack(), ((18 * 1) * 2), 170, "");
@@ -599,10 +633,8 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
         this.hideAllButtons();
         
  		// Handles the buttons for Previewing New Years:
- 		if(this.previewPart == 1)
+ 		if(References.isDateAroundNewYears(Calendar.getInstance()))
 		{
-			GuiVM.button11.enabled = false;
-			
 			GuiVM.buttonTexture00.visible = true;
 	    	GuiVM.buttonTexture01.visible = true;
 	    	GuiVM.buttonTexture02.visible = true;
@@ -614,16 +646,10 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 			GuiVM.buttonTexture08.visible = true;
 			GuiVM.buttonTexture09.visible = true;
 		}
- 		else
-		{
-			GuiVM.button11.enabled = true;
-		}
         
  		// Handles the buttons for Previewing Valentines Day:
- 		if(this.previewPart == 2)
+ 		if(References.isDateAroundValentinesDay(Calendar.getInstance()))
 		{
-			GuiVM.button12.enabled = false;
-			
 			GuiVM.buttonTexture10.visible = true;
 	    	GuiVM.buttonTexture11.visible = true;
 	    	GuiVM.buttonTexture12.visible = true;
@@ -635,16 +661,10 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 			GuiVM.buttonTexture18.visible = true;
 			GuiVM.buttonTexture19.visible = true;
 		}
- 		else
-		{
-			GuiVM.button12.enabled = true;
-		}
         
  		// Handles the buttons for Previewing Easter:
- 		if(this.previewPart == 3)
+ 		if(References.isDateAroundEaster(Calendar.getInstance()))
 		{
-			GuiVM.button13.enabled = false;
-			
 			GuiVM.buttonTexture20.visible = true;
 	    	GuiVM.buttonTexture21.visible = true;
 	    	GuiVM.buttonTexture22.visible = true;
@@ -656,16 +676,10 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 			GuiVM.buttonTexture28.visible = true;
 			GuiVM.buttonTexture29.visible = true;
 		}
- 		else
-		{
-			GuiVM.button13.enabled = true;
-		}
         
  		// Handles the buttons for Previewing 4th of July:
- 		if(this.previewPart == 4)
+ 		if(References.isDateAroundIndependenceDay(Calendar.getInstance()))
 		{
-			GuiVM.button14.enabled = false;
-			
 			GuiVM.buttonTexture30.visible = true;
 	    	GuiVM.buttonTexture31.visible = true;
 	    	GuiVM.buttonTexture32.visible = true;
@@ -677,16 +691,10 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 			GuiVM.buttonTexture38.visible = true;
 			GuiVM.buttonTexture39.visible = true;
 		}
- 		else
-		{
-			GuiVM.button14.enabled = true;
-		}
         
  		// Handles the buttons for Previewing Halloween:
- 		if(this.previewPart == 5)
+ 		if(References.isDateAroundHalloween(Calendar.getInstance()))
 		{
-			GuiVM.button15.enabled = false;
-			
 			GuiVM.buttonTexture40.visible = true;
 	    	GuiVM.buttonTexture41.visible = true;
 	    	GuiVM.buttonTexture42.visible = true;
@@ -698,16 +706,10 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 			GuiVM.buttonTexture48.visible = true;
 			GuiVM.buttonTexture49.visible = true;
 		}
- 		else
-		{
-			GuiVM.button15.enabled = true;
-		}
         
  		// Handles the buttons for Previewing Thanksgiving:
- 		if(this.previewPart == 6)
+ 		if(References.isDateAroundThanksgiving(Calendar.getInstance()))
 		{
-			GuiVM.button16.enabled = false;
-			
 			GuiVM.buttonTexture50.visible = true;
 	    	GuiVM.buttonTexture51.visible = true;
 	    	GuiVM.buttonTexture52.visible = true;
@@ -719,16 +721,10 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 			GuiVM.buttonTexture58.visible = true;
 			GuiVM.buttonTexture59.visible = true;
 		}
- 		else
-		{
-			GuiVM.button16.enabled = true;
-		}
         
  		// Handles the buttons for Previewing Christmas:
- 		if(this.previewPart == 7)
+ 		if(References.isDateAroundChristmas(Calendar.getInstance()))
 		{
-			GuiVM.button17.enabled = false;
-			
 			GuiVM.buttonTexture60.visible = true;
 	    	GuiVM.buttonTexture61.visible = true;
 	    	GuiVM.buttonTexture62.visible = true;
@@ -740,18 +736,6 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 			GuiVM.buttonTexture68.visible = true;
 			GuiVM.buttonTexture69.visible = true;
 		}
- 		else
-		{
-			GuiVM.button17.enabled = true;
-		}
- 		
- 		//TODO Placed to block unfinished holidays
- 		GuiVM.button11.enabled = false;
- 		GuiVM.button12.enabled = false;
- 		GuiVM.button13.enabled = false;
- 		GuiVM.button14.enabled = false;
- 		GuiVM.button15.enabled = false;
- 		GuiVM.button16.enabled = false;
     }
 	
 	@Override
@@ -787,7 +771,7 @@ public class GuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative extends GuiC
 	protected void mouseOverTooltipHandler(int mouseX, int mouseY) 
 	{
 		// Christmas:
-		if(this.previewPart == 7)
+		if(References.isDateAroundChristmas(Calendar.getInstance()))
 		{
 			this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 0) * 1), 102-7+33+33, EnumsVM.VisualDisplaySymbolHoliday.SYMBOL_CHRISTMAS_TREE.getMetadata());
 			this.mouseOverTooltipNames(mouseX, mouseY, 32-14 + ((14 * 1) * 1), 102-7+33+33, EnumsVM.VisualDisplaySymbolHoliday.SYMBOL_CHRISTMAS_WREATH.getMetadata());

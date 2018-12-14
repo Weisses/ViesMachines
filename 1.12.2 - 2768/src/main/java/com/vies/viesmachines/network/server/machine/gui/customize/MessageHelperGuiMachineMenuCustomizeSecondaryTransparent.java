@@ -32,7 +32,11 @@ public class MessageHelperGuiMachineMenuCustomizeSecondaryTransparent extends Me
 	{
 		EntityMachineBase machineIn = (EntityMachineBase) player.getRidingEntity();
 		
-		if (!machineIn.getVisualComponentTransparent()
+		if (player.isCreative())
+		{
+			machineIn.setVisualComponentTransparent(!machineIn.getVisualComponentTransparent());
+		}
+		else if (!machineIn.getVisualComponentTransparent()
 		&& machineIn.getEnergy() >= CostsVM.COST_COMPONENT_TRANSPARENCY)
 		{
 			machineIn.setVisualComponentTransparent(true);
@@ -41,7 +45,6 @@ public class MessageHelperGuiMachineMenuCustomizeSecondaryTransparent extends Me
 		else
 		{
 			machineIn.setVisualComponentTransparent(false);
-			//machineIn.setVisualFrameTransparent(!machineIn.getVisualFrameTransparent());
 		}
 	}
 }

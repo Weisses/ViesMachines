@@ -8,31 +8,17 @@ import com.vies.viesmachines.api.BlocksVM;
 import com.vies.viesmachines.api.References;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemSlab;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.registries.IForgeRegistry;
 
 @ObjectHolder(References.MOD_ID)
 public class InitBlocksVM extends BlocksVM {
-	
-	public static void registerBlockTEMP()
-	{
-		//========================
-		//    To be deleted
-		//========================
-		
-		
-		
-	}
 	
 	@Mod.EventBusSubscriber(modid = References.MOD_ID)
 	public static class RegistrationHandler 
@@ -40,11 +26,7 @@ public class InitBlocksVM extends BlocksVM {
 		public static final Set<Block> BLOCKS = new HashSet<>();
 		public static final Set<ItemBlock> ITEM_BLOCKS = new HashSet<>();
 		
-		/**
-		 * Register this mod's {@link Block}s.
-		 *
-		 * @param event The event
-		 */
+		/** Register this mod's {@link Block}s. */
 		@SubscribeEvent
 		public static void registerBlocks(RegistryEvent.Register<Block> event) 
 		{
@@ -123,8 +105,6 @@ public class InitBlocksVM extends BlocksVM {
 			
 			registry.registerAll(blocks);
 			
-			//registerBlockSlab(XEGONITE_SLAB_HALF, new ItemSlab(XEGONITE_SLAB_HALF, XEGONITE_SLAB_HALF, XEGONITE_SLAB_DOUBLE));
-			
 			registry.registerAll(appliances);
 			
 			registry.registerAll(decorations);
@@ -138,6 +118,8 @@ public class InitBlocksVM extends BlocksVM {
 		@SubscribeEvent
 		public static void registerItemBlocks(RegistryEvent.Register<Item> event) 
 		{
+			final IForgeRegistry<Item> registry = event.getRegistry();
+			
 			final ItemBlock[] items = 
 			{
 				new ItemBlock(XEGONITE_BASIC),
@@ -208,8 +190,6 @@ public class InitBlocksVM extends BlocksVM {
 			};
 			
 			//--------------------------------------------------
-
-			final IForgeRegistry<Item> registry = event.getRegistry();
 			
 			for (final ItemBlock item : items) 
 			{
@@ -235,14 +215,5 @@ public class InitBlocksVM extends BlocksVM {
 				ITEM_BLOCKS.add(item);
 			}
 		}
-	}
-	
-	public static void registerBlockSlab(Block block, ItemBlock itemblock)
-	{
-		ForgeRegistries.BLOCKS.register(block);
-		itemblock.setRegistryName(block.getRegistryName());
-		ForgeRegistries.ITEMS.register(itemblock);
-		
-		//ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
 	}
 }

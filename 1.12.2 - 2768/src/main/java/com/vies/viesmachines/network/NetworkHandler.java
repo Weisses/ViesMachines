@@ -95,7 +95,6 @@ import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperG
 import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperGuiMachineMusicPlay;
 import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperGuiMachineMusicPlayArea;
 import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperGuiMachineMusicRandom;
-import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperGuiMachineMusicSet;
 import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperGuiMachineMusicStop;
 import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperGuiMachineMusicStopArea;
 import com.vies.viesmachines.network.server.machine.gui.main.song.delete.MessageHelperGuiMachineMainRecordDelete1;
@@ -166,21 +165,23 @@ public class NetworkHandler {
 		
 		register(MessageConfig.class, MessageConfig.class, Side.SERVER);
 		
-		register(MessageGuiRadioExpansion.class, MessageGuiRadioExpansion.class, Side.SERVER);
-		
+		//----------//----------//----------//----------//----------//
 		
 		register(MessageGuiMachineMenuMain.class, MessageGuiMachineMenuMain.class, Side.SERVER);
+		register(MessageHelperGuiMachineMenuMainCompress.class, MessageHelperGuiMachineMenuMainCompress.class, Side.SERVER);
+		register(MessageHelperGuiMachineMenuMainCompressClientAll.class, MessageHelperGuiMachineMenuMainCompressClientAll.class, Side.CLIENT);
+		register(MessageHelperGuiMachineMenuMainPowered.class, MessageHelperGuiMachineMenuMainPowered.class, Side.SERVER);
+		register(MessageHelperGuiMachineMenuMainAutorun.class, MessageHelperGuiMachineMenuMainAutorun.class, Side.SERVER);
+		register(MessageHelperGuiMachineMenuMainArmed.class, MessageHelperGuiMachineMenuMainArmed.class, Side.SERVER);
+		
 		register(MessageGuiMachineMenuSelectMusic.class, MessageGuiMachineMenuSelectMusic.class, Side.SERVER);
-		register(MessageGuiMachineMenuChangeName.class, MessageGuiMachineMenuChangeName.class, Side.SERVER);
-		register(MessageGuiMachineMenuSelectProjectile.class, MessageGuiMachineMenuSelectProjectile.class, Side.SERVER);
-		
-		register(MessageHelperGuiMachineMusicSet.class, MessageHelperGuiMachineMusicSet.class, Side.SERVER);
-		register(MessageHelperGuiMachineMusicPlay.class, MessageHelperGuiMachineMusicPlay.class, Side.SERVER);
-		register(MessageHelperGuiMachineMusicPlayArea.class, MessageHelperGuiMachineMusicPlayArea.class, Side.CLIENT);
-		register(MessageHelperGuiMachineMusicStop.class, MessageHelperGuiMachineMusicStop.class, Side.SERVER);
-		register(MessageHelperGuiMachineMusicStopArea.class, MessageHelperGuiMachineMusicStopArea.class, Side.CLIENT);
-		register(MessageHelperGuiMachineMusicRandom.class, MessageHelperGuiMachineMusicRandom.class, Side.SERVER);
-		
+		register(MessageHelperGuiMachineMainRecordSelect1.class, MessageHelperGuiMachineMainRecordSelect1.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordSelect2.class, MessageHelperGuiMachineMainRecordSelect2.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordSelect3.class, MessageHelperGuiMachineMainRecordSelect3.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordSelect4.class, MessageHelperGuiMachineMainRecordSelect4.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordSelect5.class, MessageHelperGuiMachineMainRecordSelect5.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordSelect6.class, MessageHelperGuiMachineMainRecordSelect6.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordSelect7.class, MessageHelperGuiMachineMainRecordSelect7.class, Side.SERVER);
 		register(MessageHelperGuiMachineMainRecordDelete1.class, MessageHelperGuiMachineMainRecordDelete1.class, Side.SERVER);
 		register(MessageHelperGuiMachineMainRecordDelete2.class, MessageHelperGuiMachineMainRecordDelete2.class, Side.SERVER);
 		register(MessageHelperGuiMachineMainRecordDelete3.class, MessageHelperGuiMachineMainRecordDelete3.class, Side.SERVER);
@@ -188,37 +189,36 @@ public class NetworkHandler {
 		register(MessageHelperGuiMachineMainRecordDelete5.class, MessageHelperGuiMachineMainRecordDelete5.class, Side.SERVER);
 		register(MessageHelperGuiMachineMainRecordDelete6.class, MessageHelperGuiMachineMainRecordDelete6.class, Side.SERVER);
 		register(MessageHelperGuiMachineMainRecordDelete7.class, MessageHelperGuiMachineMainRecordDelete7.class, Side.SERVER);
+		register(MessageHelperGuiMachineMainRecordDefault.class, MessageHelperGuiMachineMainRecordDefault.class, Side.SERVER);
 		
+		register(MessageHelperGuiMachineMusicPlay.class, MessageHelperGuiMachineMusicPlay.class, Side.SERVER);
+		register(MessageHelperGuiMachineMusicPlayArea.class, MessageHelperGuiMachineMusicPlayArea.class, Side.CLIENT);
+		register(MessageHelperGuiMachineMusicStop.class, MessageHelperGuiMachineMusicStop.class, Side.SERVER);
+		register(MessageHelperGuiMachineMusicStopArea.class, MessageHelperGuiMachineMusicStopArea.class, Side.CLIENT);
+		register(MessageHelperGuiMachineMusicRandom.class, MessageHelperGuiMachineMusicRandom.class, Side.SERVER);
 		
+		register(MessageGuiMachineMenuChangeName.class, MessageGuiMachineMenuChangeName.class, Side.SERVER);
 		register(MessageHelperGuiMachineMenuChangeName.class, MessageHelperGuiMachineMenuChangeName.class, Side.SERVER);
 		register(MessageHelperGuiMachineMenuChangeNameUndo.class, MessageHelperGuiMachineMenuChangeNameUndo.class, Side.SERVER);
 		register(MessageHelperGuiMachineMenuChangeNameColor.class, MessageHelperGuiMachineMenuChangeNameColor.class, Side.SERVER);
 		
-		
-		register(MessageHelperGuiMachineMenuMainCompress.class, MessageHelperGuiMachineMenuMainCompress.class, Side.SERVER);
-		register(MessageHelperGuiMachineMenuMainCompressClientAll.class, MessageHelperGuiMachineMenuMainCompressClientAll.class, Side.CLIENT);
-		register(MessageHelperGuiMachineMenuMainPowered.class, MessageHelperGuiMachineMenuMainPowered.class, Side.SERVER);
-		register(MessageHelperGuiMachineMenuMainAutorun.class, MessageHelperGuiMachineMenuMainAutorun.class, Side.SERVER);
-		register(MessageHelperGuiMachineMenuMainArmed.class, MessageHelperGuiMachineMenuMainArmed.class, Side.SERVER);
-		
+		register(MessageGuiMachineMenuSelectProjectile.class, MessageGuiMachineMenuSelectProjectile.class, Side.SERVER);
 		register(MessageHelperGuiMachineMenuSelectProjectileBulletConsume.class, MessageHelperGuiMachineMenuSelectProjectileBulletConsume.class, Side.SERVER);
 		register(MessageHelperGuiMachineMenuSelectProjectileBulletNormal.class, MessageHelperGuiMachineMenuSelectProjectileBulletNormal.class, Side.SERVER);
 		register(MessageHelperGuiMachineMenuSelectProjectileBulletElectrical.class, MessageHelperGuiMachineMenuSelectProjectileBulletElectrical.class, Side.SERVER);
 		register(MessageHelperGuiMachineMenuSelectProjectileBulletExplosive.class, MessageHelperGuiMachineMenuSelectProjectileBulletExplosive.class, Side.SERVER);
 		
+		//----------//----------//----------//----------//----------//
 		
 		register(MessageGuiMachineMenuStats.class, MessageGuiMachineMenuStats.class, Side.SERVER);
 		
+		//----------//----------//----------//----------//----------//
+		
 		register(MessageGuiMachineMenuCustomize.class, MessageGuiMachineMenuCustomize.class, Side.SERVER);
 		
-		register(MessageHelperGuiMachineMenuCustomizePrimaryTransparent.class, MessageHelperGuiMachineMenuCustomizePrimaryTransparent.class, Side.SERVER);
-		register(MessageHelperGuiMachineMenuCustomizeSecondaryTransparent.class, MessageHelperGuiMachineMenuCustomizeSecondaryTransparent.class, Side.SERVER);
-		register(MessageHelperGuiMachineMenuCustomizePrimaryDefault.class, MessageHelperGuiMachineMenuCustomizePrimaryDefault.class, Side.SERVER);
-		register(MessageHelperGuiMachineMenuCustomizeSecondaryDefault.class, MessageHelperGuiMachineMenuCustomizeSecondaryDefault.class, Side.SERVER);
-		
-		
-		
 		register(MessageGuiMachineMenuCustomizeActiveModels.class, MessageGuiMachineMenuCustomizeActiveModels.class, Side.SERVER);
+		register(MessageHelperGuiMachineMenuCustomizeActiveModelApply.class, MessageHelperGuiMachineMenuCustomizeActiveModelApply.class, Side.SERVER);
+		
 		register(MessageGuiMachineMenuCustomizeDisplayBanner.class, MessageGuiMachineMenuCustomizeDisplayBanner.class, Side.SERVER);
 		register(MessageHelperGuiCustomizeMenuEngineDisplayClear.class, MessageHelperGuiCustomizeMenuEngineDisplayClear.class, Side.SERVER);
 		
@@ -229,102 +229,48 @@ public class NetworkHandler {
 		register(MessageGuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative.class, MessageGuiMachineMenuCustomizeDisplaySymbolPg1HolidayCreative.class, Side.SERVER);
 		register(MessageHelperGuiCustomizeMenuEngineDisplaySymbolHoliday.class, MessageHelperGuiCustomizeMenuEngineDisplaySymbolHoliday.class, Side.SERVER);
 		
-		
-		
 		register(MessageGuiMachineMenuCustomizeDisplayBlockItemPg1.class, MessageGuiMachineMenuCustomizeDisplayBlockItemPg1.class, Side.SERVER);
 		register(MessageHelperGuiCustomizeMenuEngineDisplayBlockItem.class, MessageHelperGuiCustomizeMenuEngineDisplayBlockItem.class, Side.SERVER);
-		
 		
 		register(MessageGuiMachineMenuCustomizeDisplayHeadPg1.class, MessageGuiMachineMenuCustomizeDisplayHeadPg1.class, Side.SERVER);
 		register(MessageHelperGuiCustomizeMenuEngineDisplayHead.class, MessageHelperGuiCustomizeMenuEngineDisplayHead.class, Side.SERVER);
 		
-		
 		register(MessageGuiMachineMenuCustomizeDisplaySupporterHeadPg1.class, MessageGuiMachineMenuCustomizeDisplaySupporterHeadPg1.class, Side.SERVER);
 		register(MessageHelperGuiCustomizeMenuEngineDisplaySupporterHead.class, MessageHelperGuiCustomizeMenuEngineDisplaySupporterHead.class, Side.SERVER);
 		
-		
-		
-		
 		register(MessageGuiMachineMenuCustomizePrimarySkinTexture.class, MessageGuiMachineMenuCustomizePrimarySkinTexture.class, Side.SERVER);
-		
+		register(MessageHelperGuiMachineMenuCustomizePrimarySkinTexture.class, MessageHelperGuiMachineMenuCustomizePrimarySkinTexture.class, Side.SERVER);
 		register(MessageGuiMachineMenuCustomizePrimarySkinTextureHoliday.class, MessageGuiMachineMenuCustomizePrimarySkinTextureHoliday.class, Side.SERVER);
 		register(MessageGuiMachineMenuCustomizePrimarySkinTextureHolidayCreative.class, MessageGuiMachineMenuCustomizePrimarySkinTextureHolidayCreative.class, Side.SERVER);
 		register(MessageHelperGuiMachineMenuCustomizePrimarySkinTextureHoliday.class, MessageHelperGuiMachineMenuCustomizePrimarySkinTextureHoliday.class, Side.SERVER);
-		
 		
 		register(MessageGuiMachineMenuCustomizePrimarySkinColor.class, MessageGuiMachineMenuCustomizePrimarySkinColor.class, Side.SERVER);
 		register(MessageHelperGuiMachineMenuCustomizePrimarySkinColorApply.class, MessageHelperGuiMachineMenuCustomizePrimarySkinColorApply.class, Side.SERVER);
 		register(MessageHelperGuiMachineMenuCustomizePrimarySkinColorDefault.class, MessageHelperGuiMachineMenuCustomizePrimarySkinColorDefault.class, Side.SERVER);
 		
+		register(MessageHelperGuiMachineMenuCustomizePrimaryTransparent.class, MessageHelperGuiMachineMenuCustomizePrimaryTransparent.class, Side.SERVER);
+		register(MessageHelperGuiMachineMenuCustomizePrimaryDefault.class, MessageHelperGuiMachineMenuCustomizePrimaryDefault.class, Side.SERVER);
 		
 		register(MessageGuiMachineMenuCustomizeSecondarySkinTexture.class, MessageGuiMachineMenuCustomizeSecondarySkinTexture.class, Side.SERVER);
-		
+		register(MessageHelperGuiMachineMenuCustomizeSecondarySkinTexture.class, MessageHelperGuiMachineMenuCustomizeSecondarySkinTexture.class, Side.SERVER);
 		register(MessageGuiMachineMenuCustomizeSecondarySkinTextureHoliday.class, MessageGuiMachineMenuCustomizeSecondarySkinTextureHoliday.class, Side.SERVER);
 		register(MessageGuiMachineMenuCustomizeSecondarySkinTextureHolidayCreative.class, MessageGuiMachineMenuCustomizeSecondarySkinTextureHolidayCreative.class, Side.SERVER);
 		register(MessageHelperGuiMachineMenuCustomizeSecondarySkinTextureHoliday.class, MessageHelperGuiMachineMenuCustomizeSecondarySkinTextureHoliday.class, Side.SERVER);
-		
 		
 		register(MessageGuiMachineMenuCustomizeSecondarySkinColor.class, MessageGuiMachineMenuCustomizeSecondarySkinColor.class, Side.SERVER);
 		register(MessageHelperGuiMachineMenuCustomizeSecondarySkinColorApply.class, MessageHelperGuiMachineMenuCustomizeSecondarySkinColorApply.class, Side.SERVER);
 		register(MessageHelperGuiMachineMenuCustomizeSecondarySkinColorDefault.class, MessageHelperGuiMachineMenuCustomizeSecondarySkinColorDefault.class, Side.SERVER);
 		
+		register(MessageHelperGuiMachineMenuCustomizeSecondaryTransparent.class, MessageHelperGuiMachineMenuCustomizeSecondaryTransparent.class, Side.SERVER);
+		register(MessageHelperGuiMachineMenuCustomizeSecondaryDefault.class, MessageHelperGuiMachineMenuCustomizeSecondaryDefault.class, Side.SERVER);
 		
-		register(MessageHelperGuiMachineMenuCustomizeActiveModelApply.class, MessageHelperGuiMachineMenuCustomizeActiveModelApply.class, Side.SERVER);
-		
-		register(MessageHelperGuiMachineMenuCustomizePrimarySkinTexture.class, MessageHelperGuiMachineMenuCustomizePrimarySkinTexture.class, Side.SERVER);
-		register(MessageHelperGuiMachineMenuCustomizeSecondarySkinTexture.class, MessageHelperGuiMachineMenuCustomizeSecondarySkinTexture.class, Side.SERVER);
-		
-		
-		register(MessageHelperGuiMachineMainRecordSelect1.class, MessageHelperGuiMachineMainRecordSelect1.class, Side.SERVER);
-		register(MessageHelperGuiMachineMainRecordSelect2.class, MessageHelperGuiMachineMainRecordSelect2.class, Side.SERVER);
-		register(MessageHelperGuiMachineMainRecordSelect3.class, MessageHelperGuiMachineMainRecordSelect3.class, Side.SERVER);
-		register(MessageHelperGuiMachineMainRecordSelect4.class, MessageHelperGuiMachineMainRecordSelect4.class, Side.SERVER);
-		register(MessageHelperGuiMachineMainRecordSelect5.class, MessageHelperGuiMachineMainRecordSelect5.class, Side.SERVER);
-		register(MessageHelperGuiMachineMainRecordSelect6.class, MessageHelperGuiMachineMainRecordSelect6.class, Side.SERVER);
-		register(MessageHelperGuiMachineMainRecordSelect7.class, MessageHelperGuiMachineMainRecordSelect7.class, Side.SERVER);
-		
-		register(MessageHelperGuiMachineMainRecordDefault.class, MessageHelperGuiMachineMainRecordDefault.class, Side.SERVER);
-		
+		//----------//----------//----------//----------//----------//
 		
 		register(MessageFlyingThunderStrike.class, MessageFlyingThunderStrike.class, Side.SERVER);
 		register(MessageMachineProjectileShoot.class, MessageMachineProjectileShoot.class, Side.SERVER);
 		
+		//----------//----------//----------//----------//----------//
 		
-		
-		
-		register(MessageHelperItemToolRadioExpansion.class, MessageHelperItemToolRadioExpansion.class, Side.SERVER);
-		
-		
-		register(PlayerMessagePoweredOnEnabled.class, PlayerMessagePoweredOnEnabled.class, Side.SERVER);
-		register(PlayerMessagePoweredOnDisabled.class, PlayerMessagePoweredOnDisabled.class, Side.SERVER);
-		
-		register(PlayerMessageWeaponSystemError.class, PlayerMessageWeaponSystemError.class, Side.SERVER);
-		register(PlayerMessageWeaponSystemEnabled.class, PlayerMessageWeaponSystemEnabled.class, Side.SERVER);
-		register(PlayerMessageWeaponSystemDisabled.class, PlayerMessageWeaponSystemDisabled.class, Side.SERVER);
-		register(PlayerMessageWeaponSystemOutOfAmmo.class, PlayerMessageWeaponSystemOutOfAmmo.class, Side.SERVER);
-		
-		register(PlayerMessageAutorunEnabled.class, PlayerMessageAutorunEnabled.class, Side.SERVER);
-		register(PlayerMessageAutorunDisabled.class, PlayerMessageAutorunDisabled.class, Side.SERVER);
-		
-		register(PlayerMessageNameColor.class, PlayerMessageNameColor.class, Side.SERVER);
-		register(PlayerMessageMachineBroken.class, PlayerMessageMachineBroken.class, Side.SERVER);
-		
-		register(PlayerMessageVisualPrimaryColorSelected.class, PlayerMessageVisualPrimaryColorSelected.class, Side.SERVER);
-		
-		
-		register(PlayerMessageVisualPrimaryTextureSelected.class, PlayerMessageVisualPrimaryTextureSelected.class, Side.SERVER);
-		register(PlayerMessageVisualPrimaryTransparentDisabled.class, PlayerMessageVisualPrimaryTransparentDisabled.class, Side.SERVER);
-		register(PlayerMessageVisualPrimaryTransparentEnabled.class, PlayerMessageVisualPrimaryTransparentEnabled.class, Side.SERVER);
-		
-		register(PlayerMessageVisualSecondaryColorSelected.class, PlayerMessageVisualSecondaryColorSelected.class, Side.SERVER);
-		
-		
-		
-		register(PlayerMessageVisualSecondaryTextureSelected.class, PlayerMessageVisualSecondaryTextureSelected.class, Side.SERVER);
-		register(PlayerMessageVisualSecondaryTransparentDisabled.class, PlayerMessageVisualSecondaryTransparentDisabled.class, Side.SERVER);
-		register(PlayerMessageVisualSecondaryTransparentEnabled.class, PlayerMessageVisualSecondaryTransparentEnabled.class, Side.SERVER);
-		
-		register(MessageHelperGuiMachineMenuCustomizeActiveModelApply.class, MessageHelperGuiMachineMenuCustomizeActiveModelApply.class, Side.SERVER);
 		
 		register(MessageGuiExtractorSyncClientOn.class, MessageGuiExtractorSyncClientOn.class, Side.CLIENT);
 		register(MessageGuiExtractorSyncServerOn.class, MessageGuiExtractorSyncServerOn.class, Side.SERVER);
@@ -333,6 +279,32 @@ public class NetworkHandler {
 		register(MessageGuiKitFabricatorSyncServerOn.class, MessageGuiKitFabricatorSyncServerOn.class, Side.SERVER);
 		register(MessageGuiKitFabricatorSyncClientGem.class, MessageGuiKitFabricatorSyncClientGem.class, Side.CLIENT);
 		register(MessageGuiKitFabricatorSyncServerGem.class, MessageGuiKitFabricatorSyncServerGem.class, Side.SERVER);
+		
+		//----------//----------//----------//----------//----------//
+		
+		register(MessageGuiRadioExpansion.class, MessageGuiRadioExpansion.class, Side.SERVER);
+		register(MessageHelperItemToolRadioExpansion.class, MessageHelperItemToolRadioExpansion.class, Side.SERVER);
+		
+		//----------//----------//----------//----------//----------//
+		
+		register(PlayerMessageMachineBroken.class, PlayerMessageMachineBroken.class, Side.SERVER);
+		register(PlayerMessagePoweredOnEnabled.class, PlayerMessagePoweredOnEnabled.class, Side.SERVER);
+		register(PlayerMessagePoweredOnDisabled.class, PlayerMessagePoweredOnDisabled.class, Side.SERVER);
+		register(PlayerMessageWeaponSystemError.class, PlayerMessageWeaponSystemError.class, Side.SERVER);
+		register(PlayerMessageWeaponSystemEnabled.class, PlayerMessageWeaponSystemEnabled.class, Side.SERVER);
+		register(PlayerMessageWeaponSystemDisabled.class, PlayerMessageWeaponSystemDisabled.class, Side.SERVER);
+		register(PlayerMessageWeaponSystemOutOfAmmo.class, PlayerMessageWeaponSystemOutOfAmmo.class, Side.SERVER);
+		register(PlayerMessageAutorunEnabled.class, PlayerMessageAutorunEnabled.class, Side.SERVER);
+		register(PlayerMessageAutorunDisabled.class, PlayerMessageAutorunDisabled.class, Side.SERVER);
+		register(PlayerMessageNameColor.class, PlayerMessageNameColor.class, Side.SERVER);
+		register(PlayerMessageVisualPrimaryTextureSelected.class, PlayerMessageVisualPrimaryTextureSelected.class, Side.SERVER);
+		register(PlayerMessageVisualPrimaryColorSelected.class, PlayerMessageVisualPrimaryColorSelected.class, Side.SERVER);
+		register(PlayerMessageVisualPrimaryTransparentDisabled.class, PlayerMessageVisualPrimaryTransparentDisabled.class, Side.SERVER);
+		register(PlayerMessageVisualPrimaryTransparentEnabled.class, PlayerMessageVisualPrimaryTransparentEnabled.class, Side.SERVER);
+		register(PlayerMessageVisualSecondaryTextureSelected.class, PlayerMessageVisualSecondaryTextureSelected.class, Side.SERVER);
+		register(PlayerMessageVisualSecondaryColorSelected.class, PlayerMessageVisualSecondaryColorSelected.class, Side.SERVER);
+		register(PlayerMessageVisualSecondaryTransparentDisabled.class, PlayerMessageVisualSecondaryTransparentDisabled.class, Side.SERVER);
+		register(PlayerMessageVisualSecondaryTransparentEnabled.class, PlayerMessageVisualSecondaryTransparentEnabled.class, Side.SERVER);
 		
 		register(PlayerMessageToolRadioExpansionAlreadyKnown.class, PlayerMessageToolRadioExpansionAlreadyKnown.class, Side.SERVER);
 		register(PlayerMessageToolRadioExpansionFull.class, PlayerMessageToolRadioExpansionFull.class, Side.SERVER);
@@ -345,6 +317,7 @@ public class NetworkHandler {
 		register(PlayerMessageToolRadioExpansionApply6.class, PlayerMessageToolRadioExpansionApply6.class, Side.SERVER);
 		register(PlayerMessageToolRadioExpansionApply7.class, PlayerMessageToolRadioExpansionApply7.class, Side.SERVER);
 		
+		//----------//----------//----------//----------//----------//
 		
 		register(MessageHelperEventTrigger01Client.class, MessageHelperEventTrigger01Client.class, Side.CLIENT);
 		register(MessageHelperEventTrigger02Client.class, MessageHelperEventTrigger02Client.class, Side.CLIENT);
@@ -380,11 +353,9 @@ public class NetworkHandler {
 		register(MessageHelperEventTrigger42Server.class, MessageHelperEventTrigger42Server.class, Side.SERVER);
 		register(MessageHelperEventTrigger43Server.class, MessageHelperEventTrigger43Server.class, Side.SERVER);
 		
-		
+		//----------//----------//----------//----------//----------//
 		
 		//register(.class, .class, Side.SERVER);
-		
-		
 		
 	}
 	

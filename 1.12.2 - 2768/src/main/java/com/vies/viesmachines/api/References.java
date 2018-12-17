@@ -256,77 +256,7 @@ public class References {
 		return "12/28";
     }
 	
-	//--------------------------------------------------
-	/*
-	/** Sets the correct Main Toolitp color. *
-	@SideOnly(Side.CLIENT)
-	public static TextFormatting mainColorTooltip(ItemStack stackIn)
-	{
-		TextFormatting stringColorMain = TextFormatting.WHITE;
-		
-		if(stackIn.getMetadata() == 0)
-		{
-			stringColorMain = TextFormatting.WHITE;
-		}
-		if(stackIn.getMetadata() == 1)
-		{
-			stringColorMain = TextFormatting.WHITE;
-		}
-		if(stackIn.getMetadata() == 2)
-		{
-			stringColorMain = TextFormatting.YELLOW;
-		}
-		if(stackIn.getMetadata() == 3)
-		{
-			stringColorMain = TextFormatting.AQUA;
-		}
-		if(stackIn.getMetadata() == 4)
-		{
-			stringColorMain = TextFormatting.LIGHT_PURPLE;
-		}
-		if(stackIn.getMetadata() == 5)
-		{
-			stringColorMain = TextFormatting.RED;
-		}
-		
-		return stringColorMain;
-	}
-	
-	/** Sets the correct Text Toolitp color. *
-	@SideOnly(Side.CLIENT)
-	public static TextFormatting textColorTooltip(ItemStack stackIn)
-	{
-		TextFormatting stringColorText = TextFormatting.GRAY;
-		
-		if(stackIn.getMetadata() == 0)
-		{
-			stringColorText = TextFormatting.GRAY;
-		}
-		if(stackIn.getMetadata() == 1)
-		{
-			stringColorText = TextFormatting.GRAY;
-		}
-		if(stackIn.getMetadata() == 2)
-		{
-			stringColorText = TextFormatting.GOLD;
-		}
-		if(stackIn.getMetadata() == 3)
-		{
-			stringColorText = TextFormatting.DARK_AQUA;
-		}
-		if(stackIn.getMetadata() == 4)
-		{
-			stringColorText = TextFormatting.DARK_PURPLE;
-		}
-		if(stackIn.getMetadata() == 5)
-		{
-			stringColorText = TextFormatting.DARK_RED;
-		}
-		
-		return stringColorText;
-	}
-	*/
-	//=========================================
+	//==================================================
 	
 	/* Used to make arrays.
 	public static final ItemStack[] ITEM_DISPLAY_SYMBOL = new ItemStack[] 

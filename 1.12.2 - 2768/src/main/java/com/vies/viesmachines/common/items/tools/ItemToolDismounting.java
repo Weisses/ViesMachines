@@ -125,16 +125,21 @@ public class ItemToolDismounting extends Item {
     {
 		tooltip.add(TextFormatting.DARK_GREEN + "================================");
 		tooltip.add(TextFormatting.WHITE + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.1") 
-		+ " " + TextFormatting.GRAY + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.2"));
-		tooltip.add(References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.3"));
+		+ " " + TextFormatting.GOLD + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.2"));
+		tooltip.add(TextFormatting.GOLD + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.3"));
 		tooltip.add("");
-		tooltip.add(References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.4"));
+		tooltip.add(TextFormatting.GOLD + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.4"));
+		
+		if (VMConfiguration.toolDismounterPlayer)
+		{
+			tooltip.add(TextFormatting.RED + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.5"));
+		}
 	}
 	
 	@Override
 	public EnumRarity getRarity(ItemStack stack)
     {
-		return EnumRarity.COMMON;
+		return EnumRarity.UNCOMMON;
     }
 
     /** Return the name for this gem proc. */

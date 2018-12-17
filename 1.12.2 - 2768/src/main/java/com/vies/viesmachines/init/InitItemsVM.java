@@ -28,10 +28,20 @@ public class InitItemsVM extends ItemsVM {
 			final Item[] items = 
 			{
 					XEGONITE,
-					MACHINE_PELLETS,
-					MACHINE_AMMO,
+					XEGONITE_WATER,
+					XEGONITE_LAVA,
 					
+					XEGONITE_ENDER,
 					CIRCUIT_LOGIC,
+					CIRCUIT_ADAPTIVE,
+					
+					KIT_BLANK,
+					KIT_UPGRADE_MAX,
+					KIT_MACHINE_MAX,
+					
+					//--------------------------------------------------
+					
+					MACHINE_PELLETS,
 					MACHINE_FRAME,
 					MACHINE_ENGINE,
 					
@@ -39,19 +49,9 @@ public class InitItemsVM extends ItemsVM {
 					MACHINE_COMPONENT_WATER,
 					MACHINE_COMPONENT_FLYING,
 					
-					//--------------------------------------------------
-					
-					UPGRADE_FRAME_TIER1,
-					UPGRADE_FRAME_TIER2,
-					UPGRADE_FRAME_TIER3,
-					
-					UPGRADE_ENGINE_TIER1,
-					UPGRADE_ENGINE_TIER2,
-					UPGRADE_ENGINE_TIER3,
-					
-					UPGRADE_COMPONENT_TIER1,
-					UPGRADE_COMPONENT_TIER2,
-					UPGRADE_COMPONENT_TIER3,
+					KIT_AMMO_4,
+					KIT_AMMO_16,
+					KIT_AMMO_64,
 					
 					//--------------------------------------------------
 					
@@ -83,19 +83,26 @@ public class InitItemsVM extends ItemsVM {
 					
 					//--------------------------------------------------
 					
+					UPGRADE_FRAME_TIER1,
+					UPGRADE_FRAME_TIER2,
+					UPGRADE_FRAME_TIER3,
+					
+					UPGRADE_ENGINE_TIER1,
+					UPGRADE_ENGINE_TIER2,
+					UPGRADE_ENGINE_TIER3,
+					
+					UPGRADE_COMPONENT_TIER1,
+					UPGRADE_COMPONENT_TIER2,
+					UPGRADE_COMPONENT_TIER3,
+					
+					//--------------------------------------------------
+					
 					TOOL_DISMOUNTER,
 					TOOL_RADIO_EXPANSION,
 					
 					//--------------------------------------------------
 					
-					XEGONITE_WATER,
-					XEGONITE_LAVA,
-					XEGONITE_ENDER,
 					
-					KIT_RAW,
-					KIT_UPGRADE_MAX,
-					KIT_MACHINE_MAX,
-					CIRCUIT_ADAPTIVE,
 					
 					//--------------------------------------------------
 					//--------------------------------------------------

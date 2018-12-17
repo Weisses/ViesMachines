@@ -157,7 +157,7 @@ public class ItemUpgradeFrame extends Item {
 		}
 		
 		tooltip.add(TextFormatting.DARK_GREEN + "================================");
-		tooltip.add(textColor + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.1"));
+		tooltip.add(TextFormatting.WHITE + References.Old_I18n.translateToLocal("viesmachines.leftclick") + " " + textColor + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.1"));
 		tooltip.add("");
 		tooltip.add(textColor + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.2"));
 	}

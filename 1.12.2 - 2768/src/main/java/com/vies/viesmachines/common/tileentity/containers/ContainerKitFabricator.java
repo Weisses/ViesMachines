@@ -30,7 +30,7 @@ public class ContainerKitFabricator extends ContainerTileEntityVM {
         this.appliance = applianceIn;
 
         // Item Input slot:
-        this.addSlotToContainer(new SlotInputKitFabricator(this.appliance.inventory, 0, 80, 53+9));
+        this.addSlotToContainer(new SlotInputKitFabricator(this.appliance.inventory, 0, 80+12, 53+9));
         
         // Shard output slot:
         this.addSlotToContainer(new SlotOutputVM(this.appliance.inventory, 1, 134, 35));

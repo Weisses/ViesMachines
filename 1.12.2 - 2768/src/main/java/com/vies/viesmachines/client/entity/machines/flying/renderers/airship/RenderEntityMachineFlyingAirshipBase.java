@@ -740,7 +740,11 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
 	    		    		GlStateManager.scale(0.5F, 0.5F, 0.5F);
 	    		    		GlStateManager.rotate(180, 1, 0, 0);
 	    		    		
-	    		    		String ammoType = "Normal";
+	    		    		String ammoType = "Standard";
+	    		    		
+	    		    		TextFormatting colorForUse = TextFormatting.YELLOW;
+	    		    		
+	    		    		
 	    		    		
 	    		    		if (entity.getAmmoType() == 1)
 	    		    		{
@@ -754,38 +758,62 @@ public class RenderEntityMachineFlyingAirshipBase extends RenderLiving<EntityMac
 	    		    		// Frame info:
 	    		    		if (entity.getTierFrame() == 0)
 	    		    		{
-	    		    			EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.LIGHT_PURPLE + "Frame : " + "None", 0F, 1.50F, 0F, 0, nameplateYaw, playerIn.rotationPitch, false, false);
+	    		    			EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.BLUE + "Frame : " + TextFormatting.GRAY + "None", 0F, 1.50F, 0F, 0, nameplateYaw, 0F, false, false);
+	    		    		}
+	    		    		else if (entity.getTierFrame() == 1)
+	    		    		{
+	    		    			EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.BLUE + "Frame : " + TextFormatting.YELLOW + "Tier " + entity.getTierFrame(), 0F, 1.50F, 0F, 0, nameplateYaw, 0F, false, false);
+	    		    		}
+	    		    		else if (entity.getTierFrame() == 2)
+	    		    		{
+    		    				EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.BLUE + "Frame : " + TextFormatting.AQUA + "Tier " + entity.getTierFrame(), 0F, 1.50F, 0F, 0, nameplateYaw, 0F, false, false);
 	    		    		}
 	    		    		else
 	    		    		{
-	    		    			EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.LIGHT_PURPLE + "Frame : " + "Tier " + entity.getTierFrame(), 0F, 1.50F, 0F, 0, nameplateYaw, playerIn.rotationPitch, false, false);
+	    		    			EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.BLUE + "Frame : " + TextFormatting.LIGHT_PURPLE + "Tier " + entity.getTierFrame(), 0F, 1.50F, 0F, 0, nameplateYaw, 0F, false, false);
 	    		    		}
 	    		    		
 	    		    		// Engine info:
 	    		    		if (entity.getTierEngine() == 0)
 	    		    		{
-	    		    			EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.LIGHT_PURPLE + "Engine : " + "None", 0F, 1.25F, 0F, 0, nameplateYaw, playerIn.rotationPitch, false, false);
+	    		    			EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.BLUE + "Engine : " + TextFormatting.GRAY + "None", 0F, 1.25F, 0F, 0, nameplateYaw, 0F, false, false);
+	    		    		}
+	    		    		else if (entity.getTierEngine() == 1)
+	    		    		{
+	    		    			EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.BLUE + "Engine : " + TextFormatting.YELLOW + "Tier " + entity.getTierEngine(), 0F, 1.25F, 0F, 0, nameplateYaw, 0F, false, false);
+	    		    		}
+	    		    		else if (entity.getTierEngine() == 2)
+	    		    		{
+    		    				EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.BLUE + "Engine : " + TextFormatting.AQUA + "Tier " + entity.getTierEngine(), 0F, 1.25F, 0F, 0, nameplateYaw, 0F, false, false);
 	    		    		}
 	    		    		else
 	    		    		{
-	    		    			EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.LIGHT_PURPLE + "Engine : " + "Tier " + entity.getTierEngine(), 0F, 1.25F, 0F, 0, nameplateYaw, playerIn.rotationPitch, false, false);
+	    		    			EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.BLUE + "Engine : " + TextFormatting.LIGHT_PURPLE + "Tier " + entity.getTierEngine(), 0F, 1.25F, 0F, 0, nameplateYaw, 0F, false, false);
 	    		    		}
 	    		    		
 	    		    		// Component info:
 	    		    		if (entity.getTierComponent() == 0)
 	    		    		{
-	    		    			EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.LIGHT_PURPLE + "Component : " + "None", 0F, 1.00F, 0F, 0, nameplateYaw, playerIn.rotationPitch, false, false);
+	    		    			EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.BLUE + "Component : " + TextFormatting.GRAY + "None", 0F, 1.00F, 0F, 0, nameplateYaw, 0F, false, false);
+	    		    		}
+	    		    		else if (entity.getTierComponent() == 1)
+	    		    		{
+	    		    			EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.BLUE + "Component : " + TextFormatting.YELLOW + "Tier " + entity.getTierComponent(), 0F, 1.00F, 0F, 0, nameplateYaw, 0F, false, false);
+	    		    		}
+	    		    		else if (entity.getTierComponent() == 2)
+	    		    		{
+    		    				EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.BLUE + "Component : " + TextFormatting.AQUA + "Tier " + entity.getTierComponent(), 0F, 1.00F, 0F, 0, nameplateYaw, 0F, false, false);
 	    		    		}
 	    		    		else
 	    		    		{
-	    		    			EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.LIGHT_PURPLE + "Component : " + "Tier " + entity.getTierComponent(), 0F, 1.00F, 0F, 0, nameplateYaw, playerIn.rotationPitch, false, false);
+	    		    			EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.BLUE + "Component : " + TextFormatting.LIGHT_PURPLE + "Tier " + entity.getTierComponent(), 0F, 1.00F, 0F, 0, nameplateYaw, 0F, false, false);
 	    		    		}
 	    		    		
 	    		    		// Ammo Type info:
-	    		    		EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.LIGHT_PURPLE + "Ammo Type : " + ammoType, 0F, 0.75F, 0F, 0, nameplateYaw, playerIn.rotationPitch, false, false);
+	    		    		EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.BLUE + "Ammo Type : " + TextFormatting.WHITE  + ammoType, 0F, 0.75F, 0F, 0, nameplateYaw, 0F, false, false);
 	    		    		
 	    		    		// Ammo Amount info:
-	    		    		EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.LIGHT_PURPLE + "Ammo Amount : " + entity.getAmmoAmount() + "/" + EnumsVM.FlyingMachineComponentTier.byId(entity.getTierComponent()).getMaxAmmoModifier(), 0F, 0.50F, 0F, 0, nameplateYaw, playerIn.rotationPitch, false, false);
+	    		    		EntityRenderer.drawNameplate(this.getFontRenderer(), TextFormatting.BLUE + "Ammo Amount : " + TextFormatting.WHITE  + entity.getAmmoAmount() + "/" + EnumsVM.FlyingMachineComponentTier.byId(entity.getTierComponent()).getMaxAmmoModifier(), 0F, 0.50F, 0F, 0, nameplateYaw, 0F, false, false);
 	    		        }
 	    		    	GlStateManager.popMatrix();
 		    		}

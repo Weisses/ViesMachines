@@ -84,6 +84,9 @@ public class ItemKitAdmin extends Item {
 				((EntityMachineBase) entity).setEnergy(((EntityMachineBase) entity).getMaxEnergy());
 				((EntityMachineBase) entity).setDurability(((EntityMachineBase) entity).getMaxDurability());
 				
+				((EntityMachineBase) entity).setAmmoAmount(((EntityMachineBase) entity).getMaxAmmoAmount());
+				
+				
 				if(!player.isCreative())
 				{
 					stack.shrink(1);
@@ -140,6 +143,8 @@ public class ItemKitAdmin extends Item {
 						((EntityMachineBase) entity.getRidingEntity()).setEnergy(((EntityMachineBase) entity.getRidingEntity()).getMaxEnergy());
 						((EntityMachineBase) entity.getRidingEntity()).setDurability(((EntityMachineBase) entity.getRidingEntity()).getMaxDurability());
 						
+						((EntityMachineBase) entity.getRidingEntity()).setAmmoAmount(((EntityMachineBase) entity.getRidingEntity()).getMaxAmmoAmount());
+						
 						if(!player.isCreative())
 						{
 							stack.shrink(1);
@@ -183,7 +188,7 @@ public class ItemKitAdmin extends Item {
 		tooltip.add(TextFormatting.DARK_GREEN + "================================");
 		tooltip.add(TextFormatting.DARK_RED + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.1"));
 		tooltip.add(TextFormatting.DARK_RED + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.2"));
-		tooltip.add(TextFormatting.DARK_RED + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.3"));
+		tooltip.add(TextFormatting.WHITE + References.Old_I18n.translateToLocal("viesmachines.leftclick") + " " + TextFormatting.DARK_RED + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.3"));
 	}
 	
 	@Override

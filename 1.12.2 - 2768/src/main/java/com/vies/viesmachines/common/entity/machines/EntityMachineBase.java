@@ -1,7 +1,5 @@
 package com.vies.viesmachines.common.entity.machines;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -15,7 +13,7 @@ import com.vies.viesmachines.api.util.Loghelper;
 import com.vies.viesmachines.client.InitParticlesVMRender;
 import com.vies.viesmachines.network.NetworkHandler;
 import com.vies.viesmachines.network.server.machine.MessageFlyingThunderStrike;
-import com.vies.viesmachines.network.server.machine.MessageMachineProjectileShoot;
+import com.vies.viesmachines.network.server.machine.MessageMachineFlyingBombStandard;
 import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger01Server;
 import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger02Server;
 import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger04Server;
@@ -32,6 +30,9 @@ import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEv
 import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger41Server;
 import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger42Server;
 import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger43Server;
+import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger51Server;
+import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger52Server;
+import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger53Server;
 import com.vies.viesmachines.network.server.machine.gui.navigation.MessageGuiMachineMenuMain;
 import com.vies.viesmachines.network.server.world.PlayerMessageWeaponSystemError;
 import com.vies.viesmachines.network.server.world.PlayerMessageWeaponSystemOutOfAmmo;
@@ -54,7 +55,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -63,7 +63,6 @@ import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -74,7 +73,6 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -729,7 +727,10 @@ public class EntityMachineBase extends EntityLiving {
     {
 		//Used to clear out all test machines for testing purposes:
         //	this.isDead = true;
-        /**
+        
+		//--------------------------------------------------
+		
+		/*
 		if (this.ticksExisted % 40 == 0)
 		{
 			//this.setLearnedRecordSlot1("");
@@ -744,33 +745,7 @@ public class EntityMachineBase extends EntityLiving {
 			);
 		}
 		*/
-		//this.currentMusicListRecord.clear();
-		//this.currentMusicListRecord = new ArrayList<ResourceLocation>();
 		
-		
-		//LogHelper.info(this.getSelectedRecord());
-		
-		
-		//LogHelper.info(this.currentMusicListRecord);
-		//--------------------------------------------------
-		//////////LogHelper.info(this.getEventTrigger());
-		//LogHelper.info(this.getEntityId() + " - " + this.currentMusicListRecord);
-		//this.currentMusicListRecord.clear();
-        //LogHelper.info(this.getEntityId() +" - Tier Frame = " + this.getTierFrame());
-        //LogHelper.info(this.getEntityId() +" - Tier Engine = " + this.getTierEngine());
-        //LogHelper.info(this.getEntityId() +" - Tier Component = " + this.getTierComponent());
-        
-        //this.frameTier = 0;
-        //LogHelper.info(this.getEntityId() + "Is On = " + this.machineTurnedOn);
-        //LogHelper.info(this.getEntityId() + "Energy = " + this.energyPoints);
-		//LogHelper.info("nameVisual = "+ this.getVisualNameColor());
-        //LogHelper.info(this.getEntityId() + "player = " + this.getControllingPassenger());
-        //if (this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).hasModifier(MachineModifier.DASHING_SPEED_BOOST))
-		//{
-		//	this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).removeModifier(MachineModifier.DASHING_SPEED_BOOST);
-		//}
-        //this.setVisualFrameTexture(7);
-        //this.setVisualModelComponent(1);
         //--------------------------------------------------
 		
         this.entityID = this.getEntityId();
@@ -835,6 +810,7 @@ public class EntityMachineBase extends EntityLiving {
             }
         }
         
+        this.reduceAmmoToMax();
         this.initiateCanGetStruckByLightning();
         this.initiateWeaponFiringCooldown();
         this.initiateEventTrigger();
@@ -1246,24 +1222,62 @@ public class EntityMachineBase extends EntityLiving {
     	&& this.getControllingPassenger() != null
     	&& this.weaponCooldown >= this.weaponFiringCooldownTicks(this.getAmmoType()))
 		{
-    		if (this.getArmed())
+    		if (this.getControllingPassenger() instanceof EntityPlayer)
     		{
-    			NetworkHandler.sendToServer(new MessageMachineProjectileShoot());
-    			
-    			this.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 1.0F, 1.0F);
-    			
-    			this.weaponCooldown = 0;
-    			
-    			if (this.getAmmoAmount() == 0)
-    			{
-    				NetworkHandler.sendToServer(new PlayerMessageWeaponSystemOutOfAmmo());
-    			}
-    		}
-    		else
-    		{
-    			this.playSound(SoundEvents.BLOCK_WOOD_BUTTON_CLICK_ON, 1.0F, 1.0F);
-    			
-    			NetworkHandler.sendToServer(new PlayerMessageWeaponSystemError());
+    			EntityPlayer player = (EntityPlayer) this.getControllingPassenger();
+	    		
+	    		if (this.getArmed())
+	    		{
+	    			if (this instanceof EntityMachineGround)
+	    			{
+	    				Loghelper.info("This is using a ground weapon!");
+	    				
+	    				//NetworkHandler.sendToServer(new MessageMachineProjectileShoot());
+		    			
+		    			this.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 1.0F, 1.0F);
+		    			
+		    			this.weaponCooldown = 0;
+	    			}
+	    			
+	    			if (this instanceof EntityMachineWater)
+	    			{
+	    				Loghelper.info("This is using a water weapon!");
+	    				
+	    				//NetworkHandler.sendToServer(new MessageMachineProjectileShoot());
+		    			
+		    			this.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 1.0F, 1.0F);
+		    			
+		    			this.weaponCooldown = 0;
+	    			}
+	    			
+	    			if (this instanceof EntityMachineFlying)
+	    			{
+	    				Loghelper.info("This is using a flying weapon!");
+	    				
+	    				NetworkHandler.sendToServer(new MessageMachineFlyingBombStandard());
+		    			
+		    			this.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 1.0F, 1.0F);
+		    			
+		    			this.weaponCooldown = 0;
+	    			}
+	    			
+	    			
+	    			
+	    			
+	    			
+	    			
+	    			if (this.getAmmoAmount() == 0
+					&& !player.isCreative())
+	    			{
+	    				NetworkHandler.sendToServer(new PlayerMessageWeaponSystemOutOfAmmo());
+	    			}
+	    		}
+	    		else
+	    		{
+	    			this.playSound(SoundEvents.BLOCK_WOOD_BUTTON_CLICK_ON, 1.0F, 1.0F);
+	    			
+	    			NetworkHandler.sendToServer(new PlayerMessageWeaponSystemError());
+	    		}
     		}
         }
     }
@@ -1441,6 +1455,36 @@ public class EntityMachineBase extends EntityLiving {
 		}
     }
     
+    /** Particles that spawn when a machine's ammo is healed. */
+    @SideOnly(Side.CLIENT)
+    public void spawnAmmoParticles1()
+    {
+    	for (int i = 0; i < 10; i++)
+		{
+			InitParticlesVMRender.generateAmmoParticles(this);
+		}
+    }
+    
+    /** Particles that spawn when a machine's ammo is healed. */
+    @SideOnly(Side.CLIENT)
+    public void spawnAmmoParticles2()
+    {
+    	for (int i = 0; i < 25; i++)
+		{
+			InitParticlesVMRender.generateAmmoParticles(this);
+		}
+    }
+    
+    /** Particles that spawn when a machine's ammo is healed. */
+    @SideOnly(Side.CLIENT)
+    public void spawnAmmoParticles3()
+    {
+    	for (int i = 0; i < 50; i++)
+		{
+			InitParticlesVMRender.generateAmmoParticles(this);
+		}
+    }
+    
     /** Particles that spawn when a machine is upgraded. */
     @SideOnly(Side.CLIENT)
     public void spawnUpgradeParticles1()
@@ -1556,6 +1600,12 @@ public class EntityMachineBase extends EntityLiving {
 	
 	/** Gets the sound to be triggered when a machine's durability is healed. */
 	protected SoundEvent getHealDurabilitySound()
+    {
+        return SoundsVM.HEAL;
+    }
+	
+	/** Gets the sound to be triggered when a machine's ammo is healed. */
+	protected SoundEvent getHealAmmoSound()
     {
         return SoundsVM.HEAL;
     }
@@ -1979,14 +2029,28 @@ public class EntityMachineBase extends EntityLiving {
     		//EntityLivingBase entitylivingbase = (EntityLivingBase)this.getControllingPassenger();
             //entitylivingbase.rotationYaw = this.rotationYaw;
     		
-    		//this.turn(this.rotationYaw, this.rotationPitch);
+    		
     		
     		
     		// This crashed the server...
     		if (this.world.isRemote)
     		{
     			this.applyOrientationToEntity(this);
+    			
+    			
+    			//this.rotationPitch = this.getRidingEntity().rotationPitch;
+    			
+    			EntityLivingBase entitylivingbase = (EntityLivingBase)this.getControllingPassenger();
+                
+    			this.rotationPitch = entitylivingbase.rotationPitch;
+    			
+    			this.rotationYawHead = entitylivingbase.rotationYawHead;
+    			
+    			
+    			//this.turn(this.rotationYaw, this.rotationPitch);
     		}
+    		
+    		
     		
     		this.momentum = 0.8999999761581421D;
     		this.setAIMoveSpeed((float)this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue());
@@ -3258,7 +3322,7 @@ public class EntityMachineBase extends EntityLiving {
     /** Sets the weapon firing cooldown depending on type in ticks. */
     protected int weaponFiringCooldownTicks(int ammoTypeIn)
     {
-		int amount = 10;
+		int amount = 20;
     	
 		if (ammoTypeIn == 1)
 		{
@@ -3706,6 +3770,45 @@ public class EntityMachineBase extends EntityLiving {
     	
     	//--------------------------------------------------
     	
+    	// Play the 4 ammo sound/particles:
+    	if (this.getEventTrigger() == EnumsVM.EventTrigger.AMMO_4.getMetadata())
+    	{
+    		if (this.world.isRemote)
+    		{
+				NetworkHandler.sendToServer(new MessageHelperEventTrigger51Server());
+    		}
+			else
+    		{
+				this.playSound(this.getHealAmmoSound(), 1.0F, 1.0F);
+    		}
+    	}
+    	// Play the 16 ammo sound/particles:
+    	if (this.getEventTrigger() == EnumsVM.EventTrigger.AMMO_16.getMetadata())
+    	{
+    		if (this.world.isRemote)
+    		{
+				NetworkHandler.sendToServer(new MessageHelperEventTrigger52Server());
+    		}
+			else
+    		{
+				this.playSound(this.getHealAmmoSound(), 1.0F, 1.0F);
+    		}
+    	}
+    	// Play the 64 ammo sound/particles:
+    	if (this.getEventTrigger() == EnumsVM.EventTrigger.AMMO_64.getMetadata())
+    	{
+    		if (this.world.isRemote)
+    		{
+				NetworkHandler.sendToServer(new MessageHelperEventTrigger53Server());
+    		}
+			else
+    		{
+				this.playSound(this.getHealAmmoSound(), 1.0F, 1.0F);
+    		}
+    	}
+    	
+    	//--------------------------------------------------
+    	
     	// Play the tier 1 upgrade sound/particles:
     	if (this.getEventTrigger() == EnumsVM.EventTrigger.UPGRADE_TIER1.getMetadata())
     	{
@@ -3747,6 +3850,14 @@ public class EntityMachineBase extends EntityLiving {
     	
     	// Resets the event trigger:
     	this.setEventTrigger(0);
+    }
+    
+    private void reduceAmmoToMax()
+    {
+    	if (this.getAmmoAmount() > this.getMaxAmmoAmount())
+    	{
+    		this.setAmmoAmount(this.getMaxAmmoAmount());
+    	}
     }
     
     public String applySongtoRecordList(int intIn)

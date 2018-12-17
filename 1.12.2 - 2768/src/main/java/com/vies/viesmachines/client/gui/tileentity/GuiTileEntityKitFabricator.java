@@ -1,5 +1,6 @@
 package com.vies.viesmachines.client.gui.tileentity;
 
+import java.awt.Color;
 import java.io.IOException;
 
 import org.lwjgl.input.Keyboard;
@@ -45,6 +46,9 @@ public class GuiTileEntityKitFabricator extends GuiContainer {
 	private GuiButton buttonKitDurability1;
 	private GuiButton buttonKitDurability2;
 	private GuiButton buttonKitDurability3;
+	private GuiButton buttonKitAmmo1;
+	private GuiButton buttonKitAmmo2;
+	private GuiButton buttonKitAmmo3;
 	
 	public GuiTileEntityKitFabricator(InventoryPlayer playerInventory, World worldIn, TileEntityKitFabricator applianceIn)
 	{
@@ -63,10 +67,7 @@ public class GuiTileEntityKitFabricator extends GuiContainer {
 		this.metaPosZ = this.appliance.getPos().getZ();
 	}
 	
-	/**
-     * Adds the buttons (and other controls) to the screen in question.
-     */
-    @Override
+	@Override
     public void initGui() 
     {
     	super.initGui();
@@ -74,7 +75,7 @@ public class GuiTileEntityKitFabricator extends GuiContainer {
     	buttonList.clear();
     	Keyboard.enableRepeatEvents(true);
     	
-    	this.buttonPower = new GuiButton(9, this.guiLeft + 17+9, this.guiTop + 53+10, 16, 16, " ");
+    	this.buttonPower = new GuiButton(99, this.guiLeft + 17+9+9, this.guiTop + 53+10, 16, 16, " ");
     	
     	this.buttonKitHealth1 = new GuiButton(0, this.guiLeft + 8, this.guiTop + 8, 16, 16, " ");
     	this.buttonKitHealth2 = new GuiButton(1, this.guiLeft + 8, this.guiTop + 24, 16, 16, " ");
@@ -85,6 +86,9 @@ public class GuiTileEntityKitFabricator extends GuiContainer {
     	this.buttonKitDurability1 = new GuiButton(6, this.guiLeft + 44, this.guiTop + 8, 16, 16, " ");
     	this.buttonKitDurability2 = new GuiButton(7, this.guiLeft + 44, this.guiTop + 24, 16, 16, " ");
     	this.buttonKitDurability3 = new GuiButton(8, this.guiLeft + 44, this.guiTop + 40, 16, 16, " ");
+    	this.buttonKitAmmo1 = new GuiButton(9, this.guiLeft + 62, this.guiTop + 8, 16, 16, " ");
+    	this.buttonKitAmmo2 = new GuiButton(10, this.guiLeft + 62, this.guiTop + 24, 16, 16, " ");
+    	this.buttonKitAmmo3 = new GuiButton(11, this.guiLeft + 62, this.guiTop + 40, 16, 16, " ");
 		
     	this.buttonList.add(this.buttonPower);
     	this.buttonList.add(this.buttonKitHealth1);
@@ -96,12 +100,12 @@ public class GuiTileEntityKitFabricator extends GuiContainer {
     	this.buttonList.add(this.buttonKitDurability1);
     	this.buttonList.add(this.buttonKitDurability2);
     	this.buttonList.add(this.buttonKitDurability3);
+    	this.buttonList.add(this.buttonKitAmmo1);
+    	this.buttonList.add(this.buttonKitAmmo2);
+    	this.buttonList.add(this.buttonKitAmmo3);
     }
     
-    /**
-     * Called by the controls from the buttonList when activated. (Mouse pressed for buttons)
-     */
-	@Override
+    @Override
     protected void actionPerformed(GuiButton parButton) 
     {
 		if(parButton.id == 0)
@@ -151,6 +155,24 @@ public class GuiTileEntityKitFabricator extends GuiContainer {
 	    }
 		if(parButton.id == 9)
 	    {
+			this.metaItem = 9;
+			NetworkHandler.sendToServer(new MessageGuiKitFabricatorSyncServerGem());
+	    }
+		if(parButton.id == 10)
+	    {
+			this.metaItem = 10;
+			NetworkHandler.sendToServer(new MessageGuiKitFabricatorSyncServerGem());
+	    }
+		if(parButton.id == 11)
+	    {
+			this.metaItem = 11;
+			NetworkHandler.sendToServer(new MessageGuiKitFabricatorSyncServerGem());
+	    }
+		
+		
+		
+		if(parButton.id == 99)
+	    {
 			this.metaOn = !this.metaOn;
 			NetworkHandler.sendToServer(new MessageGuiKitFabricatorSyncServerOn());
 	    }
@@ -176,11 +198,8 @@ public class GuiTileEntityKitFabricator extends GuiContainer {
         if(this.appliance.isApplianceOn())
         {
             int k = this.getBurnLeftScaled(13);
-            this.drawTexturedModalRect(i + 81, j + 50+9 - k, 176, 13 - k, 14, k + 1);
+            this.drawTexturedModalRect(i + 81+12, j + 50+9 - k, 176, 13 - k, 14, k + 1);
         }
-        
-        //this.drawRect(this.guiLeft, this.guiTop + 8, this.guiLeft - 31, this.guiTop + 73, Color.BLACK.getRGB());
-        //this.drawRect(this.guiLeft - 7, this.guiTop + 73, this.guiLeft - 23, this.guiTop + 89, Color.BLACK.getRGB());
     }
 	
     private int getBurnLeftScaled(int pixels)
@@ -198,15 +217,30 @@ public class GuiTileEntityKitFabricator extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
+		// Draws a black line under the kit buttons:
+		this.drawRect(8 + (18 * 0), 23 + (16 * 0), 24 + (18 * 0), 24 + (16 * 0), Color.BLACK.getRGB());
+		this.drawRect(8 + (18 * 0), 23 + (16 * 1), 24 + (18 * 0), 24 + (16 * 1), Color.BLACK.getRGB());
+		this.drawRect(8 + (18 * 0), 23 + (16 * 2), 24 + (18 * 0), 24 + (16 * 2), Color.BLACK.getRGB());
+		this.drawRect(8 + (18 * 1), 23 + (16 * 0), 24 + (18 * 1), 24 + (16 * 0), Color.BLACK.getRGB());
+		this.drawRect(8 + (18 * 1), 23 + (16 * 1), 24 + (18 * 1), 24 + (16 * 1), Color.BLACK.getRGB());
+		this.drawRect(8 + (18 * 1), 23 + (16 * 2), 24 + (18 * 1), 24 + (16 * 2), Color.BLACK.getRGB());
+		this.drawRect(8 + (18 * 2), 23 + (16 * 0), 24 + (18 * 2), 24 + (16 * 0), Color.BLACK.getRGB());
+		this.drawRect(8 + (18 * 2), 23 + (16 * 1), 24 + (18 * 2), 24 + (16 * 1), Color.BLACK.getRGB());
+		this.drawRect(8 + (18 * 2), 23 + (16 * 2), 24 + (18 * 2), 24 + (16 * 2), Color.BLACK.getRGB());
+		this.drawRect(8 + (18 * 3), 23 + (16 * 0), 24 + (18 * 3), 24 + (16 * 0), Color.BLACK.getRGB());
+		this.drawRect(8 + (18 * 3), 23 + (16 * 1), 24 + (18 * 3), 24 + (16 * 1), Color.BLACK.getRGB());
+		this.drawRect(8 + (18 * 3), 23 + (16 * 2), 24 + (18 * 3), 24 + (16 * 2), Color.BLACK.getRGB());
+		
+		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		this.mc.getTextureManager().bindTexture(new ResourceLocation(References.MOD_ID + ":" + "textures/gui/container_gui_appliance_extractor.png"));
 		
 		if(this.appliance.isOn)
 		{
-			this.drawTexturedModalRect(17+9, 53+10, 16, 166, 16, 16);
+			this.drawTexturedModalRect(17+9+9, 53+10, 16, 166, 16, 16);
 		}
 		else
 		{
-			this.drawTexturedModalRect(17+9, 53+10, 0, 166, 16, 16);
+			this.drawTexturedModalRect(17+9+9, 53+10, 0, 166, 16, 16);
 		}
 		
 		ItemStack[] stack = new ItemStack[]
@@ -219,10 +253,16 @@ public class GuiTileEntityKitFabricator extends GuiContainer {
 			new ItemStack(ItemsVM.KIT_ENERGY_MAX, 1),
 			new ItemStack(ItemsVM.KIT_DURABILITY_50, 1),
 			new ItemStack(ItemsVM.KIT_DURABILITY_200, 1),
-			new ItemStack(ItemsVM.KIT_DURABILITY_MAX, 1)
+			new ItemStack(ItemsVM.KIT_DURABILITY_MAX, 1),
+			new ItemStack(ItemsVM.KIT_AMMO_4, 1),
+			new ItemStack(ItemsVM.KIT_AMMO_16, 1),
+			new ItemStack(ItemsVM.KIT_AMMO_64, 1)
 		};
 		
-		this.drawItemStack(stack[this.metaItem], 56+24, 17+9, "");
+		
+		
+		this.drawItemStack(stack[this.metaItem], 56+24+12, 17+9, "");
+		
 		
 		
 		this.drawItemStack(new ItemStack(ItemsVM.KIT_HEALTH_2, 1), 8, 8-1, "");
@@ -234,6 +274,9 @@ public class GuiTileEntityKitFabricator extends GuiContainer {
 		this.drawItemStack(new ItemStack(ItemsVM.KIT_DURABILITY_50, 1), 44, 8-1, "");
 		this.drawItemStack(new ItemStack(ItemsVM.KIT_DURABILITY_200, 1), 44, 24-1, "");
 		this.drawItemStack(new ItemStack(ItemsVM.KIT_DURABILITY_MAX, 1), 44, 40-1, "");
+		this.drawItemStack(new ItemStack(ItemsVM.KIT_AMMO_4, 1), 62, 8-1, "");
+		this.drawItemStack(new ItemStack(ItemsVM.KIT_AMMO_16, 1), 62, 24-1, "");
+		this.drawItemStack(new ItemStack(ItemsVM.KIT_AMMO_64, 1), 62, 40-1, "");
 		
 		GlStateManager.pushMatrix();
 		{
@@ -241,29 +284,26 @@ public class GuiTileEntityKitFabricator extends GuiContainer {
 			
 			if(this.appliance.getField(2) >= 200)
 			{
-				this.fontRenderer.drawString(this.appliance.getField(2) + "%", 14+9+27+27, 27-10-8, 0);
+				this.fontRenderer.drawString(this.appliance.getField(2) + "%", 14+9+27+27+13, 27-10-8, 0);
 			}
 			else if(this.appliance.getField(2) >= 100)
 			{
-				this.fontRenderer.drawString(this.appliance.getField(2) + "%", 16+9+27+27, 27-10-8, 0);
+				this.fontRenderer.drawString(this.appliance.getField(2) + "%", 16+9+27+27+13, 27-10-8, 0);
 			}
 			else if(this.appliance.getField(2) > 9)
 			{
-				this.fontRenderer.drawString(this.appliance.getField(2) + "%", 17+9+27+27, 27-10-8, 0);
+				this.fontRenderer.drawString(this.appliance.getField(2) + "%", 17+9+27+27+13, 27-10-8, 0);
 			}
 			else if(this.appliance.getField(2) > 0)
 			{
-				this.fontRenderer.drawString(this.appliance.getField(2) + "%", 20+9+27+27, 27-10-8, 0);
+				this.fontRenderer.drawString(this.appliance.getField(2) + "%", 20+9+27+27+13, 27-10-8, 0);
 			}
 			else if(this.appliance.getField(2) == 0)
 			{
-				this.fontRenderer.drawString("0%", 20+9+27+27, 27-10-8, 0);
+				this.fontRenderer.drawString("0%", 20+9+27+27+13, 27-10-8, 0);
 			}
 		}
 		GlStateManager.popMatrix();
-		
-		
-		
 	}
 	
 	@Override
@@ -276,11 +316,7 @@ public class GuiTileEntityKitFabricator extends GuiContainer {
         }
     }
 	
-	/**
-     * Draws an ItemStack.
-     *  
-     * The z index is increased by 32 (and not decreased afterwards), and the item is then rendered at z=200.
-     */
+	/** Draws an ItemStack. The z index is increased by 32 (and not decreased afterwards), and the item is then rendered at z=200. */
     private void drawItemStack(ItemStack stack, int x, int y, String altText)
     {
         GlStateManager.translate(0.0F, 0.0F, 32.0F);
@@ -372,6 +408,31 @@ public class GuiTileEntityKitFabricator extends GuiContainer {
         else
         {
         	this.buttonKitDurability3.enabled = true;
+        }
+        
+        if (this.metaItem == 9)
+        {
+        	this.buttonKitAmmo1.enabled = false;
+        }
+        else
+        {
+        	this.buttonKitAmmo1.enabled = true;
+        }
+        if (this.metaItem == 10)
+        {
+        	this.buttonKitAmmo2.enabled = false;
+        }
+        else
+        {
+        	this.buttonKitAmmo2.enabled = true;
+        }
+        if (this.metaItem == 11)
+        {
+        	this.buttonKitAmmo3.enabled = false;
+        }
+        else
+        {
+        	this.buttonKitAmmo3.enabled = true;
         }
     }
 }

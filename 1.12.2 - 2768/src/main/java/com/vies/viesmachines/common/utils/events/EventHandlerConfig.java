@@ -47,15 +47,21 @@ public class EventHandlerConfig {
             {
 				ItemStack output = r.getRecipeOutput();
 				
-	            if (output.getItem() == ItemsVM.MACHINE_PELLETS
-        		|| output.getItem() == ItemsVM.MACHINE_AMMO
-        		|| output.getItem() == ItemsVM.CIRCUIT_LOGIC
-				|| output.getItem() == ItemsVM.MACHINE_FRAME
+	            if (output.getItem() == ItemsVM.XEGONITE_WATER
+				|| output.getItem() == ItemsVM.XEGONITE_LAVA
+				|| output.getItem() == ItemsVM.XEGONITE_ENDER
+				|| output.getItem() == ItemsVM.CIRCUIT_LOGIC
+				|| output.getItem() == ItemsVM.CIRCUIT_ADAPTIVE
+				|| output.getItem() == ItemsVM.KIT_BLANK
+				|| output.getItem() == ItemsVM.MACHINE_PELLETS
+	            || output.getItem() == ItemsVM.MACHINE_FRAME
 				|| output.getItem() == ItemsVM.MACHINE_ENGINE
 				|| output.getItem() == ItemsVM.MACHINE_COMPONENT_GROUND
 				|| output.getItem() == ItemsVM.MACHINE_COMPONENT_WATER
 				|| output.getItem() == ItemsVM.MACHINE_COMPONENT_FLYING
-				
+				|| output.getItem() == ItemsVM.ITEM_MACHINE_GROUND_HOVERCRAFT
+				|| output.getItem() == ItemsVM.ITEM_MACHINE_WATER_SUBMARINE
+				|| output.getItem() == ItemsVM.ITEM_MACHINE_FLYING_AIRSHIP
 				|| output.getItem() == ItemsVM.UPGRADE_FRAME_TIER1
 				|| output.getItem() == ItemsVM.UPGRADE_FRAME_TIER2
 				|| output.getItem() == ItemsVM.UPGRADE_FRAME_TIER3
@@ -65,22 +71,11 @@ public class EventHandlerConfig {
 				|| output.getItem() == ItemsVM.UPGRADE_COMPONENT_TIER1
 				|| output.getItem() == ItemsVM.UPGRADE_COMPONENT_TIER2
 				|| output.getItem() == ItemsVM.UPGRADE_COMPONENT_TIER3
-				
-				|| output.getItem() == ItemsVM.KIT_RAW
-				
-				|| output.getItem() == ItemsVM.ITEM_MACHINE_GROUND_HOVERCRAFT
-				|| output.getItem() == ItemsVM.ITEM_MACHINE_WATER_SUBMARINE
-				|| output.getItem() == ItemsVM.ITEM_MACHINE_FLYING_AIRSHIP
-	            
-	            || output.getItem() == ItemsVM.TOOL_DISMOUNTER
+				|| output.getItem() == ItemsVM.TOOL_DISMOUNTER
         		|| output.getItem() == ItemsVM.TOOL_RADIO_EXPANSION
 				
-        		|| output.getItem() == ItemsVM.XEGONITE_WATER
-				|| output.getItem() == ItemsVM.XEGONITE_LAVA
-				|| output.getItem() == ItemsVM.XEGONITE_ENDER
-		        
-	            
-				
+        		
+        		
 	            || output.getItem() == Item.getItemFromBlock(BlocksVM.EXTRACTOR)
 	            || output.getItem() == Item.getItemFromBlock(BlocksVM.KIT_FABRICATOR)
 	            || output.getItem() == Item.getItemFromBlock(BlocksVM.MACHINE_TRANSMOGRIFIER)
@@ -129,6 +124,7 @@ public class EventHandlerConfig {
                 || output.getItem() == Item.getItemFromBlock(BlocksVM.ENDER_LADDER)
                 || output.getItem() == Item.getItemFromBlock(BlocksVM.ENDER_PILLAR)
                 || output.getItem() == Item.getItemFromBlock(BlocksVM.ENDER_CHISELED)
+                
                 
                 
         		)

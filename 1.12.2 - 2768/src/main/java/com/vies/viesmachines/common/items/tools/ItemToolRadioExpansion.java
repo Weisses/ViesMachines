@@ -359,17 +359,17 @@ public class ItemToolRadioExpansion extends Item {
 		
 		tooltip.add("");
 		tooltip.add(TextFormatting.WHITE + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.1") 
-		+ " " + TextFormatting.GRAY + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.2"));
-		tooltip.add(References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.3"));
+		+ " " + TextFormatting.GOLD + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.2"));
+		tooltip.add(TextFormatting.GOLD + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.3"));
 		tooltip.add("");
-		tooltip.add(TextFormatting.WHITE + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.4")+ " " + TextFormatting.GRAY + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.5"));
-		tooltip.add(References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.6"));
+		tooltip.add(TextFormatting.WHITE + References.Old_I18n.translateToLocal("viesmachines.leftclick") + " " + TextFormatting.GOLD + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.5"));
+		tooltip.add(TextFormatting.GOLD + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.6"));
 	}
 	
 	@Override
 	public EnumRarity getRarity(ItemStack stack)
     {
-		return EnumRarity.COMMON;
+		return EnumRarity.UNCOMMON;
     }
 
     /** Return the name for this gem proc. */

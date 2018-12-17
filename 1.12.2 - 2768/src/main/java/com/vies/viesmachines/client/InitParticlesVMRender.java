@@ -1,7 +1,10 @@
 package com.vies.viesmachines.client;
 
 import com.vies.viesmachines.api.References;
+import com.vies.viesmachines.client.particle.EntityBombExplosionLargeFX;
+import com.vies.viesmachines.client.particle.EntityBombExplosionSmallFX;
 import com.vies.viesmachines.client.particle.EntityExtractorFX;
+import com.vies.viesmachines.client.particle.EntityHealAmmoFX;
 import com.vies.viesmachines.client.particle.EntityHealDurabilityFX;
 import com.vies.viesmachines.client.particle.EntityHealEnergyFX;
 import com.vies.viesmachines.client.particle.EntityHealHealthFX;
@@ -202,6 +205,23 @@ public class InitParticlesVMRender {
 	    Minecraft.getMinecraft().effectRenderer.addEffect(particleUnholy);        
 	}
 	
+	/** Used when using a ammo healing item on a machine. */
+	public static void generateAmmoParticles(Entity theEntity)
+	{
+	    double motionX = theEntity.world.rand.nextGaussian() * 0.02D;
+	    double motionY = theEntity.world.rand.nextGaussian() * 0.02D;
+	    double motionZ = theEntity.world.rand.nextGaussian() * 0.02D;
+	    
+	    Particle particleUnholy = new EntityHealAmmoFX(
+	          theEntity.world, 
+	          theEntity.posX + theEntity.world.rand.nextFloat() * theEntity.width * 2.0F - theEntity.width, 
+	          theEntity.posY + 0.5D + theEntity.world.rand.nextFloat() * theEntity.height, 
+	          theEntity.posZ + theEntity.world.rand.nextFloat() * theEntity.width * 2.0F - theEntity.width, 
+	          motionX, motionY, motionZ);
+	    
+	    Minecraft.getMinecraft().effectRenderer.addEffect(particleUnholy);        
+	}
+	
 	/** Static Charge that builds up before a lightning strike. */
 	public static void generateParticleStaticCharge(Entity entityIn)
 	{
@@ -275,5 +295,57 @@ public class InitParticlesVMRender {
 		entityIn.posY + 0.98D + (entityIn.world.rand.nextFloat() * 0.025D) + yIn, 
 		entityIn.posZ - (double)(MathHelper.cos((entityIn.rotationYaw + 345) * 0.017453292F) * 01.00F) + zIn, 
 		0.0D, 0.0D, 0.0D, new int[0]);
+	}
+	
+	
+    
+	//==================================================
+    // TODO            Bomb Particles
+	//==================================================
+
+	public static void generateBombFuseSmokeParticles(Entity entityIn)
+	{
+		entityIn.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, 
+		entityIn.posX + (entityIn.world.rand.nextFloat() * 0.025D), 
+		entityIn.posY + 1.6D + (entityIn.world.rand.nextFloat() * 0.025D), 
+		entityIn.posZ + (entityIn.world.rand.nextFloat() * 0.025D), 
+		0.0D, 0.0D, 0.0D, new int[0]);
+	}
+	public static void generateBombFuseFlameParticles(Entity entityIn)
+	{
+		entityIn.world.spawnParticle(EnumParticleTypes.FLAME, 
+		entityIn.posX + (entityIn.world.rand.nextFloat() * 0.025D), 
+		entityIn.posY + 1.6D + (entityIn.world.rand.nextFloat() * 0.025D), 
+		entityIn.posZ + (entityIn.world.rand.nextFloat() * 0.025D), 
+		0.0D, 0.0D, 0.0D, new int[0]);
+	}
+	
+	public static void generateBombExplosionSmallParticles(Entity entityIn)
+	{
+	    double motionX = entityIn.world.rand.nextGaussian() * 0.1D;
+	    double motionY = entityIn.world.rand.nextGaussian() * 0.1D;
+	    double motionZ = entityIn.world.rand.nextGaussian() * 0.1D;
+	    
+	    Particle particleExplosionSmall = new EntityBombExplosionSmallFX(
+	          entityIn.world, 
+	          entityIn.posX + entityIn.world.rand.nextFloat() * entityIn.width * 2.0F - entityIn.width, 
+	          entityIn.posY + 0.5D + entityIn.world.rand.nextFloat() * entityIn.height, 
+	          entityIn.posZ + entityIn.world.rand.nextFloat() * entityIn.width * 2.0F - entityIn.width, 
+	          motionX, motionY, motionZ);
+	    Minecraft.getMinecraft().effectRenderer.addEffect(particleExplosionSmall);        
+	}
+	public static void generateBombExplosionLargeParticles(Entity entityIn)
+	{
+	    double motionX = entityIn.world.rand.nextGaussian() * 0.15D;
+	    double motionY = entityIn.world.rand.nextGaussian() * 0.15D;
+	    double motionZ = entityIn.world.rand.nextGaussian() * 0.15D;
+	    
+	    Particle particleExplosionLarge = new EntityBombExplosionLargeFX(
+	          entityIn.world, 
+	          entityIn.posX + entityIn.world.rand.nextFloat() * entityIn.width * 2.0F - entityIn.width, 
+	          entityIn.posY + 0.5D + entityIn.world.rand.nextFloat() * entityIn.height, 
+	          entityIn.posZ + entityIn.world.rand.nextFloat() * entityIn.width * 2.0F - entityIn.width, 
+	          motionX, motionY, motionZ);
+	    Minecraft.getMinecraft().effectRenderer.addEffect(particleExplosionLarge);        
 	}
 }

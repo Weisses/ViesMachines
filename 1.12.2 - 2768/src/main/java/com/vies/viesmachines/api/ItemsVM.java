@@ -5,6 +5,7 @@ import com.vies.viesmachines.common.items.ItemGenericParticle;
 import com.vies.viesmachines.common.items.ItemGenericSymbol;
 import com.vies.viesmachines.common.items.ItemGenericWIP;
 import com.vies.viesmachines.common.items.kits.ItemKitAdmin;
+import com.vies.viesmachines.common.items.kits.ItemKitAmmo;
 import com.vies.viesmachines.common.items.kits.ItemKitDurability;
 import com.vies.viesmachines.common.items.kits.ItemKitEnergy;
 import com.vies.viesmachines.common.items.kits.ItemKitHealth;
@@ -25,10 +26,20 @@ import net.minecraft.item.Item;
 public class ItemsVM {
 	
 	public static final Item XEGONITE = new ItemGeneric("item_xegonite", EnumRarity.COMMON);
-	public static final Item MACHINE_PELLETS = new ItemMachinePellets("item_machine_pellets", EnumRarity.UNCOMMON);
-	public static final Item MACHINE_AMMO = new ItemGeneric("item_machine_ammo", EnumRarity.UNCOMMON);
+	public static final Item XEGONITE_WATER = new ItemGeneric("item_xegonite_water", EnumRarity.COMMON);
+	public static final Item XEGONITE_LAVA = new ItemGeneric("item_xegonite_lava", EnumRarity.COMMON);
 	
+	public static final Item XEGONITE_ENDER = new ItemGeneric("item_xegonite_ender", EnumRarity.COMMON);
 	public static final Item CIRCUIT_LOGIC = new ItemGeneric("item_circuit_logic", EnumRarity.COMMON);
+	public static final Item CIRCUIT_ADAPTIVE = new ItemGeneric("item_circuit_adaptive", EnumRarity.COMMON);
+	
+	public static final Item KIT_BLANK = new ItemGeneric("kits/item_kit_blank", EnumRarity.COMMON);
+	public static final Item KIT_UPGRADE_MAX = new ItemKitAdmin("kits/item_admin_upgrade_max", EnumRarity.EPIC, 0);
+	public static final Item KIT_MACHINE_MAX = new ItemKitAdmin("kits/item_admin_machine_max", EnumRarity.EPIC, 1);
+	
+	//===============================================================
+	
+	public static final Item MACHINE_PELLETS = new ItemMachinePellets("item_machine_pellets", EnumRarity.UNCOMMON);
 	public static final Item MACHINE_FRAME = new ItemGeneric("item_machine_frame", EnumRarity.COMMON);
 	public static final Item MACHINE_ENGINE = new ItemGeneric("item_machine_engine", EnumRarity.COMMON);
 	
@@ -36,19 +47,9 @@ public class ItemsVM {
 	public static final Item MACHINE_COMPONENT_WATER = new ItemComponentWater("item_machine_component_water");
 	public static final Item MACHINE_COMPONENT_FLYING = new ItemComponentFlying("item_machine_component_flying");
 	
-	//===============================================================
-	
-	public static final Item UPGRADE_FRAME_TIER1 = new ItemUpgradeFrame("upgrades/item_upgrade_frame_tier1", EnumRarity.UNCOMMON, 1);
-	public static final Item UPGRADE_FRAME_TIER2 = new ItemUpgradeFrame("upgrades/item_upgrade_frame_tier2", EnumRarity.RARE, 2);
-	public static final Item UPGRADE_FRAME_TIER3 = new ItemUpgradeFrame("upgrades/item_upgrade_frame_tier3", EnumRarity.EPIC, 3);
-	
-	public static final Item UPGRADE_ENGINE_TIER1 = new ItemUpgradeEngine("upgrades/item_upgrade_engine_tier1", EnumRarity.UNCOMMON, 1);
-	public static final Item UPGRADE_ENGINE_TIER2 = new ItemUpgradeEngine("upgrades/item_upgrade_engine_tier2", EnumRarity.RARE, 2);
-	public static final Item UPGRADE_ENGINE_TIER3 = new ItemUpgradeEngine("upgrades/item_upgrade_engine_tier3", EnumRarity.EPIC, 3);
-	
-	public static final Item UPGRADE_COMPONENT_TIER1 = new ItemUpgradeComponent("upgrades/item_upgrade_component_tier1", EnumRarity.UNCOMMON, 1);
-	public static final Item UPGRADE_COMPONENT_TIER2 = new ItemUpgradeComponent("upgrades/item_upgrade_component_tier2", EnumRarity.RARE, 2);
-	public static final Item UPGRADE_COMPONENT_TIER3 = new ItemUpgradeComponent("upgrades/item_upgrade_component_tier3", EnumRarity.EPIC, 3);
+	public static final Item KIT_AMMO_4 = new ItemKitAmmo("kits/item_kit_ammo_4", EnumRarity.UNCOMMON, 0);
+	public static final Item KIT_AMMO_16 = new ItemKitAmmo("kits/item_kit_ammo_16", EnumRarity.RARE, 1);
+	public static final Item KIT_AMMO_64 = new ItemKitAmmo("kits/item_kit_ammo_64", EnumRarity.EPIC, 2);
 	
 	//===============================================================
 	
@@ -80,20 +81,24 @@ public class ItemsVM {
 	
 	//===============================================================
 	
+	public static final Item UPGRADE_FRAME_TIER1 = new ItemUpgradeFrame("upgrades/item_upgrade_frame_tier1", EnumRarity.UNCOMMON, 1);
+	public static final Item UPGRADE_FRAME_TIER2 = new ItemUpgradeFrame("upgrades/item_upgrade_frame_tier2", EnumRarity.RARE, 2);
+	public static final Item UPGRADE_FRAME_TIER3 = new ItemUpgradeFrame("upgrades/item_upgrade_frame_tier3", EnumRarity.EPIC, 3);
+	
+	public static final Item UPGRADE_ENGINE_TIER1 = new ItemUpgradeEngine("upgrades/item_upgrade_engine_tier1", EnumRarity.UNCOMMON, 1);
+	public static final Item UPGRADE_ENGINE_TIER2 = new ItemUpgradeEngine("upgrades/item_upgrade_engine_tier2", EnumRarity.RARE, 2);
+	public static final Item UPGRADE_ENGINE_TIER3 = new ItemUpgradeEngine("upgrades/item_upgrade_engine_tier3", EnumRarity.EPIC, 3);
+	
+	public static final Item UPGRADE_COMPONENT_TIER1 = new ItemUpgradeComponent("upgrades/item_upgrade_component_tier1", EnumRarity.UNCOMMON, 1);
+	public static final Item UPGRADE_COMPONENT_TIER2 = new ItemUpgradeComponent("upgrades/item_upgrade_component_tier2", EnumRarity.RARE, 2);
+	public static final Item UPGRADE_COMPONENT_TIER3 = new ItemUpgradeComponent("upgrades/item_upgrade_component_tier3", EnumRarity.EPIC, 3);
+	
+	//===============================================================
+	
 	public static final Item TOOL_DISMOUNTER = new ItemToolDismounting();
 	public static final Item TOOL_RADIO_EXPANSION = new ItemToolRadioExpansion();
 	
 	//===============================================================
-	
-	public static final Item XEGONITE_WATER = new ItemGeneric("item_xegonite_water", EnumRarity.COMMON);
-	public static final Item XEGONITE_LAVA = new ItemGeneric("item_xegonite_lava", EnumRarity.COMMON);
-	public static final Item XEGONITE_ENDER = new ItemGeneric("item_xegonite_ender", EnumRarity.COMMON);
-	
-	public static final Item KIT_RAW = new ItemGeneric("kits/item_kit_raw", EnumRarity.COMMON);
-	public static final Item KIT_UPGRADE_MAX = new ItemKitAdmin("kits/item_admin_upgrade_max", EnumRarity.EPIC, 0);
-	public static final Item KIT_MACHINE_MAX = new ItemKitAdmin("kits/item_admin_machine_max", EnumRarity.EPIC, 1);
-	
-	public static final Item CIRCUIT_ADAPTIVE = new ItemGeneric("item_circuit_adaptive", EnumRarity.COMMON);
 	
 	
 	

@@ -55,15 +55,6 @@ public class ItemKitEnergy extends Item {
 			// Heals the machine for 25 Energy:
 			if(this.repairItem == 0)
 			{
-				//if (((EntityMachineBase) entity).getEnergy() < 25)
-				//{
-				//	((EntityMachineBase) entity).replenishEnergy(25);
-				//}
-				//else
-				//{
-				//	((EntityMachineBase) entity).setEnergy(((EntityMachineBase) entity).getEnergy() + 25);
-				//}
-				
 				((EntityMachineBase) entity).setEnergy(((EntityMachineBase) entity).getEnergy() + 25);
 		    	
 				if(!player.isCreative())
@@ -208,7 +199,7 @@ public class ItemKitEnergy extends Item {
 		tooltip.add(TextFormatting.DARK_GREEN + "================================");
 		tooltip.add(color + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.1"));
 		tooltip.add("");
-		tooltip.add(color + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.2"));
+		tooltip.add(TextFormatting.WHITE + References.Old_I18n.translateToLocal("viesmachines.leftclick") + " " + color + References.Old_I18n.translateToLocal(this.getUnlocalizedName() + ".tt.2"));
 	}
 	
 	@Override

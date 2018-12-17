@@ -23,19 +23,19 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemKitDurability extends Item {
+public class ItemKitAmmo extends Item {
 	
 	private int repairItem;
 	private EnumRarity rarity;
 	private String procName;
 	
-	public ItemKitDurability(String unlocalizedName, EnumRarity rarityIn, int durabilityItemIn) 
+	public ItemKitAmmo(String unlocalizedName, EnumRarity rarityIn, int durabilityItemIn) 
 	{
 		this.setMaxStackSize(64);
 		this.repairItem = durabilityItemIn;
 		this.rarity = rarityIn;
 		
-		this.procName = "KitDurabilityProc_" + this.rarity;
+		this.procName = "KitBombProc_" + this.rarity;
 		
 		ItemHelper.setItemName(this, unlocalizedName);
 		this.setCreativeTab(ViesMachines.tabItems);
@@ -46,53 +46,53 @@ public class ItemKitDurability extends Item {
     {
 		if (entity instanceof EntityMachineBase)
         {
-			// If this machine is fully healed, ignore all below code:
-			if (((EntityMachineBase) entity).getDurability() == ((EntityMachineBase) entity).getMaxDurability())
+			// If this machine has max ammo, ignore all below code:
+			if (((EntityMachineBase) entity).getAmmoAmount() >= ((EntityMachineBase) entity).getMaxAmmoAmount())
         	{
 				return true;
         	}
 			
-			// Heals the machine for 50 Durability:
+			// Heals the machine for 4 Ammo Amount:
 			if(this.repairItem == 0)
 			{
-				((EntityMachineBase) entity).replenishDurability(50);
+				((EntityMachineBase) entity).setAmmoAmount(((EntityMachineBase) entity).getAmmoAmount() + 4);
 		    	
 				if(!player.isCreative())
 				{
 					stack.shrink(1);
 				}
 				
-				((EntityMachineBase) entity).setEventTrigger(EnumsVM.EventTrigger.DURABILITY_50.getMetadata());
+				((EntityMachineBase) entity).setEventTrigger(EnumsVM.EventTrigger.AMMO_4.getMetadata());
 				
 		    	return true;
 			}
 			
-			// Heals the machine for 200 Durability:
+			// Heals the machine for 16 Ammo Amount:
 			if(this.repairItem == 1)
 			{
-				((EntityMachineBase) entity).replenishDurability(200);
+				((EntityMachineBase) entity).setAmmoAmount(((EntityMachineBase) entity).getAmmoAmount() + 16);
 		    	
 				if(!player.isCreative())
 				{
 					stack.shrink(1);
 				}
 				
-				((EntityMachineBase) entity).setEventTrigger(EnumsVM.EventTrigger.DURABILITY_200.getMetadata());
+				((EntityMachineBase) entity).setEventTrigger(EnumsVM.EventTrigger.AMMO_16.getMetadata());
 				
 		    	return true;
 			}
 			
-			// Heals the machine for Max Durability:
+			// Heals the machine for 64 Ammo Amount:
 			if(this.repairItem == 2)
 			{
-				((EntityMachineBase) entity).setDurability(((EntityMachineBase) entity).getMaxDurability());
+				((EntityMachineBase) entity).setAmmoAmount(((EntityMachineBase) entity).getAmmoAmount() + 64);
 				
 				if(!player.isCreative())
 				{
 					stack.shrink(1);
 				}
 				
-				((EntityMachineBase) entity).setEventTrigger(EnumsVM.EventTrigger.DURABILITY_MAX.getMetadata());
+				((EntityMachineBase) entity).setEventTrigger(EnumsVM.EventTrigger.AMMO_64.getMetadata());
 				
 		    	return true;
 			}
@@ -103,53 +103,53 @@ public class ItemKitDurability extends Item {
 			{
 				if (entity.getRidingEntity() instanceof EntityMachineBase)
 				{
-					// If this machine is fully healed, ignore all below code:
-					if (((EntityMachineBase) entity.getRidingEntity()).getDurability() == ((EntityMachineBase) entity.getRidingEntity()).getMaxDurability())
+					// If this machine hax max ammo, ignore all below code:
+					if (((EntityMachineBase) entity.getRidingEntity()).getAmmoAmount() >= ((EntityMachineBase) entity.getRidingEntity()).getMaxAmmoAmount())
 		        	{
 						return true;
 		        	}
 					
-					// Heals the machine for 50 Durability:
+					// Heals the machine for 4 Ammo Amount:
 					if(this.repairItem == 0)
 					{
-						((EntityMachineBase) entity.getRidingEntity()).replenishDurability(50);
+						((EntityMachineBase) entity.getRidingEntity()).setAmmoAmount(((EntityMachineBase) entity.getRidingEntity()).getAmmoAmount() + 4);
 				    	
 						if(!player.isCreative())
 						{
 							stack.shrink(1);
 						}
 						
-						((EntityMachineBase) entity.getRidingEntity()).setEventTrigger(EnumsVM.EventTrigger.DURABILITY_50.getMetadata());
+						((EntityMachineBase) entity.getRidingEntity()).setEventTrigger(EnumsVM.EventTrigger.AMMO_4.getMetadata());
 						
 				    	return true;
 					}
 					
-					// Heals the machine for 200 Durability:
+					// Heals the machine for 16 Ammo Amount:
 					if(this.repairItem == 1)
 					{
-						((EntityMachineBase) entity.getRidingEntity()).replenishDurability(200);
+						((EntityMachineBase) entity.getRidingEntity()).setAmmoAmount(((EntityMachineBase) entity.getRidingEntity()).getAmmoAmount() + 16);
 				    	
 						if(!player.isCreative())
 						{
 							stack.shrink(1);
 						}
 						
-						((EntityMachineBase) entity.getRidingEntity()).setEventTrigger(EnumsVM.EventTrigger.DURABILITY_200.getMetadata());
+						((EntityMachineBase) entity.getRidingEntity()).setEventTrigger(EnumsVM.EventTrigger.AMMO_16.getMetadata());
 						
 				    	return true;
 					}
 					
-					// Heals the machine for Max Durability:
+					// Heals the machine for 64 Ammo Amount:
 					if(this.repairItem == 2)
 					{
-						((EntityMachineBase) entity.getRidingEntity()).setDurability(((EntityMachineBase) entity.getRidingEntity()).getMaxDurability());
+						((EntityMachineBase) entity.getRidingEntity()).setAmmoAmount(((EntityMachineBase) entity.getRidingEntity()).getAmmoAmount() + 64);
 						
 						if(!player.isCreative())
 						{
 							stack.shrink(1);
 						}
 						
-						((EntityMachineBase) entity.getRidingEntity()).setEventTrigger(EnumsVM.EventTrigger.DURABILITY_MAX.getMetadata());
+						((EntityMachineBase) entity.getRidingEntity()).setEventTrigger(EnumsVM.EventTrigger.AMMO_64.getMetadata());
 						
 				    	return true;
 					}

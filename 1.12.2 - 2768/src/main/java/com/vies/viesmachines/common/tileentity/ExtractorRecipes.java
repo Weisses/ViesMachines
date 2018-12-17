@@ -25,6 +25,10 @@ public class ExtractorRecipes {
 		new ItemStack(ItemsVM.XEGONITE, 1),
 		new ItemStack(ItemsVM.XEGONITE, 1),
 		new ItemStack(ItemsVM.XEGONITE, 1),
+		new ItemStack(ItemsVM.XEGONITE, 1),
+		new ItemStack(ItemsVM.XEGONITE, 1),
+		new ItemStack(ItemsVM.XEGONITE, 1),
+		new ItemStack(ItemsVM.XEGONITE, 1),
 		new ItemStack(ItemsVM.XEGONITE, 1)
 	};
     

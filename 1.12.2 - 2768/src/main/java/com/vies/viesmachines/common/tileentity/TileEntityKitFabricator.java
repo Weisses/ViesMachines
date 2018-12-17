@@ -4,21 +4,12 @@ import javax.annotation.Nullable;
 
 import com.vies.viesmachines.api.ItemsVM;
 import com.vies.viesmachines.api.References;
-import com.vies.viesmachines.api.util.Loghelper;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemHoe;
-import net.minecraft.item.ItemRecord;
-import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
-import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -142,7 +133,6 @@ public class TileEntityKitFabricator extends TileEntity implements ITickable {
 	public void update() 
 	{
 		this.cuttingLogic();
-		//LogHelper.info(this.itemToFindMeta + " - " + this.pos);
 	}
 	
 	/** Wrapper for all gem cutting logic. */
@@ -151,42 +141,42 @@ public class TileEntityKitFabricator extends TileEntity implements ITickable {
     	boolean hasBeenCutting = cuttingSomething();
         boolean changedCuttingState = false;
         
-        if(!this.world.isRemote)
+        if (!this.world.isRemote)
         {
-        	if(this.isOn)
+        	if (this.isOn)
             {
-        		//If something in input slot
-            	if(!this.inventory.getStackInSlot(0).isEmpty())
+        		// If something in input slot:
+            	if (!this.inventory.getStackInSlot(0).isEmpty())
             	{
 	        		this.processTimeTotal = getMaxCutTime(this.inventory.getStackInSlot(0));
 	                this.procChance = getGemProc(this.inventory.getStackInSlot(0));
 	                this.procAmount = this.getMultiProcChance(this.inventory.getStackInSlot(0));
 	                
-	        		//Start cutting
-	                if(!cuttingSomething() && canCut())
+	        		// Start cutting:
+	                if (!cuttingSomething() && canCut())
 	                {
-	                     if(cuttingSomething())
+	                     if (cuttingSomething())
 	                     {
 	                         changedCuttingState = true;
 	                     }
 	                }
 	                
-	                //Continue cutting
-	                if(cuttingSomething() && canCut())
+	                // Continue cutting:
+	                if (cuttingSomething() && canCut())
 	                {
 	                    ++this.processTime;
 	                    
 	                    this.syncCutTime();
 	            		
-	                    //Check if completed cutting a gem
-	                    if(this.processTime == this.processTimeTotal)
+	                    // Check if completed cutting a gem:
+	                    if (this.processTime == this.processTimeTotal)
 	                    {
 	                    	double procSuccessful = References.random.nextInt(100);
 	                    	this.processTime = 0;
 	                    	this.processTimeTotal = getMaxCutTime(this.inventory.getStackInSlot(0));
 	                    	this.procAmount = this.getMultiProcChance(this.inventory.getStackInSlot(0));
 	                    	
-	                        if(this.procChance >= procSuccessful)
+	                        if (this.procChance >= procSuccessful)
 	                        {
 	                        	cutShard();
 	                        }
@@ -213,27 +203,26 @@ public class TileEntityKitFabricator extends TileEntity implements ITickable {
         	{
         		this.processTime = 0;
         		
-        		if(!this.inventory.getStackInSlot(0).isEmpty())
+        		if (!this.inventory.getStackInSlot(0).isEmpty())
             	{
         			this.procChance = getGemProc(this.inventory.getStackInSlot(0));
             	}
         		else
         		{
-        			this.procChance = 0;
+        			this.procChance = getGemProcNoItem();
         		}
         	}
         	
-            if(!canCut()
+            if (!canCut()
             && this.processTime > 0)
             {
             	this.processTime = 0;
             }
             
-            //Started or stopped cutting, update block to change to active or inactive model
-            if(hasBeenCutting != cuttingSomething())
+            // Started or stopped cutting, update block to change to active or inactive model:
+            if (hasBeenCutting != cuttingSomething())
             {
                 changedCuttingState = true;
-                //BlockGrinder.changeBlockBasedOnGrindingStatus(cuttingSomething(), this.world, pos);
             }
     	}
         
@@ -254,11 +243,8 @@ public class TileEntityKitFabricator extends TileEntity implements ITickable {
         {
         	ItemStack itemstack1 = (ItemStack)this.inventory.getStackInSlot(1);
         	
-        	
         	if(itemstack1.isEmpty()) return true;
-        	//if(!itemstack1.isItemEqual(GemCuttingRecipes.CUT_GEM_OUTPUT[this.itemToFindMeta])) return false;
         	
-
     		ItemStack[] stack = new ItemStack[]
     		{
     			new ItemStack(ItemsVM.KIT_HEALTH_2, 1 + this.procAmount),
@@ -269,8 +255,16 @@ public class TileEntityKitFabricator extends TileEntity implements ITickable {
     			new ItemStack(ItemsVM.KIT_ENERGY_MAX, 1 + this.procAmount),
     			new ItemStack(ItemsVM.KIT_DURABILITY_50, 1 + this.procAmount),
     			new ItemStack(ItemsVM.KIT_DURABILITY_200, 1 + this.procAmount),
-    			new ItemStack(ItemsVM.KIT_DURABILITY_MAX, 1 + this.procAmount)
+    			new ItemStack(ItemsVM.KIT_DURABILITY_MAX, 1 + this.procAmount),
+    			new ItemStack(ItemsVM.KIT_AMMO_4, 1 + this.procAmount),
+    			new ItemStack(ItemsVM.KIT_AMMO_16, 1 + this.procAmount),
+    			new ItemStack(ItemsVM.KIT_AMMO_64, 1 + this.procAmount)
     		};
+    		
+    		if (itemstack1.getItem() != stack[this.itemToFindMeta].getItem())
+    		{
+    			return false;
+    		}
         	
             int result = itemstack1.getCount() + stack[this.itemToFindMeta].getCount();
             return result <= 64 && result <= itemstack1.getMaxStackSize();
@@ -287,8 +281,6 @@ public class TileEntityKitFabricator extends TileEntity implements ITickable {
             
             ItemStack itemstack1 = (ItemStack)this.inventory.getStackInSlot(1);
             
-            
-    		
     		ItemStack[] stack = new ItemStack[]
     		{
     			new ItemStack(ItemsVM.KIT_HEALTH_2, 1 + this.procAmount),
@@ -299,23 +291,24 @@ public class TileEntityKitFabricator extends TileEntity implements ITickable {
     			new ItemStack(ItemsVM.KIT_ENERGY_MAX, 1 + this.procAmount),
     			new ItemStack(ItemsVM.KIT_DURABILITY_50, 1 + this.procAmount),
     			new ItemStack(ItemsVM.KIT_DURABILITY_200, 1 + this.procAmount),
-    			new ItemStack(ItemsVM.KIT_DURABILITY_MAX, 1 + this.procAmount)
+    			new ItemStack(ItemsVM.KIT_DURABILITY_MAX, 1 + this.procAmount),
+    			new ItemStack(ItemsVM.KIT_AMMO_4, 1 + this.procAmount),
+    			new ItemStack(ItemsVM.KIT_AMMO_16, 1 + this.procAmount),
+    			new ItemStack(ItemsVM.KIT_AMMO_64, 1 + this.procAmount)
     		};
             
-    		
-            
-            if(itemstack1.isEmpty())
+            if (itemstack1.isEmpty())
             {
             	this.inventory.insertItem(1, stack[this.itemToFindMeta], false);
             }
-            else if(itemstack1.isItemEqual(stack[this.itemToFindMeta]))
+            else if (itemstack1.isItemEqual(stack[this.itemToFindMeta]))
             {
-            	if(itemstack1.getCount() + this.procAmount > 64)
+            	if (itemstack1.getCount() + this.procAmount > 64)
             	{
             		int reducedAmount = 
             		References.random.nextInt((itemstack1.getCount() + this.procAmount) - 64);
             		
-            		if(reducedAmount == 0)
+            		if (reducedAmount == 0)
             		{
             			reducedAmount = 1;
             		}
@@ -328,12 +321,12 @@ public class TileEntityKitFabricator extends TileEntity implements ITickable {
             	}
             }
             
-    		if(itemstack1.getCount() == 65)
+    		if (itemstack1.getCount() == 65)
     		{
     			itemstack1.shrink(1);
     		}
     		
-    		if(itemstack1.getCount() == 66)
+    		if (itemstack1.getCount() == 66)
     		{
     			itemstack1.shrink(2);
     		}
@@ -345,11 +338,10 @@ public class TileEntityKitFabricator extends TileEntity implements ITickable {
     /**
      * Gets the Max time needed to process an ItemStack into a Shard.
      * @param stack - ItemStack input (Slot 0) For now, just returns 200.
-     * @return
      */
     public int getMaxCutTime(ItemStack stack)
     {
-        if(stack.isEmpty())
+        if (stack.isEmpty())
         {
             return 0;
         }
@@ -362,11 +354,10 @@ public class TileEntityKitFabricator extends TileEntity implements ITickable {
     /**
      * Gets the Shard Proc % needed to successfully process an ItemStack into a Shard.
      * @param stack - ItemStack input (Slot 0).
-     * @return
      */
     public int getGemProc(ItemStack stack)
     {
-        if(stack.isEmpty())
+        if (stack.isEmpty())
         {
             return 0;
         }
@@ -376,7 +367,7 @@ public class TileEntityKitFabricator extends TileEntity implements ITickable {
         	
             //if(item == InitItemsVG.GEMSTONE_ITEM_UNIDENTIFIED) return 500;
             
-            if(item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.AIR)
+            if (item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.AIR)
             {
                 Block block = Block.getBlockFromItem(item);
                 
@@ -390,20 +381,45 @@ public class TileEntityKitFabricator extends TileEntity implements ITickable {
                 return 25;
             }
             
-            if(item == ItemsVM.KIT_RAW && this.itemToFindMeta == 0) return 80;
-            if(item == ItemsVM.KIT_RAW && this.itemToFindMeta == 1) return 60;
-            if(item == ItemsVM.KIT_RAW && this.itemToFindMeta == 2) return 40;
+            if (item == ItemsVM.KIT_BLANK && this.itemToFindMeta == 0) return 80;
+            if (item == ItemsVM.KIT_BLANK && this.itemToFindMeta == 1) return 60;
+            if (item == ItemsVM.KIT_BLANK && this.itemToFindMeta == 2) return 40;
             
-            if(item == ItemsVM.KIT_RAW && this.itemToFindMeta == 3) return 80;
-            if(item == ItemsVM.KIT_RAW && this.itemToFindMeta == 4) return 60;
-            if(item == ItemsVM.KIT_RAW && this.itemToFindMeta == 5) return 40;
+            if (item == ItemsVM.KIT_BLANK && this.itemToFindMeta == 3) return 80;
+            if (item == ItemsVM.KIT_BLANK && this.itemToFindMeta == 4) return 60;
+            if (item == ItemsVM.KIT_BLANK && this.itemToFindMeta == 5) return 40;
             
-            if(item == ItemsVM.KIT_RAW && this.itemToFindMeta == 6) return 80;
-            if(item == ItemsVM.KIT_RAW && this.itemToFindMeta == 7) return 60;
-            if(item == ItemsVM.KIT_RAW && this.itemToFindMeta == 8) return 40;
+            if (item == ItemsVM.KIT_BLANK && this.itemToFindMeta == 6) return 80;
+            if (item == ItemsVM.KIT_BLANK && this.itemToFindMeta == 7) return 60;
+            if (item == ItemsVM.KIT_BLANK && this.itemToFindMeta == 8) return 40;
+            
+            if (item == ItemsVM.KIT_BLANK && this.itemToFindMeta == 9) return 80;
+            if (item == ItemsVM.KIT_BLANK && this.itemToFindMeta == 10) return 60;
+            if (item == ItemsVM.KIT_BLANK && this.itemToFindMeta == 11) return 40;
             
             return 0;
         }
+    }
+    
+    public int getGemProcNoItem()
+    {
+        if (this.itemToFindMeta == 0) return 80;
+        if (this.itemToFindMeta == 1) return 60;
+        if (this.itemToFindMeta == 2) return 40;
+        
+        if (this.itemToFindMeta == 3) return 80;
+        if (this.itemToFindMeta == 4) return 60;
+        if (this.itemToFindMeta == 5) return 40;
+        
+        if (this.itemToFindMeta == 6) return 80;
+        if (this.itemToFindMeta == 7) return 60;
+        if (this.itemToFindMeta == 8) return 40;
+        
+        if (this.itemToFindMeta == 9) return 80;
+        if (this.itemToFindMeta == 10) return 60;
+        if (this.itemToFindMeta == 11) return 40;
+        
+        return 0;
     }
     
     /**
@@ -413,29 +429,29 @@ public class TileEntityKitFabricator extends TileEntity implements ITickable {
      */
     public int getMultiProcChance(ItemStack stack)
     {
-        if(stack.isEmpty())
+        if (stack.isEmpty())
         {
             return 0;
         }
         else
         {
-        	if(this.getGemProc(stack) >= 500)
+        	if (this.getGemProc(stack) >= 500)
         	{
         		return 4+References.random.nextInt(2);
         	}
-        	else if(this.getGemProc(stack) >= 401)
+        	else if (this.getGemProc(stack) >= 401)
         	{
         		return 3+References.random.nextInt(2);
         	}
-        	else if(this.getGemProc(stack) >= 301)
+        	else if (this.getGemProc(stack) >= 301)
         	{
         		return 2+References.random.nextInt(2);
         	}
-        	else if(this.getGemProc(stack) >= 201)
+        	else if (this.getGemProc(stack) >= 201)
         	{
         		return 1+References.random.nextInt(2);
         	}
-        	else if(this.getGemProc(stack) >= 101)
+        	else if (this.getGemProc(stack) >= 101)
         	{
         		return 0+References.random.nextInt(2);
         	}
@@ -450,7 +466,7 @@ public class TileEntityKitFabricator extends TileEntity implements ITickable {
     {
     	boolean isCutting = false;
     	
-    	if(this.processTime > 0)
+    	if (this.processTime > 0)
     	{
     		isCutting = true;
     	}
@@ -466,7 +482,7 @@ public class TileEntityKitFabricator extends TileEntity implements ITickable {
     
     public void syncCutTime()
     {
-    	if(this.processTime == 1
+    	if (this.processTime == 1
     	|| this.processTime == 20
 		|| this.processTime == 40
 		|| this.processTime == 60

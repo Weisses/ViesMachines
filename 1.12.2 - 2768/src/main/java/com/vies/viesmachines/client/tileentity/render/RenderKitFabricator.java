@@ -363,7 +363,10 @@ public class RenderKitFabricator extends TileEntitySpecialRenderer<TileEntityKit
 			new ItemStack(ItemsVM.KIT_ENERGY_MAX, 1),
 			new ItemStack(ItemsVM.KIT_DURABILITY_50, 1),
 			new ItemStack(ItemsVM.KIT_DURABILITY_200, 1),
-			new ItemStack(ItemsVM.KIT_DURABILITY_MAX, 1)
+			new ItemStack(ItemsVM.KIT_DURABILITY_MAX, 1),
+			new ItemStack(ItemsVM.KIT_AMMO_4, 1),
+			new ItemStack(ItemsVM.KIT_AMMO_16, 1),
+			new ItemStack(ItemsVM.KIT_AMMO_64, 1)
 		};
 		
         ItemStack itemstack = stack[te.itemToFindMeta];

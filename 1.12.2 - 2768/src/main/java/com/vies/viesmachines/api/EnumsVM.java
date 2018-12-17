@@ -295,6 +295,10 @@ public class EnumsVM {
 		UPGRADE_TIER2(42, "upgrade_tier2"),
 		UPGRADE_TIER3(43, "upgrade_tier3"),
 		
+		AMMO_4(51, "ammo_4"),
+		AMMO_16(52, "ammo_16"),
+		AMMO_64(53, "ammo_64"),
+		
 		;
 		
 		private final int metadata;

@@ -244,6 +244,8 @@ public class ItemMachineFlyingAirship extends ItemMachineBase {
 		float healthInfo = 8.0F;
 		int energyInfo = 0;
 		int durabilityInfo = 100;
+		String ammoTypeInfo = "Standard";
+		int ammoAmountInfo = 0;
 		
 		int frameInfo = 0;
 		int engineInfo = 0;
@@ -254,6 +256,8 @@ public class ItemMachineFlyingAirship extends ItemMachineBase {
 			healthInfo = stack.getTagCompound().getFloat(rf.HEALTH_TAG);
 			energyInfo = stack.getTagCompound().getInteger(rf.ENERGY_TAG);
 			durabilityInfo = stack.getTagCompound().getInteger(rf.DURABILITY_PERCENT_TAG);
+			ammoTypeInfo = stack.getTagCompound().getString(rf.AMMO_TYPE_TAG);
+			ammoAmountInfo = stack.getTagCompound().getInteger(rf.AMMO_AMOUNT_TAG);
 			
 			frameInfo = stack.getTagCompound().getInteger(rf.TIER_FRAME_TAG);
 			engineInfo = stack.getTagCompound().getInteger(rf.TIER_ENGINE_TAG);
@@ -339,6 +343,9 @@ public class ItemMachineFlyingAirship extends ItemMachineBase {
 		
 		tooltip.add(TextFormatting.DARK_GREEN + "================================");
 		
+		tooltip.add(TextFormatting.WHITE + References.Old_I18n.translateToLocal("viesmachines.shiftrightclick") + " " + TextFormatting.WHITE + References.Old_I18n.translateToLocal("viesmachines:item_machines.tt.1"));
+		
+		tooltip.add(TextFormatting.DARK_GREEN + "--------------------------------");
 		
 		
 		if(gameSettingsIn.isKeyDown(gameSettingsIn.keyBindSneak))
@@ -389,9 +396,8 @@ public class ItemMachineFlyingAirship extends ItemMachineBase {
 			tooltip.add(TextFormatting.BLUE + "Frame : " + frameInfoDisplay);
 			tooltip.add(TextFormatting.BLUE + "Engine : " + engineInfoDisplay);
 			tooltip.add(TextFormatting.BLUE + "Component : " + componentInfoDisplay);
-			//tooltip.add(TextFormatting.DARK_GREEN + "--------------------------------");
-			//tooltip.add(TextFormatting.BLUE + "Ammo Type : ");
-			//tooltip.add(TextFormatting.BLUE + "Ammo Amount : ");
+			tooltip.add(TextFormatting.BLUE + "Ammo Type : " + TextFormatting.WHITE + ammoTypeInfo);
+			tooltip.add(TextFormatting.BLUE + "Ammo Amount : " + TextFormatting.WHITE + ammoAmountInfo);
 		}
 		else
 		{

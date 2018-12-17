@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "viesmachines:items/item_machine_ammo"
+        "layer0": "viesmachines:items/kits/item_kit_blank"
     }
 }

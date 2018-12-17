@@ -27,11 +27,6 @@ public final class InitTileEntityVMRender {
 		//registerRender(TileEntityBatteryCharger.class, new RenderBatteryCharger());
 	}
 	
-	public static void registerTileEntityRenderTEMP()
-	{
-		
-	}
-	
 	public static <T extends TileEntity> void registerRender(Class<T> classIn, String nameIn, TileEntitySpecialRenderer<? super T> renderItem)
 	{
 		ClientRegistry.registerTileEntity(classIn, References.MOD_ID + ":" + nameIn, renderItem);

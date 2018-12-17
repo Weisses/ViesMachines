@@ -18,13 +18,16 @@ import com.vies.viesmachines.network.client.machine.eventtrigger.MessageHelperEv
 import com.vies.viesmachines.network.client.machine.eventtrigger.MessageHelperEventTrigger41Client;
 import com.vies.viesmachines.network.client.machine.eventtrigger.MessageHelperEventTrigger42Client;
 import com.vies.viesmachines.network.client.machine.eventtrigger.MessageHelperEventTrigger43Client;
+import com.vies.viesmachines.network.client.machine.eventtrigger.MessageHelperEventTrigger51Client;
+import com.vies.viesmachines.network.client.machine.eventtrigger.MessageHelperEventTrigger52Client;
+import com.vies.viesmachines.network.client.machine.eventtrigger.MessageHelperEventTrigger53Client;
 import com.vies.viesmachines.network.client.tileentity.MessageGuiExtractorSyncClientOn;
 import com.vies.viesmachines.network.client.tileentity.MessageGuiKitFabricatorSyncClientGem;
 import com.vies.viesmachines.network.client.tileentity.MessageGuiKitFabricatorSyncClientOn;
 import com.vies.viesmachines.network.server.item.MessageGuiRadioExpansion;
 import com.vies.viesmachines.network.server.item.MessageHelperItemToolRadioExpansion;
 import com.vies.viesmachines.network.server.machine.MessageFlyingThunderStrike;
-import com.vies.viesmachines.network.server.machine.MessageMachineProjectileShoot;
+import com.vies.viesmachines.network.server.machine.MessageMachineFlyingBombStandard;
 import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger01Server;
 import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger02Server;
 import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger04Server;
@@ -41,6 +44,9 @@ import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEv
 import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger41Server;
 import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger42Server;
 import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger43Server;
+import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger51Server;
+import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger52Server;
+import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger53Server;
 import com.vies.viesmachines.network.server.machine.gui.customize.MessageHelperGuiMachineMenuCustomizePrimaryDefault;
 import com.vies.viesmachines.network.server.machine.gui.customize.MessageHelperGuiMachineMenuCustomizePrimaryTransparent;
 import com.vies.viesmachines.network.server.machine.gui.customize.MessageHelperGuiMachineMenuCustomizeSecondaryDefault;
@@ -267,7 +273,7 @@ public class NetworkHandler {
 		//----------//----------//----------//----------//----------//
 		
 		register(MessageFlyingThunderStrike.class, MessageFlyingThunderStrike.class, Side.SERVER);
-		register(MessageMachineProjectileShoot.class, MessageMachineProjectileShoot.class, Side.SERVER);
+		register(MessageMachineFlyingBombStandard.class, MessageMachineFlyingBombStandard.class, Side.SERVER);
 		
 		//----------//----------//----------//----------//----------//
 		
@@ -335,6 +341,9 @@ public class NetworkHandler {
 		register(MessageHelperEventTrigger41Client.class, MessageHelperEventTrigger41Client.class, Side.CLIENT);
 		register(MessageHelperEventTrigger42Client.class, MessageHelperEventTrigger42Client.class, Side.CLIENT);
 		register(MessageHelperEventTrigger43Client.class, MessageHelperEventTrigger43Client.class, Side.CLIENT);
+		register(MessageHelperEventTrigger51Client.class, MessageHelperEventTrigger51Client.class, Side.CLIENT);
+		register(MessageHelperEventTrigger52Client.class, MessageHelperEventTrigger52Client.class, Side.CLIENT);
+		register(MessageHelperEventTrigger53Client.class, MessageHelperEventTrigger53Client.class, Side.CLIENT);
 		
 		register(MessageHelperEventTrigger01Server.class, MessageHelperEventTrigger01Server.class, Side.SERVER);
 		register(MessageHelperEventTrigger02Server.class, MessageHelperEventTrigger02Server.class, Side.SERVER);
@@ -352,8 +361,13 @@ public class NetworkHandler {
 		register(MessageHelperEventTrigger41Server.class, MessageHelperEventTrigger41Server.class, Side.SERVER);
 		register(MessageHelperEventTrigger42Server.class, MessageHelperEventTrigger42Server.class, Side.SERVER);
 		register(MessageHelperEventTrigger43Server.class, MessageHelperEventTrigger43Server.class, Side.SERVER);
+		register(MessageHelperEventTrigger51Server.class, MessageHelperEventTrigger51Server.class, Side.SERVER);
+		register(MessageHelperEventTrigger52Server.class, MessageHelperEventTrigger52Server.class, Side.SERVER);
+		register(MessageHelperEventTrigger53Server.class, MessageHelperEventTrigger53Server.class, Side.SERVER);
 		
 		//----------//----------//----------//----------//----------//
+		
+		
 		
 		//register(.class, .class, Side.SERVER);
 		

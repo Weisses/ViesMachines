@@ -570,14 +570,14 @@ public class GuiMachineMenuMain extends GuiContainerVM {
 			&& mouseY >= this.guiTop + 57 && mouseY <= this.guiTop + 70)
 			{
 				List<String> text = new ArrayList<String>();
-				text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.selectprojectile.1"));
-				text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.selectprojectile.2"));
-				
+				//text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.selectprojectile.1"));
+				//text.add(TextFormatting.WHITE + References.localNameVC("viesmachines.gui.tt.selectprojectile.2"));
+				text.add("Disabled for now!");
 				GlStateManager.pushMatrix();
 				{
-					int textNumber = References.localNameVC("viesmachines.gui.tt.selectprojectile.1").length();
+					int textNumber = text.toString().length();//References.localNameVC("viesmachines.gui.tt.selectprojectile.1").length();
 					
-					GlStateManager.translate(mouseX - this.guiLeft - 6 - textNumber - (textNumber / 2), mouseY - this.guiTop - 19, 0);
+					GlStateManager.translate(mouseX - this.guiLeft + 3 - textNumber - (textNumber / 2), mouseY - this.guiTop - 19, 0);
 					GlStateManager.scale(0.5, 0.5, 0.5);
 					
 					this.drawHoveringText(text, 0, 0);
@@ -912,6 +912,9 @@ public class GuiMachineMenuMain extends GuiContainerVM {
         		GuiVM.buttonMachineCompress.enabled = false;
         	}
         }
+        
+        // TODO Remove soon!
+        GuiVM.buttonMachineSelectProjectile.enabled = false;
     }
 	
 	/** Gets the record mod and name. */

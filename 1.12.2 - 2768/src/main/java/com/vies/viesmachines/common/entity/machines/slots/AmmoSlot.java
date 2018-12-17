@@ -19,7 +19,7 @@ public class AmmoSlot extends SlotItemHandler {
     {
 		Item item = stack.getItem();
         
-		if (item == ItemsVM.MACHINE_AMMO) return true;
+		//if (item == ItemsVM.MACHINE_AMMO) return true;
         
 		return false;
     }

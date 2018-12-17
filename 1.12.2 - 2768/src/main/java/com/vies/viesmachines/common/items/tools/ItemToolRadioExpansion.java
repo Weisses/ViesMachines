@@ -25,6 +25,7 @@ import com.vies.viesmachines.proxy.CommonProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -303,6 +304,267 @@ public class ItemToolRadioExpansion extends Item {
 						// No record selected:
 						NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionNoRecord());
 					}
+				}
+				return true;
+			}
+			return true;
+        }
+		else if (entity instanceof EntityLiving)
+        {
+			if (entity.getRidingEntity() != null)
+			{
+				if (entity.getRidingEntity() instanceof EntityMachineBase)
+				{
+					
+					
+					if (!((EntityMachineBase) entity.getRidingEntity()).getBroken())
+					{
+						if(stack.hasTagCompound())
+						{
+							if (!((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot1().equals(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)))
+							&& !((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot2().equals(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)))
+							&& !((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot3().equals(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)))
+							&& !((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot4().equals(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)))
+							&& !((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot5().equals(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)))
+							&& !((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot6().equals(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)))
+							&& !((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot7().equals(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG))))
+							{
+								if (((EntityMachineBase) entity.getRidingEntity()).getTierComponent() == 0)
+								{
+									if (((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot1().equals(""))
+									{
+										((EntityMachineBase) entity.getRidingEntity()).setLearnedRecordSlot1(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
+										
+										if(player.world.isRemote)
+										{
+											// Record applied:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply1());
+										}
+									}
+									else
+									{
+										if(player.world.isRemote)
+										{
+											// Record slots are full:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionFull());
+										}
+									}
+								}
+								
+								
+								if (((EntityMachineBase) entity.getRidingEntity()).getTierComponent() == 1)
+								{
+									if (((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot1().equals(""))
+									{
+										((EntityMachineBase) entity.getRidingEntity()).setLearnedRecordSlot1(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
+										
+										if(player.world.isRemote)
+										{
+											// Record applied:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply1());
+										}
+									}
+									else if (((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot2().equals(""))
+									{
+										((EntityMachineBase) entity.getRidingEntity()).setLearnedRecordSlot2(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
+										
+										if(player.world.isRemote)
+										{
+											// Record applied:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply2());
+										}
+									}
+									else if (((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot3().equals(""))
+									{
+										((EntityMachineBase) entity.getRidingEntity()).setLearnedRecordSlot3(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
+										
+										if(player.world.isRemote)
+										{
+											// Record applied:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply3());
+										}
+									}
+									else
+									{
+										if(player.world.isRemote)
+										{
+											// Record slots are full:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionFull());
+										}
+									}
+								}
+								
+								
+								
+								if (((EntityMachineBase) entity.getRidingEntity()).getTierComponent() == 2)
+								{
+									if (((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot1().equals(""))
+									{
+										((EntityMachineBase) entity.getRidingEntity()).setLearnedRecordSlot1(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
+										
+										if(player.world.isRemote)
+										{
+											// Record applied:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply1());
+										}
+									}
+									else if (((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot2().equals(""))
+									{
+										((EntityMachineBase) entity.getRidingEntity()).setLearnedRecordSlot2(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
+										
+										if(player.world.isRemote)
+										{
+											// Record applied:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply2());
+										}
+									}
+									else if (((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot3().equals(""))
+									{
+										((EntityMachineBase) entity.getRidingEntity()).setLearnedRecordSlot3(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
+										
+										if(player.world.isRemote)
+										{
+											// Record applied:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply3());
+										}
+									}
+									else if (((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot4().equals(""))
+									{
+										((EntityMachineBase) entity.getRidingEntity()).setLearnedRecordSlot4(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
+										
+										if(player.world.isRemote)
+										{
+											// Record applied:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply4());
+										}
+									}
+									else if (((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot5().equals(""))
+									{
+										((EntityMachineBase) entity.getRidingEntity()).setLearnedRecordSlot5(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
+										
+										if(player.world.isRemote)
+										{
+											// Record applied:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply5());
+										}
+									}
+									else
+									{
+										if(player.world.isRemote)
+										{
+											// Record slots are full:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionFull());
+										}
+									}
+								}
+								
+								
+								
+								if (((EntityMachineBase) entity.getRidingEntity()).getTierComponent() == 3)
+								{
+									if (((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot1().equals(""))
+									{
+										((EntityMachineBase) entity.getRidingEntity()).setLearnedRecordSlot1(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
+										
+										if(player.world.isRemote)
+										{
+											// Record applied:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply1());
+										}
+									}
+									else if (((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot2().equals(""))
+									{
+										((EntityMachineBase) entity.getRidingEntity()).setLearnedRecordSlot2(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
+										
+										if(player.world.isRemote)
+										{
+											// Record applied:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply2());
+										}
+									}
+									else if (((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot3().equals(""))
+									{
+										((EntityMachineBase) entity.getRidingEntity()).setLearnedRecordSlot3(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
+										
+										if(player.world.isRemote)
+										{
+											// Record applied:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply3());
+										}
+									}
+									else if (((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot4().equals(""))
+									{
+										((EntityMachineBase) entity.getRidingEntity()).setLearnedRecordSlot4(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
+										
+										if(player.world.isRemote)
+										{
+											// Record applied:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply4());
+										}
+									}
+									else if (((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot5().equals(""))
+									{
+										((EntityMachineBase) entity.getRidingEntity()).setLearnedRecordSlot5(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
+										
+										if(player.world.isRemote)
+										{
+											// Record applied:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply5());
+										}
+									}
+									else if (((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot6().equals(""))
+									{
+										((EntityMachineBase) entity.getRidingEntity()).setLearnedRecordSlot6(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
+										
+										if(player.world.isRemote)
+										{
+											// Record applied:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply6());
+										}
+									}
+									else if (((EntityMachineBase) entity.getRidingEntity()).getLearnedRecordSlot7().equals(""))
+									{
+										((EntityMachineBase) entity.getRidingEntity()).setLearnedRecordSlot7(((EntityMachineBase) entity.getRidingEntity()).addSongtoRecordList(stack.getTagCompound().getInteger(References.TOOL_RECORD_TO_ADD_TAG)));
+										
+										if(player.world.isRemote)
+										{
+											// Record applied:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionApply7());
+										}
+									}
+									else
+									{
+										if(player.world.isRemote)
+										{
+											// Record slots are full:
+											NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionFull());
+										}
+									}
+								}
+								
+							}
+							else
+							{
+								if(player.world.isRemote)
+								{
+									// Already knows record:
+									NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionAlreadyKnown());
+								}
+								
+							}
+						
+						}
+						else
+						{
+							if(player.world.isRemote)
+							{
+								// No record selected:
+								NetworkHandler.sendToServer(new PlayerMessageToolRadioExpansionNoRecord());
+							}
+						}
+						return true;
+					}
+					return true;
 				}
 				return true;
 			}

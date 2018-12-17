@@ -14,7 +14,7 @@ public class References {
 	
 	public static final String MOD_ID = "viesmachines";
 	public static final String MOD_NAME = "Vies Machines";
-	public static final String MOD_VERSION_NUMBER = "0.11.16-beta";
+	public static final String MOD_VERSION_NUMBER = "1.0.0";
 	public static final String MOD_VERSION_MC = "1.12.2";
 	public static final String VERSION = MOD_VERSION_NUMBER + " - MC " + MOD_VERSION_MC;
 	//public static final String website = "http://lycanitesmobs.com";

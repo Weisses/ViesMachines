@@ -158,10 +158,10 @@ item.viesmachines:particles/item_particle_static_charge.tt.2=
 //-----Tile Entities-----
 tile.viesmachines:appliance/extractor.name=Extractor
 tile.viesmachines:appliance/kit_fabricator.name=Kit Fabricator
-tile.viesmachines:appliance/machine_transmogrifier.name=Machine Transmogrifier
-tile.viesmachines:appliance/machine_beacon.name=Machine Beacon
+tile.viesmachines:appliance/machine_transmogrifier.name=Machine Transmogrifier (WIP)
+tile.viesmachines:appliance/machine_beacon.name=Machine Beacon (WIP)
 
-tile.viesmachines:decoration/item_display.name=Item Display
+tile.viesmachines:decoration/item_display.name=Item Display (WIP)
 
 
 
@@ -570,6 +570,16 @@ viesmachines.message.tool.radio_expansion.14=Record applied to slot 4.
 viesmachines.message.tool.radio_expansion.15=Record applied to slot 5.
 viesmachines.message.tool.radio_expansion.16=Record applied to slot 6.
 viesmachines.message.tool.radio_expansion.17=Record applied to slot 7.
+
+viesmachines.message.upgrade.alreadyknown.0=This is already applied!
+viesmachines.message.upgrade.appliedtier1.0=Tier 1 upgrade successfully applied!
+viesmachines.message.upgrade.appliedtier2.0=Tier 2 upgrade successfully applied!
+viesmachines.message.upgrade.appliedtier3.0=Tier 3 upgrade successfully applied!
+viesmachines.message.upgrade.requiredtier1.0=Failed! Must have Tier 1 upgrade first!
+viesmachines.message.upgrade.requiredtier2.0=Failed! Must have Tier 2 upgrade first!
+viesmachines.message.upgrade.broken.0=Can't apply upgrades to broken machines.
+
+
 
 
 

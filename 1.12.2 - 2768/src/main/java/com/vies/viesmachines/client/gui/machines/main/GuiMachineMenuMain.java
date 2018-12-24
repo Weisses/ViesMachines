@@ -27,12 +27,12 @@ import com.vies.viesmachines.network.server.machine.gui.main.song.MessageGuiMach
 import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperGuiMachineMusicPlay;
 import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperGuiMachineMusicRandom;
 import com.vies.viesmachines.network.server.machine.gui.main.song.MessageHelperGuiMachineMusicStop;
-import com.vies.viesmachines.network.server.world.PlayerMessageAutorunDisabled;
-import com.vies.viesmachines.network.server.world.PlayerMessageAutorunEnabled;
-import com.vies.viesmachines.network.server.world.PlayerMessagePoweredOnDisabled;
-import com.vies.viesmachines.network.server.world.PlayerMessagePoweredOnEnabled;
-import com.vies.viesmachines.network.server.world.PlayerMessageWeaponSystemDisabled;
-import com.vies.viesmachines.network.server.world.PlayerMessageWeaponSystemEnabled;
+import com.vies.viesmachines.network.server.world.menu.main.PlayerMessageAutorunDisabled;
+import com.vies.viesmachines.network.server.world.menu.main.PlayerMessageAutorunEnabled;
+import com.vies.viesmachines.network.server.world.menu.main.PlayerMessagePoweredOnDisabled;
+import com.vies.viesmachines.network.server.world.menu.main.PlayerMessagePoweredOnEnabled;
+import com.vies.viesmachines.network.server.world.menu.main.PlayerMessageWeaponSystemDisabled;
+import com.vies.viesmachines.network.server.world.menu.main.PlayerMessageWeaponSystemEnabled;
 import com.vies.viesmachines.proxy.ClientProxy;
 
 import net.minecraft.client.gui.GuiButton;

@@ -26,10 +26,10 @@ import com.vies.viesmachines.network.server.machine.gui.customize.primaryskin.Me
 import com.vies.viesmachines.network.server.machine.gui.customize.primaryskin.color.MessageGuiMachineMenuCustomizePrimarySkinColor;
 import com.vies.viesmachines.network.server.machine.gui.customize.secondaryskin.MessageGuiMachineMenuCustomizeSecondarySkinTexture;
 import com.vies.viesmachines.network.server.machine.gui.customize.secondaryskin.color.MessageGuiMachineMenuCustomizeSecondarySkinColor;
-import com.vies.viesmachines.network.server.world.PlayerMessageVisualPrimaryTransparentDisabled;
-import com.vies.viesmachines.network.server.world.PlayerMessageVisualPrimaryTransparentEnabled;
-import com.vies.viesmachines.network.server.world.PlayerMessageVisualSecondaryTransparentDisabled;
-import com.vies.viesmachines.network.server.world.PlayerMessageVisualSecondaryTransparentEnabled;
+import com.vies.viesmachines.network.server.world.menu.customize.PlayerMessageVisualPrimaryTransparentDisabled;
+import com.vies.viesmachines.network.server.world.menu.customize.PlayerMessageVisualPrimaryTransparentEnabled;
+import com.vies.viesmachines.network.server.world.menu.customize.PlayerMessageVisualSecondaryTransparentDisabled;
+import com.vies.viesmachines.network.server.world.menu.customize.PlayerMessageVisualSecondaryTransparentEnabled;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;

@@ -34,8 +34,8 @@ import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEv
 import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger52Server;
 import com.vies.viesmachines.network.server.machine.eventtrigger.MessageHelperEventTrigger53Server;
 import com.vies.viesmachines.network.server.machine.gui.navigation.MessageGuiMachineMenuMain;
-import com.vies.viesmachines.network.server.world.PlayerMessageWeaponSystemError;
-import com.vies.viesmachines.network.server.world.PlayerMessageWeaponSystemOutOfAmmo;
+import com.vies.viesmachines.network.server.world.menu.main.PlayerMessageWeaponSystemError;
+import com.vies.viesmachines.network.server.world.menu.main.PlayerMessageWeaponSystemOutOfAmmo;
 import com.vies.viesmachines.proxy.CommonProxy;
 
 import net.minecraft.block.BlockLiquid;

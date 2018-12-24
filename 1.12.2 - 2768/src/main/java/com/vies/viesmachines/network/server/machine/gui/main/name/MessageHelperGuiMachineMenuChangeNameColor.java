@@ -5,7 +5,7 @@ import com.vies.viesmachines.client.gui.machines.main.GuiMachineMenuMainSelectNa
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.network.NetworkHandler;
 import com.vies.viesmachines.network.packet.MessageBase;
-import com.vies.viesmachines.network.server.world.PlayerMessageNameColor;
+import com.vies.viesmachines.network.server.world.menu.main.PlayerMessageNameColor;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;

@@ -9,6 +9,14 @@ import com.vies.viesmachines.api.EnumsVM;
 import com.vies.viesmachines.api.References;
 import com.vies.viesmachines.common.entity.machines.EntityMachineBase;
 import com.vies.viesmachines.common.items.ItemHelper;
+import com.vies.viesmachines.network.NetworkHandler;
+import com.vies.viesmachines.network.server.world.upgrade.PlayerMessageUpgradeAlreadyKnown;
+import com.vies.viesmachines.network.server.world.upgrade.PlayerMessageUpgradeAppliedTier1;
+import com.vies.viesmachines.network.server.world.upgrade.PlayerMessageUpgradeAppliedTier2;
+import com.vies.viesmachines.network.server.world.upgrade.PlayerMessageUpgradeAppliedTier3;
+import com.vies.viesmachines.network.server.world.upgrade.PlayerMessageUpgradeBroken;
+import com.vies.viesmachines.network.server.world.upgrade.PlayerMessageUpgradeRequiredTier1;
+import com.vies.viesmachines.network.server.world.upgrade.PlayerMessageUpgradeRequiredTier2;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -66,16 +74,88 @@ public class ItemUpgradeFrame extends Item {
 					if (((EntityMachineBase) entity).getTierFrame() == 1)
 					{
 						((EntityMachineBase) entity).setEventTrigger(EnumsVM.EventTrigger.UPGRADE_TIER1.getMetadata());
+						
+						if (player.world.isRemote)
+						{
+							NetworkHandler.sendToServer(new PlayerMessageUpgradeAppliedTier1());
+						}
 					}
 					else if (((EntityMachineBase) entity).getTierFrame() == 2)
 					{
 						((EntityMachineBase) entity).setEventTrigger(EnumsVM.EventTrigger.UPGRADE_TIER2.getMetadata());
+						
+						if (player.world.isRemote)
+						{
+							NetworkHandler.sendToServer(new PlayerMessageUpgradeAppliedTier2());
+						}
 					}
 					else if (((EntityMachineBase) entity).getTierFrame() == 3)
 					{
 						((EntityMachineBase) entity).setEventTrigger(EnumsVM.EventTrigger.UPGRADE_TIER3.getMetadata());
+						
+						if (player.world.isRemote)
+						{
+							NetworkHandler.sendToServer(new PlayerMessageUpgradeAppliedTier3());
+						}
 					}
 	        	}
+				else
+				{
+					
+					
+					
+					if (((EntityMachineBase) entity).getTierFrame() == 0)
+					{
+						if (this.upgradeTier == 0)
+						{
+							if (player.world.isRemote)
+							{
+								NetworkHandler.sendToServer(new PlayerMessageUpgradeAlreadyKnown());
+							}
+						}
+						else
+						{
+							if (player.world.isRemote)
+							{
+								NetworkHandler.sendToServer(new PlayerMessageUpgradeRequiredTier1());
+							}
+						}
+					}
+					else if (((EntityMachineBase) entity).getTierFrame() == 1)
+					{
+						if (this.upgradeTier == 1)
+						{
+							if (player.world.isRemote)
+							{
+								NetworkHandler.sendToServer(new PlayerMessageUpgradeAlreadyKnown());
+							}
+						}
+						else
+						{
+							if (player.world.isRemote)
+							{
+								NetworkHandler.sendToServer(new PlayerMessageUpgradeRequiredTier1());
+							}
+						}
+					}
+					else if (((EntityMachineBase) entity).getTierFrame() == 2)
+					{
+						if (this.upgradeTier == 2)
+						{
+							if (player.world.isRemote)
+							{
+								NetworkHandler.sendToServer(new PlayerMessageUpgradeAlreadyKnown());
+							}
+						}
+					}
+				}
+			}
+			else
+			{
+				if (player.world.isRemote)
+				{
+					NetworkHandler.sendToServer(new PlayerMessageUpgradeBroken());
+				}
 			}
         }
 		else if(entity instanceof EntityLiving)

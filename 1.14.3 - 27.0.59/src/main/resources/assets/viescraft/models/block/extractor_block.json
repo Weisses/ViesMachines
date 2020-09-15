@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "viescraft:block/xegonite_block",
+        "down": "viescraft:block/xegonite_block",
+        "up": "viescraft:block/xegonite_block",
+        "east": "viescraft:block/xegonite_block",
+        "west": "viescraft:block/xegonite_block",
+        "north": "viescraft:block/xegonite_block1",
+        "south": "viescraft:block/xegonite_block"
+    }
+}

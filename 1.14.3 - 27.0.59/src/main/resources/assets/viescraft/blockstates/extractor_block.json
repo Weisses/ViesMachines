@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=north": { "model": "viescraft:block/extractor_block" },
+        "facing=south": { "model": "viescraft:block/extractor_block", "y": 180 },
+        "facing=west": { "model": "viescraft:block/extractor_block", "y": 270 },
+        "facing=east": { "model": "viescraft:block/extractor_block", "y": 90 },
+        "facing=up": { "model": "viescraft:block/extractor_block", "x": -90 },
+        "facing=down": { "model": "viescraft:block/extractor_block", "x": 90 }
+    }
+}

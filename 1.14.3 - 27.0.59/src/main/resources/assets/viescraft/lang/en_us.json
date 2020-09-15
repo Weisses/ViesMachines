@@ -1,0 +1,14 @@
+{
+	"_comment": "< en_US.lang - English localization file for the ViesCraft - Airships Mod >",
+	
+	"_comment - Creative Tabs": "Creative Tabs",
+	"itemGroup.viescraft.blocks": "ViesCraft Blocks",
+	"itemGroup.viescraft.items": "ViesCraft Items",
+	"itemGroup.viescraft.airships": "ViesCraft Airships",
+	
+	"_comment - Blocks": "Blocks",
+	"block.viescraft.xegonite_block": "Xegonite Block",
+	
+	"_comment - Items": "Items",
+	"item.viescraft.xegonite": "Xegonite"
+}

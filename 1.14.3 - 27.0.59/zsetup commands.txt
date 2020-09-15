@@ -1,0 +1,5 @@
+cd "c:\Users\daiello\Github\ViesMachines\1.14.3 - 27.0.59"
+
+gradlew eclipse
+gradlew genEclipseRuns
+gradlew --refresh-dependencies
